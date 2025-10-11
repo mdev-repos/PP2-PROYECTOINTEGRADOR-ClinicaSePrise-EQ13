@@ -15,6 +15,6 @@ namespace ClinicaSePriseApp.Entidades
         public string IdProfesional { get; set; }
         public string IdPaciente { get; set; }
         public float Monto { get; set; }
-        //public EstadoTurno Estado { get; set; }
+        public EstadoTurno Estado { get; set; }
     }
 }

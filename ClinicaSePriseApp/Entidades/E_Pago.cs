@@ -15,7 +15,7 @@ namespace ClinicaSePriseApp.Entidades
         public string IdTurno { get; set; }
         public string FechaPago { get; set; }
         public float Monto { get; set; }
-        //public EstadoPago Estado { get; set; }
-        //public MetodoPago MetodoPago { get; set; }
+        public EstadoPago Estado { get; set; }
+        public MetodoPago MetodoPago { get; set; }
     }
 }
