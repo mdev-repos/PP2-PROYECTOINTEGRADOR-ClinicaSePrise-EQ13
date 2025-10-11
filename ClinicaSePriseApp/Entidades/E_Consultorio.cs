@@ -10,7 +10,7 @@ namespace ClinicaSePriseApp.Entidades
     {
         public string IdConsultorio { get; set; }
         public string IdProfesional { get; set; }
-        public List<Insumo> Insumos { get; set; }
+        public List<E_Insumo> Insumos { get; set; }
     }
 }
 

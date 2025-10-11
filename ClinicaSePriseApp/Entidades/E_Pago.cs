@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace ClinicaSePriseApp.Entidades.Enums
+using ClinicaSePriseApp.Entidades.Enums;
 
 
 namespace ClinicaSePriseApp.Entidades
@@ -15,7 +15,7 @@ namespace ClinicaSePriseApp.Entidades
         public string IdTurno { get; set; }
         public string FechaPago { get; set; }
         public float Monto { get; set; }
-        public EstadoPago Estado { get; set; }
-        public MetodoPago MetodoPago { get; set; }
+        //public EstadoPago Estado { get; set; }
+        //public MetodoPago MetodoPago { get; set; }
     }
 }

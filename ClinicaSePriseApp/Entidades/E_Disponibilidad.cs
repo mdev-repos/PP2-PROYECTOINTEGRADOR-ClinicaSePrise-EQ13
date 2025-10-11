@@ -10,7 +10,7 @@ namespace ClinicaSePriseApp.Entidades
     {
         public string IdDisponibilidad { get; set; }
         public string Dia { get; set; }
-        public dateTime HoraInicio { get; set; }
-        public dateTime HoraFin { get; set; }
+        public DateTime HoraInicio { get; set; }
+        public DateTime HoraFin { get; set; }
     }
 }

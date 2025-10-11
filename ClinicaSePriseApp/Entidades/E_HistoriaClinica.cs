@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicaSePriseApp.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,6 @@ namespace ClinicaSePrise.Entidades
     {
         public string IdHistoriaClinica { get; set; }
         public string IdPaciente { get; set; }
-        public List<Entrada> Entradas { get; set; }
+        public List<E_Entrada> Entradas { get; set; }
     }
 }

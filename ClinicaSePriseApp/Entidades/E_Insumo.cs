@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClinicaSePrise App.Entidades
+namespace ClinicaSePriseApp.Entidades
 {
     public class E_Insumo
     {
