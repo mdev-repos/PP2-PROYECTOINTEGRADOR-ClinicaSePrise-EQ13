@@ -168,7 +168,7 @@
             picBox.BackColor = SystemColors.Control;
             picBox.BackgroundImageLayout = ImageLayout.None;
             picBox.Dock = DockStyle.Fill;
-            picBox.Image = Properties.Resources.login_img3;
+            picBox.Image = Properties.Resources.img_administrativo;
             picBox.Location = new Point(0, 0);
             picBox.Name = "picBox";
             picBox.Size = new Size(1902, 1033);
