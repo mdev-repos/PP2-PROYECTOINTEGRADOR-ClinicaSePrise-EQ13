@@ -60,9 +60,9 @@ namespace ClinicaSePriseApp.Vistas
 
         private void CargarImagenes()
         {
-            imagenes.Add(Properties.Resources.login_img1);
-            imagenes.Add(Properties.Resources.login_img2);
-            imagenes.Add(Properties.Resources.login_img3);
+            imagenes.Add(Properties.Resources.img_clinica);
+            imagenes.Add(Properties.Resources.img_administrativo);
+            imagenes.Add(Properties.Resources.img_profesional);
         }
 
 
