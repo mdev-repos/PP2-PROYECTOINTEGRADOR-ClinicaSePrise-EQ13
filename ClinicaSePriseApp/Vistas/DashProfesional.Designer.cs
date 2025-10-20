@@ -33,10 +33,10 @@
             picImg = new PictureBox();
             menuTLP = new TableLayoutPanel();
             picLogo = new PictureBox();
-            btnLogout = new Button();
             btnAgenda = new Button();
-            btnInsumos = new Button();
+            btnLogout = new Button();
             btnLiquidaciones = new Button();
+            btnInsumos = new Button();
             mainTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picImg).BeginInit();
             menuTLP.SuspendLayout();
@@ -52,6 +52,7 @@
             mainTLP.Controls.Add(menuTLP, 1, 0);
             mainTLP.Dock = DockStyle.Fill;
             mainTLP.Location = new Point(0, 0);
+            mainTLP.Margin = new Padding(0);
             mainTLP.Name = "mainTLP";
             mainTLP.RowCount = 1;
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -62,9 +63,10 @@
             // 
             picImg.Dock = DockStyle.Fill;
             picImg.Image = Properties.Resources.img_profesional;
-            picImg.Location = new Point(3, 3);
+            picImg.Location = new Point(0, 0);
+            picImg.Margin = new Padding(0);
             picImg.Name = "picImg";
-            picImg.Size = new Size(1437, 1049);
+            picImg.Size = new Size(1443, 1055);
             picImg.SizeMode = PictureBoxSizeMode.StretchImage;
             picImg.TabIndex = 0;
             picImg.TabStop = false;
@@ -74,76 +76,92 @@
             menuTLP.ColumnCount = 1;
             menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             menuTLP.Controls.Add(picLogo, 0, 0);
-            menuTLP.Controls.Add(btnLogout, 0, 6);
-            menuTLP.Controls.Add(btnAgenda, 0, 1);
-            menuTLP.Controls.Add(btnInsumos, 0, 2);
-            menuTLP.Controls.Add(btnLiquidaciones, 0, 4);
+            menuTLP.Controls.Add(btnAgenda, 0, 2);
+            menuTLP.Controls.Add(btnLogout, 0, 8);
+            menuTLP.Controls.Add(btnLiquidaciones, 0, 6);
+            menuTLP.Controls.Add(btnInsumos, 0, 4);
             menuTLP.Dock = DockStyle.Fill;
-            menuTLP.Location = new Point(1446, 3);
+            menuTLP.Location = new Point(1443, 0);
+            menuTLP.Margin = new Padding(0);
             menuTLP.Name = "menuTLP";
-            menuTLP.RowCount = 7;
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 24F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9.5F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9.5F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9.5F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9.5F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9.5F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9.5F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9.5F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9.5F));
-            menuTLP.Size = new Size(475, 1049);
+            menuTLP.RowCount = 10;
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 2F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
+            menuTLP.Size = new Size(481, 1055);
             menuTLP.TabIndex = 1;
             // 
             // picLogo
             // 
             picLogo.Dock = DockStyle.Fill;
             picLogo.Image = Properties.Resources.SePrise_logoApp;
-            picLogo.Location = new Point(3, 3);
+            picLogo.Location = new Point(0, 0);
+            picLogo.Margin = new Padding(0);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(469, 304);
+            picLogo.Size = new Size(481, 316);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
             // 
-            // btnLogout
-            // 
-            btnLogout.Dock = DockStyle.Fill;
-            btnLogout.Location = new Point(3, 928);
-            btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(469, 118);
-            btnLogout.TabIndex = 5;
-            btnLogout.Text = "LOG OUT";
-            btnLogout.UseVisualStyleBackColor = true;
-            // 
             // btnAgenda
             // 
+            btnAgenda.BackColor = Color.CornflowerBlue;
             btnAgenda.Dock = DockStyle.Fill;
-            btnAgenda.Location = new Point(3, 313);
+            btnAgenda.ForeColor = Color.White;
+            btnAgenda.Location = new Point(0, 337);
+            btnAgenda.Margin = new Padding(0);
             btnAgenda.Name = "btnAgenda";
-            btnAgenda.Size = new Size(469, 117);
+            btnAgenda.Size = new Size(481, 84);
             btnAgenda.TabIndex = 6;
             btnAgenda.Text = "AGENDA DE TURNOS";
-            btnAgenda.UseVisualStyleBackColor = true;
+            btnAgenda.UseVisualStyleBackColor = false;
             // 
-            // btnInsumos
+            // btnLogout
             // 
-            btnInsumos.Dock = DockStyle.Fill;
-            btnInsumos.Location = new Point(3, 436);
-            btnInsumos.Name = "btnInsumos";
-            btnInsumos.Size = new Size(469, 117);
-            btnInsumos.TabIndex = 7;
-            btnInsumos.Text = "SOLICITAR INSUMOS";
-            btnInsumos.UseVisualStyleBackColor = true;
+            btnLogout.BackColor = Color.Pink;
+            btnLogout.Dock = DockStyle.Fill;
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Location = new Point(0, 903);
+            btnLogout.Margin = new Padding(0);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(481, 84);
+            btnLogout.TabIndex = 5;
+            btnLogout.Text = "LOG OUT";
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // btnLiquidaciones
             // 
+            btnLiquidaciones.BackColor = Color.PaleGreen;
             btnLiquidaciones.Dock = DockStyle.Fill;
-            btnLiquidaciones.Location = new Point(3, 682);
+            btnLiquidaciones.ForeColor = Color.White;
+            btnLiquidaciones.Location = new Point(0, 688);
+            btnLiquidaciones.Margin = new Padding(0);
             btnLiquidaciones.Name = "btnLiquidaciones";
-            btnLiquidaciones.Size = new Size(469, 117);
+            btnLiquidaciones.Size = new Size(481, 84);
             btnLiquidaciones.TabIndex = 8;
             btnLiquidaciones.Text = "CONSULTAR LIQUIDACIONES";
-            btnLiquidaciones.UseVisualStyleBackColor = true;
+            btnLiquidaciones.UseVisualStyleBackColor = false;
+            // 
+            // btnInsumos
+            // 
+            btnInsumos.BackColor = Color.CornflowerBlue;
+            btnInsumos.Dock = DockStyle.Fill;
+            btnInsumos.ForeColor = Color.White;
+            btnInsumos.Location = new Point(0, 473);
+            btnInsumos.Margin = new Padding(0);
+            btnInsumos.Name = "btnInsumos";
+            btnInsumos.Size = new Size(481, 84);
+            btnInsumos.TabIndex = 7;
+            btnInsumos.Text = "SOLICITAR INSUMOS";
+            btnInsumos.UseVisualStyleBackColor = false;
             // 
             // DashProfesional
             // 
