@@ -43,12 +43,11 @@ namespace ClinicaSePriseApp.Vistas
             foreach (Control boton in menuTLP.Controls)
             {
                 boton.Dock = DockStyle.Fill;
-                boton.Margin = new Padding(15, 10, 15, 10);
 
                 if (boton == btnLogout)
                 {
                     boton.BackColor = PaletaColores.btnRosa;
-                } 
+                }
                 else if (boton == btnLiquidaciones)
                 {
                     boton.BackColor = PaletaColores.btnVerde;
@@ -64,6 +63,11 @@ namespace ClinicaSePriseApp.Vistas
                 // Logo
                 picLogo.BackColor = Color.Transparent;
             }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

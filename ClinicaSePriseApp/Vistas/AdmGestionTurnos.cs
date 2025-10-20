@@ -1,5 +1,4 @@
-﻿using ClinicaSePriseApp.Utilidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,43 +10,44 @@ using System.Windows.Forms;
 
 namespace ClinicaSePriseApp.Vistas
 {
-    public partial class DashAdmin : Form
+    public partial class AdmGestionTurnos : Form
     {
-        public DashAdmin()
+        public AdmGestionTurnos()
         {
             InitializeComponent();
-            this.Resize += DashAdmin_Resize;
+            this.Resize += AdmGestionTurnos_Resize;
 
             this.Size = new Size(1024, 768);
             this.MinimumSize = new Size(1024, 768);
             this.WindowState = FormWindowState.Maximized;
+        //    this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void DashAdmin_Load(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
-            AjustarPaneles();
+            DashAdmin dashAdmin = new DashAdmin();
+            this.Hide();
+            dashAdmin.Show();
         }
 
-        private void DashAdmin_Resize(object sender, EventArgs e)
+        private void ajustarPaneles()
         {
-            AjustarPaneles();
-        }
-
-        private void AjustarPaneles()
-        {
-
-            mainTLP.BackColor = Utilidades.PaletaColores.bgGris;
+            // Estilo de fondos
+            mainTLP.BackColor = Utilidades.PaletaColores.bgCeleste;
             menuTLP.BackColor = Utilidades.PaletaColores.bgGris;
 
+            contentLbl.BackColor = Utilidades.PaletaColores.bgGris;
+
+            // Estilo para menu
             foreach (Control boton in menuTLP.Controls)
             {
                 boton.Dock = DockStyle.Fill;
-
-                if (boton == btnLogout)
+                //boton.Margin = new Padding(15, 10, 15, 10);
+                if (boton == btnVolver)
                 {
                     boton.BackColor = Utilidades.PaletaColores.btnRosa;
                 }
-                else if (boton == picLogo)
+                else if(boton == picLogo)
                 {
                     boton.BackColor = Color.Transparent;
                 }
@@ -56,19 +56,16 @@ namespace ClinicaSePriseApp.Vistas
                     boton.BackColor = Utilidades.PaletaColores.btnAzul;
                 }
             }
-
         }
 
-        private void btnTurnos_Click(object sender, EventArgs e)
+        private void AdmGestionTurnos_Load(object sender, EventArgs e)
         {
-            AdmGestionTurnos admGestionTurnos = new AdmGestionTurnos();
-            this.Hide();
-            admGestionTurnos.Show();
+            ajustarPaneles();
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+        private void AdmGestionTurnos_Resize(object sender, EventArgs e)
         {
-            this. Close();
+            ajustarPaneles();
         }
     }
 }

@@ -29,139 +29,92 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashAdmin));
-            mainPanel = new Panel();
-            tlpRightPanel = new TableLayoutPanel();
-            picLogo = new PictureBox();
-            tlpBotones = new TableLayoutPanel();
             btnInsumos = new Button();
             btnConsultorios = new Button();
             btnPacientes = new Button();
             btnTurnos = new Button();
             btnLogout = new Button();
-            leftPanel = new Panel();
             picBox = new PictureBox();
-            mainPanel.SuspendLayout();
-            tlpRightPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
-            tlpBotones.SuspendLayout();
-            leftPanel.SuspendLayout();
+            menuTLP = new TableLayoutPanel();
+            picLogo = new PictureBox();
+            mainTLP = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)picBox).BeginInit();
+            menuTLP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            mainTLP.SuspendLayout();
             SuspendLayout();
-            // 
-            // mainPanel
-            // 
-            mainPanel.Controls.Add(tlpRightPanel);
-            mainPanel.Controls.Add(leftPanel);
-            mainPanel.Dock = DockStyle.Fill;
-            mainPanel.Location = new Point(0, 0);
-            mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(1902, 1033);
-            mainPanel.TabIndex = 0;
-            // 
-            // tlpRightPanel
-            // 
-            tlpRightPanel.ColumnCount = 1;
-            tlpRightPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpRightPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tlpRightPanel.Controls.Add(picLogo, 0, 0);
-            tlpRightPanel.Controls.Add(tlpBotones, 0, 1);
-            tlpRightPanel.Dock = DockStyle.Right;
-            tlpRightPanel.Location = new Point(1445, 0);
-            tlpRightPanel.Name = "tlpRightPanel";
-            tlpRightPanel.RowCount = 2;
-            tlpRightPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 29.1384315F));
-            tlpRightPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 70.8615646F));
-            tlpRightPanel.Size = new Size(457, 1033);
-            tlpRightPanel.TabIndex = 1;
-            // 
-            // picLogo
-            // 
-            picLogo.Dock = DockStyle.Fill;
-            picLogo.Image = Properties.Resources.SePrise_logoApp;
-            picLogo.Location = new Point(3, 3);
-            picLogo.Name = "picLogo";
-            picLogo.Size = new Size(451, 295);
-            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            picLogo.TabIndex = 0;
-            picLogo.TabStop = false;
-            // 
-            // tlpBotones
-            // 
-            tlpBotones.ColumnCount = 1;
-            tlpBotones.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tlpBotones.Controls.Add(btnInsumos, 0, 3);
-            tlpBotones.Controls.Add(btnConsultorios, 0, 2);
-            tlpBotones.Controls.Add(btnPacientes, 0, 1);
-            tlpBotones.Controls.Add(btnTurnos, 0, 0);
-            tlpBotones.Controls.Add(btnLogout, 0, 5);
-            tlpBotones.Dock = DockStyle.Fill;
-            tlpBotones.Location = new Point(0, 301);
-            tlpBotones.Margin = new Padding(0);
-            tlpBotones.Name = "tlpBotones";
-            tlpBotones.RowCount = 6;
-            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 17F));
-            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 17F));
-            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 17F));
-            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 17F));
-            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tlpBotones.RowStyles.Add(new RowStyle(SizeType.Percent, 17F));
-            tlpBotones.Size = new Size(457, 732);
-            tlpBotones.TabIndex = 1;
             // 
             // btnInsumos
             // 
-            btnInsumos.Location = new Point(3, 375);
+            btnInsumos.BackColor = Color.CornflowerBlue;
+            btnInsumos.Dock = DockStyle.Fill;
+            btnInsumos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnInsumos.ForeColor = Color.White;
+            btnInsumos.Location = new Point(0, 727);
+            btnInsumos.Margin = new Padding(0);
             btnInsumos.Name = "btnInsumos";
-            btnInsumos.Size = new Size(94, 29);
+            btnInsumos.Size = new Size(470, 82);
             btnInsumos.TabIndex = 3;
             btnInsumos.Text = "GESTIONAR INSUMOS";
-            btnInsumos.UseVisualStyleBackColor = true;
+            btnInsumos.UseVisualStyleBackColor = false;
             // 
             // btnConsultorios
             // 
-            btnConsultorios.Location = new Point(3, 251);
+            btnConsultorios.BackColor = Color.CornflowerBlue;
+            btnConsultorios.Dock = DockStyle.Fill;
+            btnConsultorios.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnConsultorios.ForeColor = Color.White;
+            btnConsultorios.Location = new Point(0, 594);
+            btnConsultorios.Margin = new Padding(0);
             btnConsultorios.Name = "btnConsultorios";
-            btnConsultorios.Size = new Size(94, 29);
+            btnConsultorios.Size = new Size(470, 82);
             btnConsultorios.TabIndex = 2;
             btnConsultorios.Text = "GESTIONAR CONSULTORIOS";
-            btnConsultorios.UseVisualStyleBackColor = true;
+            btnConsultorios.UseVisualStyleBackColor = false;
             // 
             // btnPacientes
             // 
-            btnPacientes.Location = new Point(3, 127);
+            btnPacientes.BackColor = Color.CornflowerBlue;
+            btnPacientes.Dock = DockStyle.Fill;
+            btnPacientes.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnPacientes.ForeColor = Color.White;
+            btnPacientes.Location = new Point(0, 461);
+            btnPacientes.Margin = new Padding(0);
             btnPacientes.Name = "btnPacientes";
-            btnPacientes.Size = new Size(94, 29);
+            btnPacientes.Size = new Size(470, 82);
             btnPacientes.TabIndex = 1;
             btnPacientes.Text = "GESTIONAR PACIENTES";
-            btnPacientes.UseVisualStyleBackColor = true;
+            btnPacientes.UseVisualStyleBackColor = false;
             // 
             // btnTurnos
             // 
-            btnTurnos.Location = new Point(0, 0);
+            btnTurnos.BackColor = Color.CornflowerBlue;
+            btnTurnos.Dock = DockStyle.Fill;
+            btnTurnos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnTurnos.ForeColor = Color.White;
+            btnTurnos.Location = new Point(0, 328);
             btnTurnos.Margin = new Padding(0);
             btnTurnos.Name = "btnTurnos";
-            btnTurnos.Size = new Size(94, 29);
+            btnTurnos.Size = new Size(470, 82);
             btnTurnos.TabIndex = 0;
             btnTurnos.Text = "GESTIONAR TURNOS";
-            btnTurnos.UseVisualStyleBackColor = true;
+            btnTurnos.UseVisualStyleBackColor = false;
+            btnTurnos.Click += btnTurnos_Click;
             // 
             // btnLogout
             // 
-            btnLogout.Location = new Point(3, 608);
+            btnLogout.BackColor = Color.Pink;
+            btnLogout.Dock = DockStyle.Fill;
+            btnLogout.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Location = new Point(0, 880);
+            btnLogout.Margin = new Padding(0);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(94, 29);
+            btnLogout.Size = new Size(470, 82);
             btnLogout.TabIndex = 4;
             btnLogout.Text = "LOG OUT";
-            btnLogout.UseVisualStyleBackColor = true;
-            // 
-            // leftPanel
-            // 
-            leftPanel.Controls.Add(picBox);
-            leftPanel.Dock = DockStyle.Fill;
-            leftPanel.Location = new Point(0, 0);
-            leftPanel.Name = "leftPanel";
-            leftPanel.Size = new Size(1902, 1033);
-            leftPanel.TabIndex = 0;
+            btnLogout.UseVisualStyleBackColor = false;
+            btnLogout.Click += btnLogout_Click;
             // 
             // picBox
             // 
@@ -170,18 +123,76 @@
             picBox.Dock = DockStyle.Fill;
             picBox.Image = Properties.Resources.img_administrativo;
             picBox.Location = new Point(0, 0);
+            picBox.Margin = new Padding(0);
             picBox.Name = "picBox";
-            picBox.Size = new Size(1902, 1033);
+            picBox.Size = new Size(1426, 1033);
             picBox.SizeMode = PictureBoxSizeMode.StretchImage;
             picBox.TabIndex = 0;
             picBox.TabStop = false;
+            // 
+            // menuTLP
+            // 
+            menuTLP.ColumnCount = 1;
+            menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            menuTLP.Controls.Add(btnLogout, 0, 10);
+            menuTLP.Controls.Add(btnInsumos, 0, 8);
+            menuTLP.Controls.Add(btnTurnos, 0, 2);
+            menuTLP.Controls.Add(btnConsultorios, 0, 6);
+            menuTLP.Controls.Add(btnPacientes, 0, 4);
+            menuTLP.Controls.Add(picLogo, 0, 0);
+            menuTLP.Dock = DockStyle.Fill;
+            menuTLP.Location = new Point(1429, 3);
+            menuTLP.Name = "menuTLP";
+            menuTLP.RowCount = 12;
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 2F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 7F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
+            menuTLP.Size = new Size(470, 1027);
+            menuTLP.TabIndex = 2;
+            // 
+            // picLogo
+            // 
+            picLogo.Dock = DockStyle.Fill;
+            picLogo.Image = Properties.Resources.SePrise_logoApp;
+            picLogo.Location = new Point(0, 0);
+            picLogo.Margin = new Padding(0);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(470, 308);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 5;
+            picLogo.TabStop = false;
+            // 
+            // mainTLP
+            // 
+            mainTLP.ColumnCount = 2;
+            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            mainTLP.Controls.Add(menuTLP, 1, 0);
+            mainTLP.Controls.Add(picBox, 0, 0);
+            mainTLP.Dock = DockStyle.Fill;
+            mainTLP.Location = new Point(0, 0);
+            mainTLP.Margin = new Padding(0);
+            mainTLP.Name = "mainTLP";
+            mainTLP.RowCount = 1;
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            mainTLP.Size = new Size(1902, 1033);
+            mainTLP.TabIndex = 1;
             // 
             // DashAdmin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
-            Controls.Add(mainPanel);
+            Controls.Add(mainTLP);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1024, 768);
             Name = "DashAdmin";
@@ -189,27 +200,22 @@
             Text = "Clinica SePrise  ||  Dashboard";
             WindowState = FormWindowState.Maximized;
             Load += DashAdmin_Load;
-            mainPanel.ResumeLayout(false);
-            tlpRightPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
-            tlpBotones.ResumeLayout(false);
-            leftPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picBox).EndInit();
+            menuTLP.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            mainTLP.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel mainPanel;
-        private Panel leftPanel;
         private PictureBox picBox;
-        private TableLayoutPanel tlpRightPanel;
-        private PictureBox picLogo;
-        private TableLayoutPanel tlpBotones;
         private Button btnLogout;
         private Button btnInsumos;
         private Button btnConsultorios;
         private Button btnPacientes;
         private Button btnTurnos;
+        private TableLayoutPanel menuTLP;
+        private TableLayoutPanel mainTLP;
+        private PictureBox picLogo;
     }
 }
