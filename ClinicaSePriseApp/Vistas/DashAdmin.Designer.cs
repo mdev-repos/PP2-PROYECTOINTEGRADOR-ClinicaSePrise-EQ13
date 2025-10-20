@@ -57,6 +57,7 @@
             btnInsumos.TabIndex = 3;
             btnInsumos.Text = "GESTIONAR INSUMOS";
             btnInsumos.UseVisualStyleBackColor = false;
+            btnInsumos.Click += btnInsumos_Click;
             // 
             // btnConsultorios
             // 
