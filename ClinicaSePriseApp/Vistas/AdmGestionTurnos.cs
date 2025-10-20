@@ -27,6 +27,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DashAdmin dashAdmin = new DashAdmin();
             this.Hide();
+            dashAdmin.FormClosed += (s, args) => this.Close();
             dashAdmin.Show();
         }
 
@@ -55,6 +56,10 @@ namespace ClinicaSePriseApp.Vistas
                 {
                     boton.BackColor = Utilidades.PaletaColores.btnAzul;
                 }
+
+                boton.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
+                boton.ForeColor = Color.Transparent;
+
             }
         }
 

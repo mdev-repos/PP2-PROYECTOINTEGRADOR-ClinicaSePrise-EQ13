@@ -1,5 +1,4 @@
-﻿using ClinicaSePriseApp.Utilidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,39 +10,42 @@ using System.Windows.Forms;
 
 namespace ClinicaSePriseApp.Vistas
 {
-    public partial class DashAdmin : Form
+    public partial class AdmGestionInsumos : Form
     {
-        public DashAdmin()
+        public AdmGestionInsumos()
         {
             InitializeComponent();
-            this.Resize += DashAdmin_Resize;
+
+            this.Resize += AdmGestionInsumos_Resize;
 
             this.Size = new Size(1024, 768);
             this.MinimumSize = new Size(1024, 768);
             this.WindowState = FormWindowState.Maximized;
         }
 
-        private void DashAdmin_Load(object sender, EventArgs e)
+        private void AdmGestionInsumos_Load(object sender, EventArgs e)
         {
-            AjustarPaneles();
+            ajustarPaneles();
         }
 
-        private void DashAdmin_Resize(object sender, EventArgs e)
+        private void AdmGestionInsumos_Resize(object? sender, EventArgs e)
         {
-            AjustarPaneles();
+            ajustarPaneles();
         }
 
-        private void AjustarPaneles()
+        private void ajustarPaneles()
         {
-
-            mainTLP.BackColor = Utilidades.PaletaColores.bgGris;
+            // Estilo de fondos
+            mainTLP.BackColor = Utilidades.PaletaColores.bgCeleste;
             menuTLP.BackColor = Utilidades.PaletaColores.bgGris;
+            contentLbl.BackColor = Utilidades.PaletaColores.bgGris;
 
+            // Estilo para menu
             foreach (Control boton in menuTLP.Controls)
             {
                 boton.Dock = DockStyle.Fill;
 
-                if (boton == btnLogout)
+                if (boton == btnVolver)
                 {
                     boton.BackColor = Utilidades.PaletaColores.btnRosa;
                 }
@@ -60,28 +62,14 @@ namespace ClinicaSePriseApp.Vistas
                 boton.ForeColor = Color.Transparent;
 
             }
-
         }
 
-        private void btnTurnos_Click(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
-            AdmGestionTurnos admGestionTurnos = new AdmGestionTurnos();
+            DashAdmin dashAdmin = new DashAdmin();
             this.Hide();
-            admGestionTurnos.FormClosed += (s, args) => this.Close();
-            admGestionTurnos.Show();
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnInsumos_Click(object sender, EventArgs e)
-        {
-            AdmGestionInsumos admGestionInsumos = new AdmGestionInsumos();
-            this.Hide();
-            admGestionInsumos.FormClosed += (s, args) => this.Close();
-            admGestionInsumos.Show();
+            dashAdmin.FormClosed += (s, args) => this.Close();
+            dashAdmin.Show();
         }
     }
 }
