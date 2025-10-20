@@ -51,12 +51,13 @@ CREATE TABLE `ADMINISTRATIVO` (
 -- ospostog4js_g13.PACIENTE definition
 
 CREATE TABLE `PACIENTE` (
-  `Idpaciente` int(6) NOT NULL AUTO_INCREMENT,
+  `idpaciente` int(6) NOT NULL AUTO_INCREMENT,
   `dni` int(9) NOT NULL COMMENT 'Clave foránea para concatenación con PERSONA',
+  `fechaingreso` datetime NOT NULL COMMENT 'Fecha de registro del paciente como tal en la clínica. Puede ser un paciente nuevo, con su primer consulta médica, o un paciente con HC anterior, lo que deberá ser analizado previamente',
   `obrasocial` int(3) NOT NULL DEFAULT 0 COMMENT 'Clave foránea asociada a la tabla de Obras Sociales',
   `numeroafiliado` varchar(15) NOT NULL DEFAULT 'No posee' COMMENT 'Numero asignado al paciente como socio de la obra social/medicina prepaga',
   `historiaclinica` int(6) NOT NULL,
-  PRIMARY KEY (`Idpaciente`),
+  PRIMARY KEY (`idpaciente`),
   KEY `PACIENTE_PERSONA_FK` (`dni`),
   CONSTRAINT `PACIENTE_PERSONA_FK` FOREIGN KEY (`dni`) REFERENCES `PERSONA` (`dni`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabla con datos adicionales para los pacientes de la clínica. Asociada a PERSONAS';
@@ -93,7 +94,7 @@ CREATE TABLE `AGENDA` (
   PRIMARY KEY (`idturno`),
   KEY `AGENDA_PROFESIONAL_FK` (`idprofesional`),
   KEY `AGENDA_PACIENTE_FK` (`idpaciente`),
-  CONSTRAINT `AGENDA_PACIENTE_FK` FOREIGN KEY (`idpaciente`) REFERENCES `PACIENTE` (`Idpaciente`),
+  CONSTRAINT `AGENDA_PACIENTE_FK` FOREIGN KEY (`idpaciente`) REFERENCES `PACIENTE` (`idpaciente`),
   CONSTRAINT `AGENDA_PROFESIONAL_FK` FOREIGN KEY (`idprofesional`) REFERENCES `PROFESIONAL` (`idprofesional`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Registro de los turnos disponibles';
 
@@ -112,6 +113,24 @@ CREATE TABLE `DISPONIBILIDAD` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Acuerdo de presencialidad de los profesionales con la clínica. Necesario para programación de turnos.';
 
 
+-- ospostog4js_g13.HISTORIACLINICA definition
+
+CREATE TABLE `HISTORIACLINICA` (
+  `idhistioriaclinica` int(6) NOT NULL AUTO_INCREMENT COMMENT 'identificador unico de historias clínicas. Muestra el total de ingresos al total, por parte de los profesionales.',
+  `idpaciente` int(6) NOT NULL COMMENT 'Identidad (clave foránea) del paciente que recibe este ingreso en su historia clínica',
+  `idprofesional` int(3) NOT NULL COMMENT 'Identidad (clave foránea) del profesional que genera esta entrada',
+  `entrada` datetime NOT NULL COMMENT 'Fecha y hora de la creación de la entrada a las HC',
+  `dignostico` varchar(3000) DEFAULT NULL COMMENT 'Diagnóstico (con palabras clave) que genera el profesional en el momento de atención del paciente.',
+  `prescripciones` varchar(3000) DEFAULT NULL COMMENT 'Presripción de medicamoentos, tratamientos y/o estudios sucesivos indicados por el profesional en esta oportunidad',
+  `observaciones` varchar(3000) DEFAULT NULL COMMENT 'Cualquier comentario extra necesario para complementar la presente entrada en la HC.',
+  PRIMARY KEY (`idhistioriaclinica`),
+  KEY `HISTORIACLINICA_PACIENTE_FK` (`idpaciente`),
+  KEY `HISTORIACLINICA_PROFESIONAL_FK` (`idprofesional`),
+  CONSTRAINT `HISTORIACLINICA_PACIENTE_FK` FOREIGN KEY (`idpaciente`) REFERENCES `PACIENTE` (`idpaciente`),
+  CONSTRAINT `HISTORIACLINICA_PROFESIONAL_FK` FOREIGN KEY (`idprofesional`) REFERENCES `PROFESIONAL` (`idprofesional`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Por motivos de simplicidad y tiempo, he decidido cambiar esta tabla en una estructura donde se van a almacenar las entradas sucesivas de los  profesionales  para cada paciente. Esto nos va a simplificar el codeo.';
+
+
 -- ospostog4js_g13.PAGOS definition
 
 CREATE TABLE `PAGOS` (
@@ -126,7 +145,7 @@ CREATE TABLE `PAGOS` (
   KEY `PAGOS_PACIENTE_FK` (`idpaciente`),
   KEY `PAGOS_AGENDA_FK` (`idturno`),
   CONSTRAINT `PAGOS_AGENDA_FK` FOREIGN KEY (`idturno`) REFERENCES `AGENDA` (`idturno`),
-  CONSTRAINT `PAGOS_PACIENTE_FK` FOREIGN KEY (`idpaciente`) REFERENCES `PACIENTE` (`Idpaciente`)
+  CONSTRAINT `PAGOS_PACIENTE_FK` FOREIGN KEY (`idpaciente`) REFERENCES `PACIENTE` (`idpaciente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Pagos por las consultas, montos, fechas,  formas de pago y estdado.';
 
 
