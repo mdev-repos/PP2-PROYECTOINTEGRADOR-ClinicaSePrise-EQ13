@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicaSePriseApp.Entidades.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,9 @@ namespace ClinicaSePriseApp.Vistas
             this.MinimumSize = new Size(1024, 768);
             this.WindowState = FormWindowState.Maximized;
         //    this.StartPosition = FormStartPosition.CenterScreen;
+
+            //Carga de Combos
+            cargarCombos();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -43,7 +47,7 @@ namespace ClinicaSePriseApp.Vistas
             foreach (Control boton in menuTLP.Controls)
             {
                 boton.Dock = DockStyle.Fill;
-                //boton.Margin = new Padding(15, 10, 15, 10);
+
                 if (boton == btnVolver)
                 {
                     boton.BackColor = Utilidades.PaletaColores.btnRosa;
@@ -71,6 +75,33 @@ namespace ClinicaSePriseApp.Vistas
         private void AdmGestionTurnos_Resize(object sender, EventArgs e)
         {
             ajustarPaneles();
+        }
+
+        private void cargarCombos() {
+            //Especialidad
+            especialidadCbx.DataSource = Enum.GetValues(typeof(EspecialidadMedica));
+
+            especialidadCbx.FormattingEnabled = true;
+            especialidadCbx.Format += (sender, e) =>
+            {
+                if (e.ListItem != null)
+                {
+                    e.Value = e.ListItem.ToString();
+                }
+            };
+
+            //Estado Turno
+            estadoCbx.DataSource = Enum.GetValues(typeof(EstadoTurno));
+
+            estadoCbx.FormattingEnabled = true;
+            estadoCbx.Format += (sender, e) =>
+            {
+                if (e.ListItem != null)
+                {
+                    e.Value = e.ListItem.ToString();
+                }
+            };
+
         }
     }
 }
