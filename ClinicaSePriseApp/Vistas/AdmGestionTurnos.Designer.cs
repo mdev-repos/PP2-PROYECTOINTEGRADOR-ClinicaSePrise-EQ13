@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdmGestionTurnos));
             mainTLP = new TableLayoutPanel();
             menuTLP = new TableLayoutPanel();
@@ -38,12 +39,13 @@
             contentTLP = new TableLayoutPanel();
             contentLbl = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
-            fechaCbx = new ComboBox();
             especialidadCbx = new ComboBox();
             profesionalCbx = new ComboBox();
             estadoCbx = new ComboBox();
+            fechaCbx = new ComboBox();
             dataGridTLP = new TableLayoutPanel();
             turnosDgv = new DataGridView();
+            profesionalBindingSource = new BindingSource(components);
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -51,6 +53,7 @@
             tableLayoutPanel1.SuspendLayout();
             dataGridTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)turnosDgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)profesionalBindingSource).BeginInit();
             SuspendLayout();
             // 
             // mainTLP
@@ -188,10 +191,10 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            tableLayoutPanel1.Controls.Add(fechaCbx, 1, 0);
             tableLayoutPanel1.Controls.Add(especialidadCbx, 2, 0);
             tableLayoutPanel1.Controls.Add(profesionalCbx, 3, 0);
             tableLayoutPanel1.Controls.Add(estadoCbx, 4, 0);
+            tableLayoutPanel1.Controls.Add(fechaCbx, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 157);
             tableLayoutPanel1.Margin = new Padding(0);
@@ -202,46 +205,47 @@
             tableLayoutPanel1.Size = new Size(1443, 105);
             tableLayoutPanel1.TabIndex = 1;
             // 
-            // fechaCbx
-            // 
-            fechaCbx.AllowDrop = true;
-            fechaCbx.Anchor = AnchorStyles.None;
-            fechaCbx.Font = new Font("LEMON MILK", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            fechaCbx.FormattingEnabled = true;
-            fechaCbx.Location = new Point(140, 28);
-            fechaCbx.Name = "fechaCbx";
-            fechaCbx.Size = new Size(187, 46);
-            fechaCbx.TabIndex = 3;
-            // 
             // especialidadCbx
             // 
             especialidadCbx.Anchor = AnchorStyles.None;
-            especialidadCbx.Font = new Font("LEMON MILK", 16.2F);
+            especialidadCbx.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             especialidadCbx.FormattingEnabled = true;
-            especialidadCbx.Location = new Point(464, 28);
+            especialidadCbx.Location = new Point(453, 36);
             especialidadCbx.Name = "especialidadCbx";
-            especialidadCbx.Size = new Size(187, 46);
+            especialidadCbx.Size = new Size(210, 32);
             especialidadCbx.TabIndex = 4;
             // 
             // profesionalCbx
             // 
             profesionalCbx.Anchor = AnchorStyles.None;
-            profesionalCbx.Font = new Font("LEMON MILK", 16.2F);
+            profesionalCbx.DataSource = profesionalBindingSource;
+            profesionalCbx.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             profesionalCbx.FormattingEnabled = true;
-            profesionalCbx.Location = new Point(788, 28);
+            profesionalCbx.Location = new Point(777, 36);
             profesionalCbx.Name = "profesionalCbx";
-            profesionalCbx.Size = new Size(187, 46);
+            profesionalCbx.Size = new Size(210, 32);
             profesionalCbx.TabIndex = 5;
             // 
             // estadoCbx
             // 
             estadoCbx.Anchor = AnchorStyles.None;
-            estadoCbx.Font = new Font("LEMON MILK", 16.2F);
+            estadoCbx.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             estadoCbx.FormattingEnabled = true;
-            estadoCbx.Location = new Point(1112, 28);
+            estadoCbx.Location = new Point(1101, 36);
             estadoCbx.Name = "estadoCbx";
-            estadoCbx.Size = new Size(187, 46);
+            estadoCbx.Size = new Size(210, 32);
             estadoCbx.TabIndex = 6;
+            // 
+            // fechaCbx
+            // 
+            fechaCbx.AllowDrop = true;
+            fechaCbx.Anchor = AnchorStyles.None;
+            fechaCbx.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            fechaCbx.FormattingEnabled = true;
+            fechaCbx.Location = new Point(129, 36);
+            fechaCbx.Name = "fechaCbx";
+            fechaCbx.Size = new Size(210, 32);
+            fechaCbx.TabIndex = 3;
             // 
             // dataGridTLP
             // 
@@ -270,6 +274,10 @@
             turnosDgv.Size = new Size(1298, 743);
             turnosDgv.TabIndex = 7;
             // 
+            // profesionalBindingSource
+            // 
+            profesionalBindingSource.DataSource = typeof(Entidades.Profesional);
+            // 
             // AdmGestionTurnos
             // 
             AutoScaleDimensions = new SizeF(12F, 24F);
@@ -293,6 +301,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             dataGridTLP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)turnosDgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)profesionalBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -313,5 +322,6 @@
         private ComboBox estadoCbx;
         private TableLayoutPanel dataGridTLP;
         private DataGridView turnosDgv;
+        private BindingSource profesionalBindingSource;
     }
 }
