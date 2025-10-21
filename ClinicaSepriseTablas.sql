@@ -16,6 +16,7 @@ CREATE TABLE `PERSONA` (
   `apellido` varchar(20) NOT NULL COMMENT 'Apellido de las personas.',
   `nombre` varchar(20) NOT NULL COMMENT 'Nombre de las personas',
   `dni` int(9) NOT NULL COMMENT 'Documento con que se identifican unívocamente.',
+  `Sexo` enum('Hombre','Mujer') NOT NULL COMMENT 'Sexo de la persona registrada, un enum.',
   `fechanacimiento` date NOT NULL COMMENT 'Fecha de nacimiento (obligatoria)',
   `direccion` varchar(100) NOT NULL COMMENT 'Dirección compacta para contacto con la persona. Debe contener calle, numero, ciudad. Tratar de no abreviar a ilegibilidad.',
   `telefono` varchar(20) NOT NULL COMMENT 'Puede contener caracteres como +, - , / paraalternativos y la palabra INT(XXX) internos, donde XXX representa el número de interno.',
@@ -28,8 +29,8 @@ CREATE TABLE `PERSONA` (
 
 CREATE TABLE `USUARIO` (
   `idusuario` int(4) NOT NULL AUTO_INCREMENT COMMENT 'ckave de identificación del usuario (profesionales, administrativos)',
-  `user` binary(1) NOT NULL COMMENT 'Nombre elegido por el usuario. Se almacena encriptado',
-  `password` binary(1) NOT NULL COMMENT 'Clave de acceso seleccionada para el usuario',
+  `user` binary(16) NOT NULL COMMENT 'Nombre elegido por el usuario. Se almacena encriptado',
+  `password` binary(16) NOT NULL COMMENT 'Clave de acceso seleccionada para el usuario',
   `rol` enum('Profesional','Administrativo') NOT NULL COMMENT 'rol del usuario "(sirve para administrar su nivel de acceso)"',
   PRIMARY KEY (`idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Tabla para almacenamiento de nombre de usuario y clave';
