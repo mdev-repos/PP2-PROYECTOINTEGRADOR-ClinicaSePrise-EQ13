@@ -16,7 +16,7 @@ CREATE TABLE `PERSONA` (
   `apellido` varchar(20) NOT NULL COMMENT 'Apellido de las personas.',
   `nombre` varchar(20) NOT NULL COMMENT 'Nombre de las personas',
   `dni` int(9) NOT NULL COMMENT 'Documento con que se identifican unívocamente.',
-  `Sexo` enum('Hombre','Mujer') NOT NULL COMMENT 'Sexo de la persona registrada, un enum.',
+  `sexo` enum('Hombre','Mujer') NOT NULL COMMENT 'Sexo de la persona registrada, un enum.',
   `fechanacimiento` date NOT NULL COMMENT 'Fecha de nacimiento (obligatoria)',
   `direccion` varchar(100) NOT NULL COMMENT 'Dirección compacta para contacto con la persona. Debe contener calle, numero, ciudad. Tratar de no abreviar a ilegibilidad.',
   `telefono` varchar(20) NOT NULL COMMENT 'Puede contener caracteres como +, - , / paraalternativos y la palabra INT(XXX) internos, donde XXX representa el número de interno.',

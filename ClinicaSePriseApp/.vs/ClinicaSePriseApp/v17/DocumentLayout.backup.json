@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ospos\\Documents\\GitHub\\PP2-PROYECTOINTEGRADOR-ClinicaSePrise-EQ13\\ClinicaSePriseApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{734A4AED-BF7D-4AB8-8590-93D4B47CF590}|ClinicaSePriseApp.csproj|c:\\users\\ospos\\documents\\github\\pp2-proyectointegrador-clinicaseprise-eq13\\clinicasepriseapp\\datos\\funaccess.json||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{734A4AED-BF7D-4AB8-8590-93D4B47CF590}|ClinicaSePriseApp.csproj|solutionrelative:datos\\funaccess.json||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{734A4AED-BF7D-4AB8-8590-93D4B47CF590}|ClinicaSePriseApp.csproj|c:\\users\\ospos\\documents\\github\\pp2-proyectointegrador-clinicaseprise-eq13\\clinicasepriseapp\\datos\\listas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{734A4AED-BF7D-4AB8-8590-93D4B47CF590}|ClinicaSePriseApp.csproj|solutionrelative:datos\\listas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{734A4AED-BF7D-4AB8-8590-93D4B47CF590}|ClinicaSePriseApp.csproj|c:\\users\\ospos\\documents\\github\\pp2-proyectointegrador-clinicaseprise-eq13\\clinicasepriseapp\\datos\\conexiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{734A4AED-BF7D-4AB8-8590-93D4B47CF590}|ClinicaSePriseApp.csproj|solutionrelative:datos\\conexiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{734A4AED-BF7D-4AB8-8590-93D4B47CF590}|ClinicaSePriseApp.csproj|c:\\users\\ospos\\documents\\github\\pp2-proyectointegrador-clinicaseprise-eq13\\clinicasepriseapp\\entidades\\e_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{734A4AED-BF7D-4AB8-8590-93D4B47CF590}|ClinicaSePriseApp.csproj|solutionrelative:entidades\\e_usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,14 +35,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "FunAccess.json",
-              "DocumentMoniker": "C:\\Users\\ospos\\Documents\\GitHub\\PP2-PROYECTOINTEGRADOR-ClinicaSePrise-EQ13\\ClinicaSePriseApp\\Datos\\FunAccess.json",
-              "RelativeDocumentMoniker": "Datos\\FunAccess.json",
-              "ToolTip": "C:\\Users\\ospos\\Documents\\GitHub\\PP2-PROYECTOINTEGRADOR-ClinicaSePrise-EQ13\\ClinicaSePriseApp\\Datos\\FunAccess.json",
-              "RelativeToolTip": "Datos\\FunAccess.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-10-21T16:31:31.981Z",
+              "Title": "Listas.cs",
+              "DocumentMoniker": "C:\\Users\\ospos\\Documents\\GitHub\\PP2-PROYECTOINTEGRADOR-ClinicaSePrise-EQ13\\ClinicaSePriseApp\\Datos\\Listas.cs",
+              "RelativeDocumentMoniker": "Datos\\Listas.cs",
+              "ToolTip": "C:\\Users\\ospos\\Documents\\GitHub\\PP2-PROYECTOINTEGRADOR-ClinicaSePrise-EQ13\\ClinicaSePriseApp\\Datos\\Listas.cs",
+              "RelativeToolTip": "Datos\\Listas.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T14:54:15.663Z",
               "EditorCaption": ""
             },
             {
@@ -49,9 +53,22 @@
               "RelativeDocumentMoniker": "Datos\\ConexionDb.cs",
               "ToolTip": "C:\\Users\\ospos\\Documents\\GitHub\\PP2-PROYECTOINTEGRADOR-ClinicaSePrise-EQ13\\ClinicaSePriseApp\\Datos\\ConexionDb.cs",
               "RelativeToolTip": "Datos\\ConexionDb.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAABwAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-21T15:59:01.449Z",
+              "WhenOpened": "2025-10-28T13:35:56.72Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "E_Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\ospos\\Documents\\GitHub\\PP2-PROYECTOINTEGRADOR-ClinicaSePrise-EQ13\\ClinicaSePriseApp\\Entidades\\E_Usuario.cs",
+              "RelativeDocumentMoniker": "Entidades\\E_Usuario.cs",
+              "ToolTip": "C:\\Users\\ospos\\Documents\\GitHub\\PP2-PROYECTOINTEGRADOR-ClinicaSePrise-EQ13\\ClinicaSePriseApp\\Entidades\\E_Usuario.cs",
+              "RelativeToolTip": "Entidades\\E_Usuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T19:09:32.209Z",
               "EditorCaption": ""
             }
           ]

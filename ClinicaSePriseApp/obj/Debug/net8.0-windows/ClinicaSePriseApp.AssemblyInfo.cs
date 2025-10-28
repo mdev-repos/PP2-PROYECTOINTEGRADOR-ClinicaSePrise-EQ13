@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ClinicaSePriseApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+afb67de15fa5c7133d54343028f3c1ff8ea97a30")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79a609aa132a934d6798049200cd17e4c3d542e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("ClinicaSePriseApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ClinicaSePriseApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
