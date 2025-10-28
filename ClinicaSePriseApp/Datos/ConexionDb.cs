@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 
-// Necesitas el paquete NuGet Microsoft.Extensions.Configuration si usas .NET moderno para leer appsettings.json
-
 namespace ClinicaSePriseApp.Datos
 {
     public class DB_Conexion
@@ -21,6 +19,10 @@ namespace ClinicaSePriseApp.Datos
             var connection = new MySqlConnection(_connectionString);
             // Es buena práctica intentar abrir la conexión inmediatamente
             connection.Open();
+            if(connection.State != System.Data.ConnectionState.Open)
+            {
+                throw new InvalidOperationException("No se pudo abrir la conexión a la base de datos.");
+            }
             return connection;
         }
     }
