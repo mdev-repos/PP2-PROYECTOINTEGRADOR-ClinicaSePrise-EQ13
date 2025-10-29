@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace ClinicaSePriseApp.Entidades.Enums
 {
-    public enum Rol
+    public enum Genero
     {
-        [Description("Administrativo")]
-        ADMINISTRATIVO,
-        [Description("Profesional")]
-        PROFESIONAL
+        [Description("Mujer")]
+        M,
+        [Description("Hombre")]
+        H,
+        [Description("No Binario")]
+        X,
     }
 }
