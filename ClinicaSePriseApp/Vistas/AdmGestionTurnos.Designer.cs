@@ -41,19 +41,19 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             especialidadCbx = new ComboBox();
             profesionalCbx = new ComboBox();
+            profesionalBindingSource = new BindingSource(components);
             estadoCbx = new ComboBox();
-            fechaCbx = new ComboBox();
+            dtpTurnos = new DateTimePicker();
             dataGridTLP = new TableLayoutPanel();
             turnosDgv = new DataGridView();
-            profesionalBindingSource = new BindingSource(components);
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             contentTLP.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)profesionalBindingSource).BeginInit();
             dataGridTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)turnosDgv).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)profesionalBindingSource).BeginInit();
             SuspendLayout();
             // 
             // mainTLP
@@ -194,7 +194,7 @@
             tableLayoutPanel1.Controls.Add(especialidadCbx, 2, 0);
             tableLayoutPanel1.Controls.Add(profesionalCbx, 3, 0);
             tableLayoutPanel1.Controls.Add(estadoCbx, 4, 0);
-            tableLayoutPanel1.Controls.Add(fechaCbx, 1, 0);
+            tableLayoutPanel1.Controls.Add(dtpTurnos, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 157);
             tableLayoutPanel1.Margin = new Padding(0);
@@ -208,44 +208,47 @@
             // especialidadCbx
             // 
             especialidadCbx.Anchor = AnchorStyles.None;
-            especialidadCbx.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            especialidadCbx.Font = new Font("LEMON MILK", 7.8F);
             especialidadCbx.FormattingEnabled = true;
-            especialidadCbx.Location = new Point(453, 36);
+            especialidadCbx.Location = new Point(403, 39);
             especialidadCbx.Name = "especialidadCbx";
-            especialidadCbx.Size = new Size(210, 32);
+            especialidadCbx.Size = new Size(310, 27);
             especialidadCbx.TabIndex = 4;
             // 
             // profesionalCbx
             // 
             profesionalCbx.Anchor = AnchorStyles.None;
             profesionalCbx.DataSource = profesionalBindingSource;
-            profesionalCbx.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            profesionalCbx.Font = new Font("LEMON MILK", 7.8F);
             profesionalCbx.FormattingEnabled = true;
-            profesionalCbx.Location = new Point(777, 36);
+            profesionalCbx.Location = new Point(727, 39);
             profesionalCbx.Name = "profesionalCbx";
-            profesionalCbx.Size = new Size(210, 32);
+            profesionalCbx.Size = new Size(310, 27);
             profesionalCbx.TabIndex = 5;
+            // 
+            // profesionalBindingSource
+            // 
+            profesionalBindingSource.DataSource = typeof(Entidades.E_Profesional);
             // 
             // estadoCbx
             // 
             estadoCbx.Anchor = AnchorStyles.None;
-            estadoCbx.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            estadoCbx.Font = new Font("LEMON MILK", 7.8F);
             estadoCbx.FormattingEnabled = true;
-            estadoCbx.Location = new Point(1101, 36);
+            estadoCbx.Location = new Point(1051, 39);
             estadoCbx.Name = "estadoCbx";
-            estadoCbx.Size = new Size(210, 32);
+            estadoCbx.Size = new Size(310, 27);
             estadoCbx.TabIndex = 6;
             // 
-            // fechaCbx
+            // dtpTurnos
             // 
-            fechaCbx.AllowDrop = true;
-            fechaCbx.Anchor = AnchorStyles.None;
-            fechaCbx.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            fechaCbx.FormattingEnabled = true;
-            fechaCbx.Location = new Point(129, 36);
-            fechaCbx.Name = "fechaCbx";
-            fechaCbx.Size = new Size(210, 32);
-            fechaCbx.TabIndex = 3;
+            dtpTurnos.Anchor = AnchorStyles.None;
+            dtpTurnos.Font = new Font("LEMON MILK", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpTurnos.Location = new Point(79, 40);
+            dtpTurnos.MinDate = new DateTime(2025, 10, 30, 0, 0, 0, 0);
+            dtpTurnos.Name = "dtpTurnos";
+            dtpTurnos.Size = new Size(310, 25);
+            dtpTurnos.TabIndex = 7;
             // 
             // dataGridTLP
             // 
@@ -274,10 +277,6 @@
             turnosDgv.Size = new Size(1298, 743);
             turnosDgv.TabIndex = 7;
             // 
-            // profesionalBindingSource
-            // 
-            profesionalBindingSource.DataSource = typeof(Entidades.Profesional);
-            // 
             // AdmGestionTurnos
             // 
             AutoScaleDimensions = new SizeF(12F, 24F);
@@ -299,9 +298,9 @@
             contentTLP.ResumeLayout(false);
             contentTLP.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)profesionalBindingSource).EndInit();
             dataGridTLP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)turnosDgv).EndInit();
-            ((System.ComponentModel.ISupportInitialize)profesionalBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -316,12 +315,12 @@
         private TableLayoutPanel contentTLP;
         private Label contentLbl;
         private TableLayoutPanel tableLayoutPanel1;
-        private ComboBox fechaCbx;
         private ComboBox especialidadCbx;
         private ComboBox profesionalCbx;
         private ComboBox estadoCbx;
         private TableLayoutPanel dataGridTLP;
         private DataGridView turnosDgv;
         private BindingSource profesionalBindingSource;
+        private DateTimePicker dtpTurnos;
     }
 }
