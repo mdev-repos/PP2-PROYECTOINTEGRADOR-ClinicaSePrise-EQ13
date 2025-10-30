@@ -19,9 +19,7 @@ namespace ClinicaSePriseApp.Entidades
         public string Email { get; set; }
 
 
-        // Métodos
-        
-        // Constructor protegido para la clase abstracta
+        // CONSTRUCTOR
         protected E_Persona(string apellido, string nombre, string dni, Genero genero, DateOnly fechaNacimiento,
                            string direccion, string telefono, string email)
         {

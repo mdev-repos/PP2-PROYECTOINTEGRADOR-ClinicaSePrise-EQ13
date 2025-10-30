@@ -12,6 +12,8 @@ namespace ClinicaSePriseApp
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            Utilidades.DDBB_Simulation.InicializarDatosPrueba();
+
             ApplicationConfiguration.Initialize();
             Application.Run(new Login());
         }

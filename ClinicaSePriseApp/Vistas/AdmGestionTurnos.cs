@@ -1,4 +1,5 @@
 ﻿using ClinicaSePriseApp.Entidades.Enums;
+using ClinicaSePriseApp.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,31 +78,76 @@ namespace ClinicaSePriseApp.Vistas
             ajustarPaneles();
         }
 
-        private void cargarCombos() {
-            //Especialidad
-            especialidadCbx.DataSource = Enum.GetValues(typeof(EspecialidadMedica));
+        private void cargarCombos()
+        {
+            // Especialidad
+            var listaEspecialidades = new List<string> { "Todas las especialidades" };
 
-            especialidadCbx.FormattingEnabled = true;
-            especialidadCbx.Format += (sender, e) =>
+            foreach (EspecialidadMedica esp in Enum.GetValues(typeof(EspecialidadMedica)))
             {
-                if (e.ListItem != null)
-                {
-                    e.Value = e.ListItem.ToString();
-                }
-            };
+                listaEspecialidades.Add(EnumHelper.GetDescription(esp));
+            }
 
-            //Estado Turno
-            estadoCbx.DataSource = Enum.GetValues(typeof(EstadoTurno));
+            especialidadCbx.DataSource = listaEspecialidades;
 
-            estadoCbx.FormattingEnabled = true;
-            estadoCbx.Format += (sender, e) =>
+
+            // Estado Turno
+            var listaEstados = new List<string> { "Todos los estados" };
+
+            foreach (EstadoTurno est in Enum.GetValues(typeof(EstadoTurno)))
             {
-                if (e.ListItem != null)
-                {
-                    e.Value = e.ListItem.ToString();
-                }
-            };
+                listaEstados.Add(EnumHelper.GetDescription(est));
+            }
 
+            estadoCbx.DataSource = listaEstados;
+
+
+            // Profesionales
+            var listaProfesionales = new List<string> { "Todos los profesionales" };
+
+            foreach (var prof in DDBB_Simulation.ProfesionalesDB)
+            {
+                listaProfesionales.Add($"{prof.Apellido}, {prof.Nombre}");
+            }
+
+            profesionalCbx.DataSource = listaProfesionales;
+        }
+
+        private EspecialidadMedica? StringAEspecialidad(string descripcion)
+        {
+            if (string.IsNullOrEmpty(descripcion) || descripcion == "Todas las especialidades")
+                return null;
+
+            foreach (EspecialidadMedica esp in Enum.GetValues(typeof(EspecialidadMedica)))
+            {
+                if (EnumHelper.GetDescription(esp) == descripcion)
+                    return esp;
+            }
+            return null;
+        }
+
+        private EstadoTurno? StringAEstado(string descripcion)
+        {
+            if (string.IsNullOrEmpty(descripcion) || descripcion == "Todos los estados")
+                return null;
+
+            foreach (EstadoTurno est in Enum.GetValues(typeof(EstadoTurno)))
+            {
+                if (EnumHelper.GetDescription(est) == descripcion)
+                    return est;
+            }
+            return null;
+        }
+
+        private int? StringAIdProfesional(string nombreCompleto)
+        {
+            if (string.IsNullOrEmpty(nombreCompleto) || nombreCompleto == "Todos los profesionales")
+                return null;
+
+            var profesional = DDBB_Simulation.ProfesionalesDB
+                .FirstOrDefault(p => $"{p.Apellido}, {p.Nombre}" == nombreCompleto);
+
+            return profesional?.IdProfesional;
         }
     }
 }

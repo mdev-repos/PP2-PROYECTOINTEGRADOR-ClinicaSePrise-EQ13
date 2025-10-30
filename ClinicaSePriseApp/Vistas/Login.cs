@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ClinicaSePriseApp.Entidades;
+using ClinicaSePriseApp.Servicios;
+using ClinicaSePriseApp.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using ClinicaSePriseApp.Utilidades;
 
 namespace ClinicaSePriseApp.Vistas
 {
@@ -129,28 +131,32 @@ namespace ClinicaSePriseApp.Vistas
                 return;
             }
 
-            // Aquí iría la lógica de autenticación real por base de datos
-            // EVALUA EXISTENCIA EN BBDD y ROL
-
-            // Simulacion para desarrollo de interfaces
-            if (usuario.ToLower() == "admin" && password.ToLower() == "admin")
-            {
-                Form dashboardAdmin = new DashAdmin();
-                this.Hide();
-                dashboardAdmin.FormClosed += (s, args) => this.Close(); 
-                dashboardAdmin.Show();
-            }
-            else if (usuario.ToLower() == "medico" && password.ToLower() == "medico")
-            {
-                Form dashboardMedico = new DashProfesional();
-                this.Hide();
-                dashboardMedico.FormClosed += (s, args) => this.Close();
-                dashboardMedico.Show();
-            }
-            else
+            // Service - Validacion de usuario
+            E_Usuario? usuarioEncontrado = UsuarioService.ValidarUsuario(usuario, password);
+            
+            // Respuesta de la Vista
+            if (usuarioEncontrado == null)
             {
                 MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                if (usuarioEncontrado.rol == Entidades.Enums.Rol.ADMINISTRATIVO)
+                {
+                    Form dashboardAdmin = new DashAdmin();
+                    this.Hide();
+                    dashboardAdmin.FormClosed += (s, args) => this.Close();
+                    dashboardAdmin.Show();
+                }
+                else if (usuarioEncontrado.rol == Entidades.Enums.Rol.PROFESIONAL)
+                {
+                    Form dashboardMedico = new DashProfesional();
+                    this.Hide();
+                    dashboardMedico.FormClosed += (s, args) => this.Close();
+                    dashboardMedico.Show();
+                }
+            }           
+            
         }
     }
 }
