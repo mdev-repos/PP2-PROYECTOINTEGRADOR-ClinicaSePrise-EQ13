@@ -46,6 +46,7 @@
             dtpTurnos = new DateTimePicker();
             dataGridTLP = new TableLayoutPanel();
             turnosDgv = new DataGridView();
+            btnFiltros = new Button();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -77,20 +78,23 @@
             menuTLP.ColumnCount = 1;
             menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             menuTLP.Controls.Add(picLogo, 0, 0);
-            menuTLP.Controls.Add(btnVolver, 0, 6);
-            menuTLP.Controls.Add(btnTurno, 0, 2);
-            menuTLP.Controls.Add(btnAgenda, 0, 4);
+            menuTLP.Controls.Add(btnVolver, 0, 8);
+            menuTLP.Controls.Add(btnAgenda, 0, 6);
+            menuTLP.Controls.Add(btnTurno, 0, 4);
+            menuTLP.Controls.Add(btnFiltros, 0, 2);
             menuTLP.Dock = DockStyle.Fill;
             menuTLP.Location = new Point(1443, 0);
             menuTLP.Margin = new Padding(0);
             menuTLP.Name = "menuTLP";
-            menuTLP.RowCount = 8;
+            menuTLP.RowCount = 10;
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 26F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             menuTLP.Size = new Size(481, 1055);
@@ -114,7 +118,7 @@
             btnVolver.BackColor = Color.Pink;
             btnVolver.Dock = DockStyle.Fill;
             btnVolver.ForeColor = Color.White;
-            btnVolver.Location = new Point(0, 884);
+            btnVolver.Location = new Point(0, 883);
             btnVolver.Margin = new Padding(0);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(481, 84);
@@ -128,7 +132,7 @@
             btnTurno.BackColor = Color.CornflowerBlue;
             btnTurno.Dock = DockStyle.Fill;
             btnTurno.ForeColor = Color.White;
-            btnTurno.Location = new Point(0, 379);
+            btnTurno.Location = new Point(0, 526);
             btnTurno.Margin = new Padding(0);
             btnTurno.Name = "btnTurno";
             btnTurno.Size = new Size(481, 84);
@@ -141,7 +145,7 @@
             btnAgenda.BackColor = Color.CornflowerBlue;
             btnAgenda.Dock = DockStyle.Fill;
             btnAgenda.ForeColor = Color.White;
-            btnAgenda.Location = new Point(0, 526);
+            btnAgenda.Location = new Point(0, 673);
             btnAgenda.Margin = new Padding(0);
             btnAgenda.Name = "btnAgenda";
             btnAgenda.Size = new Size(481, 84);
@@ -277,6 +281,20 @@
             turnosDgv.Size = new Size(1298, 743);
             turnosDgv.TabIndex = 7;
             // 
+            // btnFiltros
+            // 
+            btnFiltros.BackColor = Color.CornflowerBlue;
+            btnFiltros.Dock = DockStyle.Fill;
+            btnFiltros.ForeColor = Color.White;
+            btnFiltros.Location = new Point(0, 379);
+            btnFiltros.Margin = new Padding(0);
+            btnFiltros.Name = "btnFiltros";
+            btnFiltros.Size = new Size(481, 84);
+            btnFiltros.TabIndex = 9;
+            btnFiltros.Text = "APLICAR FILTROS";
+            btnFiltros.UseVisualStyleBackColor = false;
+            btnFiltros.Click += btnFiltros_Click;
+            // 
             // AdmGestionTurnos
             // 
             AutoScaleDimensions = new SizeF(12F, 24F);
@@ -322,5 +340,6 @@
         private DataGridView turnosDgv;
         private BindingSource profesionalBindingSource;
         private DateTimePicker dtpTurnos;
+        private Button btnFiltros;
     }
 }
