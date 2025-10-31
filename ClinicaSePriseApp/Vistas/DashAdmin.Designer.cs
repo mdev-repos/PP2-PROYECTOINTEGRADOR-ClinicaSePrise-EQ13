@@ -86,6 +86,7 @@
             btnPacientes.TabIndex = 1;
             btnPacientes.Text = "GESTIONAR PACIENTES";
             btnPacientes.UseVisualStyleBackColor = false;
+            btnPacientes.Click += btnPacientes_Click;
             // 
             // btnTurnos
             // 

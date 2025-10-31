@@ -1,4 +1,5 @@
-﻿using ClinicaSePriseApp.Entidades;
+﻿using ClinicaSePriseApp.Datos;
+using ClinicaSePriseApp.Entidades;
 using ClinicaSePriseApp.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,16 @@ namespace ClinicaSePriseApp.Servicios
 {
     public class TurnoService
     {
-        // GUARDAR TURNO EN BBDD SIMULADA
+        // Inyeccion de dependencia simple
+        private static TurnoRepository turnoRepo = new TurnoRepository();
+
+
+        // CREATE
         public static void GuardarTurno(E_Turno nuevoTurno)
         {
-            DDBB_Simulation.TurnosDB.Add(nuevoTurno);
-        }
+            turnoRepo.GuardarTurno(nuevoTurno);
+        }              
 
-        // CREAR AGENDA MEDICA
         public static List<E_Turno> CrearAgendaMedica(int idProfesional, DateOnly dia)
         {
             List<E_Turno> agendaDia = new List<E_Turno>();
@@ -83,19 +87,30 @@ namespace ClinicaSePriseApp.Servicios
             return agendaDia;
         }
 
-        // LEER TURNO O TURNOS
+
+        // READ
         public static E_Turno? ObtenerTurnoPorID(int id)
         {
-            E_Turno? turnoEncontrado = DDBB_Simulation.TurnosDB.FirstOrDefault(t => t.IdTurno == id);
-            return turnoEncontrado;
+            return turnoRepo.ObtenerTurnoPorID(id);
         }
 
         public static List<E_Turno> ObtenerTodosLosTurnos()
         {
-            return DDBB_Simulation.TurnosDB;
+            return turnoRepo.TraerTodosLosTurnos();
         }
 
-        // Update
-        // Delete
+
+        // UPDATE
+        public static E_Paciente AsignarTurno(E_Turno turno, E_Paciente paciente)
+        {
+            turno.IdPaciente = paciente.IdPaciente;
+            turno.Estado = Entidades.Enums.EstadoTurno.ASIGNADO;
+            // Actualizar en la base de datos simulada
+            turnoRepo.ActualizarTurno(turno);
+
+            paciente.Reservas.Add(turno);
+            
+            return paciente;
+        }
     }
 }
