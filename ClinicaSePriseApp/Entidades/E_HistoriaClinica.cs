@@ -11,7 +11,5 @@ namespace ClinicaSePriseApp.Entidades
         public string IdHistoriaClinica { get; set; }
         public string IdPaciente { get; set; }
         public List<E_Entrada> Entradas { get; set; }
-
-
     }
 }

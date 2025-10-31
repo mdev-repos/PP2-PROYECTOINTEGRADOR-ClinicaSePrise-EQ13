@@ -22,7 +22,6 @@ namespace ClinicaSePriseApp.Entidades
 
             : base(apellido, nombre, dni, genero, fechaNacimiento, direccion, telefono, email)
         {
-            // ASIGNACION DE VALORES
             IdAdministrativo = idAdmin;
             IdUsuario = userId;
         }
