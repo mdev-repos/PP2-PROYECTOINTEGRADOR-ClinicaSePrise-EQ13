@@ -32,8 +32,7 @@ namespace ClinicaSePriseApp.Entidades
             string direccion, string telefono, string email)
 
             : base(apellido, nombre, dni, genero, fechaNacimiento, direccion, telefono, email)
-        {
-            // ASIGNACION DE VALORES
+        {            
             IdProfesional = idProf;
             IdUsuario = userId;
             Especialidad = especialidad;
