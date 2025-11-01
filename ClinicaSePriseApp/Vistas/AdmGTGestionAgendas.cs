@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinicaSePriseApp.Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace ClinicaSePriseApp.Vistas
         public AdmGTGestionAgendas()
         {
             InitializeComponent();
+        }
+
+        private void AdmGTGestionAgendas_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

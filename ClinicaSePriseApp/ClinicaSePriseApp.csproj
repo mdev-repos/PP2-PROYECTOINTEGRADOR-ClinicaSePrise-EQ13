@@ -9,6 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\img_administrativo.jpeg" />
+    <None Remove="Resources\img_clinica.jpeg" />
+    <None Remove="Resources\img_profesional.jpeg" />
+    <None Remove="Resources\SePrise_logoApp.ico" />
+    <None Remove="Resources\SePrise_logoApp.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\img_administrativo.jpeg" />
+    <EmbeddedResource Include="Resources\img_clinica.jpeg" />
+    <EmbeddedResource Include="Resources\img_profesional.jpeg" />
+    <EmbeddedResource Include="Resources\SePrise_logoApp.ico" />
+    <EmbeddedResource Include="Resources\SePrise_logoApp.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0-rc.2.25502.107" />
     <PackageReference Include="MySql.Data" Version="9.4.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="9.0.0" />

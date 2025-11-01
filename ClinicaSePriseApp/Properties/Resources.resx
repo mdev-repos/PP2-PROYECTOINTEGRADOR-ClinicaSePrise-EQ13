@@ -118,19 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="img_administrativo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_administrativo.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="img_clinica" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\img_clinica.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="img_profesional" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\img_profesional.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_detalleTurno" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_detalleTurno.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SePrise_iconoApp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SePrise_logoApp.ico;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="SePrise_logoApp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SePrise_logoApp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_administrativo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_administrativo.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_clinica" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\img_clinica.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_lupa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_lupa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

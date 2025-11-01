@@ -46,5 +46,8 @@ namespace ClinicaSePriseApp.Entidades
                 .FirstOrDefault(p => p.IdPaciente == idPaciente);
         }
 
+        // RETORNO DE NOMBRE PARA Pantallas
+        public string NombreCompleto => $"{Apellido}, {Nombre}";
+
     }
 }

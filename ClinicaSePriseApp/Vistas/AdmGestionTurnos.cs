@@ -38,7 +38,7 @@ namespace ClinicaSePriseApp.Vistas
         }
 
         private void ajustarPaneles()
-        {            
+        {
             mainTLP.BackColor = Utilidades.PaletaColores.bgCeleste;
             menuTLP.BackColor = Utilidades.PaletaColores.bgGris;
             turnosDgv.BackgroundColor = Utilidades.PaletaColores.bgCeleste;
@@ -71,9 +71,9 @@ namespace ClinicaSePriseApp.Vistas
         private void AdmGestionTurnos_Load(object sender, EventArgs e)
         {
             ajustarPaneles();
-            
+
             AjustarControlesFiltro();
-            
+
             CargarTurnosEnDGV();
         }
 
@@ -82,7 +82,7 @@ namespace ClinicaSePriseApp.Vistas
             ajustarPaneles();
 
             AjustarControlesFiltro();
-            
+
             if (turnosDgv.DataSource != null)
             {
                 AjustarColumnasDGV();
@@ -190,6 +190,7 @@ namespace ClinicaSePriseApp.Vistas
 
             var turnosParaMostrar = turnosOrdenados.Select(t => new
             {
+                IdTurno = t.IdTurno,
                 Fecha = DateOnly.FromDateTime(t.FechaTurno),
                 Hora = TimeOnly.FromDateTime(t.FechaTurno).ToString("HH:mm"),
                 Especialidad = ObtenerEspecialidadProfesional(t.IdProfesional),
@@ -245,6 +246,11 @@ namespace ClinicaSePriseApp.Vistas
                 int fontSize = CalcularTamanoFuente();
 
                 turnosDgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                if (turnosDgv.Columns.Contains("IdTurno"))
+                {
+                    turnosDgv.Columns["IdTurno"].Visible = false;
+                }
 
                 if (turnosDgv.Columns.Contains("Fecha"))
                 {
@@ -317,8 +323,8 @@ namespace ClinicaSePriseApp.Vistas
                 return 8;
             else if (anchoPantalla <= 1366)
                 return 9;
-            else 
-                return 10;            
+            else
+                return 10;
         }
 
         private void btnFiltros_Click(object sender, EventArgs e)
@@ -347,7 +353,7 @@ namespace ClinicaSePriseApp.Vistas
                 var turnosOrdenados = turnosFiltrados.OrderByDescending(t => t.FechaTurno.Date)
                                                     .ThenBy(t => TimeOnly.FromDateTime(t.FechaTurno))
                                                     .ToList();
-                
+
                 var turnosParaMostrar = turnosOrdenados.Select(t => new
                 {
                     Fecha = DateOnly.FromDateTime(t.FechaTurno),
@@ -404,6 +410,63 @@ namespace ClinicaSePriseApp.Vistas
             }
 
             return turnosFiltrados;
+        }
+
+
+        private int? ObtenerIdTurnoSeleccionado()
+        {
+            if (turnosDgv.SelectedRows.Count > 0)
+            {
+                DataGridViewRow fila = turnosDgv.SelectedRows[0];
+                if (fila.Cells["IdTurno"].Value != null)
+                {
+                    return Convert.ToInt32(fila.Cells["IdTurno"].Value);
+                }
+            }
+            else if (turnosDgv.CurrentRow != null && turnosDgv.CurrentRow.Cells["IdTurno"].Value != null)
+            {
+                return Convert.ToInt32(turnosDgv.CurrentRow.Cells["IdTurno"].Value);
+            }
+
+            return null;
+        }
+
+        private void IrAlTurnoSeleccionado()
+        {
+            try
+            {
+                var idTurno = ObtenerIdTurnoSeleccionado();
+
+                if (!idTurno.HasValue)
+                {
+                    MessageBox.Show("Por favor, seleccione un turno de la lista.", "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                AdmGTDetalleTurno admGTDetalleTurno = new AdmGTDetalleTurno(idTurno.Value);
+                this.Hide();
+                admGTDetalleTurno.FormClosed += (s, args) => this.Close();
+                admGTDetalleTurno.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al abrir el turno: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAgenda_Click(object sender, EventArgs e)
+        {
+            AdmGTGestionAgendas admGTGestionAgendas = new AdmGTGestionAgendas();
+            this.Hide();
+            admGTGestionAgendas.FormClosed += (s, args) => this.Close();
+            admGTGestionAgendas.Show();
+        }
+
+        private void btnTurno_Click(object sender, EventArgs e)
+        {
+            IrAlTurnoSeleccionado();
         }
     }
 }
