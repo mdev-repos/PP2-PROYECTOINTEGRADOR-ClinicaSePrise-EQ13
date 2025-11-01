@@ -63,6 +63,16 @@ namespace ClinicaSePriseApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_lupa {
+            get {
+                object obj = ResourceManager.GetObject("icon_lupa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap img_administrativo {
             get {
                 object obj = ResourceManager.GetObject("img_administrativo", resourceCulture);
@@ -76,6 +86,16 @@ namespace ClinicaSePriseApp.Properties {
         internal static System.Drawing.Bitmap img_clinica {
             get {
                 object obj = ResourceManager.GetObject("img_clinica", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_detalleTurno {
+            get {
+                object obj = ResourceManager.GetObject("img_detalleTurno", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

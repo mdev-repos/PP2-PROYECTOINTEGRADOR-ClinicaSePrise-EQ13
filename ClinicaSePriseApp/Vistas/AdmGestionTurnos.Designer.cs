@@ -34,8 +34,9 @@
             menuTLP = new TableLayoutPanel();
             picLogo = new PictureBox();
             btnVolver = new Button();
-            btnTurno = new Button();
             btnAgenda = new Button();
+            btnTurno = new Button();
+            btnFiltros = new Button();
             contentTLP = new TableLayoutPanel();
             contentLbl = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -46,7 +47,6 @@
             dtpTurnos = new DateTimePicker();
             dataGridTLP = new TableLayoutPanel();
             turnosDgv = new DataGridView();
-            btnFiltros = new Button();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -127,19 +127,6 @@
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
             // 
-            // btnTurno
-            // 
-            btnTurno.BackColor = Color.CornflowerBlue;
-            btnTurno.Dock = DockStyle.Fill;
-            btnTurno.ForeColor = Color.White;
-            btnTurno.Location = new Point(0, 526);
-            btnTurno.Margin = new Padding(0);
-            btnTurno.Name = "btnTurno";
-            btnTurno.Size = new Size(481, 84);
-            btnTurno.TabIndex = 1;
-            btnTurno.Text = "IR AL TURNO";
-            btnTurno.UseVisualStyleBackColor = false;
-            // 
             // btnAgenda
             // 
             btnAgenda.BackColor = Color.CornflowerBlue;
@@ -152,6 +139,35 @@
             btnAgenda.TabIndex = 2;
             btnAgenda.Text = "GESTIONAR AGENDAS";
             btnAgenda.UseVisualStyleBackColor = false;
+            btnAgenda.Click += btnAgenda_Click;
+            // 
+            // btnTurno
+            // 
+            btnTurno.BackColor = Color.CornflowerBlue;
+            btnTurno.Dock = DockStyle.Fill;
+            btnTurno.ForeColor = Color.White;
+            btnTurno.Location = new Point(0, 526);
+            btnTurno.Margin = new Padding(0);
+            btnTurno.Name = "btnTurno";
+            btnTurno.Size = new Size(481, 84);
+            btnTurno.TabIndex = 1;
+            btnTurno.Text = "IR AL TURNO";
+            btnTurno.UseVisualStyleBackColor = false;
+            btnTurno.Click += btnTurno_Click;
+            // 
+            // btnFiltros
+            // 
+            btnFiltros.BackColor = Color.CornflowerBlue;
+            btnFiltros.Dock = DockStyle.Fill;
+            btnFiltros.ForeColor = Color.White;
+            btnFiltros.Location = new Point(0, 379);
+            btnFiltros.Margin = new Padding(0);
+            btnFiltros.Name = "btnFiltros";
+            btnFiltros.Size = new Size(481, 84);
+            btnFiltros.TabIndex = 9;
+            btnFiltros.Text = "APLICAR FILTROS";
+            btnFiltros.UseVisualStyleBackColor = false;
+            btnFiltros.Click += btnFiltros_Click;
             // 
             // contentTLP
             // 
@@ -280,20 +296,6 @@
             turnosDgv.RowHeadersWidth = 51;
             turnosDgv.Size = new Size(1298, 743);
             turnosDgv.TabIndex = 7;
-            // 
-            // btnFiltros
-            // 
-            btnFiltros.BackColor = Color.CornflowerBlue;
-            btnFiltros.Dock = DockStyle.Fill;
-            btnFiltros.ForeColor = Color.White;
-            btnFiltros.Location = new Point(0, 379);
-            btnFiltros.Margin = new Padding(0);
-            btnFiltros.Name = "btnFiltros";
-            btnFiltros.Size = new Size(481, 84);
-            btnFiltros.TabIndex = 9;
-            btnFiltros.Text = "APLICAR FILTROS";
-            btnFiltros.UseVisualStyleBackColor = false;
-            btnFiltros.Click += btnFiltros_Click;
             // 
             // AdmGestionTurnos
             // 

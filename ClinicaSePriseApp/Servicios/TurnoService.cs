@@ -21,6 +21,7 @@ namespace ClinicaSePriseApp.Servicios
             turnoRepo.GuardarTurno(nuevoTurno);
         }              
 
+        /*
         public static List<E_Turno> CrearAgendaMedica(int idProfesional, DateOnly dia)
         {
             List<E_Turno> agendaDia = new List<E_Turno>();
@@ -86,7 +87,7 @@ namespace ClinicaSePriseApp.Servicios
 
             return agendaDia;
         }
-
+        */
 
         // READ
         public static E_Turno? ObtenerTurnoPorID(int id)
@@ -101,16 +102,19 @@ namespace ClinicaSePriseApp.Servicios
 
 
         // UPDATE
-        public static E_Paciente AsignarTurno(E_Turno turno, E_Paciente paciente)
+        public static void AsignarTurno(E_Turno turno, E_Paciente paciente)
         {
             turno.IdPaciente = paciente.IdPaciente;
             turno.Estado = Entidades.Enums.EstadoTurno.ASIGNADO;
+            
             // Actualizar en la base de datos simulada
-            turnoRepo.ActualizarTurno(turno);
+            // turnoRepo.ActualizarTurno(turno);
 
             paciente.Reservas.Add(turno);
-            
-            return paciente;
+
+            // Actualizar en la base de datos simulada
+            // pacienteRepo.ActualizarPaciente(paciente);
+
         }
     }
 }
