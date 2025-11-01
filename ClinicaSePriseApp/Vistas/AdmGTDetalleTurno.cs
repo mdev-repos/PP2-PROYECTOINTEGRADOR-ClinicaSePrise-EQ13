@@ -30,11 +30,11 @@ namespace ClinicaSePriseApp.Vistas
             this.WindowState = FormWindowState.Maximized;
         }
 
-        public AdmGTDetalleTurno(int idTurno)
+        public AdmGTDetalleTurno(E_Turno turno)
         {
             InitializeComponent();
                         
-            _turnoSeleccionado = TurnoService.ObtenerTurnoPorID(idTurno);
+            _turnoSeleccionado = turno;
 
             if (_turnoSeleccionado == null)
             {
@@ -50,11 +50,7 @@ namespace ClinicaSePriseApp.Vistas
         }
 
         private void CargarDatosTurno(E_Turno turno)
-        {
-            // ID (oculto, para utilizar en los metodos luego)
-            lblTurnoID.Text = $"{turno.IdTurno}";
-            lblTurnoID.Visible = false;
-
+        {          
             // Fecha y Hora
             string fechaMostrar = FormatearFechaEspanol(turno.FechaTurno);
             lblTurnoDia.Text = $"FECHA: {fechaMostrar}";
@@ -95,6 +91,7 @@ namespace ClinicaSePriseApp.Vistas
             }
             else
             {
+                VaciarDatosDelPaciente();
                 btnAsignar.Enabled = true;
                 btnCancelar.Enabled = false;
                 btnAbonar.Enabled = false;
@@ -126,7 +123,7 @@ namespace ClinicaSePriseApp.Vistas
             lblTelefono.Text = $"TEL: {paciente.Telefono}";
 
             // Email
-            lblEmail.Text = $"MAIL: {paciente.Email}";
+            lblEmail.Text = $"EMAIL: {paciente.Email}";
 
             // Direccion
             lblDireccion.Text = $"DIRECCION: {paciente.Direccion}";
@@ -135,14 +132,14 @@ namespace ClinicaSePriseApp.Vistas
         private void VaciarDatosDelPaciente()
         {
             pacienteDniTxt.Text = string.Empty;
-            lblPacienteNombre.Text = "NOMBRE:";
-            lblObraSocial.Text = "OS:";
-            lblNumAfiliado.Text = "N°";
-            lblGenero.Text = "GENERO:";
-            lblEdad.Text = "EDAD:";
-            lblTelefono.Text = "TEL:";
-            lblEmail.Text = "MAIL:";
-            lblDireccion.Text = "DIRECCION:";
+            lblPacienteNombre.Text = "TURNO NO ASIGNADO";
+            lblObraSocial.Text = string.Empty;
+            lblNumAfiliado.Text = string.Empty;
+            lblGenero.Text = string.Empty;
+            lblEdad.Text = string.Empty;
+            lblTelefono.Text = string.Empty;
+            lblEmail.Text = string.Empty;
+            lblDireccion.Text = string.Empty;
         }
 
         private string FormatearFechaEspanol(DateTime fecha)
@@ -246,15 +243,7 @@ namespace ClinicaSePriseApp.Vistas
                 {
                     label.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
                 }
-            }
-
-            foreach (Control label in valorIdTLP.Controls)
-            {
-                if (label is Label)
-                {
-                    label.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
-                }
-            }
+            }                       
 
             pacienteDniTxt.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
         }
@@ -266,13 +255,25 @@ namespace ClinicaSePriseApp.Vistas
         private void btnAsignar_Click(object sender, EventArgs e)
         {
             string dniTexto = pacienteDniTxt.Text;
-            string dniLimpio = new string(dniTexto.Where(char.IsDigit).ToArray());                        
+            string dniLimpio = new string(dniTexto.Where(char.IsDigit).ToArray());
             var paciente = PacienteService.ObtenerPacientePorDNI(dniLimpio);
-
             var turno = _turnoSeleccionado;
 
             if (turno != null && paciente != null)
             {
+                DialogResult resultado = MessageBox.Show(
+                    "Si continúa, se asignará el turno al paciente indicado",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+                                
+                if (resultado == DialogResult.Cancel)
+                {
+                    return;
+                }
+                                
                 TurnoService.AsignarTurno(turno, paciente);
 
                 btnAsignar.Enabled = false;
@@ -289,17 +290,55 @@ namespace ClinicaSePriseApp.Vistas
             {
                 MessageBox.Show("Error al asignar el turno. Verifique los datos ingresados.",
                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            var turno = _turnoSeleccionado;
 
+            if (turno != null)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "Si continúa, se cancelara la reserva de este turno",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+                if (resultado == DialogResult.Cancel)
+                {
+                    return;
+                }
+                
+                TurnoService.CancelarTurno(turno);
+
+                VaciarDatosDelPaciente();
+
+                btnAsignar.Enabled = true;
+                btnCancelar.Enabled = false;
+                btnAbonar.Enabled = false;
+
+                string estadoMostrar = ClinicaSePriseApp.Utilidades.EnumHelper.GetDescription(turno.Estado);
+                lblTurnoEstado.Text = $"ESTADO: {estadoMostrar}";
+
+                MessageBox.Show($"Reserva de Turno cancelada exitosamente",
+                              "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error al cancelar el turno. Verifique los datos ingresados.",
+                              "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAbonar_Click(object sender, EventArgs e)
         {
-
+            AdmGTPagoTurno admGTPagoTurno = new AdmGTPagoTurno(_turnoSeleccionado);
+            this.Hide();
+            admGTPagoTurno.FormClosed += (s, args) => this.Close();
+            admGTPagoTurno.Show();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
