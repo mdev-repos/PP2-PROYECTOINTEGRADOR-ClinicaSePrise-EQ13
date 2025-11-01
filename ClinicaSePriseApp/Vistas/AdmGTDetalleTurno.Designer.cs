@@ -41,6 +41,7 @@
             viewTLP = new TableLayoutPanel();
             imgPicBox = new PictureBox();
             dataTLP = new TableLayoutPanel();
+            lblTurnoValor = new Label();
             telMailTLP = new TableLayoutPanel();
             lblEmail = new Label();
             lblTelefono = new Label();
@@ -61,9 +62,6 @@
             lblGenero = new Label();
             lblPacienteNombre = new Label();
             lblDireccion = new Label();
-            valorIdTLP = new TableLayoutPanel();
-            lblTurnoValor = new Label();
-            lblTurnoID = new Label();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -75,7 +73,6 @@
             dniTLP.SuspendLayout();
             osTLP.SuspendLayout();
             sexoEdadTLP.SuspendLayout();
-            valorIdTLP.SuspendLayout();
             SuspendLayout();
             // 
             // mainTLP
@@ -255,6 +252,7 @@
             // 
             dataTLP.ColumnCount = 1;
             dataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            dataTLP.Controls.Add(lblTurnoValor, 0, 5);
             dataTLP.Controls.Add(telMailTLP, 0, 12);
             dataTLP.Controls.Add(lblTurnoEstado, 0, 4);
             dataTLP.Controls.Add(lblTurnoEsp, 0, 3);
@@ -267,7 +265,6 @@
             dataTLP.Controls.Add(sexoEdadTLP, 0, 11);
             dataTLP.Controls.Add(lblPacienteNombre, 0, 9);
             dataTLP.Controls.Add(lblDireccion, 0, 13);
-            dataTLP.Controls.Add(valorIdTLP, 0, 5);
             dataTLP.Dock = DockStyle.Fill;
             dataTLP.Location = new Point(5, 0);
             dataTLP.Margin = new Padding(5, 0, 0, 0);
@@ -289,6 +286,19 @@
             dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 7.46149254F));
             dataTLP.Size = new Size(372, 613);
             dataTLP.TabIndex = 2;
+            // 
+            // lblTurnoValor
+            // 
+            lblTurnoValor.AutoSize = true;
+            lblTurnoValor.Dock = DockStyle.Fill;
+            lblTurnoValor.Enabled = false;
+            lblTurnoValor.Location = new Point(0, 225);
+            lblTurnoValor.Margin = new Padding(0);
+            lblTurnoValor.Name = "lblTurnoValor";
+            lblTurnoValor.Size = new Size(372, 45);
+            lblTurnoValor.TabIndex = 12;
+            lblTurnoValor.Text = "Valor";
+            lblTurnoValor.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // telMailTLP
             // 
@@ -543,47 +553,6 @@
             lblDireccion.TabIndex = 11;
             lblDireccion.Text = "Direccion";
             // 
-            // valorIdTLP
-            // 
-            valorIdTLP.ColumnCount = 2;
-            valorIdTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 94.53552F));
-            valorIdTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5.464481F));
-            valorIdTLP.Controls.Add(lblTurnoValor, 0, 0);
-            valorIdTLP.Controls.Add(lblTurnoID, 1, 0);
-            valorIdTLP.Dock = DockStyle.Fill;
-            valorIdTLP.Location = new Point(3, 228);
-            valorIdTLP.Name = "valorIdTLP";
-            valorIdTLP.RowCount = 1;
-            valorIdTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            valorIdTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            valorIdTLP.Size = new Size(366, 39);
-            valorIdTLP.TabIndex = 12;
-            // 
-            // lblTurnoValor
-            // 
-            lblTurnoValor.AutoSize = true;
-            lblTurnoValor.Dock = DockStyle.Fill;
-            lblTurnoValor.Enabled = false;
-            lblTurnoValor.Location = new Point(0, 0);
-            lblTurnoValor.Margin = new Padding(0);
-            lblTurnoValor.Name = "lblTurnoValor";
-            lblTurnoValor.Size = new Size(346, 39);
-            lblTurnoValor.TabIndex = 6;
-            lblTurnoValor.Text = "Valor";
-            lblTurnoValor.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblTurnoID
-            // 
-            lblTurnoID.AutoSize = true;
-            lblTurnoID.Dock = DockStyle.Fill;
-            lblTurnoID.Location = new Point(349, 0);
-            lblTurnoID.Name = "lblTurnoID";
-            lblTurnoID.RightToLeft = RightToLeft.No;
-            lblTurnoID.Size = new Size(14, 39);
-            lblTurnoID.TabIndex = 7;
-            lblTurnoID.Text = "lblTurnoID";
-            lblTurnoID.Visible = false;
-            // 
             // AdmGTDetalleTurno
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -614,8 +583,6 @@
             osTLP.PerformLayout();
             sexoEdadTLP.ResumeLayout(false);
             sexoEdadTLP.PerformLayout();
-            valorIdTLP.ResumeLayout(false);
-            valorIdTLP.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -653,8 +620,6 @@
         private Label lblGenero;
         private Label lblPacienteNombre;
         private Label lblDireccion;
-        private TableLayoutPanel valorIdTLP;
         private Label lblTurnoValor;
-        private Label lblTurnoID;
     }
 }

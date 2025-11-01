@@ -106,15 +106,22 @@ namespace ClinicaSePriseApp.Servicios
         {
             turno.IdPaciente = paciente.IdPaciente;
             turno.Estado = Entidades.Enums.EstadoTurno.ASIGNADO;
-            
-            // Actualizar en la base de datos simulada
-            // turnoRepo.ActualizarTurno(turno);
 
-            paciente.Reservas.Add(turno);
+            paciente.Reservas.Add(turno);            
+        }
 
-            // Actualizar en la base de datos simulada
-            // pacienteRepo.ActualizarPaciente(paciente);
+        public static void CancelarTurno(E_Turno turno)
+        { 
+            var paciente = PacienteService.ObtenerPacientePorID(turno.IdPaciente);
 
+            if (paciente != null) 
+            {
+                paciente.Reservas.Remove(turno);
+            }
+
+            turno.IdPaciente = null;
+
+            turno.Estado = Entidades.Enums.EstadoTurno.DISPONIBLE;
         }
     }
 }

@@ -444,10 +444,15 @@ namespace ClinicaSePriseApp.Vistas
                     return;
                 }
 
-                AdmGTDetalleTurno admGTDetalleTurno = new AdmGTDetalleTurno(idTurno.Value);
-                this.Hide();
-                admGTDetalleTurno.FormClosed += (s, args) => this.Close();
-                admGTDetalleTurno.Show();
+                var turno = TurnoService.ObtenerTurnoPorID(idTurno.Value);
+
+                if (turno != null) 
+                {
+                    AdmGTDetalleTurno admGTDetalleTurno = new AdmGTDetalleTurno(turno);
+                    this.Hide();
+                    admGTDetalleTurno.FormClosed += (s, args) => this.Close();
+                    admGTDetalleTurno.Show();
+                }                
             }
             catch (Exception ex)
             {
