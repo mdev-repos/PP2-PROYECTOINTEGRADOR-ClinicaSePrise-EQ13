@@ -165,7 +165,7 @@
             MinimumSize = new Size(1024, 768);
             Name = "AdmGTPagoTurno";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Pago de Turno";
+            Text = "Clinica SePrise  ||  Pago de Turno";
             WindowState = FormWindowState.Maximized;
             Load += AdmGTPagoTurno_Load;
             mainTLP.ResumeLayout(false);

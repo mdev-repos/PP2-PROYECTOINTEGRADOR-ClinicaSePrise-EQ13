@@ -32,7 +32,10 @@ namespace ClinicaSePriseApp.Servicios
             return profRepo.TraerTodosLosProfesionales();
         }
 
-        
+        public static E_Profesional? ObtenerProfesionalPorNombreCompleto(string nombreCompleto)
+        {
+            return profRepo.ObtenerProfesionalPorNombreCompleto(nombreCompleto);
+        }
 
         // Update
 

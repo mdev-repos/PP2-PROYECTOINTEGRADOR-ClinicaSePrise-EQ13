@@ -563,7 +563,7 @@
             MinimumSize = new Size(1024, 768);
             Name = "AdmGTDetalleTurno";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Detalle de Turno";
+            Text = "Clinica SePrise  ||  Detalle de Turno";
             WindowState = FormWindowState.Maximized;
             Load += AdmGTDetalleTurno_Load;
             mainTLP.ResumeLayout(false);
