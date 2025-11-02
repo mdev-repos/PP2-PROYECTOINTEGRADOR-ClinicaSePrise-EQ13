@@ -27,5 +27,11 @@ namespace ClinicaSePriseApp.Datos
             E_Profesional? profesionalEncontrado = DDBB_Simulation.ProfesionalesDB.FirstOrDefault(t => t.IdProfesional == id);
             return profesionalEncontrado;
         }
+
+        public E_Profesional? ObtenerProfesionalPorNombreCompleto(string nombreCompleto)
+        {
+            E_Profesional? profesionalEncontrado = DDBB_Simulation.ProfesionalesDB.FirstOrDefault(t => t.NombreCompleto == nombreCompleto);
+            return profesionalEncontrado;
+        }
     }
 }
