@@ -1,6 +1,6 @@
 ﻿namespace ClinicaSePriseApp.Vistas
 {
-    partial class AdmGPAltaPaciente
+    partial class AdmGPModificarPaciente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdmGPAltaPaciente));
-            lblFechaNacimiento = new Label();
-            lblDni = new Label();
-            lblApellido = new Label();
-            lblTurno = new Label();
-            lblNombre = new Label();
-            lblGenero = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdmGPModificarPaciente));
+            mainTLP = new TableLayoutPanel();
+            menuTLP = new TableLayoutPanel();
+            picLogo = new PictureBox();
+            btnVolver = new Button();
+            btnAsignar = new Button();
+            contentTLP = new TableLayoutPanel();
+            contentLbl = new Label();
+            viewTLP = new TableLayoutPanel();
             imgPicBox = new PictureBox();
             dataTLP = new TableLayoutPanel();
             cboxObraSocial = new ComboBox();
@@ -48,103 +50,152 @@
             lblEmail = new Label();
             lblTelefono = new Label();
             label7 = new Label();
+            lblFechaNacimiento = new Label();
+            lblGenero = new Label();
+            lblDni = new Label();
+            lblApellido = new Label();
+            lblTurno = new Label();
+            lblNombre = new Label();
             txtNombre = new TextBox();
             cboxGenero = new ComboBox();
-            contentLbl = new Label();
-            viewTLP = new TableLayoutPanel();
-            contentTLP = new TableLayoutPanel();
-            picLogo = new PictureBox();
-            btnVolver = new Button();
-            btnAsignar = new Button();
-            menuTLP = new TableLayoutPanel();
-            mainTLP = new TableLayoutPanel();
+            mainTLP.SuspendLayout();
+            menuTLP.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            contentTLP.SuspendLayout();
+            viewTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)imgPicBox).BeginInit();
             dataTLP.SuspendLayout();
-            viewTLP.SuspendLayout();
-            contentTLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
-            menuTLP.SuspendLayout();
-            mainTLP.SuspendLayout();
             SuspendLayout();
             // 
-            // lblFechaNacimiento
+            // mainTLP
             // 
-            lblFechaNacimiento.AutoSize = true;
-            lblFechaNacimiento.Dock = DockStyle.Fill;
-            lblFechaNacimiento.Enabled = false;
-            lblFechaNacimiento.Location = new Point(0, 330);
-            lblFechaNacimiento.Margin = new Padding(0);
-            lblFechaNacimiento.Name = "lblFechaNacimiento";
-            lblFechaNacimiento.Size = new Size(295, 66);
-            lblFechaNacimiento.TabIndex = 12;
-            lblFechaNacimiento.Text = "Fecha de nacimiento:";
-            lblFechaNacimiento.TextAlign = ContentAlignment.MiddleLeft;
+            mainTLP.ColumnCount = 2;
+            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            mainTLP.Controls.Add(menuTLP, 1, 0);
+            mainTLP.Controls.Add(contentTLP, 0, 0);
+            mainTLP.Dock = DockStyle.Fill;
+            mainTLP.Location = new Point(0, 0);
+            mainTLP.Margin = new Padding(0);
+            mainTLP.Name = "mainTLP";
+            mainTLP.RowCount = 1;
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            mainTLP.Size = new Size(1664, 775);
+            mainTLP.TabIndex = 3;
             // 
-            // lblDni
+            // menuTLP
             // 
-            lblDni.AutoSize = true;
-            lblDni.Dock = DockStyle.Fill;
-            lblDni.Enabled = false;
-            lblDni.Location = new Point(0, 198);
-            lblDni.Margin = new Padding(0);
-            lblDni.Name = "lblDni";
-            lblDni.Size = new Size(295, 66);
-            lblDni.TabIndex = 3;
-            lblDni.Text = "DNI: ";
-            lblDni.TextAlign = ContentAlignment.MiddleLeft;
+            menuTLP.BackColor = SystemColors.GradientInactiveCaption;
+            menuTLP.ColumnCount = 1;
+            menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            menuTLP.Controls.Add(picLogo, 0, 0);
+            menuTLP.Controls.Add(btnVolver, 0, 8);
+            menuTLP.Controls.Add(btnAsignar, 0, 2);
+            menuTLP.Dock = DockStyle.Fill;
+            menuTLP.Location = new Point(1248, 0);
+            menuTLP.Margin = new Padding(0);
+            menuTLP.Name = "menuTLP";
+            menuTLP.RowCount = 10;
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.Size = new Size(416, 775);
+            menuTLP.TabIndex = 0;
             // 
-            // lblApellido
+            // picLogo
             // 
-            lblApellido.AutoSize = true;
-            lblApellido.Dock = DockStyle.Fill;
-            lblApellido.Enabled = false;
-            lblApellido.Location = new Point(0, 132);
-            lblApellido.Margin = new Padding(0);
-            lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(295, 66);
-            lblApellido.TabIndex = 2;
-            lblApellido.Text = "Apellido: ";
-            lblApellido.TextAlign = ContentAlignment.MiddleLeft;
+            picLogo.BackColor = SystemColors.GradientInactiveCaption;
+            picLogo.Dock = DockStyle.Fill;
+            picLogo.Image = Properties.Resources.SePrise_logoApp;
+            picLogo.Location = new Point(0, 0);
+            picLogo.Margin = new Padding(0);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(416, 232);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 0;
+            picLogo.TabStop = false;
             // 
-            // lblTurno
+            // btnVolver
             // 
-            lblTurno.AutoSize = true;
-            dataTLP.SetColumnSpan(lblTurno, 2);
-            lblTurno.Dock = DockStyle.Fill;
-            lblTurno.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTurno.Location = new Point(0, 0);
-            lblTurno.Margin = new Padding(0);
-            lblTurno.Name = "lblTurno";
-            lblTurno.Size = new Size(620, 66);
-            lblTurno.TabIndex = 0;
-            lblTurno.Text = "DATOS DEL PACIENTE";
-            lblTurno.TextAlign = ContentAlignment.MiddleCenter;
+            btnVolver.BackColor = Color.Pink;
+            btnVolver.Dock = DockStyle.Fill;
+            btnVolver.ForeColor = Color.White;
+            btnVolver.Location = new Point(0, 649);
+            btnVolver.Margin = new Padding(0);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(416, 62);
+            btnVolver.TabIndex = 8;
+            btnVolver.Text = "VOLVER A PACIENTES";
+            btnVolver.UseVisualStyleBackColor = false;
             // 
-            // lblNombre
+            // btnAsignar
             // 
-            lblNombre.AutoSize = true;
-            lblNombre.Dock = DockStyle.Fill;
-            lblNombre.Enabled = false;
-            lblNombre.Location = new Point(0, 66);
-            lblNombre.Margin = new Padding(0);
-            lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(295, 66);
-            lblNombre.TabIndex = 1;
-            lblNombre.Text = "Nombre: ";
-            lblNombre.TextAlign = ContentAlignment.MiddleLeft;
+            btnAsignar.BackColor = Color.CornflowerBlue;
+            btnAsignar.Dock = DockStyle.Fill;
+            btnAsignar.ForeColor = Color.White;
+            btnAsignar.Location = new Point(0, 278);
+            btnAsignar.Margin = new Padding(0);
+            btnAsignar.Name = "btnAsignar";
+            btnAsignar.Size = new Size(416, 62);
+            btnAsignar.TabIndex = 9;
+            btnAsignar.Text = "CONFIRMAR";
+            btnAsignar.UseVisualStyleBackColor = false;
             // 
-            // lblGenero
+            // contentTLP
             // 
-            lblGenero.AutoSize = true;
-            lblGenero.Dock = DockStyle.Fill;
-            lblGenero.Enabled = false;
-            lblGenero.Location = new Point(0, 264);
-            lblGenero.Margin = new Padding(0);
-            lblGenero.Name = "lblGenero";
-            lblGenero.Size = new Size(295, 66);
-            lblGenero.TabIndex = 4;
-            lblGenero.Text = "Género: ";
-            lblGenero.TextAlign = ContentAlignment.MiddleLeft;
+            contentTLP.ColumnCount = 1;
+            contentTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            contentTLP.Controls.Add(contentLbl, 0, 1);
+            contentTLP.Controls.Add(viewTLP, 0, 3);
+            contentTLP.Dock = DockStyle.Fill;
+            contentTLP.Location = new Point(0, 0);
+            contentTLP.Margin = new Padding(0);
+            contentTLP.Name = "contentTLP";
+            contentTLP.RowCount = 4;
+            contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 0F));
+            contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
+            contentTLP.Size = new Size(1248, 775);
+            contentTLP.TabIndex = 1;
+            // 
+            // contentLbl
+            // 
+            contentLbl.AutoSize = true;
+            contentLbl.BackColor = SystemColors.GradientInactiveCaption;
+            contentLbl.Dock = DockStyle.Fill;
+            contentLbl.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            contentLbl.Location = new Point(0, 38);
+            contentLbl.Margin = new Padding(0);
+            contentLbl.Name = "contentLbl";
+            contentLbl.Size = new Size(1248, 77);
+            contentLbl.TabIndex = 0;
+            contentLbl.Text = "MODIFICAR PACIENTE";
+            contentLbl.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // viewTLP
+            // 
+            viewTLP.ColumnCount = 2;
+            viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 18F));
+            viewTLP.Controls.Add(imgPicBox, 1, 0);
+            viewTLP.Controls.Add(dataTLP, 0, 0);
+            viewTLP.Dock = DockStyle.Fill;
+            viewTLP.Location = new Point(0, 115);
+            viewTLP.Margin = new Padding(0);
+            viewTLP.Name = "viewTLP";
+            viewTLP.RowCount = 1;
+            viewTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            viewTLP.Size = new Size(1248, 660);
+            viewTLP.TabIndex = 1;
             // 
             // imgPicBox
             // 
@@ -319,6 +370,85 @@
             label7.Text = "Dirección: ";
             label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // lblFechaNacimiento
+            // 
+            lblFechaNacimiento.AutoSize = true;
+            lblFechaNacimiento.Dock = DockStyle.Fill;
+            lblFechaNacimiento.Enabled = false;
+            lblFechaNacimiento.Location = new Point(0, 330);
+            lblFechaNacimiento.Margin = new Padding(0);
+            lblFechaNacimiento.Name = "lblFechaNacimiento";
+            lblFechaNacimiento.Size = new Size(295, 66);
+            lblFechaNacimiento.TabIndex = 12;
+            lblFechaNacimiento.Text = "Fecha de nacimiento:";
+            lblFechaNacimiento.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblGenero
+            // 
+            lblGenero.AutoSize = true;
+            lblGenero.Dock = DockStyle.Fill;
+            lblGenero.Enabled = false;
+            lblGenero.Location = new Point(0, 264);
+            lblGenero.Margin = new Padding(0);
+            lblGenero.Name = "lblGenero";
+            lblGenero.Size = new Size(295, 66);
+            lblGenero.TabIndex = 4;
+            lblGenero.Text = "Género: ";
+            lblGenero.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblDni
+            // 
+            lblDni.AutoSize = true;
+            lblDni.Dock = DockStyle.Fill;
+            lblDni.Enabled = false;
+            lblDni.Location = new Point(0, 198);
+            lblDni.Margin = new Padding(0);
+            lblDni.Name = "lblDni";
+            lblDni.Size = new Size(295, 66);
+            lblDni.TabIndex = 3;
+            lblDni.Text = "DNI: ";
+            lblDni.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblApellido
+            // 
+            lblApellido.AutoSize = true;
+            lblApellido.Dock = DockStyle.Fill;
+            lblApellido.Enabled = false;
+            lblApellido.Location = new Point(0, 132);
+            lblApellido.Margin = new Padding(0);
+            lblApellido.Name = "lblApellido";
+            lblApellido.Size = new Size(295, 66);
+            lblApellido.TabIndex = 2;
+            lblApellido.Text = "Apellido: ";
+            lblApellido.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblTurno
+            // 
+            lblTurno.AutoSize = true;
+            dataTLP.SetColumnSpan(lblTurno, 2);
+            lblTurno.Dock = DockStyle.Fill;
+            lblTurno.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTurno.Location = new Point(0, 0);
+            lblTurno.Margin = new Padding(0);
+            lblTurno.Name = "lblTurno";
+            lblTurno.Size = new Size(620, 66);
+            lblTurno.TabIndex = 0;
+            lblTurno.Text = "DATOS DEL PACIENTE";
+            lblTurno.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblNombre
+            // 
+            lblNombre.AutoSize = true;
+            lblNombre.Dock = DockStyle.Fill;
+            lblNombre.Enabled = false;
+            lblNombre.Location = new Point(0, 66);
+            lblNombre.Margin = new Padding(0);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(295, 66);
+            lblNombre.TabIndex = 1;
+            lblNombre.Text = "Nombre: ";
+            lblNombre.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
@@ -337,137 +467,7 @@
             cboxGenero.Size = new Size(319, 23);
             cboxGenero.TabIndex = 34;
             // 
-            // contentLbl
-            // 
-            contentLbl.AutoSize = true;
-            contentLbl.BackColor = SystemColors.GradientInactiveCaption;
-            contentLbl.Dock = DockStyle.Fill;
-            contentLbl.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            contentLbl.Location = new Point(0, 38);
-            contentLbl.Margin = new Padding(0);
-            contentLbl.Name = "contentLbl";
-            contentLbl.Size = new Size(1248, 77);
-            contentLbl.TabIndex = 0;
-            contentLbl.Text = "ALTA PACIENTE";
-            contentLbl.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // viewTLP
-            // 
-            viewTLP.ColumnCount = 2;
-            viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 18F));
-            viewTLP.Controls.Add(imgPicBox, 1, 0);
-            viewTLP.Controls.Add(dataTLP, 0, 0);
-            viewTLP.Dock = DockStyle.Fill;
-            viewTLP.Location = new Point(0, 115);
-            viewTLP.Margin = new Padding(0);
-            viewTLP.Name = "viewTLP";
-            viewTLP.RowCount = 1;
-            viewTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            viewTLP.Size = new Size(1248, 660);
-            viewTLP.TabIndex = 1;
-            // 
-            // contentTLP
-            // 
-            contentTLP.ColumnCount = 1;
-            contentTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            contentTLP.Controls.Add(contentLbl, 0, 1);
-            contentTLP.Controls.Add(viewTLP, 0, 3);
-            contentTLP.Dock = DockStyle.Fill;
-            contentTLP.Location = new Point(0, 0);
-            contentTLP.Margin = new Padding(0);
-            contentTLP.Name = "contentTLP";
-            contentTLP.RowCount = 4;
-            contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
-            contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 0F));
-            contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
-            contentTLP.Size = new Size(1248, 775);
-            contentTLP.TabIndex = 1;
-            // 
-            // picLogo
-            // 
-            picLogo.BackColor = SystemColors.GradientInactiveCaption;
-            picLogo.Dock = DockStyle.Fill;
-            picLogo.Image = Properties.Resources.SePrise_logoApp;
-            picLogo.Location = new Point(0, 0);
-            picLogo.Margin = new Padding(0);
-            picLogo.Name = "picLogo";
-            picLogo.Size = new Size(416, 232);
-            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
-            picLogo.TabIndex = 0;
-            picLogo.TabStop = false;
-            // 
-            // btnVolver
-            // 
-            btnVolver.BackColor = Color.Pink;
-            btnVolver.Dock = DockStyle.Fill;
-            btnVolver.ForeColor = Color.White;
-            btnVolver.Location = new Point(0, 649);
-            btnVolver.Margin = new Padding(0);
-            btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(416, 62);
-            btnVolver.TabIndex = 8;
-            btnVolver.Text = "VOLVER A PACIENTES";
-            btnVolver.UseVisualStyleBackColor = false;
-            // 
-            // btnAsignar
-            // 
-            btnAsignar.BackColor = Color.CornflowerBlue;
-            btnAsignar.Dock = DockStyle.Fill;
-            btnAsignar.ForeColor = Color.White;
-            btnAsignar.Location = new Point(0, 278);
-            btnAsignar.Margin = new Padding(0);
-            btnAsignar.Name = "btnAsignar";
-            btnAsignar.Size = new Size(416, 62);
-            btnAsignar.TabIndex = 9;
-            btnAsignar.Text = "DAR DE ALTA";
-            btnAsignar.UseVisualStyleBackColor = false;
-            // 
-            // menuTLP
-            // 
-            menuTLP.BackColor = SystemColors.GradientInactiveCaption;
-            menuTLP.ColumnCount = 1;
-            menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            menuTLP.Controls.Add(picLogo, 0, 0);
-            menuTLP.Controls.Add(btnVolver, 0, 8);
-            menuTLP.Controls.Add(btnAsignar, 0, 2);
-            menuTLP.Dock = DockStyle.Fill;
-            menuTLP.Location = new Point(1248, 0);
-            menuTLP.Margin = new Padding(0);
-            menuTLP.Name = "menuTLP";
-            menuTLP.RowCount = 10;
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.Size = new Size(416, 775);
-            menuTLP.TabIndex = 0;
-            // 
-            // mainTLP
-            // 
-            mainTLP.ColumnCount = 2;
-            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
-            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            mainTLP.Controls.Add(menuTLP, 1, 0);
-            mainTLP.Controls.Add(contentTLP, 0, 0);
-            mainTLP.Dock = DockStyle.Fill;
-            mainTLP.Location = new Point(0, 0);
-            mainTLP.Margin = new Padding(0);
-            mainTLP.Name = "mainTLP";
-            mainTLP.RowCount = 1;
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            mainTLP.Size = new Size(1664, 775);
-            mainTLP.TabIndex = 2;
-            // 
-            // AdmGPAltaPaciente
+            // AdmGPModificarPaciente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -475,52 +475,52 @@
             Controls.Add(mainTLP);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(898, 586);
-            Name = "AdmGPAltaPaciente";
+            Name = "AdmGPModificarPaciente";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Clinica SePrise  ||  Alta Paciente";
+            Text = "Clinica SePrise  ||  Modificar Paciente";
             WindowState = FormWindowState.Maximized;
+            mainTLP.ResumeLayout(false);
+            menuTLP.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            contentTLP.ResumeLayout(false);
+            contentTLP.PerformLayout();
+            viewTLP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)imgPicBox).EndInit();
             dataTLP.ResumeLayout(false);
             dataTLP.PerformLayout();
-            viewTLP.ResumeLayout(false);
-            contentTLP.ResumeLayout(false);
-            contentTLP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
-            menuTLP.ResumeLayout(false);
-            mainTLP.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Label lblFechaNacimiento;
-        private Label lblDni;
-        private Label lblApellido;
-        private Label lblTurno;
-        private Label lblNombre;
-        private Label lblGenero;
-        private PictureBox imgPicBox;
-        private TableLayoutPanel dataTLP;
-        private Label contentLbl;
-        private TableLayoutPanel viewTLP;
-        private TableLayoutPanel contentTLP;
+        private TableLayoutPanel mainTLP;
+        private TableLayoutPanel menuTLP;
         private PictureBox picLogo;
         private Button btnVolver;
         private Button btnAsignar;
-        private TableLayoutPanel menuTLP;
-        private TableLayoutPanel mainTLP;
-        private Label label7;
-        private Label lblObraSocial;
-        private Label lblEmail;
-        private Label lblTelefono;
-        private TextBox txtNombre;
+        private TableLayoutPanel contentTLP;
+        private Label contentLbl;
+        private TableLayoutPanel viewTLP;
+        private PictureBox imgPicBox;
+        private TableLayoutPanel dataTLP;
+        private ComboBox cboxObraSocial;
+        private ComboBox cboxFechaNacimiento;
         private TextBox txtMail;
         private TextBox txtTelefono;
         private TextBox txtDireccion;
         private TextBox txtDni;
         private TextBox txtApellido;
-        private ComboBox cboxObraSocial;
-        private ComboBox cboxFechaNacimiento;
+        private Label lblObraSocial;
+        private Label lblEmail;
+        private Label lblTelefono;
+        private Label label7;
+        private Label lblFechaNacimiento;
+        private Label lblGenero;
+        private Label lblDni;
+        private Label lblApellido;
+        private Label lblTurno;
+        private Label lblNombre;
+        private TextBox txtNombre;
         private ComboBox cboxGenero;
     }
 }
