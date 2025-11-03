@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\icon_borrar.png" />
+    <None Remove="Resources\icon_editar.png" />
+    <None Remove="Resources\icon_lupa.png" />
     <None Remove="Resources\img_administrativo.jpeg" />
     <None Remove="Resources\img_clinica.jpeg" />
     <None Remove="Resources\img_profesional.jpeg" />
@@ -17,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\icon_borrar.png" />
+    <EmbeddedResource Include="Resources\icon_editar.png" />
+    <EmbeddedResource Include="Resources\icon_lupa.png" />
     <EmbeddedResource Include="Resources\img_administrativo.jpeg" />
     <EmbeddedResource Include="Resources\img_clinica.jpeg" />
     <EmbeddedResource Include="Resources\img_profesional.jpeg" />

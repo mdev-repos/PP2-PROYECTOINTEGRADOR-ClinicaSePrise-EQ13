@@ -20,6 +20,11 @@ namespace ClinicaSePriseApp.Servicios
             profRepo.GuardarProfesional(nuevoProfesional);
         }
 
+        public static void AgregarTurnoEnAgenda(E_Profesional profesional, E_Turno turno)
+        { 
+            profesional.AgendaMedica.Add(turno);
+        }
+
 
         // Read
         public static E_Profesional? ObtenerProfesionalPorID(int id)
@@ -37,8 +42,23 @@ namespace ClinicaSePriseApp.Servicios
             return profRepo.ObtenerProfesionalPorNombreCompleto(nombreCompleto);
         }
 
+        public static List<DayOfWeek> ObtenerDiasDisponibles(E_Profesional profesional)
+        {
+            if (profesional?.Disponibilidades == null)
+                return new List<DayOfWeek>();
+
+            return profesional.Disponibilidades
+                .Select(d => d.Dia)
+                .Distinct()
+                .ToList();
+        }
+
         // Update
 
         // Delete
+        public static void EliminarTurnoDeAgenda(E_Profesional profesional, E_Turno turno)
+        { 
+            profesional.AgendaMedica.Remove(turno);
+        }
     }
 }
