@@ -21,38 +21,32 @@ namespace ClinicaSePriseApp.Servicios
             turnoRepo.GuardarTurno(nuevoTurno);
         }              
 
-        /*
-        public static List<E_Turno> CrearAgendaMedica(int idProfesional, DateOnly dia)
+        
+        public static void CrearAgendaMedica(E_Profesional profesional, DateOnly dia)
         {
-            List<E_Turno> agendaDia = new List<E_Turno>();
-
-            // Buscar Profesional por ID
-            E_Profesional? profesionalEncontrado = ProfesionalService.ObtenerProfesionalPorID(idProfesional);            
-
             // Obtener horario inicial y final
             DayOfWeek day = dia.DayOfWeek;
 
-            List<E_Disponibilidad> dispo = profesionalEncontrado.Disponibilidades;
+            E_Disponibilidad disponibilidad = profesional.Disponibilidades.FirstOrDefault(d => d.Dia == day);
 
-            E_Disponibilidad disponible = dispo.FirstOrDefault(d => d.Dia == day);
+            TimeSpan inicio = disponibilidad.HoraInicio;
 
-            TimeSpan inicio = disponible.HoraInicio;
+            TimeSpan fin = disponibilidad.HoraFin;
 
-            TimeSpan fin = disponible.HoraFin;
-
+            // Definir valores de duracion y costo del turno
             TimeSpan duracion;
 
             decimal valorConsulta;
 
-            switch (profesionalEncontrado.Especialidad)
+            switch (profesional.Especialidad)
             {
                 case Entidades.Enums.EspecialidadMedica.NEUROLOGIA:
-                    duracion = new TimeSpan(0, 35, 0);
+                    duracion = new TimeSpan(0, 45, 0);
                     valorConsulta = 5000m;
                     break;
 
                 case Entidades.Enums.EspecialidadMedica.UROLOGIA:
-                    duracion = new TimeSpan(0, 25, 0);
+                    duracion = new TimeSpan(0, 30, 0);
                     valorConsulta = 4000m;
                     break;
 
@@ -71,7 +65,7 @@ namespace ClinicaSePriseApp.Servicios
                 E_Turno turno = new E_Turno(
                     DDBB_Simulation.TurnosDB.Count + 1,
                     fechaTurno,
-                    profesionalEncontrado.IdProfesional,
+                    profesional.IdProfesional,
                     valorConsulta
                     );
 
@@ -79,15 +73,13 @@ namespace ClinicaSePriseApp.Servicios
                 GuardarTurno(turno);
 
                 // Anadir turno a la agenda del dia del profesional
-                agendaDia.Add(turno);
+                ProfesionalService.AgregarTurnoEnAgenda(profesional, turno);
 
                 // Actualizar horario de proximo turno
                 inicio = inicio + duracion;
             }
-
-            return agendaDia;
         }
-        */
+       
 
         // READ
         public static E_Turno? ObtenerTurnoPorID(int id)
@@ -122,6 +114,13 @@ namespace ClinicaSePriseApp.Servicios
             turno.IdPaciente = null;
 
             turno.Estado = Entidades.Enums.EstadoTurno.DISPONIBLE;
+        }
+
+
+        // DELETE (SOLO SIMULACION - LUEGO IMPLEMENTAR BOOLEANO DE BORRADO LOGICO)
+        public static void EliminarTurno(E_Turno turno)
+        {
+            turnoRepo.EliminarTurno(turno);
         }
     }
 }

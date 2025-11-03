@@ -33,5 +33,12 @@ namespace ClinicaSePriseApp.Datos
         {
 
         }
+
+
+        // DELETE (SOLO SIMULACION)
+        public void EliminarTurno(E_Turno turno)
+        {
+            DDBB_Simulation.TurnosDB.Remove(turno);
+        }
     }
 }

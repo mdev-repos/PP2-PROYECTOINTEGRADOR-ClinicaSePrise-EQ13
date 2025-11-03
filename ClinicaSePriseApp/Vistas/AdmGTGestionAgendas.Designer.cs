@@ -56,7 +56,13 @@
             btnMesSiguiente = new Button();
             btnMesAnterior = new Button();
             calendarDaysTLP = new TableLayoutPanel();
-            agendaDGV = new DataGridView();
+            AgendaContainerTLP = new TableLayoutPanel();
+            AgendaHeadersTLP = new TableLayoutPanel();
+            lblAgendaEstado = new Label();
+            lblAgendaHora = new Label();
+            lblFechaAgenda = new Label();
+            AgendaScroll = new Panel();
+            AgendaDataTLP = new TableLayoutPanel();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -67,7 +73,9 @@
             calendarTLP.SuspendLayout();
             calendarWeekTLP.SuspendLayout();
             calendarMonthTLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)agendaDGV).BeginInit();
+            AgendaContainerTLP.SuspendLayout();
+            AgendaHeadersTLP.SuspendLayout();
+            AgendaScroll.SuspendLayout();
             SuspendLayout();
             // 
             // mainTLP
@@ -210,7 +218,7 @@
             contentLbl.AutoSize = true;
             contentLbl.BackColor = SystemColors.GradientInactiveCaption;
             contentLbl.Dock = DockStyle.Fill;
-            contentLbl.Font = new Font("LEMON MILK", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            contentLbl.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             contentLbl.Location = new Point(0, 36);
             contentLbl.Margin = new Padding(0);
             contentLbl.Name = "contentLbl";
@@ -282,13 +290,13 @@
             // 
             dataViewTLP.BackColor = SystemColors.Control;
             dataViewTLP.ColumnCount = 5;
-            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
-            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 53F));
-            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
-            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 39F));
-            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
+            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
+            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 56F));
+            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
+            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41F));
+            dataViewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             dataViewTLP.Controls.Add(calendarTLP, 1, 0);
-            dataViewTLP.Controls.Add(agendaDGV, 3, 0);
+            dataViewTLP.Controls.Add(AgendaContainerTLP, 3, 0);
             dataViewTLP.Dock = DockStyle.Fill;
             dataViewTLP.Location = new Point(0, 214);
             dataViewTLP.Margin = new Padding(0);
@@ -306,7 +314,7 @@
             calendarTLP.Controls.Add(calendarMonthTLP, 0, 0);
             calendarTLP.Controls.Add(calendarDaysTLP, 0, 2);
             calendarTLP.Dock = DockStyle.Fill;
-            calendarTLP.Location = new Point(22, 0);
+            calendarTLP.Location = new Point(7, 0);
             calendarTLP.Margin = new Padding(0);
             calendarTLP.Name = "calendarTLP";
             calendarTLP.RowCount = 3;
@@ -317,7 +325,7 @@
             calendarTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             calendarTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             calendarTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            calendarTLP.Size = new Size(399, 475);
+            calendarTLP.Size = new Size(422, 475);
             calendarTLP.TabIndex = 0;
             // 
             // calendarWeekTLP
@@ -343,17 +351,17 @@
             calendarWeekTLP.Name = "calendarWeekTLP";
             calendarWeekTLP.RowCount = 1;
             calendarWeekTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            calendarWeekTLP.Size = new Size(399, 35);
+            calendarWeekTLP.Size = new Size(422, 35);
             calendarWeekTLP.TabIndex = 0;
             // 
             // lblDomingo
             // 
             lblDomingo.AutoSize = true;
             lblDomingo.Dock = DockStyle.Fill;
-            lblDomingo.Location = new Point(342, 0);
+            lblDomingo.Location = new Point(360, 0);
             lblDomingo.Margin = new Padding(0);
             lblDomingo.Name = "lblDomingo";
-            lblDomingo.Size = new Size(57, 35);
+            lblDomingo.Size = new Size(62, 35);
             lblDomingo.TabIndex = 6;
             lblDomingo.Text = "DOM";
             lblDomingo.TextAlign = ContentAlignment.MiddleCenter;
@@ -362,10 +370,10 @@
             // 
             lblSabado.AutoSize = true;
             lblSabado.Dock = DockStyle.Fill;
-            lblSabado.Location = new Point(285, 0);
+            lblSabado.Location = new Point(300, 0);
             lblSabado.Margin = new Padding(0);
             lblSabado.Name = "lblSabado";
-            lblSabado.Size = new Size(57, 35);
+            lblSabado.Size = new Size(60, 35);
             lblSabado.TabIndex = 5;
             lblSabado.Text = "SAB";
             lblSabado.TextAlign = ContentAlignment.MiddleCenter;
@@ -374,10 +382,10 @@
             // 
             lblViernes.AutoSize = true;
             lblViernes.Dock = DockStyle.Fill;
-            lblViernes.Location = new Point(228, 0);
+            lblViernes.Location = new Point(240, 0);
             lblViernes.Margin = new Padding(0);
             lblViernes.Name = "lblViernes";
-            lblViernes.Size = new Size(57, 35);
+            lblViernes.Size = new Size(60, 35);
             lblViernes.TabIndex = 4;
             lblViernes.Text = "VIE";
             lblViernes.TextAlign = ContentAlignment.MiddleCenter;
@@ -386,10 +394,10 @@
             // 
             lblJueves.AutoSize = true;
             lblJueves.Dock = DockStyle.Fill;
-            lblJueves.Location = new Point(171, 0);
+            lblJueves.Location = new Point(180, 0);
             lblJueves.Margin = new Padding(0);
             lblJueves.Name = "lblJueves";
-            lblJueves.Size = new Size(57, 35);
+            lblJueves.Size = new Size(60, 35);
             lblJueves.TabIndex = 3;
             lblJueves.Text = "JUE";
             lblJueves.TextAlign = ContentAlignment.MiddleCenter;
@@ -398,10 +406,10 @@
             // 
             lblMiercoles.AutoSize = true;
             lblMiercoles.Dock = DockStyle.Fill;
-            lblMiercoles.Location = new Point(114, 0);
+            lblMiercoles.Location = new Point(120, 0);
             lblMiercoles.Margin = new Padding(0);
             lblMiercoles.Name = "lblMiercoles";
-            lblMiercoles.Size = new Size(57, 35);
+            lblMiercoles.Size = new Size(60, 35);
             lblMiercoles.TabIndex = 2;
             lblMiercoles.Text = "MIE";
             lblMiercoles.TextAlign = ContentAlignment.MiddleCenter;
@@ -410,10 +418,10 @@
             // 
             lblMartes.AutoSize = true;
             lblMartes.Dock = DockStyle.Fill;
-            lblMartes.Location = new Point(57, 0);
+            lblMartes.Location = new Point(60, 0);
             lblMartes.Margin = new Padding(0);
             lblMartes.Name = "lblMartes";
-            lblMartes.Size = new Size(57, 35);
+            lblMartes.Size = new Size(60, 35);
             lblMartes.TabIndex = 1;
             lblMartes.Text = "MAR";
             lblMartes.TextAlign = ContentAlignment.MiddleCenter;
@@ -425,7 +433,7 @@
             lblLunes.Location = new Point(0, 0);
             lblLunes.Margin = new Padding(0);
             lblLunes.Name = "lblLunes";
-            lblLunes.Size = new Size(57, 35);
+            lblLunes.Size = new Size(60, 35);
             lblLunes.TabIndex = 0;
             lblLunes.Text = "LUN";
             lblLunes.TextAlign = ContentAlignment.MiddleCenter;
@@ -447,17 +455,17 @@
             calendarMonthTLP.Name = "calendarMonthTLP";
             calendarMonthTLP.RowCount = 1;
             calendarMonthTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            calendarMonthTLP.Size = new Size(399, 35);
+            calendarMonthTLP.Size = new Size(422, 35);
             calendarMonthTLP.TabIndex = 1;
             // 
             // lblMes
             // 
             lblMes.AutoSize = true;
             lblMes.Dock = DockStyle.Fill;
-            lblMes.Location = new Point(98, 0);
+            lblMes.Location = new Point(105, 0);
             lblMes.Margin = new Padding(0);
             lblMes.Name = "lblMes";
-            lblMes.Size = new Size(199, 35);
+            lblMes.Size = new Size(211, 35);
             lblMes.TabIndex = 7;
             lblMes.Text = "MES";
             lblMes.TextAlign = ContentAlignment.MiddleCenter;
@@ -465,10 +473,10 @@
             // btnMesSiguiente
             // 
             btnMesSiguiente.Dock = DockStyle.Fill;
-            btnMesSiguiente.Location = new Point(297, 0);
+            btnMesSiguiente.Location = new Point(316, 0);
             btnMesSiguiente.Margin = new Padding(0);
             btnMesSiguiente.Name = "btnMesSiguiente";
-            btnMesSiguiente.Size = new Size(39, 35);
+            btnMesSiguiente.Size = new Size(42, 35);
             btnMesSiguiente.TabIndex = 8;
             btnMesSiguiente.Text = ">";
             btnMesSiguiente.UseVisualStyleBackColor = true;
@@ -477,10 +485,10 @@
             // btnMesAnterior
             // 
             btnMesAnterior.Dock = DockStyle.Fill;
-            btnMesAnterior.Location = new Point(59, 0);
+            btnMesAnterior.Location = new Point(63, 0);
             btnMesAnterior.Margin = new Padding(0);
             btnMesAnterior.Name = "btnMesAnterior";
-            btnMesAnterior.Size = new Size(39, 35);
+            btnMesAnterior.Size = new Size(42, 35);
             btnMesAnterior.TabIndex = 9;
             btnMesAnterior.Text = "<";
             btnMesAnterior.UseVisualStyleBackColor = true;
@@ -489,36 +497,128 @@
             // calendarDaysTLP
             // 
             calendarDaysTLP.ColumnCount = 7;
-            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
-            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
-            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
-            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
-            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
-            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
-            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857141F));
+            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857113F));
+            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857151F));
+            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857151F));
+            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857151F));
+            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857151F));
+            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857151F));
+            calendarDaysTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.2857151F));
             calendarDaysTLP.Dock = DockStyle.Fill;
             calendarDaysTLP.Location = new Point(0, 70);
             calendarDaysTLP.Margin = new Padding(0);
             calendarDaysTLP.Name = "calendarDaysTLP";
-            calendarDaysTLP.RowCount = 5;
-            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
-            calendarDaysTLP.Size = new Size(399, 405);
+            calendarDaysTLP.RowCount = 6;
+            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
+            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
+            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
+            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
+            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
+            calendarDaysTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 16.6666679F));
+            calendarDaysTLP.Size = new Size(422, 405);
             calendarDaysTLP.TabIndex = 2;
             // 
-            // agendaDGV
+            // AgendaContainerTLP
             // 
-            agendaDGV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            agendaDGV.Dock = DockStyle.Fill;
-            agendaDGV.Location = new Point(436, 0);
-            agendaDGV.Margin = new Padding(0);
-            agendaDGV.Name = "agendaDGV";
-            agendaDGV.RowHeadersWidth = 51;
-            agendaDGV.Size = new Size(294, 475);
-            agendaDGV.TabIndex = 1;
+            AgendaContainerTLP.ColumnCount = 1;
+            AgendaContainerTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            AgendaContainerTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            AgendaContainerTLP.Controls.Add(AgendaHeadersTLP, 0, 0);
+            AgendaContainerTLP.Controls.Add(AgendaScroll, 0, 1);
+            AgendaContainerTLP.Dock = DockStyle.Fill;
+            AgendaContainerTLP.Location = new Point(436, 0);
+            AgendaContainerTLP.Margin = new Padding(0);
+            AgendaContainerTLP.Name = "AgendaContainerTLP";
+            AgendaContainerTLP.RowCount = 2;
+            AgendaContainerTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 7.15789461F));
+            AgendaContainerTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 92.8421F));
+            AgendaContainerTLP.Size = new Size(309, 475);
+            AgendaContainerTLP.TabIndex = 1;
+            // 
+            // AgendaHeadersTLP
+            // 
+            AgendaHeadersTLP.ColumnCount = 5;
+            AgendaHeadersTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            AgendaHeadersTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            AgendaHeadersTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            AgendaHeadersTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.5F));
+            AgendaHeadersTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.5F));
+            AgendaHeadersTLP.Controls.Add(lblAgendaEstado, 2, 0);
+            AgendaHeadersTLP.Controls.Add(lblAgendaHora, 1, 0);
+            AgendaHeadersTLP.Controls.Add(lblFechaAgenda, 0, 0);
+            AgendaHeadersTLP.Dock = DockStyle.Fill;
+            AgendaHeadersTLP.Location = new Point(0, 0);
+            AgendaHeadersTLP.Margin = new Padding(0);
+            AgendaHeadersTLP.Name = "AgendaHeadersTLP";
+            AgendaHeadersTLP.RowCount = 1;
+            AgendaHeadersTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            AgendaHeadersTLP.Size = new Size(309, 34);
+            AgendaHeadersTLP.TabIndex = 0;
+            // 
+            // lblAgendaEstado
+            // 
+            lblAgendaEstado.AutoSize = true;
+            lblAgendaEstado.Dock = DockStyle.Fill;
+            lblAgendaEstado.Location = new Point(154, 0);
+            lblAgendaEstado.Margin = new Padding(0);
+            lblAgendaEstado.Name = "lblAgendaEstado";
+            lblAgendaEstado.Size = new Size(77, 34);
+            lblAgendaEstado.TabIndex = 2;
+            lblAgendaEstado.Text = "ESTADO";
+            lblAgendaEstado.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblAgendaHora
+            // 
+            lblAgendaHora.AutoSize = true;
+            lblAgendaHora.Dock = DockStyle.Fill;
+            lblAgendaHora.Location = new Point(77, 0);
+            lblAgendaHora.Margin = new Padding(0);
+            lblAgendaHora.Name = "lblAgendaHora";
+            lblAgendaHora.Size = new Size(77, 34);
+            lblAgendaHora.TabIndex = 1;
+            lblAgendaHora.Text = "HORA";
+            lblAgendaHora.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblFechaAgenda
+            // 
+            lblFechaAgenda.AutoSize = true;
+            lblFechaAgenda.Dock = DockStyle.Fill;
+            lblFechaAgenda.Location = new Point(0, 0);
+            lblFechaAgenda.Margin = new Padding(0);
+            lblFechaAgenda.Name = "lblFechaAgenda";
+            lblFechaAgenda.Size = new Size(77, 34);
+            lblFechaAgenda.TabIndex = 0;
+            lblFechaAgenda.Text = "FECHA";
+            lblFechaAgenda.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // AgendaScroll
+            // 
+            AgendaScroll.AutoSize = true;
+            AgendaScroll.Controls.Add(AgendaDataTLP);
+            AgendaScroll.Dock = DockStyle.Fill;
+            AgendaScroll.Location = new Point(0, 34);
+            AgendaScroll.Margin = new Padding(0);
+            AgendaScroll.Name = "AgendaScroll";
+            AgendaScroll.Size = new Size(309, 441);
+            AgendaScroll.TabIndex = 1;
+            // 
+            // AgendaDataTLP
+            // 
+            AgendaDataTLP.AutoScroll = true;
+            AgendaDataTLP.ColumnCount = 5;
+            AgendaDataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            AgendaDataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            AgendaDataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            AgendaDataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.5F));
+            AgendaDataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.5F));
+            AgendaDataTLP.Dock = DockStyle.Top;
+            AgendaDataTLP.Location = new Point(0, 0);
+            AgendaDataTLP.Margin = new Padding(0);
+            AgendaDataTLP.Name = "AgendaDataTLP";
+            AgendaDataTLP.RowCount = 1;
+            AgendaDataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            AgendaDataTLP.Size = new Size(309, 441);
+            AgendaDataTLP.TabIndex = 0;
             // 
             // AdmGTGestionAgendas
             // 
@@ -545,7 +645,11 @@
             calendarWeekTLP.PerformLayout();
             calendarMonthTLP.ResumeLayout(false);
             calendarMonthTLP.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)agendaDGV).EndInit();
+            AgendaContainerTLP.ResumeLayout(false);
+            AgendaContainerTLP.PerformLayout();
+            AgendaHeadersTLP.ResumeLayout(false);
+            AgendaHeadersTLP.PerformLayout();
+            AgendaScroll.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -566,7 +670,6 @@
         private TableLayoutPanel calendarWeekTLP;
         private TableLayoutPanel calendarMonthTLP;
         private TableLayoutPanel calendarDaysTLP;
-        private DataGridView agendaDGV;
         private ComboBox profesionalCbx;
         private Button btnBuscarProf;
         private TableLayoutPanel cboxContainerTLP;
@@ -580,5 +683,12 @@
         private Label lblMes;
         private Button btnMesSiguiente;
         private Button btnMesAnterior;
+        private TableLayoutPanel AgendaContainerTLP;
+        private TableLayoutPanel AgendaHeadersTLP;
+        private Label lblFechaAgenda;
+        private Label lblAgendaEstado;
+        private Label lblAgendaHora;
+        private Panel AgendaScroll;
+        private TableLayoutPanel AgendaDataTLP;
     }
 }

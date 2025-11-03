@@ -13,6 +13,8 @@ namespace ClinicaSePriseApp.Entidades.Enums
         DISPONIBLE,
         [Description("Asignado")]
         ASIGNADO,
+        [Description("Abonado")]
+        ABONADO,
         [Description("En Atención")]
         EN_ATENCION,
         [Description("Finalizado")]

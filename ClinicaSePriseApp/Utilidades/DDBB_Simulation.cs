@@ -158,8 +158,8 @@ namespace ClinicaSePriseApp.Utilidades
                 new TimeSpan(18, 0, 0));
 
             List<E_Disponibilidad> prof2disp = new List<E_Disponibilidad>();
-            prof1disp.Add(disponibilidad2a);
-            prof1disp.Add(disponibilidad2b);
+            prof2disp.Add(disponibilidad2a);
+            prof2disp.Add(disponibilidad2b);
 
             // Usuario
             E_Usuario userprof2 = new E_Usuario(6, "medico2", "1234", Rol.PROFESIONAL);
@@ -181,8 +181,6 @@ namespace ClinicaSePriseApp.Utilidades
 
             UsuariosDB.Add(userprof2);
             ProfesionalesDB.Add(profesional2);
-
-
 
             // PACIENTES
             var paciente1 = new E_Paciente(
