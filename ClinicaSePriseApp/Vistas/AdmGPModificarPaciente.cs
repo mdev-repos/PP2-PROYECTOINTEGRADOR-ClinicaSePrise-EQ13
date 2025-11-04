@@ -12,9 +12,11 @@ namespace ClinicaSePriseApp.Vistas
 {
     public partial class AdmGPModificarPaciente : Form
     {
-        public AdmGPModificarPaciente()
+        private Entidades.E_Paciente pacienteActual;
+        public AdmGPModificarPaciente(Entidades.E_Paciente paciente)
         {
             InitializeComponent();
+            pacienteActual = paciente;
         }
     }
 }
