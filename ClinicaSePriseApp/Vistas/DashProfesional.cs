@@ -1,4 +1,5 @@
-﻿using ClinicaSePriseApp.Utilidades;
+﻿using ClinicaSePriseApp.Entidades;
+using ClinicaSePriseApp.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,14 +14,35 @@ namespace ClinicaSePriseApp.Vistas
 {
     public partial class DashProfesional : Form
     {
+
+        private static E_Profesional _Profesional;
+
         public DashProfesional()
         {
             InitializeComponent();
+
+            _Profesional = null;
+
             this.Resize += DashProfesional_Resize;
 
             this.Size = new Size(1024, 768);
             this.MinimumSize = new Size(1024, 768);
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        public DashProfesional(E_Profesional profesional)
+        {
+            InitializeComponent();
+
+            _Profesional = profesional;
+
+            this.Resize += DashProfesional_Resize;
+
+            this.Size = new Size(1024, 768);
+            this.MinimumSize = new Size(1024, 768);
+            this.WindowState = FormWindowState.Maximized;
+
+            this.Text = $"Clinica SePrise  ||  Dashboard Dr. {profesional.Apellido}";
         }
 
         private void DashProfesional_Load(object sender, EventArgs e)
@@ -36,7 +58,7 @@ namespace ClinicaSePriseApp.Vistas
         private void ajustarPaneles()
         {
             // Estilo de fondos
-            mainTLP.BackColor = PaletaColores.bgGris;
+            mainTLP.BackColor = PaletaColores.celeste;
             menuTLP.BackColor = PaletaColores.bgGris;
 
             // Estilo para menu
@@ -46,18 +68,18 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnLogout)
                 {
-                    boton.BackColor = PaletaColores.btnRosa;
+                    boton.BackColor = PaletaColores.rosa;
                 }
                 else if (boton == btnLiquidaciones)
                 {
-                    boton.BackColor = PaletaColores.btnVerde;
+                    boton.BackColor = PaletaColores.azulVerde;
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.btnAzul;
+                    boton.BackColor = PaletaColores.azulOscuro;
                 }
 
-                boton.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
+                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
                 boton.ForeColor = Color.Transparent;
 
                 // Logo
@@ -65,9 +87,79 @@ namespace ClinicaSePriseApp.Vistas
             }
         }
 
+        // Botones
+        private void btnAgenda_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea acceder a su agenda del dia?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            ProfAgendaDiaria agendaDiaria = new ProfAgendaDiaria();
+            this.Hide();
+            agendaDiaria.FormClosed += (s, args) => this.Close();
+            agendaDiaria.Show();
+        }
+
+        private void btnInsumos_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea acceder al menú de insumos?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+        }
+
+        private void btnLiquidaciones_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea consultar sus liquidaciones?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+        }
+    
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult resultado = MessageBox.Show(
+                    "Desea cerrar su sesión actual?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            Login login = new Login();
+            this.Hide();
+            login.FormClosed += (s, args) => this.Close();
+            login.Show();
         }
     }
 }
