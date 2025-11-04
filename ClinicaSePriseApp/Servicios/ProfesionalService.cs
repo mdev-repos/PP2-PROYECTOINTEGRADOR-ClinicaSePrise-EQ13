@@ -42,6 +42,11 @@ namespace ClinicaSePriseApp.Servicios
             return profRepo.ObtenerProfesionalPorNombreCompleto(nombreCompleto);
         }
 
+        public static E_Profesional? ObtenerProfesionalPorUsuario(E_Usuario usuario)
+        {
+            return profRepo.ObtenerProfesionalPorUsuario(usuario.IdUsuario);
+        }
+
         public static List<DayOfWeek> ObtenerDiasDisponibles(E_Profesional profesional)
         {
             if (profesional?.Disponibilidades == null)

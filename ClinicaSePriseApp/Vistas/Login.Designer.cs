@@ -32,16 +32,16 @@
             mainPanel = new Panel();
             leftPanel = new Panel();
             rightPanel = new Panel();
-            rgCentralPanel = new Panel();
-            txtPassword = new TextBox();
+            txtboxTLP = new TableLayoutPanel();
             txtUsuario = new TextBox();
+            txtPassword = new TextBox();
             rgBottomPanel = new Panel();
             btnLogin = new Button();
             rgTopPanel = new Panel();
             picLogo = new PictureBox();
             mainPanel.SuspendLayout();
             rightPanel.SuspendLayout();
-            rgCentralPanel.SuspendLayout();
+            txtboxTLP.SuspendLayout();
             rgBottomPanel.SuspendLayout();
             rgTopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -71,7 +71,7 @@
             rightPanel.AutoScroll = true;
             rightPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             rightPanel.BackColor = Color.FromArgb(224, 224, 224);
-            rightPanel.Controls.Add(rgCentralPanel);
+            rightPanel.Controls.Add(txtboxTLP);
             rightPanel.Controls.Add(rgBottomPanel);
             rightPanel.Controls.Add(rgTopPanel);
             rightPanel.Dock = DockStyle.Right;
@@ -80,38 +80,51 @@
             rightPanel.Size = new Size(782, 1033);
             rightPanel.TabIndex = 1;
             // 
-            // rgCentralPanel
+            // txtboxTLP
             // 
-            rgCentralPanel.Controls.Add(txtPassword);
-            rgCentralPanel.Controls.Add(txtUsuario);
-            rgCentralPanel.Dock = DockStyle.Fill;
-            rgCentralPanel.Location = new Point(0, 376);
-            rgCentralPanel.Name = "rgCentralPanel";
-            rgCentralPanel.Size = new Size(782, 498);
-            rgCentralPanel.TabIndex = 2;
-            // 
-            // txtPassword
-            // 
-            txtPassword.Anchor = AnchorStyles.None;
-            txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.Location = new Point(247, 274);
-            txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '*';
-            txtPassword.PlaceholderText = "Contraseña";
-            txtPassword.Size = new Size(290, 23);
-            txtPassword.TabIndex = 1;
+            txtboxTLP.ColumnCount = 3;
+            txtboxTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            txtboxTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            txtboxTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            txtboxTLP.Controls.Add(txtUsuario, 1, 1);
+            txtboxTLP.Controls.Add(txtPassword, 1, 3);
+            txtboxTLP.Dock = DockStyle.Fill;
+            txtboxTLP.Location = new Point(0, 376);
+            txtboxTLP.Margin = new Padding(0);
+            txtboxTLP.Name = "txtboxTLP";
+            txtboxTLP.RowCount = 5;
+            txtboxTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 32.5F));
+            txtboxTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            txtboxTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            txtboxTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12.5F));
+            txtboxTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 32.5F));
+            txtboxTLP.Size = new Size(782, 498);
+            txtboxTLP.TabIndex = 2;
             // 
             // txtUsuario
             // 
-            txtUsuario.Anchor = AnchorStyles.None;
             txtUsuario.BorderStyle = BorderStyle.None;
-            txtUsuario.Font = new Font("LEMON MILK", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUsuario.Location = new Point(248, 200);
+            txtUsuario.Dock = DockStyle.Fill;
+            txtUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtUsuario.Location = new Point(200, 166);
+            txtUsuario.Margin = new Padding(5);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.PlaceholderText = "Usuario";
-            txtUsuario.Size = new Size(290, 23);
-            txtUsuario.TabIndex = 0;
+            txtUsuario.Size = new Size(381, 27);
+            txtUsuario.TabIndex = 2;
+            // 
+            // txtPassword
+            // 
+            txtPassword.BorderStyle = BorderStyle.None;
+            txtPassword.Dock = DockStyle.Fill;
+            txtPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtPassword.Location = new Point(200, 277);
+            txtPassword.Margin = new Padding(5);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.PlaceholderText = "Contraseña";
+            txtPassword.Size = new Size(381, 27);
+            txtPassword.TabIndex = 3;
             // 
             // rgBottomPanel
             // 
@@ -177,8 +190,8 @@
             mainPanel.ResumeLayout(false);
             rightPanel.ResumeLayout(false);
             rightPanel.PerformLayout();
-            rgCentralPanel.ResumeLayout(false);
-            rgCentralPanel.PerformLayout();
+            txtboxTLP.ResumeLayout(false);
+            txtboxTLP.PerformLayout();
             rgBottomPanel.ResumeLayout(false);
             rgTopPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
@@ -190,12 +203,12 @@
         private Panel mainPanel;
         private Panel leftPanel;
         private Panel rightPanel;
-        private Panel rgCentralPanel;
         private Panel rgBottomPanel;
         private Panel rgTopPanel;
         private PictureBox picLogo;
         private Button btnLogin;
-        private TextBox txtUsuario;
+        private TableLayoutPanel txtboxTLP;
         private TextBox txtPassword;
+        private TextBox txtUsuario;
     }
 }

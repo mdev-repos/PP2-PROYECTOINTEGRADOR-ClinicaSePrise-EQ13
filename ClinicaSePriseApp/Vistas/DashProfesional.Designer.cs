@@ -122,6 +122,7 @@
             btnAgenda.TabIndex = 6;
             btnAgenda.Text = "AGENDA DE TURNOS";
             btnAgenda.UseVisualStyleBackColor = false;
+            btnAgenda.Click += btnAgenda_Click;
             // 
             // btnLogout
             // 
@@ -149,6 +150,7 @@
             btnLiquidaciones.TabIndex = 8;
             btnLiquidaciones.Text = "CONSULTAR LIQUIDACIONES";
             btnLiquidaciones.UseVisualStyleBackColor = false;
+            btnLiquidaciones.Click += btnLiquidaciones_Click;
             // 
             // btnInsumos
             // 
@@ -162,6 +164,7 @@
             btnInsumos.TabIndex = 7;
             btnInsumos.Text = "SOLICITAR INSUMOS";
             btnInsumos.UseVisualStyleBackColor = false;
+            btnInsumos.Click += btnInsumos_Click;
             // 
             // DashProfesional
             // 

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClinicaSePriseApp.Vistas
 {
@@ -56,8 +57,21 @@ namespace ClinicaSePriseApp.Vistas
 
 
             // Estilo de Botones y Textbox
-            btnLogin.BackColor = PaletaColores.btnAzul;
+            btnLogin.BackColor = PaletaColores.azulOscuro;
+            btnLogin.ForeColor = Color.Transparent;
 
+            foreach (Control txtbox in txtboxTLP.Controls)
+            {
+                txtbox.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+
+                txtbox.Enter += (sender, e) =>
+                {
+                    if (txtbox.Text != string.Empty)
+                    {
+                        txtbox.Text = "";
+                    }
+                };                
+            }
         }
 
         private void CargarImagenes()
@@ -150,7 +164,11 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else if (usuarioEncontrado.rol == Entidades.Enums.Rol.PROFESIONAL)
                 {
-                    Form dashboardMedico = new DashProfesional();
+                    var profesional = ProfesionalService.ObtenerProfesionalPorUsuario(usuarioEncontrado);
+
+                    MessageBox.Show($"Bienvenido Dr. {profesional.Apellido}", "  Clinica SePrise  ||  Sistema de Gestión  ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
+                    Form dashboardMedico = new DashProfesional(profesional);
                     this.Hide();
                     dashboardMedico.FormClosed += (s, args) => this.Close();
                     dashboardMedico.Show();

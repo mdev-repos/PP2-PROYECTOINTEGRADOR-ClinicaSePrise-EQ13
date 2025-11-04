@@ -125,7 +125,7 @@ namespace ClinicaSePriseApp.Utilidades
                 prof1disp.Add(disponibilidad1b);
 
                 // Usuario
-                E_Usuario userprof1 = new E_Usuario(5, "medico1", "1234", Rol.PROFESIONAL);
+                E_Usuario userprof1 = new E_Usuario(5, "11222333", "1234", Rol.PROFESIONAL);
 
             var profesional1 = new E_Profesional(
                 1,
@@ -135,8 +135,8 @@ namespace ClinicaSePriseApp.Utilidades
                 prof1disp,
                 "Alvarez",
                 "Ignacio",
-                "22555444",
-                Genero.X,
+                "11222333",
+                Genero.H,
                 new DateOnly(1993, 6, 18),
                 "Casa di galeno",
                 "1177558844",
