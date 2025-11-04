@@ -1,4 +1,5 @@
 using ClinicaSePriseApp.Vistas;
+using QuestPDF.Infrastructure;
 
 namespace ClinicaSePriseApp
 {
@@ -13,6 +14,7 @@ namespace ClinicaSePriseApp
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             Utilidades.DDBB_Simulation.InicializarDatosPrueba();
+            QuestPDF.Settings.License = LicenseType.Community;
 
             ApplicationConfiguration.Initialize();
             Application.Run(new Login());

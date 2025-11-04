@@ -35,5 +35,12 @@ namespace ClinicaSePriseApp.Servicios
         {
             return pacienteRepo.ObtenerTodosLosPacientes();
         }
+
+
+        // Update
+        public static void AgregarPago(E_Paciente paciente, E_Pago pago)
+        { 
+            paciente.PagosRealizados.Add(pago);
+        }
     }
 }
