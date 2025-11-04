@@ -292,6 +292,7 @@
             lblTurnoValor.AutoSize = true;
             lblTurnoValor.Dock = DockStyle.Fill;
             lblTurnoValor.Enabled = false;
+            lblTurnoValor.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblTurnoValor.Location = new Point(0, 225);
             lblTurnoValor.Margin = new Padding(0);
             lblTurnoValor.Name = "lblTurnoValor";
@@ -321,27 +322,30 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.Dock = DockStyle.Fill;
+            lblEmail.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblEmail.Location = new Point(189, 0);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(180, 45);
             lblEmail.TabIndex = 12;
-            lblEmail.Text = "Email";
+            lblEmail.Text = "EMAIL:";
             // 
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
             lblTelefono.Dock = DockStyle.Fill;
+            lblTelefono.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblTelefono.Location = new Point(3, 0);
             lblTelefono.Name = "lblTelefono";
             lblTelefono.Size = new Size(180, 45);
             lblTelefono.TabIndex = 11;
-            lblTelefono.Text = "Telefono";
+            lblTelefono.Text = "TEL:";
             // 
             // lblTurnoEstado
             // 
             lblTurnoEstado.AutoSize = true;
             lblTurnoEstado.Dock = DockStyle.Fill;
             lblTurnoEstado.Enabled = false;
+            lblTurnoEstado.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblTurnoEstado.Location = new Point(0, 180);
             lblTurnoEstado.Margin = new Padding(0);
             lblTurnoEstado.Name = "lblTurnoEstado";
@@ -355,6 +359,7 @@
             lblTurnoEsp.AutoSize = true;
             lblTurnoEsp.Dock = DockStyle.Fill;
             lblTurnoEsp.Enabled = false;
+            lblTurnoEsp.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblTurnoEsp.Location = new Point(0, 135);
             lblTurnoEsp.Margin = new Padding(0);
             lblTurnoEsp.Name = "lblTurnoEsp";
@@ -368,6 +373,7 @@
             lblTurnoProf.AutoSize = true;
             lblTurnoProf.Dock = DockStyle.Fill;
             lblTurnoProf.Enabled = false;
+            lblTurnoProf.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblTurnoProf.Location = new Point(0, 90);
             lblTurnoProf.Margin = new Padding(0);
             lblTurnoProf.Name = "lblTurnoProf";
@@ -394,6 +400,7 @@
             lblTurnoDia.AutoSize = true;
             lblTurnoDia.Dock = DockStyle.Fill;
             lblTurnoDia.Enabled = false;
+            lblTurnoDia.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblTurnoDia.Location = new Point(0, 45);
             lblTurnoDia.Margin = new Padding(0);
             lblTurnoDia.Name = "lblTurnoDia";
@@ -477,6 +484,7 @@
             // 
             lblNumAfiliado.AutoSize = true;
             lblNumAfiliado.Dock = DockStyle.Fill;
+            lblNumAfiliado.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblNumAfiliado.Location = new Point(183, 0);
             lblNumAfiliado.Margin = new Padding(0);
             lblNumAfiliado.Name = "lblNumAfiliado";
@@ -488,12 +496,13 @@
             // 
             lblObraSocial.AutoSize = true;
             lblObraSocial.Dock = DockStyle.Fill;
+            lblObraSocial.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblObraSocial.Location = new Point(0, 0);
             lblObraSocial.Margin = new Padding(0);
             lblObraSocial.Name = "lblObraSocial";
             lblObraSocial.Size = new Size(183, 39);
             lblObraSocial.TabIndex = 11;
-            lblObraSocial.Text = "OS";
+            lblObraSocial.Text = "OS:";
             // 
             // sexoEdadTLP
             // 
@@ -516,42 +525,46 @@
             // 
             lblEdad.AutoSize = true;
             lblEdad.Dock = DockStyle.Fill;
+            lblEdad.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblEdad.Location = new Point(189, 0);
             lblEdad.Name = "lblEdad";
             lblEdad.Size = new Size(180, 45);
             lblEdad.TabIndex = 12;
-            lblEdad.Text = "Edad";
+            lblEdad.Text = "EDAD:";
             // 
             // lblGenero
             // 
             lblGenero.AutoSize = true;
             lblGenero.Dock = DockStyle.Fill;
+            lblGenero.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblGenero.Location = new Point(3, 0);
             lblGenero.Name = "lblGenero";
             lblGenero.Size = new Size(180, 45);
             lblGenero.TabIndex = 11;
-            lblGenero.Text = "Genero";
+            lblGenero.Text = "GENERO: ";
             // 
             // lblPacienteNombre
             // 
             lblPacienteNombre.AutoSize = true;
             lblPacienteNombre.Dock = DockStyle.Fill;
+            lblPacienteNombre.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblPacienteNombre.Location = new Point(0, 378);
             lblPacienteNombre.Margin = new Padding(0);
             lblPacienteNombre.Name = "lblPacienteNombre";
             lblPacienteNombre.Size = new Size(372, 45);
             lblPacienteNombre.TabIndex = 10;
-            lblPacienteNombre.Text = "Nombre";
+            lblPacienteNombre.Text = "NOMBRE:";
             // 
             // lblDireccion
             // 
             lblDireccion.AutoSize = true;
             lblDireccion.Dock = DockStyle.Fill;
+            lblDireccion.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             lblDireccion.Location = new Point(3, 558);
             lblDireccion.Name = "lblDireccion";
             lblDireccion.Size = new Size(366, 55);
             lblDireccion.TabIndex = 11;
-            lblDireccion.Text = "Direccion";
+            lblDireccion.Text = "DIRECCION:";
             // 
             // AdmGTDetalleTurno
             // 

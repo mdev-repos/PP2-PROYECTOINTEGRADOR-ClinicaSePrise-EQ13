@@ -27,21 +27,5 @@ namespace ClinicaSePriseApp.Entidades
             IdTurno = idTurno;
             Monto = monto;
         }
-
-
-        // Metodo PAGAR
-        public void RealizarPago(int idPago, DateOnly fechaPago, MetodoPago metodoPago)
-        {
-            FechaPago = fechaPago;
-            MetodoPago = metodoPago;
-            Estado = EstadoPago.REALIZADO;
-
-            // Agregar pago a lista de pagos del paciente
-            E_Paciente? paciente = E_Paciente.ObtenerPacientePorId(this.IdPaciente);
-            if (paciente != null)
-            {
-                paciente.PagosRealizados.Add(this);
-            }            
-        }
     }
 }

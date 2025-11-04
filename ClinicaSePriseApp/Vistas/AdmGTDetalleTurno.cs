@@ -1,5 +1,7 @@
 ﻿using ClinicaSePriseApp.Entidades;
 using ClinicaSePriseApp.Servicios;
+using ClinicaSePriseApp.Utilidades;
+using ClinicaSePriseApp.Vistas.Auxiliares;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,26 +56,26 @@ namespace ClinicaSePriseApp.Vistas
             // Fecha y Hora
             string fechaMostrar = FormatearFechaEspanol(turno.FechaTurno);
             lblTurnoDia.Text = $"FECHA: {fechaMostrar}";
-
+            
             // Profesional
             var profesional = ProfesionalService.ObtenerProfesionalPorID(turno.IdProfesional);
             string profesionalMostrar = profesional?.NombreCompleto ?? "No encontrado";
             lblTurnoProf.Text = $"MEDICO: DR. {profesionalMostrar}";
-
+            
             // Especialidad 
             string especialidadMostrar = profesional != null ?
-                ClinicaSePriseApp.Utilidades.EnumHelper.GetDescription(profesional.Especialidad) :
+                    EnumHelper.GetDescription(profesional.Especialidad) :
                 "No encontrada";
             lblTurnoEsp.Text = $"ESPECIALIDAD: {especialidadMostrar}";
-
+            
             // Estado Turno
-            string estadoMostrar = ClinicaSePriseApp.Utilidades.EnumHelper.GetDescription(turno.Estado);
+            string estadoMostrar = EnumHelper.GetDescription(turno.Estado);
             lblTurnoEstado.Text = $"ESTADO: {estadoMostrar}";
-
+            
             // Monto
             string montoMostrar = turno.Monto.ToString("C2");
             lblTurnoValor.Text = $"VALOR A ABONAR: {montoMostrar}";
-
+                        
             // Si el turno ya esta asignado, cargar datos del paciente
             if (turno.IdPaciente != null)
             {
@@ -102,37 +104,57 @@ namespace ClinicaSePriseApp.Vistas
         {
             // DNI
             pacienteDniTxt.Text = $"DNI: {paciente.Dni}";
+            pacienteDniTxt.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            pacienteDniTxt.ForeColor = PaletaColores.azulOscuro;
 
             // Nombre Completo
             lblPacienteNombre.Text = $"NOMBRE: {paciente.NombreCompleto}";
+            lblPacienteNombre.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblPacienteNombre.ForeColor = Color.White;
 
             // Obra Social con descripción
-            lblObraSocial.Text = $"OS: {ClinicaSePriseApp.Utilidades.EnumHelper.GetDescription(paciente.ObraSocial)}";
+            lblObraSocial.Text = $"OS: {EnumHelper.GetDescription(paciente.ObraSocial)}";
+            lblObraSocial.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblObraSocial.ForeColor = Color.White;
 
             // Numero Afiliado
             lblNumAfiliado.Text = $"N° {paciente.NumeroAfiliado}";
+            lblNumAfiliado.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblNumAfiliado.ForeColor = Color.White;
 
             // Genero con descripción
-            lblGenero.Text = $"GENERO {ClinicaSePriseApp.Utilidades.EnumHelper.GetDescription(paciente.Genero)}";
+            lblGenero.Text = $"GENERO {EnumHelper.GetDescription(paciente.Genero)}";
+            lblGenero.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblGenero.ForeColor = Color.White;
 
             // Edad calculada correctamente
             int edad = CalcularEdad(paciente.FechaNacimiento);
             lblEdad.Text = $"EDAD: {edad} años";
+            lblEdad.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblEdad.ForeColor = Color.White;
 
             // Telefono
             lblTelefono.Text = $"TEL: {paciente.Telefono}";
+            lblTelefono.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblTelefono.ForeColor = Color.White;
 
             // Email
             lblEmail.Text = $"EMAIL: {paciente.Email}";
+            lblEmail.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblEmail.ForeColor = Color.White;
 
             // Direccion
             lblDireccion.Text = $"DIRECCION: {paciente.Direccion}";
+            lblDireccion.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblDireccion.ForeColor = Color.White;
         }
 
         private void VaciarDatosDelPaciente()
         {
             pacienteDniTxt.Text = string.Empty;
             lblPacienteNombre.Text = "TURNO NO ASIGNADO";
+            lblPacienteNombre.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblPacienteNombre.ForeColor = Color.White;
             lblObraSocial.Text = string.Empty;
             lblNumAfiliado.Text = string.Empty;
             lblGenero.Text = string.Empty;
@@ -187,10 +209,9 @@ namespace ClinicaSePriseApp.Vistas
 
         private void ajustarPaneles()
         {
-            mainTLP.BackColor = Utilidades.PaletaColores.bgCeleste;
-            menuTLP.BackColor = Utilidades.PaletaColores.bgGris;
-
-            contentLbl.BackColor = Utilidades.PaletaColores.bgGris;
+            mainTLP.BackColor = PaletaColores.celeste;
+            menuTLP.BackColor = PaletaColores.bgGris;
+            contentLbl.BackColor = PaletaColores.bgGris;
 
             foreach (Control boton in menuTLP.Controls)
             {
@@ -198,7 +219,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = Utilidades.PaletaColores.btnRosa;
+                    boton.BackColor = PaletaColores.rosa;
                 }
                 else if (boton == picLogo)
                 {
@@ -206,49 +227,22 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = Utilidades.PaletaColores.btnAzul;
+                    boton.BackColor = PaletaColores.azulOscuro;
                 }
 
-                boton.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
+                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
                 boton.ForeColor = Color.Transparent;
-            }
+            }           
+                
+            lblTurno.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblTurno.ForeColor = PaletaColores.azulOscuro;
 
-            foreach (Control label in dataTLP.Controls)
-            {
-                if (label is Label)
-                {
-                    label.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
-                }
-            }
+            lblPaciente.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblPaciente.ForeColor = PaletaColores.azulOscuro;
 
-            foreach (Control label in osTLP.Controls)
-            {
-                if (label is Label)
-                {
-                    label.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
-                }
-            }
-
-            foreach (Control label in telMailTLP.Controls)
-            {
-                if (label is Label)
-                {
-                    label.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
-                }
-            }
-
-            foreach (Control label in sexoEdadTLP.Controls)
-            {
-                if (label is Label)
-                {
-                    label.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
-                }
-            }                       
-
-            pacienteDniTxt.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
+            pacienteDniTxt.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            pacienteDniTxt.ForeColor = PaletaColores.azulOscuro;
         }
-
-
 
 
         // BOTONES
@@ -279,8 +273,9 @@ namespace ClinicaSePriseApp.Vistas
                 btnAsignar.Enabled = false;
                 btnCancelar.Enabled = true;
                 btnAbonar.Enabled = true;
+                pacienteDniTxt.ReadOnly = true;
 
-                string estadoMostrar = ClinicaSePriseApp.Utilidades.EnumHelper.GetDescription(turno.Estado);
+                string estadoMostrar = EnumHelper.GetDescription(turno.Estado);
                 lblTurnoEstado.Text = $"ESTADO: {estadoMostrar}";
 
                 MessageBox.Show($"Turno asignado exitosamente al paciente: {paciente.NombreCompleto}",
@@ -296,6 +291,12 @@ namespace ClinicaSePriseApp.Vistas
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             var turno = _turnoSeleccionado;
+
+            if (turno.Estado != Entidades.Enums.EstadoTurno.ASIGNADO)
+            {
+                MessageBox.Show("Para cancelar, debe ser un turno Asignado y no Abonado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             if (turno != null)
             {
@@ -319,8 +320,9 @@ namespace ClinicaSePriseApp.Vistas
                 btnAsignar.Enabled = true;
                 btnCancelar.Enabled = false;
                 btnAbonar.Enabled = false;
+                pacienteDniTxt.ReadOnly = false;
 
-                string estadoMostrar = ClinicaSePriseApp.Utilidades.EnumHelper.GetDescription(turno.Estado);
+                string estadoMostrar = EnumHelper.GetDescription(turno.Estado);
                 lblTurnoEstado.Text = $"ESTADO: {estadoMostrar}";
 
                 MessageBox.Show($"Reserva de Turno cancelada exitosamente",
@@ -335,14 +337,57 @@ namespace ClinicaSePriseApp.Vistas
 
         private void btnAbonar_Click(object sender, EventArgs e)
         {
-            AdmGTPagoTurno admGTPagoTurno = new AdmGTPagoTurno(_turnoSeleccionado);
-            this.Hide();
-            admGTPagoTurno.FormClosed += (s, args) => this.Close();
-            admGTPagoTurno.Show();
+            var turno = TurnoService.ObtenerTurnoPorID(_turnoSeleccionado.IdTurno);
+
+            if (turno.Estado != Entidades.Enums.EstadoTurno.ASIGNADO)
+            {
+                MessageBox.Show("El Turno ya fue abonado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (turno.IdPaciente != null && turno.Estado == Entidades.Enums.EstadoTurno.ASIGNADO)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "Si continúa, se procedera al pago del turno indicado",
+                    "Confirmar",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+                if (resultado == DialogResult.Cancel)
+                {
+                    return;
+                }
+
+                var paciente = PacienteService.ObtenerPacientePorID(turno.IdPaciente);
+
+                E_Pago pago = new E_Pago(
+                    DDBB_Simulation.PagosDB.Count + 1,
+                    paciente.IdPaciente,
+                    turno.IdTurno,
+                    turno.Monto);
+
+                PagoTurno pagoTurno = new PagoTurno(pago);                
+                pagoTurno.ShowDialog();
+            }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea salir de la Pantalla y volver a Turnos?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
             AdmGestionTurnos admGestionTurnos = new AdmGestionTurnos();
             this.Hide();
             admGestionTurnos.FormClosed += (s, args) => this.Close();

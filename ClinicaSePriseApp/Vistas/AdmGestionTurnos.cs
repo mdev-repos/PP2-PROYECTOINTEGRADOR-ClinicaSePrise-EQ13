@@ -31,6 +31,19 @@ namespace ClinicaSePriseApp.Vistas
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea salir de la Pantalla y volver al Dashboard?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
             DashAdmin dashAdmin = new DashAdmin();
             this.Hide();
             dashAdmin.FormClosed += (s, args) => this.Close();
@@ -39,11 +52,11 @@ namespace ClinicaSePriseApp.Vistas
 
         private void ajustarPaneles()
         {
-            mainTLP.BackColor = Utilidades.PaletaColores.bgCeleste;
-            menuTLP.BackColor = Utilidades.PaletaColores.bgGris;
-            turnosDgv.BackgroundColor = Utilidades.PaletaColores.bgCeleste;
+            mainTLP.BackColor = PaletaColores.celeste;
+            menuTLP.BackColor = PaletaColores.bgGris;
+            turnosDgv.BackgroundColor = PaletaColores.celeste;
 
-            contentLbl.BackColor = Utilidades.PaletaColores.bgGris;
+            contentLbl.BackColor = PaletaColores.bgGris;
 
             foreach (Control boton in menuTLP.Controls)
             {
@@ -51,7 +64,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = Utilidades.PaletaColores.btnRosa;
+                    boton.BackColor = PaletaColores.rosa;
                 }
                 else if (boton == picLogo)
                 {
@@ -59,10 +72,10 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = Utilidades.PaletaColores.btnAzul;
+                    boton.BackColor = PaletaColores.azulOscuro;
                 }
 
-                boton.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
+                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
                 boton.ForeColor = Color.Transparent;
 
             }
@@ -128,7 +141,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             int fontSize = CalcularTamanoFuente();
 
-            Font fontControles = new Font("LEMON MILK", fontSize);
+            Font fontControles = new Font(Fuente.TIPOGRAFIA, fontSize);
 
             dtpTurnos.Font = fontControles;
 
@@ -184,8 +197,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             var turnos = TurnoService.ObtenerTodosLosTurnos();
 
-            var turnosOrdenados = turnos.OrderByDescending(t => t.FechaTurno.Date)
-                                        .ThenBy(t => TimeOnly.FromDateTime(t.FechaTurno))
+            var turnosOrdenados = turnos.OrderBy(t => t.FechaTurno)
                                         .ToList();
 
             var turnosParaMostrar = turnosOrdenados.Select(t => new
@@ -284,11 +296,11 @@ namespace ClinicaSePriseApp.Vistas
 
                 turnosDgv.EnableHeadersVisualStyles = false;
 
-                turnosDgv.ColumnHeadersDefaultCellStyle.BackColor = Utilidades.PaletaColores.btnAzul;
+                turnosDgv.ColumnHeadersDefaultCellStyle.BackColor = PaletaColores.azulClaro;
                 turnosDgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                turnosDgv.ColumnHeadersDefaultCellStyle.Font = new Font("LEMON MILK", fontSize, FontStyle.Bold);
+                turnosDgv.ColumnHeadersDefaultCellStyle.Font = new Font(Fuente.TIPOGRAFIA, fontSize, FontStyle.Bold);
 
-                turnosDgv.DefaultCellStyle.SelectionBackColor = Utilidades.PaletaColores.btnVerde;
+                turnosDgv.DefaultCellStyle.SelectionBackColor = PaletaColores.verdeOscuro;
 
                 turnosDgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -298,7 +310,7 @@ namespace ClinicaSePriseApp.Vistas
                 {
                     col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    col.DefaultCellStyle.Font = new Font("LEMON MILK", fontSize - 0.5f);
+                    col.DefaultCellStyle.Font = new Font(Fuente.TIPOGRAFIA, fontSize - 0.5f);
                 }
 
                 turnosDgv.RowTemplate.Height = 25 + (fontSize - 8);
@@ -432,7 +444,7 @@ namespace ClinicaSePriseApp.Vistas
         }
 
         private void IrAlTurnoSeleccionado()
-        {
+        {            
             try
             {
                 var idTurno = ObtenerIdTurnoSeleccionado();
@@ -463,6 +475,19 @@ namespace ClinicaSePriseApp.Vistas
 
         private void btnAgenda_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea ir al menú de gestión de las Agendas Médicas?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
             AdmGTGestionAgendas admGTGestionAgendas = new AdmGTGestionAgendas();
             this.Hide();
             admGTGestionAgendas.FormClosed += (s, args) => this.Close();
@@ -471,6 +496,19 @@ namespace ClinicaSePriseApp.Vistas
 
         private void btnTurno_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea ver el Detalle del Turno seleccionado?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
             IrAlTurnoSeleccionado();
         }
     }

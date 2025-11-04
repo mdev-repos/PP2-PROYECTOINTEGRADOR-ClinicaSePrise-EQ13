@@ -18,6 +18,8 @@ namespace ClinicaSePriseApp.Utilidades
         public static List<E_Insumo> InsumosDB { get; set; } = new List<E_Insumo>();
         public static List<E_Consultorio> ConsultoriosDB { get; set; } = new List<E_Consultorio>();
 
+        public static List<E_Pago> PagosDB { get; set; } = new List<E_Pago>();
+
         // CARGA DE DATOS DE PRUEBAS
         public static void InicializarDatosPrueba()
         {

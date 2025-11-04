@@ -19,6 +19,8 @@ namespace ClinicaSePriseApp.Entidades.Enums
         TRANSFERENCIA,
         [Description("Código QR")]
         QR,
+        [Description("Derivación de Aportes")]
+        OBRA_SOCIAL,
         [Description("Otro")]
         OTRO
     }

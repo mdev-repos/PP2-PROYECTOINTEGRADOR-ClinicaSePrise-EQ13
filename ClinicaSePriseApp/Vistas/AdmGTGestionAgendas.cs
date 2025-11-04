@@ -949,6 +949,19 @@ namespace ClinicaSePriseApp.Vistas
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea salir de la Pantalla y volver a Turnos?",
+                    "Confirmar Asignación",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
             AdmGestionTurnos admGestionTurnos = new AdmGestionTurnos();
             this.Hide();
             admGestionTurnos.FormClosed += (s, args) => this.Close();
