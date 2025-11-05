@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdmGTGestionAgendas));
             mainTLP = new TableLayoutPanel();
             menuTLP = new TableLayoutPanel();
             picLogo = new PictureBox();
@@ -626,6 +627,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1006, 721);
             Controls.Add(mainTLP);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1024, 768);
             Name = "AdmGTGestionAgendas";
             StartPosition = FormStartPosition.CenterScreen;

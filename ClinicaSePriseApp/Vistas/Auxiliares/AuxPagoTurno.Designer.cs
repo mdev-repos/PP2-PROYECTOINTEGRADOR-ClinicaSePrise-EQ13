@@ -1,6 +1,6 @@
 ﻿namespace ClinicaSePriseApp.Vistas.Auxiliares
 {
-    partial class PagoTurno
+    partial class AuxPagoTurno
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PagoTurno));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuxPagoTurno));
             containerTLP = new TableLayoutPanel();
             lblTitulo = new Label();
             lblSeleccion = new Label();

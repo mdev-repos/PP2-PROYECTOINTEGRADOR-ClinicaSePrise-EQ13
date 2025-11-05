@@ -1,6 +1,6 @@
 ﻿namespace ClinicaSePriseApp.Vistas
 {
-    partial class ProfAgendaDiaria
+    partial class ProfADAtencionMedica
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfAgendaDiaria));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfADAtencionMedica));
             mainTLP = new TableLayoutPanel();
             menuTLP = new TableLayoutPanel();
             picLogo = new PictureBox();
@@ -38,7 +38,6 @@
             contentLbl = new Label();
             cardContainerPanel = new Panel();
             cardsTLP = new TableLayoutPanel();
-            btnDetalle = new Button();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -60,7 +59,7 @@
             mainTLP.RowCount = 1;
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             mainTLP.Size = new Size(1006, 721);
-            mainTLP.TabIndex = 3;
+            mainTLP.TabIndex = 4;
             // 
             // menuTLP
             // 
@@ -69,8 +68,7 @@
             menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             menuTLP.Controls.Add(picLogo, 0, 0);
             menuTLP.Controls.Add(btnVolver, 0, 8);
-            menuTLP.Controls.Add(btnAtender, 0, 4);
-            menuTLP.Controls.Add(btnDetalle, 0, 2);
+            menuTLP.Controls.Add(btnAtender, 0, 2);
             menuTLP.Dock = DockStyle.Fill;
             menuTLP.Location = new Point(754, 0);
             menuTLP.Margin = new Padding(0);
@@ -113,7 +111,7 @@
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(252, 57);
             btnVolver.TabIndex = 8;
-            btnVolver.Text = "REGRESAR AL DASHBOARD";
+            btnVolver.Text = "REGRESAR A LA AGENDA";
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
             // 
@@ -123,14 +121,13 @@
             btnAtender.Dock = DockStyle.Fill;
             btnAtender.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAtender.ForeColor = Color.White;
-            btnAtender.Location = new Point(0, 359);
+            btnAtender.Location = new Point(0, 259);
             btnAtender.Margin = new Padding(0);
             btnAtender.Name = "btnAtender";
             btnAtender.Size = new Size(252, 57);
             btnAtender.TabIndex = 9;
-            btnAtender.Text = "ATENDER PROXIMO";
+            btnAtender.Text = "SIN DEFINIR";
             btnAtender.UseVisualStyleBackColor = false;
-            btnAtender.Click += btnAtender_Click;
             // 
             // contentTLP
             // 
@@ -164,7 +161,7 @@
             contentLbl.Name = "contentLbl";
             contentLbl.Size = new Size(754, 72);
             contentLbl.TabIndex = 0;
-            contentLbl.Text = "    FECHA | NOMBRE DEL MEDICO";
+            contentLbl.Text = "    SIN DEFINIR";
             contentLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // cardContainerPanel
@@ -195,34 +192,17 @@
             cardsTLP.Size = new Size(754, 0);
             cardsTLP.TabIndex = 0;
             // 
-            // btnDetalle
-            // 
-            btnDetalle.BackColor = Color.CornflowerBlue;
-            btnDetalle.Dock = DockStyle.Fill;
-            btnDetalle.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDetalle.ForeColor = Color.White;
-            btnDetalle.Location = new Point(0, 259);
-            btnDetalle.Margin = new Padding(0);
-            btnDetalle.Name = "btnDetalle";
-            btnDetalle.Size = new Size(252, 57);
-            btnDetalle.TabIndex = 10;
-            btnDetalle.Text = "VER DETALLE";
-            btnDetalle.UseVisualStyleBackColor = false;
-            btnDetalle.Click += btnDetalle_Click;
-            // 
-            // ProfAgendaDiaria
+            // ProfADAtencionMedica
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1006, 721);
             Controls.Add(mainTLP);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(1024, 768);
-            Name = "ProfAgendaDiaria";
+            Name = "ProfADAtencionMedica";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Clinica SePrise  ||  Agenda del Día";
+            Text = "Clinica SePrise  ||  Atención Médica";
             WindowState = FormWindowState.Maximized;
-            Load += ProfAgendaDiaria_Load;
             mainTLP.ResumeLayout(false);
             menuTLP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
@@ -242,8 +222,7 @@
         private Button btnAtender;
         private TableLayoutPanel contentTLP;
         private Label contentLbl;
-        private TableLayoutPanel cardsTLP;
         private Panel cardContainerPanel;
-        private Button btnDetalle;
+        private TableLayoutPanel cardsTLP;
     }
 }

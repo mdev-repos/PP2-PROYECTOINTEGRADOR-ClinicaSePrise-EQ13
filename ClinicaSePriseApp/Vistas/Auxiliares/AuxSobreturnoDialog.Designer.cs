@@ -1,6 +1,6 @@
 ﻿namespace ClinicaSePriseApp.Vistas.Auxiliares
 {
-    partial class SobreturnoDialog
+    partial class AuxSobreturnoDialog
     {
         /// <summary>
         /// Required designer variable.

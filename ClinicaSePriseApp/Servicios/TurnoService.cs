@@ -92,6 +92,14 @@ namespace ClinicaSePriseApp.Servicios
             return turnoRepo.TraerTodosLosTurnos();
         }
 
+        public static List<E_Turno> ObtenerTurnosDelDia(E_Profesional profesional, DateOnly fecha)
+        {
+            return profesional.AgendaMedica
+                .Where(t => DateOnly.FromDateTime(t.FechaTurno) == fecha)
+                .OrderBy(t => t.FechaTurno)
+                .ToList();
+        }
+
 
         // UPDATE
         public static void AsignarTurno(E_Turno turno, E_Paciente paciente)

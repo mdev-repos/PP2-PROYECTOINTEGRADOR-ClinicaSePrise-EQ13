@@ -17,11 +17,11 @@ using System.Windows.Forms;
 
 namespace ClinicaSePriseApp.Vistas.Auxiliares
 {
-    public partial class PagoTurno : Form
+    public partial class AuxPagoTurno : Form
     {
         private E_Pago _Pago;
 
-        public PagoTurno()
+        public AuxPagoTurno()
         {
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        public PagoTurno(E_Pago pago)
+        public AuxPagoTurno(E_Pago pago)
         {
             InitializeComponent();
 
