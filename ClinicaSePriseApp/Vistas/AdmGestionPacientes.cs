@@ -59,7 +59,6 @@ namespace ClinicaSePriseApp.Vistas
         {
             String dniIngresado = txtDni.Text.Trim();
 
-            // Lógica para buscar el paciente por DNI
             if (string.IsNullOrEmpty(dniIngresado))
             {
                 MessageBox.Show("Debe ingresar un DNI", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -68,7 +67,6 @@ namespace ClinicaSePriseApp.Vistas
             }
             txtDni.BackColor = SystemColors.Window;
 
-            // Lógica para buscar el paciente en la base de datos
             var repo = new PacienteRepository();
             var paciente = repo.ObtenerPacientePorDNI(dniIngresado);
 
@@ -79,7 +77,6 @@ namespace ClinicaSePriseApp.Vistas
             }
             else
             {
-                // Paciente no encontrado, mostrar mensaje de error
                 MessageBox.Show("No se encontró ningún paciente con el DNI ingresado.", "Paciente no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CargarTodosLosPacientes();
                 txtDni.Focus();
@@ -127,7 +124,19 @@ namespace ClinicaSePriseApp.Vistas
         {
             var repo = new PacienteRepository();
             var listaPacientes = repo.ObtenerTodosLosPacientes();
-            pacientesDgv.DataSource = listaPacientes;
+
+            var listaTransformada = listaPacientes.Select(p => new
+            {
+                Dni = p.Dni,
+                NombreApellido = p.NombreCompleto,
+                ObraSocial = EnumHelper.GetDescription(p.ObraSocial),
+                NumeroAfiliado = p.NumeroAfiliado,
+                Turnos = "Ver",
+                Pagos = "Ver",
+                PacienteOriginal = p
+            }).ToList();
+
+            pacientesDgv.DataSource = listaTransformada;
             AjustarFondoGrilla();
         }
 
@@ -153,7 +162,7 @@ namespace ClinicaSePriseApp.Vistas
             {
                 Name = "NombreApellido",
                 HeaderText = "NOMBRE y APELLIDO",
-                DataPropertyName = "NombreCompleto",
+                DataPropertyName = "NombreApellido",
                 SortMode = DataGridViewColumnSortMode.NotSortable
             });
 
@@ -167,9 +176,9 @@ namespace ClinicaSePriseApp.Vistas
 
             pacientesDgv.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "NroAfiliado",
+                Name = "NumeroAfiliado",
                 HeaderText = "Nro AFILIADO",
-                DataPropertyName = "numeroAfiliado",
+                DataPropertyName = "NumeroAfiliado",
                 SortMode = DataGridViewColumnSortMode.NotSortable
             });
 
@@ -201,6 +210,8 @@ namespace ClinicaSePriseApp.Vistas
             dgv.DefaultCellStyle.BackColor = Color.White;
             dgv.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             dgv.EnableHeadersVisualStyles = false;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
@@ -258,7 +269,8 @@ namespace ClinicaSePriseApp.Vistas
                 return;
             }
 
-            var pacienteSeleccionado = (Entidades.E_Paciente)pacientesDgv.CurrentRow.DataBoundItem;
+            dynamic filaSeleccionada = pacientesDgv.CurrentRow.DataBoundItem;
+            var pacienteSeleccionado = filaSeleccionada.PacienteOriginal;
 
             AdmGPModificarPaciente modificarPaciente = new AdmGPModificarPaciente(pacienteSeleccionado);
             modificarPaciente.FormClosed += (s, args) => this.Close();
