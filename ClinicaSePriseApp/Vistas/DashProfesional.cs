@@ -103,7 +103,7 @@ namespace ClinicaSePriseApp.Vistas
                 return;
             }
 
-            ProfAgendaDiaria agendaDiaria = new ProfAgendaDiaria();
+            ProfAgendaDiaria agendaDiaria = new ProfAgendaDiaria(_Profesional);
             this.Hide();
             agendaDiaria.FormClosed += (s, args) => this.Close();
             agendaDiaria.Show();

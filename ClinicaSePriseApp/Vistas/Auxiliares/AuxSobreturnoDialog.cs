@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace ClinicaSePriseApp.Vistas.Auxiliares
 {
-    public partial class SobreturnoDialog : Form
+    public partial class AuxSobreturnoDialog : Form
     {
         public E_Paciente PacienteEncontrado { get; private set; }
         public TimeSpan HoraSobreturno { get; private set; }
@@ -24,7 +24,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         private Button btnCancelar;
         private Button btnCrear;
 
-        public SobreturnoDialog()
+        public AuxSobreturnoDialog()
         {
             InicializarControles();
         }        

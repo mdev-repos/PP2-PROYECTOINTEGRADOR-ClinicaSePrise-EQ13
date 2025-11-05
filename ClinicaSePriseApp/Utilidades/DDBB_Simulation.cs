@@ -1,5 +1,6 @@
 ﻿using ClinicaSePriseApp.Entidades;
 using ClinicaSePriseApp.Entidades.Enums;
+using ClinicaSePriseApp.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,9 @@ namespace ClinicaSePriseApp.Utilidades
         public static List<E_Turno> TurnosDB { get; set; } = new List<E_Turno>();
         public static List<E_Insumo> InsumosDB { get; set; } = new List<E_Insumo>();
         public static List<E_Consultorio> ConsultoriosDB { get; set; } = new List<E_Consultorio>();
-
         public static List<E_Pago> PagosDB { get; set; } = new List<E_Pago>();
+
+        public static List<E_HistoriaClinica> HistoriasClinicas { get; set; } = new List<E_HistoriaClinica>();
 
         // CARGA DE DATOS DE PRUEBAS
         public static void InicializarDatosPrueba()
@@ -64,55 +66,22 @@ namespace ClinicaSePriseApp.Utilidades
                 "1155577662",
                 "admin2@seprise.com");
 
-                // Usuario
-                var useradm3 = new E_Usuario(3, "sposto", "1234", Rol.ADMINISTRATIVO);
-            var administrativo3 = new E_Administrativo(
-                3,
-                3,
-                "Sposto",
-                "Orlando",
-                "22111444",
-                Genero.H,
-                new DateOnly(1972, 2, 13),
-                "Calle Falsa 567",
-                "1166677662",
-                "admin3@seprise.com");
-
-                // Usuario
-                var useradm4 = new E_Usuario(4, "dooren", "1234", Rol.ADMINISTRATIVO);
-            var administrativo4 = new E_Administrativo(
-                4,
-                4,
-                "Van Den Dooren",
-                "Adriana",
-                "33555663",
-                Genero.M,
-                new DateOnly(1982, 2, 13),
-                "Calle Falsa 789",
-                "1166677662",
-                "admin4@seprise.com");
-
             UsuariosDB.Add(useradm1);
             AdministrativosDB.Add(administrativo1);
 
             UsuariosDB.Add(useradm2);
             AdministrativosDB.Add(administrativo2);
 
-            UsuariosDB.Add(useradm3);
-            AdministrativosDB.Add(administrativo3);
-
-            UsuariosDB.Add(useradm4);
-            AdministrativosDB.Add(administrativo4);
-
-
 
             // PROFESIONALES
+
+            // Profesional 1
                 // Disponibilidad
                 var disponibilidad1a = new E_Disponibilidad(
-                        1,
-                        DayOfWeek.Monday,
-                        new TimeSpan(7, 0, 0),
-                        new TimeSpan(13, 0, 0));
+                    1,
+                    DayOfWeek.Monday,
+                    new TimeSpan(7, 0, 0),
+                    new TimeSpan(13, 0, 0));
 
                 var disponibilidad1b = new E_Disponibilidad(
                     2,
@@ -125,11 +94,11 @@ namespace ClinicaSePriseApp.Utilidades
                 prof1disp.Add(disponibilidad1b);
 
                 // Usuario
-                E_Usuario userprof1 = new E_Usuario(5, "11222333", "1234", Rol.PROFESIONAL);
+                E_Usuario userprof1 = new E_Usuario(3, "medico1", "1234", Rol.PROFESIONAL);
 
             var profesional1 = new E_Profesional(
                 1,
-                5,
+                3,
                 EspecialidadMedica.CLINICA_MEDICA,
                 "123765",
                 prof1disp,
@@ -145,30 +114,30 @@ namespace ClinicaSePriseApp.Utilidades
             UsuariosDB.Add(userprof1);
             ProfesionalesDB.Add(profesional1);
 
+            // Profesional 2
+                // Disponibilidad
+                var disponibilidad2a = new E_Disponibilidad(
+                        3,
+                        DayOfWeek.Friday,
+                        new TimeSpan(9, 0, 0),
+                        new TimeSpan(15, 0, 0));
 
-            // Disponibilidad
-            var disponibilidad2a = new E_Disponibilidad(
-                    1,
-                    DayOfWeek.Friday,
-                    new TimeSpan(9, 0, 0),
-                    new TimeSpan(15, 0, 0));
+                var disponibilidad2b = new E_Disponibilidad(
+                    4,
+                    DayOfWeek.Wednesday,
+                    new TimeSpan(14, 0, 0),
+                    new TimeSpan(18, 0, 0));
 
-            var disponibilidad2b = new E_Disponibilidad(
-                2,
-                DayOfWeek.Wednesday,
-                new TimeSpan(14, 0, 0),
-                new TimeSpan(18, 0, 0));
+                List<E_Disponibilidad> prof2disp = new List<E_Disponibilidad>();
+                prof2disp.Add(disponibilidad2a);
+                prof2disp.Add(disponibilidad2b);
 
-            List<E_Disponibilidad> prof2disp = new List<E_Disponibilidad>();
-            prof2disp.Add(disponibilidad2a);
-            prof2disp.Add(disponibilidad2b);
-
-            // Usuario
-            E_Usuario userprof2 = new E_Usuario(6, "medico2", "1234", Rol.PROFESIONAL);
+                // Usuario
+                E_Usuario userprof2 = new E_Usuario(4, "medico2", "1234", Rol.PROFESIONAL);
 
             var profesional2 = new E_Profesional(
                 2,
-                6,
+                4,
                 EspecialidadMedica.UROLOGIA,
                 "9876543",
                 prof2disp,
@@ -183,6 +152,47 @@ namespace ClinicaSePriseApp.Utilidades
 
             UsuariosDB.Add(userprof2);
             ProfesionalesDB.Add(profesional2);
+
+            // Profesional 3
+
+                // Disponibilidad
+                var disponibilidad3a = new E_Disponibilidad(
+                    5,
+                    DayOfWeek.Wednesday,
+                    new TimeSpan(7, 0, 0),
+                    new TimeSpan(15, 0, 0));
+
+                var disponibilidad3b = new E_Disponibilidad(
+                    6,
+                    DayOfWeek.Tuesday,
+                    new TimeSpan(7, 0, 0),
+                    new TimeSpan(15, 0, 0));
+
+                List<E_Disponibilidad> prof3disp = new List<E_Disponibilidad>();
+                prof3disp.Add(disponibilidad3a);
+                prof3disp.Add(disponibilidad3b);
+
+                // Usuario
+                E_Usuario userprof3 = new E_Usuario(5, "medico3", "1234", Rol.PROFESIONAL);
+
+            var profesional3 = new E_Profesional(
+                3,
+                5,
+                EspecialidadMedica.NEUROLOGIA,
+                "345678",
+                prof3disp,
+                "Mazzitelli",
+                "Matias",
+                "33444555",
+                Genero.H,
+                new DateOnly(1993, 6, 18),
+                "Casa di galeno",
+                "1177558844",
+                "profesional3@seprise.com");
+
+            UsuariosDB.Add(userprof3);
+            ProfesionalesDB.Add(profesional3);
+
 
             // PACIENTES
             var paciente1 = new E_Paciente(
@@ -218,12 +228,13 @@ namespace ClinicaSePriseApp.Utilidades
 
 
             // TURNOS
+
+            // Turnos Profesional 1
             var turno1 = new E_Turno(
                 1,
                 new DateTime(2025, 11, 3, 7, 0, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno1);
             profesional1.AgendaMedica.Add(turno1);
 
@@ -232,7 +243,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 7, 15, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno2);
             profesional1.AgendaMedica.Add(turno2);
 
@@ -241,7 +251,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 7, 30, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno3);
             profesional1.AgendaMedica.Add(turno3);
 
@@ -250,7 +259,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 7, 45, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno4);
             profesional1.AgendaMedica.Add(turno4);
 
@@ -259,7 +267,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 8, 0, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno5);
             profesional1.AgendaMedica.Add(turno5);
 
@@ -268,7 +275,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 8, 15, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno6);
             profesional1.AgendaMedica.Add(turno6);
 
@@ -277,7 +283,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 8, 30, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno7);
             profesional1.AgendaMedica.Add(turno7);
 
@@ -286,7 +291,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 8, 45, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno8);
             profesional1.AgendaMedica.Add(turno8);
 
@@ -295,7 +299,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 9, 0, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno9);
             profesional1.AgendaMedica.Add(turno9);
 
@@ -304,7 +307,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 9, 15, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno10);
             profesional1.AgendaMedica.Add(turno10);
 
@@ -313,7 +315,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 9, 30, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno11);
             profesional1.AgendaMedica.Add(turno11);
 
@@ -322,7 +323,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 9, 45, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno12);
             profesional1.AgendaMedica.Add(turno12);
 
@@ -331,7 +331,6 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 10, 0, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno13);
             profesional1.AgendaMedica.Add(turno13);
 
@@ -340,9 +339,106 @@ namespace ClinicaSePriseApp.Utilidades
                 new DateTime(2025, 11, 3, 10, 15, 0),
                 profesional1.IdProfesional,
                 3000m);
-
             TurnosDB.Add(turno14);
             profesional1.AgendaMedica.Add(turno14);
+
+
+            // Turnos Profesional 3
+            var turno15 = new E_Turno(
+                15,
+                new DateTime(2025, 11, 5, 7, 0, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno15);
+            profesional3.AgendaMedica.Add(turno15);
+            TurnoService.AsignarTurno(turno15, paciente1);
+
+
+            var turno16 = new E_Turno(
+                16,
+                new DateTime(2025, 11, 5, 7, 45, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno16);
+            profesional3.AgendaMedica.Add(turno16);
+
+            var turno17 = new E_Turno(
+                17,
+                new DateTime(2025, 11, 5, 8, 30, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno17);
+            profesional3.AgendaMedica.Add(turno17);
+            TurnoService.AsignarTurno(turno17, paciente2);
+
+            var turno18 = new E_Turno(
+                18,
+                new DateTime(2025, 11, 5, 9, 15, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno18);
+            profesional3.AgendaMedica.Add(turno18);
+            TurnoService.AsignarTurno(turno18, paciente1);
+
+            var turno19 = new E_Turno(
+                19,
+                new DateTime(2025, 11, 5, 10, 0, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno19);
+            profesional3.AgendaMedica.Add(turno19);
+            TurnoService.AsignarTurno(turno19, paciente2);
+            turno19.Estado = EstadoTurno.ABONADO; // HARDCORE PARA PRUEBA
+
+            var turno20 = new E_Turno(
+                20,
+                new DateTime(2025, 11, 5, 10, 45, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno20);
+            profesional3.AgendaMedica.Add(turno20);
+            TurnoService.AsignarTurno(turno20, paciente1);
+            turno20.Estado = EstadoTurno.ABONADO; // HARDCORE PARA PRUEBA
+
+            var turno21 = new E_Turno(
+                21,
+                new DateTime(2025, 11, 5, 11, 30, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno21);
+            profesional3.AgendaMedica.Add(turno21);
+
+            var turno22 = new E_Turno(
+                22,
+                new DateTime(2025, 11, 5, 12, 15, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno22);
+            profesional3.AgendaMedica.Add(turno22);
+
+            var turno23 = new E_Turno(
+                23,
+                new DateTime(2025, 11, 5, 13, 0, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno23);
+            profesional3.AgendaMedica.Add(turno23);
+
+            var turno24 = new E_Turno(
+                24,
+                new DateTime(2025, 11, 5, 13, 45, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno24);
+            profesional3.AgendaMedica.Add(turno24);
+
+            var turno25 = new E_Turno(
+                25,
+                new DateTime(2025, 11, 5, 14, 30, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno25);
+            profesional3.AgendaMedica.Add(turno25);
         }
     }
 }

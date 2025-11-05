@@ -368,7 +368,7 @@ namespace ClinicaSePriseApp.Vistas
                     turno.IdTurno,
                     turno.Monto);
 
-                PagoTurno pagoTurno = new PagoTurno(pago);                
+                AuxPagoTurno pagoTurno = new AuxPagoTurno(pago);                
                 pagoTurno.ShowDialog();
             }
         }

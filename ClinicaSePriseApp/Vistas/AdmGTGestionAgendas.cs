@@ -104,13 +104,11 @@ namespace ClinicaSePriseApp.Vistas
 
         private void ajustarPaneles()
         {
-            // Configurar el Panel de scroll correctamente
-            AgendaScroll.AutoSize = false; // ← ESTO ES CLAVE
+            AgendaScroll.AutoSize = false;
             AgendaScroll.AutoScroll = true;
             AgendaScroll.Dock = DockStyle.Fill;
 
-            // Configurar el TableLayoutPanel de datos
-            AgendaDataTLP.Dock = DockStyle.Top; // o DockStyle.Fill
+            AgendaDataTLP.Dock = DockStyle.Top;
             AgendaDataTLP.AutoSize = true;
 
             mainTLP.BackColor = PaletaColores.celeste;
@@ -880,7 +878,7 @@ namespace ClinicaSePriseApp.Vistas
             // Dialog y Creacion del Sobreturno
             private void MostrarDialogoSobreturno()
             {
-                using (var dialog = new SobreturnoDialog())
+                using (var dialog = new AuxSobreturnoDialog())
                 {
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
