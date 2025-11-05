@@ -37,8 +37,9 @@
             lblGenero = new Label();
             imgPicBox = new PictureBox();
             dataTLP = new TableLayoutPanel();
+            txtNroAfiliado = new TextBox();
+            lblNroAfiliado = new Label();
             cboxObraSocial = new ComboBox();
-            cboxFechaNacimiento = new ComboBox();
             txtMail = new TextBox();
             txtTelefono = new TextBox();
             txtDireccion = new TextBox();
@@ -50,12 +51,13 @@
             label7 = new Label();
             txtNombre = new TextBox();
             cboxGenero = new ComboBox();
+            dateFechaNacimiento = new DateTimePicker();
             contentLbl = new Label();
             viewTLP = new TableLayoutPanel();
             contentTLP = new TableLayoutPanel();
             picLogo = new PictureBox();
             btnVolver = new Button();
-            btnAsignar = new Button();
+            btnDarAlta = new Button();
             menuTLP = new TableLayoutPanel();
             mainTLP = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)imgPicBox).BeginInit();
@@ -72,10 +74,11 @@
             lblFechaNacimiento.AutoSize = true;
             lblFechaNacimiento.Dock = DockStyle.Fill;
             lblFechaNacimiento.Enabled = false;
-            lblFechaNacimiento.Location = new Point(0, 330);
+            lblFechaNacimiento.ForeColor = Color.Black;
+            lblFechaNacimiento.Location = new Point(0, 302);
             lblFechaNacimiento.Margin = new Padding(0);
             lblFechaNacimiento.Name = "lblFechaNacimiento";
-            lblFechaNacimiento.Size = new Size(295, 66);
+            lblFechaNacimiento.Size = new Size(295, 59);
             lblFechaNacimiento.TabIndex = 12;
             lblFechaNacimiento.Text = "Fecha de nacimiento:";
             lblFechaNacimiento.TextAlign = ContentAlignment.MiddleLeft;
@@ -85,10 +88,11 @@
             lblDni.AutoSize = true;
             lblDni.Dock = DockStyle.Fill;
             lblDni.Enabled = false;
-            lblDni.Location = new Point(0, 198);
+            lblDni.ForeColor = Color.Black;
+            lblDni.Location = new Point(0, 184);
             lblDni.Margin = new Padding(0);
             lblDni.Name = "lblDni";
-            lblDni.Size = new Size(295, 66);
+            lblDni.Size = new Size(295, 59);
             lblDni.TabIndex = 3;
             lblDni.Text = "DNI: ";
             lblDni.TextAlign = ContentAlignment.MiddleLeft;
@@ -98,10 +102,11 @@
             lblApellido.AutoSize = true;
             lblApellido.Dock = DockStyle.Fill;
             lblApellido.Enabled = false;
-            lblApellido.Location = new Point(0, 132);
+            lblApellido.ForeColor = Color.Black;
+            lblApellido.Location = new Point(0, 125);
             lblApellido.Margin = new Padding(0);
             lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(295, 66);
+            lblApellido.Size = new Size(295, 59);
             lblApellido.TabIndex = 2;
             lblApellido.Text = "Apellido: ";
             lblApellido.TextAlign = ContentAlignment.MiddleLeft;
@@ -125,10 +130,11 @@
             lblNombre.AutoSize = true;
             lblNombre.Dock = DockStyle.Fill;
             lblNombre.Enabled = false;
+            lblNombre.ForeColor = Color.Black;
             lblNombre.Location = new Point(0, 66);
             lblNombre.Margin = new Padding(0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(295, 66);
+            lblNombre.Size = new Size(295, 59);
             lblNombre.TabIndex = 1;
             lblNombre.Text = "Nombre: ";
             lblNombre.TextAlign = ContentAlignment.MiddleLeft;
@@ -138,10 +144,11 @@
             lblGenero.AutoSize = true;
             lblGenero.Dock = DockStyle.Fill;
             lblGenero.Enabled = false;
-            lblGenero.Location = new Point(0, 264);
+            lblGenero.ForeColor = Color.Black;
+            lblGenero.Location = new Point(0, 243);
             lblGenero.Margin = new Padding(0);
             lblGenero.Name = "lblGenero";
-            lblGenero.Size = new Size(295, 66);
+            lblGenero.Size = new Size(295, 59);
             lblGenero.TabIndex = 4;
             lblGenero.Text = "Género: ";
             lblGenero.TextAlign = ContentAlignment.MiddleLeft;
@@ -163,8 +170,9 @@
             dataTLP.ColumnCount = 2;
             dataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 47.63514F));
             dataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 52.3648643F));
+            dataTLP.Controls.Add(txtNroAfiliado, 1, 10);
+            dataTLP.Controls.Add(lblNroAfiliado, 0, 10);
             dataTLP.Controls.Add(cboxObraSocial, 1, 9);
-            dataTLP.Controls.Add(cboxFechaNacimiento, 1, 5);
             dataTLP.Controls.Add(txtMail, 1, 8);
             dataTLP.Controls.Add(txtTelefono, 1, 7);
             dataTLP.Controls.Add(txtDireccion, 1, 6);
@@ -182,50 +190,62 @@
             dataTLP.Controls.Add(lblNombre, 0, 1);
             dataTLP.Controls.Add(txtNombre, 1, 1);
             dataTLP.Controls.Add(cboxGenero, 1, 4);
+            dataTLP.Controls.Add(dateFechaNacimiento, 1, 5);
             dataTLP.Dock = DockStyle.Fill;
             dataTLP.Location = new Point(4, 0);
             dataTLP.Margin = new Padding(4, 0, 0, 0);
             dataTLP.Name = "dataTLP";
-            dataTLP.RowCount = 10;
+            dataTLP.RowCount = 11;
             dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
             dataTLP.Size = new Size(620, 660);
             dataTLP.TabIndex = 2;
+            // 
+            // txtNroAfiliado
+            // 
+            txtNroAfiliado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtNroAfiliado.Location = new Point(295, 617);
+            txtNroAfiliado.Margin = new Padding(0);
+            txtNroAfiliado.Name = "txtNroAfiliado";
+            txtNroAfiliado.Size = new Size(325, 23);
+            txtNroAfiliado.TabIndex = 39;
+            // 
+            // lblNroAfiliado
+            // 
+            lblNroAfiliado.AutoSize = true;
+            lblNroAfiliado.Dock = DockStyle.Fill;
+            lblNroAfiliado.Enabled = false;
+            lblNroAfiliado.ForeColor = Color.Black;
+            lblNroAfiliado.Location = new Point(0, 597);
+            lblNroAfiliado.Margin = new Padding(0);
+            lblNroAfiliado.Name = "lblNroAfiliado";
+            lblNroAfiliado.Size = new Size(295, 63);
+            lblNroAfiliado.TabIndex = 38;
+            lblNroAfiliado.Text = "Nro Afiliado: ";
+            lblNroAfiliado.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // cboxObraSocial
             // 
             cboxObraSocial.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cboxObraSocial.FormattingEnabled = true;
-            cboxObraSocial.Location = new Point(298, 615);
+            cboxObraSocial.Location = new Point(298, 556);
             cboxObraSocial.Name = "cboxObraSocial";
             cboxObraSocial.Size = new Size(319, 23);
             cboxObraSocial.TabIndex = 36;
             // 
-            // cboxFechaNacimiento
-            // 
-            cboxFechaNacimiento.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            cboxFechaNacimiento.FormattingEnabled = true;
-            cboxFechaNacimiento.Location = new Point(298, 351);
-            cboxFechaNacimiento.Name = "cboxFechaNacimiento";
-            cboxFechaNacimiento.Size = new Size(319, 23);
-            cboxFechaNacimiento.TabIndex = 35;
-            // 
             // txtMail
             // 
             txtMail.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtMail.Location = new Point(295, 549);
+            txtMail.Location = new Point(295, 497);
             txtMail.Margin = new Padding(0);
             txtMail.Name = "txtMail";
             txtMail.Size = new Size(325, 23);
@@ -234,7 +254,7 @@
             // txtTelefono
             // 
             txtTelefono.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtTelefono.Location = new Point(295, 483);
+            txtTelefono.Location = new Point(295, 438);
             txtTelefono.Margin = new Padding(0);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(325, 23);
@@ -243,7 +263,7 @@
             // txtDireccion
             // 
             txtDireccion.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtDireccion.Location = new Point(295, 417);
+            txtDireccion.Location = new Point(295, 379);
             txtDireccion.Margin = new Padding(0);
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(325, 23);
@@ -252,7 +272,7 @@
             // txtDni
             // 
             txtDni.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtDni.Location = new Point(295, 219);
+            txtDni.Location = new Point(295, 202);
             txtDni.Margin = new Padding(0);
             txtDni.Name = "txtDni";
             txtDni.Size = new Size(325, 23);
@@ -261,7 +281,7 @@
             // txtApellido
             // 
             txtApellido.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtApellido.Location = new Point(295, 153);
+            txtApellido.Location = new Point(295, 143);
             txtApellido.Margin = new Padding(0);
             txtApellido.Name = "txtApellido";
             txtApellido.Size = new Size(325, 23);
@@ -272,10 +292,11 @@
             lblObraSocial.AutoSize = true;
             lblObraSocial.Dock = DockStyle.Fill;
             lblObraSocial.Enabled = false;
-            lblObraSocial.Location = new Point(0, 594);
+            lblObraSocial.ForeColor = Color.Black;
+            lblObraSocial.Location = new Point(0, 538);
             lblObraSocial.Margin = new Padding(0);
             lblObraSocial.Name = "lblObraSocial";
-            lblObraSocial.Size = new Size(295, 66);
+            lblObraSocial.Size = new Size(295, 59);
             lblObraSocial.TabIndex = 25;
             lblObraSocial.Text = "Obra Social: ";
             lblObraSocial.TextAlign = ContentAlignment.MiddleLeft;
@@ -285,10 +306,11 @@
             lblEmail.AutoSize = true;
             lblEmail.Dock = DockStyle.Fill;
             lblEmail.Enabled = false;
-            lblEmail.Location = new Point(0, 528);
+            lblEmail.ForeColor = Color.Black;
+            lblEmail.Location = new Point(0, 479);
             lblEmail.Margin = new Padding(0);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(295, 66);
+            lblEmail.Size = new Size(295, 59);
             lblEmail.TabIndex = 23;
             lblEmail.Text = "E-mail: ";
             lblEmail.TextAlign = ContentAlignment.MiddleLeft;
@@ -298,10 +320,11 @@
             lblTelefono.AutoSize = true;
             lblTelefono.Dock = DockStyle.Fill;
             lblTelefono.Enabled = false;
-            lblTelefono.Location = new Point(0, 462);
+            lblTelefono.ForeColor = Color.Black;
+            lblTelefono.Location = new Point(0, 420);
             lblTelefono.Margin = new Padding(0);
             lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(295, 66);
+            lblTelefono.Size = new Size(295, 59);
             lblTelefono.TabIndex = 21;
             lblTelefono.Text = "Teléfono: ";
             lblTelefono.TextAlign = ContentAlignment.MiddleLeft;
@@ -311,10 +334,11 @@
             label7.AutoSize = true;
             label7.Dock = DockStyle.Fill;
             label7.Enabled = false;
-            label7.Location = new Point(0, 396);
+            label7.ForeColor = Color.Black;
+            label7.Location = new Point(0, 361);
             label7.Margin = new Padding(0);
             label7.Name = "label7";
-            label7.Size = new Size(295, 66);
+            label7.Size = new Size(295, 59);
             label7.TabIndex = 19;
             label7.Text = "Dirección: ";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -322,20 +346,29 @@
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombre.Location = new Point(295, 87);
+            txtNombre.Location = new Point(295, 84);
             txtNombre.Margin = new Padding(0);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(325, 23);
             txtNombre.TabIndex = 26;
+            txtNombre.KeyPress += txtNombre_KeyPress;
             // 
             // cboxGenero
             // 
             cboxGenero.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cboxGenero.FormattingEnabled = true;
-            cboxGenero.Location = new Point(298, 285);
+            cboxGenero.Location = new Point(298, 261);
             cboxGenero.Name = "cboxGenero";
             cboxGenero.Size = new Size(319, 23);
             cboxGenero.TabIndex = 34;
+            // 
+            // dateFechaNacimiento
+            // 
+            dateFechaNacimiento.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dateFechaNacimiento.Location = new Point(298, 320);
+            dateFechaNacimiento.Name = "dateFechaNacimiento";
+            dateFechaNacimiento.Size = new Size(319, 23);
+            dateFechaNacimiento.TabIndex = 37;
             // 
             // contentLbl
             // 
@@ -411,19 +444,21 @@
             btnVolver.TabIndex = 8;
             btnVolver.Text = "VOLVER A PACIENTES";
             btnVolver.UseVisualStyleBackColor = false;
+            btnVolver.Click += btnVolver_Click;
             // 
-            // btnAsignar
+            // btnDarAlta
             // 
-            btnAsignar.BackColor = Color.CornflowerBlue;
-            btnAsignar.Dock = DockStyle.Fill;
-            btnAsignar.ForeColor = Color.White;
-            btnAsignar.Location = new Point(0, 278);
-            btnAsignar.Margin = new Padding(0);
-            btnAsignar.Name = "btnAsignar";
-            btnAsignar.Size = new Size(416, 62);
-            btnAsignar.TabIndex = 9;
-            btnAsignar.Text = "DAR DE ALTA";
-            btnAsignar.UseVisualStyleBackColor = false;
+            btnDarAlta.BackColor = Color.CornflowerBlue;
+            btnDarAlta.Dock = DockStyle.Fill;
+            btnDarAlta.ForeColor = Color.White;
+            btnDarAlta.Location = new Point(0, 278);
+            btnDarAlta.Margin = new Padding(0);
+            btnDarAlta.Name = "btnDarAlta";
+            btnDarAlta.Size = new Size(416, 62);
+            btnDarAlta.TabIndex = 9;
+            btnDarAlta.Text = "DAR DE ALTA";
+            btnDarAlta.UseVisualStyleBackColor = false;
+            btnDarAlta.Click += btnAsignar_Click;
             // 
             // menuTLP
             // 
@@ -432,7 +467,7 @@
             menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             menuTLP.Controls.Add(picLogo, 0, 0);
             menuTLP.Controls.Add(btnVolver, 0, 8);
-            menuTLP.Controls.Add(btnAsignar, 0, 2);
+            menuTLP.Controls.Add(btnDarAlta, 0, 2);
             menuTLP.Dock = DockStyle.Fill;
             menuTLP.Location = new Point(1248, 0);
             menuTLP.Margin = new Padding(0);
@@ -479,6 +514,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clinica SePrise  ||  Alta Paciente";
             WindowState = FormWindowState.Maximized;
+            Load += AdmGPAltaPaciente_Load;
             ((System.ComponentModel.ISupportInitialize)imgPicBox).EndInit();
             dataTLP.ResumeLayout(false);
             dataTLP.PerformLayout();
@@ -506,7 +542,7 @@
         private TableLayoutPanel contentTLP;
         private PictureBox picLogo;
         private Button btnVolver;
-        private Button btnAsignar;
+        private Button btnDarAlta;
         private TableLayoutPanel menuTLP;
         private TableLayoutPanel mainTLP;
         private Label label7;
@@ -520,7 +556,9 @@
         private TextBox txtDni;
         private TextBox txtApellido;
         private ComboBox cboxObraSocial;
-        private ComboBox cboxFechaNacimiento;
         private ComboBox cboxGenero;
+        private DateTimePicker dateFechaNacimiento;
+        private TextBox txtNroAfiliado;
+        private Label lblNroAfiliado;
     }
 }
