@@ -27,9 +27,9 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
             _Pago = null;
 
-            this.Size = new System.Drawing.Size(600, 400);
-            this.MinimumSize = new System.Drawing.Size(600, 400);
-            this.MaximumSize = new System.Drawing.Size(600, 400);
+            this.Size = new System.Drawing.Size(700, 500);
+            this.MinimumSize = new System.Drawing.Size(700, 500);
+            this.MaximumSize = new System.Drawing.Size(700, 500);
             this.WindowState = FormWindowState.Maximized;
             this.StartPosition = FormStartPosition.CenterScreen;
         }

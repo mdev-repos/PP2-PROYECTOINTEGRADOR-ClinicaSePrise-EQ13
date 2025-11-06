@@ -30,7 +30,7 @@ namespace ClinicaSePriseApp.Entidades
             IdPaciente = idPaciente;
             ObraSocial = obraSocial;
             NumeroAfiliado = numeroAfiliado;
-            HistoriaClinica = new E_HistoriaClinica();
+            HistoriaClinica = new E_HistoriaClinica(idPaciente);
             Reservas = new List<E_Turno>();
             PagosRealizados = new List<E_Pago>();
         }

@@ -8,8 +8,15 @@ namespace ClinicaSePriseApp.Entidades
 {
     public class E_HistoriaClinica
     {
-        public string IdHistoriaClinica { get; set; }
-        public string IdPaciente { get; set; }
+        public int IdHistoriaClinica { get; set; }
+        public int IdPaciente { get; set; }
         public List<E_Entrada> Entradas { get; set; }
+
+        public E_HistoriaClinica(int idPaciente)
+        {
+            IdHistoriaClinica = idPaciente;
+            IdPaciente = idPaciente;
+            Entradas = new List<E_Entrada>();
+        }
     }
 }
