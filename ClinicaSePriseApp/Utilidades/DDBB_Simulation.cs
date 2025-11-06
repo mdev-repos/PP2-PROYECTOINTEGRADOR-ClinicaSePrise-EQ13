@@ -11,16 +11,27 @@ namespace ClinicaSePriseApp.Utilidades
 {
     public static class DDBB_Simulation
     {
-        public static List<E_Administrativo> AdministrativosDB { get; set; } = new List<E_Administrativo>();
-        public static List<E_Profesional> ProfesionalesDB { get; set; } = new List<E_Profesional>();
         public static List<E_Usuario> UsuariosDB { get; set; } = new List<E_Usuario>();
-        public static List<E_Paciente> PacientesDB { get; set; } = new List<E_Paciente>();
+
+        public static List<E_Administrativo> AdministrativosDB { get; set; } = new List<E_Administrativo>();
+
+        public static List<E_Profesional> ProfesionalesDB { get; set; } = new List<E_Profesional>();
+        public static List<E_Disponibilidad> DisponibilidadesDB { get; set; } = new List<E_Disponibilidad>();
+        public static List<E_Liquidacion> LiquidacionesDB { get; set; } = new List<E_Liquidacion>();
+
+
         public static List<E_Turno> TurnosDB { get; set; } = new List<E_Turno>();
-        public static List<E_Insumo> InsumosDB { get; set; } = new List<E_Insumo>();
-        public static List<E_Consultorio> ConsultoriosDB { get; set; } = new List<E_Consultorio>();
+
+
+        public static List<E_Paciente> PacientesDB { get; set; } = new List<E_Paciente>();
+        public static List<E_HistoriaClinica> HistoriasClinicas { get; set; } = new List<E_HistoriaClinica>();
+        public static List<E_Entrada> EntradasDB { get; set; } = new List<E_Entrada>();
         public static List<E_Pago> PagosDB { get; set; } = new List<E_Pago>();
 
-        public static List<E_HistoriaClinica> HistoriasClinicas { get; set; } = new List<E_HistoriaClinica>();
+        public static List<E_Consultorio> ConsultoriosDB { get; set; } = new List<E_Consultorio>();
+        public static List<E_Insumo> InsumosDB { get; set; } = new List<E_Insumo>();
+
+
 
         // CARGA DE DATOS DE PRUEBAS
         public static void InicializarDatosPrueba()
@@ -196,6 +207,44 @@ namespace ClinicaSePriseApp.Utilidades
                 "Casa di galeno",
                 "1177558844",
                 "profesional3@seprise.com");
+
+                // Liquidaciones
+                E_Liquidacion liquidacion3a = new E_Liquidacion(
+                    1,
+                    profesional3.IdProfesional,
+                    new DateOnly(2025, 8, 1),
+                    "Julio",
+                    15000m);
+                profesional3.Liquidaciones.Add(liquidacion3a);
+                LiquidacionesDB.Add(liquidacion3a);
+
+                E_Liquidacion liquidacion3b = new E_Liquidacion(
+                    2,
+                    profesional3.IdProfesional,
+                    new DateOnly(2025, 9, 1),
+                    "Agosto",
+                    20000m);
+                profesional3.Liquidaciones.Add(liquidacion3b);
+                LiquidacionesDB.Add(liquidacion3b);
+
+                E_Liquidacion liquidacion3c = new E_Liquidacion(
+                    3,
+                    profesional3.IdProfesional,
+                    new DateOnly(2025, 10, 1),
+                    "Septiembre",
+                    18000m);
+                profesional3.Liquidaciones.Add(liquidacion3c);
+                LiquidacionesDB.Add(liquidacion3c);
+
+                E_Liquidacion liquidacion3d = new E_Liquidacion(
+                    4,
+                    profesional3.IdProfesional,
+                    new DateOnly(2025, 11, 1),
+                    "Octubre",
+                    22000m);
+                profesional3.Liquidaciones.Add(liquidacion3d);
+                LiquidacionesDB.Add(liquidacion3d);
+
 
             UsuariosDB.Add(userprof3);
             ProfesionalesDB.Add(profesional3);

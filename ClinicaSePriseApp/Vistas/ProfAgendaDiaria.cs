@@ -215,7 +215,7 @@ namespace ClinicaSePriseApp.Vistas
 
             if (resultado == DialogResult.Cancel) return;
 
-            DashProfesional dashProfesional = new DashProfesional();
+            DashProfesional dashProfesional = new DashProfesional(_Profesional);
             this.Hide();
             dashProfesional.FormClosed += (s, args) => this.Close();
             dashProfesional.Show();
