@@ -23,9 +23,9 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         {
             InitializeComponent();
 
-            this.Size = new Size(800, 600);
-            this.MinimumSize = new Size(800, 600);
-            this.MaximumSize = new Size(800, 600);
+            this.Size = new Size(700, 500);
+            this.MinimumSize = new Size(700, 500);
+            this.MaximumSize = new Size(700, 500);
 
             _Profesional = null;
             _Turno = null;
@@ -44,7 +44,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
         private void AplicarEstilos()
         {
-            mainTLP.BackColor = PaletaColores.azulOscuro;
+            mainTLP.BackColor = PaletaColores.azulClaro;
 
             foreach (Control tlp in mainTLP.Controls)
             {               
@@ -107,7 +107,21 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         // BOTONES
         private void btnVerHistoria_Click(object sender, EventArgs e)
         {
+            var paciente = PacienteService.ObtenerPacientePorID(_Turno.IdPaciente);
 
+            if (paciente == null)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "Error al buscar Paciente.",
+                    "Confirmar",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+                return;
+            }
+
+            AuxHistoriaClinica historiaClinica = new AuxHistoriaClinica(paciente);
+            historiaClinica.ShowDialog();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

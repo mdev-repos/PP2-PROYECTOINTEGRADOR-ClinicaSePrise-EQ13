@@ -61,7 +61,7 @@
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.030757F));
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5489F));
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.030757F));
-            mainTLP.Size = new Size(800, 600);
+            mainTLP.Size = new Size(700, 500);
             mainTLP.TabIndex = 1;
             // 
             // lblHistoria
@@ -69,10 +69,10 @@
             lblHistoria.AutoSize = true;
             lblHistoria.Dock = DockStyle.Fill;
             lblHistoria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHistoria.Location = new Point(80, 0);
+            lblHistoria.Location = new Point(70, 0);
             lblHistoria.Margin = new Padding(0);
             lblHistoria.Name = "lblHistoria";
-            lblHistoria.Size = new Size(640, 78);
+            lblHistoria.Size = new Size(560, 65);
             lblHistoria.TabIndex = 1;
             lblHistoria.Text = "Historia Clínica";
             lblHistoria.TextAlign = ContentAlignment.MiddleCenter;
@@ -83,10 +83,10 @@
             lblNombre.AutoSize = true;
             lblNombre.Dock = DockStyle.Fill;
             lblNombre.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNombre.Location = new Point(80, 78);
+            lblNombre.Location = new Point(70, 65);
             lblNombre.Margin = new Padding(0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(640, 78);
+            lblNombre.Size = new Size(560, 65);
             lblNombre.TabIndex = 2;
             lblNombre.Text = "Paciente: ";
             lblNombre.TextAlign = ContentAlignment.MiddleLeft;
@@ -101,33 +101,34 @@
             botonesTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             botonesTLP.Controls.Add(btnCerrar, 1, 0);
             botonesTLP.Dock = DockStyle.Fill;
-            botonesTLP.Location = new Point(80, 493);
+            botonesTLP.Location = new Point(70, 411);
             botonesTLP.Margin = new Padding(0);
             botonesTLP.Name = "botonesTLP";
             botonesTLP.RowCount = 1;
             botonesTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            botonesTLP.Size = new Size(640, 69);
+            botonesTLP.Size = new Size(560, 57);
             botonesTLP.TabIndex = 9;
             // 
             // btnCerrar
             // 
             btnCerrar.Dock = DockStyle.Fill;
-            btnCerrar.Location = new Point(451, 3);
+            btnCerrar.Location = new Point(395, 3);
             btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(186, 63);
+            btnCerrar.Size = new Size(162, 51);
             btnCerrar.TabIndex = 1;
             btnCerrar.Text = "CERRAR";
             btnCerrar.UseVisualStyleBackColor = true;
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // historiaContainerPanel
             // 
             historiaContainerPanel.AutoScroll = true;
             historiaContainerPanel.Controls.Add(entradasTLP);
             historiaContainerPanel.Dock = DockStyle.Fill;
-            historiaContainerPanel.Location = new Point(80, 156);
+            historiaContainerPanel.Location = new Point(70, 130);
             historiaContainerPanel.Margin = new Padding(0);
             historiaContainerPanel.Name = "historiaContainerPanel";
-            historiaContainerPanel.Size = new Size(640, 301);
+            historiaContainerPanel.Size = new Size(560, 251);
             historiaContainerPanel.TabIndex = 10;
             // 
             // entradasTLP
@@ -138,25 +139,25 @@
             entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            entradasTLP.Dock = DockStyle.Fill;
+            entradasTLP.Dock = DockStyle.Top;
             entradasTLP.Location = new Point(0, 0);
             entradasTLP.Margin = new Padding(0);
             entradasTLP.Name = "entradasTLP";
             entradasTLP.RowCount = 1;
             entradasTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            entradasTLP.Size = new Size(640, 301);
+            entradasTLP.Size = new Size(560, 0);
             entradasTLP.TabIndex = 0;
             // 
-            // HistoriaClinica
+            // AuxHistoriaClinica
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 600);
+            ClientSize = new Size(700, 500);
             Controls.Add(mainTLP);
             FormBorderStyle = FormBorderStyle.None;
-            MaximumSize = new Size(800, 600);
-            MinimumSize = new Size(800, 600);
-            Name = "HistoriaClinica";
+            MaximumSize = new Size(700, 500);
+            MinimumSize = new Size(700, 500);
+            Name = "AuxHistoriaClinica";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Consulta Historia Clinica";
             mainTLP.ResumeLayout(false);
