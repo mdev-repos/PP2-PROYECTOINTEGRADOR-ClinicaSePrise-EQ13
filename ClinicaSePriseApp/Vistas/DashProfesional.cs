@@ -1,5 +1,6 @@
 ﻿using ClinicaSePriseApp.Entidades;
 using ClinicaSePriseApp.Utilidades;
+using ClinicaSePriseApp.Vistas.Auxiliares;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -139,6 +140,9 @@ namespace ClinicaSePriseApp.Vistas
             {
                 return;
             }
+
+            AuxCargaGenerica liquidaciones = new AuxCargaGenerica(_Profesional);
+            liquidaciones.ShowDialog();
         }
     
         private void btnLogout_Click(object sender, EventArgs e)
