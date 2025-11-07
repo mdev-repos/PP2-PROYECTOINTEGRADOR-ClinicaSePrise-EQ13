@@ -51,52 +51,138 @@ namespace ClinicaSePriseApp.Vistas
             }            
         }
 
+        // Form
+        private void AdmGTDetalleTurno_Load(object sender, EventArgs e)
+        {
+            ajustarPaneles();
+
+            pacienteDniTxt.ImeMode = ImeMode.Off;
+            pacienteDniTxt.MaxLength = 8;
+            pacienteDniTxt.KeyPress += (s, e) =>
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                    e.Handled = true;
+            };
+        }
+
+        private void AdmGestionTurnos_Resize(object sender, EventArgs e)
+        {
+            ajustarPaneles();
+        }
+
+
+        // Estilos Visuales
+        private void ajustarPaneles()
+        {
+            mainTLP.BackColor = PaletaColores.celeste;
+            menuTLP.BackColor = PaletaColores.bgGris;
+            contentLbl.BackColor = PaletaColores.bgGris;
+
+            foreach (Control boton in menuTLP.Controls)
+            {
+                boton.Dock = DockStyle.Fill;
+
+                if (boton == btnVolver)
+                {
+                    boton.BackColor = PaletaColores.rosa;
+                }
+                else if (boton == picLogo)
+                {
+                    boton.BackColor = Color.Transparent;
+                }
+                else
+                {
+                    boton.BackColor = PaletaColores.azulOscuro;
+                }
+
+                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+                boton.ForeColor = Color.White;
+            }
+
+            lblTurno.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblTurno.ForeColor = PaletaColores.azulOscuro;
+
+            lblPaciente.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            lblPaciente.ForeColor = PaletaColores.azulOscuro;
+
+            pacienteDniTxt.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            pacienteDniTxt.ForeColor = PaletaColores.azulOscuro;
+        }
+        private void ActualizarInterfazDespuesDePago()
+        {
+            _turnoSeleccionado = TurnoService.ObtenerTurnoPorID(_turnoSeleccionado.IdTurno);
+
+            string estadoMostrar = EnumHelper.GetDescription(_turnoSeleccionado.Estado);
+            lblTurnoEstado.Text = $"ESTADO: {estadoMostrar}";
+
+            btnAbonar.Enabled = false;
+            btnCancelar.Enabled = false;
+            btnAsignar.Enabled = false;
+        }
+
+
+        // Carga de Datos
         private void CargarDatosTurno(E_Turno turno)
-        {          
+        {
             // Fecha y Hora
             string fechaMostrar = FormatearFechaEspanol(turno.FechaTurno);
             lblTurnoDia.Text = $"FECHA: {fechaMostrar}";
-            
+
             // Profesional
             var profesional = ProfesionalService.ObtenerProfesionalPorID(turno.IdProfesional);
             string profesionalMostrar = profesional?.NombreCompleto ?? "No encontrado";
             lblTurnoProf.Text = $"MEDICO: DR. {profesionalMostrar}";
-            
+
             // Especialidad 
             string especialidadMostrar = profesional != null ?
                     EnumHelper.GetDescription(profesional.Especialidad) :
                 "No encontrada";
             lblTurnoEsp.Text = $"ESPECIALIDAD: {especialidadMostrar}";
-            
+
             // Estado Turno
             string estadoMostrar = EnumHelper.GetDescription(turno.Estado);
             lblTurnoEstado.Text = $"ESTADO: {estadoMostrar}";
-            
+
             // Monto
             string montoMostrar = turno.Monto.ToString("C2");
             lblTurnoValor.Text = $"VALOR A ABONAR: {montoMostrar}";
+
+            btnAsignar.Enabled = (turno.Estado == Entidades.Enums.EstadoTurno.DISPONIBLE);
+            btnCancelar.Enabled = (turno.Estado == Entidades.Enums.EstadoTurno.ASIGNADO);
+            btnAbonar.Enabled = (turno.Estado == Entidades.Enums.EstadoTurno.ASIGNADO);
                         
-            // Si el turno ya esta asignado, cargar datos del paciente
-            if (turno.IdPaciente != null)
+            if (turno.IdPaciente != null &&
+                (turno.Estado == Entidades.Enums.EstadoTurno.ASIGNADO ||
+                 turno.Estado == Entidades.Enums.EstadoTurno.ABONADO ||
+                 turno.Estado == Entidades.Enums.EstadoTurno.EN_ATENCION ||
+                 turno.Estado == Entidades.Enums.EstadoTurno.FINALIZADO))
             {
-                btnAsignar.Enabled = false;
                 pacienteDniTxt.ReadOnly = true;
                 dniSearchBtn.Enabled = false;
 
-                // Buscar paciente en BBDD
                 var paciente = PacienteService.ObtenerPacientePorID(turno.IdPaciente.Value);
 
                 if (paciente != null)
                 {
                     CargarDatosDelPaciente(paciente);
                 }
+                else
+                {
+                    VaciarDatosDelPaciente();
+                    lblPacienteNombre.Text = "PACIENTE NO ENCONTRADO";
+                }
             }
             else
             {
                 VaciarDatosDelPaciente();
-                btnAsignar.Enabled = true;
-                btnCancelar.Enabled = false;
-                btnAbonar.Enabled = false;
+                pacienteDniTxt.ReadOnly = false;
+                dniSearchBtn.Enabled = true;
+
+                if (turno.Estado == Entidades.Enums.EstadoTurno.DISPONIBLE)
+                {
+                    pacienteDniTxt.Text = "";
+                    pacienteDniTxt.PlaceholderText = "Ingrese DNI del paciente";
+                }
             }
         }
 
@@ -164,6 +250,8 @@ namespace ClinicaSePriseApp.Vistas
             lblDireccion.Text = string.Empty;
         }
 
+
+        // Metodos Auxiliares
         private string FormatearFechaEspanol(DateTime fecha)
         {
             var cultureEs = new System.Globalization.CultureInfo("es-ES");
@@ -189,63 +277,7 @@ namespace ClinicaSePriseApp.Vistas
         }
 
 
-        private void AdmGTDetalleTurno_Load(object sender, EventArgs e)
-        {
-            ajustarPaneles();
-
-            pacienteDniTxt.ImeMode = ImeMode.Off;
-            pacienteDniTxt.MaxLength = 8;
-            pacienteDniTxt.KeyPress += (s, e) =>
-            {
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-                    e.Handled = true;
-            };
-        }
-
-        private void AdmGestionTurnos_Resize(object sender, EventArgs e)
-        {
-            ajustarPaneles();
-        }
-
-        private void ajustarPaneles()
-        {
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
-            contentLbl.BackColor = PaletaColores.bgGris;
-
-            foreach (Control boton in menuTLP.Controls)
-            {
-                boton.Dock = DockStyle.Fill;
-
-                if (boton == btnVolver)
-                {
-                    boton.BackColor = PaletaColores.rosa;
-                }
-                else if (boton == picLogo)
-                {
-                    boton.BackColor = Color.Transparent;
-                }
-                else
-                {
-                    boton.BackColor = PaletaColores.azulOscuro;
-                }
-
-                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
-                boton.ForeColor = Color.Transparent;
-            }           
-                
-            lblTurno.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
-            lblTurno.ForeColor = PaletaColores.azulOscuro;
-
-            lblPaciente.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
-            lblPaciente.ForeColor = PaletaColores.azulOscuro;
-
-            pacienteDniTxt.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
-            pacienteDniTxt.ForeColor = PaletaColores.azulOscuro;
-        }
-
-
-        // BOTONES
+        // Botones
         private void btnAsignar_Click(object sender, EventArgs e)
         {
             string dniTexto = pacienteDniTxt.Text;
@@ -348,17 +380,14 @@ namespace ClinicaSePriseApp.Vistas
             if (turno.IdPaciente != null && turno.Estado == Entidades.Enums.EstadoTurno.ASIGNADO)
             {
                 DialogResult resultado = MessageBox.Show(
-                    "Si continúa, se procedera al pago del turno indicado",
+                    "Si continúa, se procederá al pago del turno indicado",
                     "Confirmar",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2
                 );
 
-                if (resultado == DialogResult.Cancel)
-                {
-                    return;
-                }
+                if (resultado == DialogResult.Cancel) return;
 
                 var paciente = PacienteService.ObtenerPacientePorID(turno.IdPaciente);
 
@@ -368,8 +397,20 @@ namespace ClinicaSePriseApp.Vistas
                     turno.IdTurno,
                     turno.Monto);
 
-                AuxPagoTurno pagoTurno = new AuxPagoTurno(pago);                
-                pagoTurno.ShowDialog();
+                using (AuxPagoTurno pagoTurno = new AuxPagoTurno(pago))
+                {
+                    if (pagoTurno.ShowDialog() == DialogResult.OK)
+                    {
+                        ActualizarInterfazDespuesDePago();
+                        MessageBox.Show("✅ Pago realizado exitosamente. El turno ha sido abonado.",
+                                      "Pago Confirmado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El pago no se realizó. El turno permanece en estado 'Asignado'.",
+                                      "Pago Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
             }
         }
 

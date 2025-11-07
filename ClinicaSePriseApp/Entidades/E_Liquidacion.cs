@@ -4,9 +4,19 @@ namespace ClinicaSePriseApp.Entidades
 {
     public class E_Liquidacion
     {
-        public string IdLiquidacion { get; set; }
-        public string IdProfesional { get; set; }
-        public string Periodo { get; set; }
-        public float Monto { get; set; }
+        public int IdLiquidacion { get; set; }
+        public int IdProfesional { get; set; }
+        public DateOnly FechaLiquidacion { get; set; }
+        public string PeriodoLiquidado { get; set; }
+        public decimal Monto { get; set; }
+
+        public E_Liquidacion(int id, int profesional, DateOnly fecha, string periodo, decimal monto)
+        {
+            IdLiquidacion = id;
+            IdProfesional = profesional;
+            FechaLiquidacion = fecha;
+            PeriodoLiquidado = periodo;
+            Monto = monto;
+        }
     }
 }

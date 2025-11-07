@@ -73,6 +73,16 @@ namespace ClinicaSePriseApp.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_descargar {
+            get {
+                object obj = ResourceManager.GetObject("icon_descargar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_editar {
             get {
                 object obj = ResourceManager.GetObject("icon_editar", resourceCulture);

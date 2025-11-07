@@ -65,7 +65,7 @@
             containerTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 21F));
             containerTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             containerTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
-            containerTLP.Size = new Size(600, 400);
+            containerTLP.Size = new Size(700, 500);
             containerTLP.TabIndex = 0;
             // 
             // lblTitulo
@@ -73,10 +73,10 @@
             lblTitulo.AutoSize = true;
             lblTitulo.Dock = DockStyle.Fill;
             lblTitulo.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(0, 16);
+            lblTitulo.Location = new Point(0, 20);
             lblTitulo.Margin = new Padding(0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(600, 48);
+            lblTitulo.Size = new Size(700, 60);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "PROCESAR PAGO";
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
@@ -86,10 +86,10 @@
             lblSeleccion.AutoSize = true;
             lblSeleccion.Dock = DockStyle.Fill;
             lblSeleccion.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSeleccion.Location = new Point(0, 108);
+            lblSeleccion.Location = new Point(0, 135);
             lblSeleccion.Margin = new Padding(0);
             lblSeleccion.Name = "lblSeleccion";
-            lblSeleccion.Size = new Size(600, 48);
+            lblSeleccion.Size = new Size(700, 60);
             lblSeleccion.TabIndex = 1;
             lblSeleccion.Text = "SELECCIONAR MEDIO DE PAGO";
             lblSeleccion.TextAlign = ContentAlignment.MiddleCenter;
@@ -102,22 +102,22 @@
             cboxTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333359F));
             cboxTLP.Controls.Add(cboxMedioPago, 1, 0);
             cboxTLP.Dock = DockStyle.Fill;
-            cboxTLP.Location = new Point(0, 184);
+            cboxTLP.Location = new Point(0, 230);
             cboxTLP.Margin = new Padding(0);
             cboxTLP.Name = "cboxTLP";
             cboxTLP.RowCount = 1;
             cboxTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            cboxTLP.Size = new Size(600, 48);
+            cboxTLP.Size = new Size(700, 60);
             cboxTLP.TabIndex = 2;
             // 
             // cboxMedioPago
             // 
             cboxMedioPago.Dock = DockStyle.Fill;
             cboxMedioPago.FormattingEnabled = true;
-            cboxMedioPago.Location = new Point(200, 0);
+            cboxMedioPago.Location = new Point(233, 0);
             cboxMedioPago.Margin = new Padding(0);
             cboxMedioPago.Name = "cboxMedioPago";
-            cboxMedioPago.Size = new Size(200, 28);
+            cboxMedioPago.Size = new Size(233, 28);
             cboxMedioPago.TabIndex = 3;
             // 
             // buttonsTLP
@@ -134,20 +134,20 @@
             buttonsTLP.Controls.Add(btnConfirmar, 3, 0);
             buttonsTLP.Controls.Add(btnImprimir, 5, 0);
             buttonsTLP.Dock = DockStyle.Fill;
-            buttonsTLP.Location = new Point(0, 316);
+            buttonsTLP.Location = new Point(0, 395);
             buttonsTLP.Margin = new Padding(0);
             buttonsTLP.Name = "buttonsTLP";
             buttonsTLP.RowCount = 1;
             buttonsTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            buttonsTLP.Size = new Size(600, 60);
+            buttonsTLP.Size = new Size(700, 75);
             buttonsTLP.TabIndex = 3;
             // 
             // btnCancelar
             // 
             btnCancelar.Dock = DockStyle.Fill;
-            btnCancelar.Location = new Point(27, 3);
+            btnCancelar.Location = new Point(31, 3);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(144, 54);
+            btnCancelar.Size = new Size(169, 69);
             btnCancelar.TabIndex = 0;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -156,9 +156,9 @@
             // btnConfirmar
             // 
             btnConfirmar.Dock = DockStyle.Fill;
-            btnConfirmar.Location = new Point(201, 3);
+            btnConfirmar.Location = new Point(234, 3);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(144, 54);
+            btnConfirmar.Size = new Size(169, 69);
             btnConfirmar.TabIndex = 1;
             btnConfirmar.Text = "CONFIRMAR";
             btnConfirmar.UseVisualStyleBackColor = true;
@@ -167,25 +167,25 @@
             // btnImprimir
             // 
             btnImprimir.Dock = DockStyle.Fill;
-            btnImprimir.Location = new Point(429, 3);
+            btnImprimir.Location = new Point(500, 3);
             btnImprimir.Name = "btnImprimir";
-            btnImprimir.Size = new Size(144, 54);
+            btnImprimir.Size = new Size(169, 69);
             btnImprimir.TabIndex = 2;
             btnImprimir.Text = "IMPRIMIR";
             btnImprimir.UseVisualStyleBackColor = true;
             btnImprimir.Click += btnImprimir_Click;
             // 
-            // PagoTurno
+            // AuxPagoTurno
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(600, 400);
+            ClientSize = new Size(700, 500);
             Controls.Add(containerTLP);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MaximumSize = new Size(600, 400);
-            MinimumSize = new Size(600, 400);
-            Name = "PagoTurno";
+            MaximumSize = new Size(700, 500);
+            MinimumSize = new Size(700, 500);
+            Name = "AuxPagoTurno";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Pago de Turno";
             containerTLP.ResumeLayout(false);
