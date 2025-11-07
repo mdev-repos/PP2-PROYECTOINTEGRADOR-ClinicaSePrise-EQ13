@@ -111,19 +111,19 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             {
                 container.Page(page =>
                 {
-                    page.Size(PageSizes.A4);
-                    page.Margin(2, Unit.Centimetre);
+                    page.Size(PageSizes.A5);
+                    page.Margin(1.5f, Unit.Centimetre);
 
-                    page.Header().AlignCenter().Text("CLÍNICA SEPRISE").Bold().FontSize(16);
+                    page.Header().AlignCenter().Text("CLÍNICA SEPRISE").Bold().FontSize(14);
 
-                    page.Content().PaddingTop(30).Column(column =>
+                    page.Content().PaddingTop(20).Column(column =>
                     {
-                        column.Spacing(15);
+                        column.Spacing(10);
 
                         column.Item().Background(Colors.Grey.Lighten3).Padding(10).Column(turnoColumn =>
                         {
                             turnoColumn.Spacing(5);
-                            turnoColumn.Item().PaddingBottom(10).Text("DETALLE DEL TURNO").Bold().FontSize(14);
+                            turnoColumn.Item().PaddingBottom(10).Text("DETALLE DEL TURNO").Bold().FontSize(10);
                             turnoColumn.Item().PaddingLeft(20).Text($"Fecha de Turno: {turno.FechaTurno:dd/MM/yyyy}");
                             turnoColumn.Item().PaddingLeft(20).Text($"Hora: {turno.FechaTurno:HH:mm}");
                             turnoColumn.Item().PaddingLeft(20).Text($"Profesional: Dr. {profesional.NombreCompleto}");
@@ -135,7 +135,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                         column.Item().Background(Colors.Grey.Lighten3).Padding(10).Column(pagoColumn =>
                         {
                             pagoColumn.Spacing(5);
-                            pagoColumn.Item().PaddingBottom(10).Text("COMPROBANTE DE PAGO").Bold().FontSize(14);
+                            pagoColumn.Item().PaddingBottom(10).Text("COMPROBANTE DE PAGO").Bold().FontSize(10);
                             pagoColumn.Item().PaddingLeft(20).Text($"Código de Pago: {pago.IdPago}");
                             pagoColumn.Item().PaddingLeft(20).Text($"Fecha de Pago: {pago.FechaPago:dd/MM/yyyy}");
                             pagoColumn.Item().PaddingLeft(20).Text($"Monto: ${pago.Monto}");
@@ -147,9 +147,17 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
                     page.Footer().AlignCenter().Column(footerColumn =>
                     {
-                        footerColumn.Item().AlignCenter().Text("¡Gracias por su pago!").Bold();
-                        footerColumn.Item().PaddingTop(10).LineHorizontal(1);
-                        footerColumn.Item().AlignCenter().PaddingTop(10).Text("Clínica SePrise - Sistema de Gestión").FontSize(10);
+                        byte[] logoBytes;
+                        using (var stream = new System.IO.MemoryStream())
+                        {
+                            Properties.Resources.SePrise_logoApp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                            logoBytes = stream.ToArray();
+                        }
+
+                        footerColumn.Item().AlignCenter().Height(100).Image(logoBytes);
+                        footerColumn.Item().AlignCenter().PaddingTop(5).Text("Clínica SePrise - Sistema de Gestión").FontSize(8);
+                        footerColumn.Item().PaddingTop(10).LineHorizontal(0.5f);
+                        footerColumn.Item().AlignCenter().PaddingTop(10).Text("Documento generado automáticamente").FontSize(7).Italic();
                     });
                 });
             }).GeneratePdf(filePath);
@@ -159,7 +167,20 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         // Botones
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea cancelar el pago?\n\n" +
+                "El turno no será abonado y se mantendrá en estado 'Asignado'.",
+                "Cancelar Pago",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -174,6 +195,19 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 return;
             }
 
+            DialogResult confirmacion = MessageBox.Show(
+                $"¿Está seguro que desea confirmar el pago?\n\n" +
+                $"Método: {seleccion}\n" +
+                $"Monto: ${_Pago.Monto}\n\n" +
+                $"⚠️ Esta acción no se puede deshacer",
+                "Confirmar Pago",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
+            );
+
+            if (confirmacion == DialogResult.No) return;
+
             try
             {
                 DateOnly diaPago = DateOnly.FromDateTime(DateTime.Now);
@@ -181,12 +215,12 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 PagoService.RealizarPago(_Pago, diaPago, medioSeleccionado.Value);
 
                 var paciente = PacienteService.ObtenerPacientePorID(_Pago.IdPaciente);
-
                 var turno = TurnoService.ObtenerTurnoPorID(_Pago.IdTurno);
 
                 if (paciente != null)
                 {
                     PacienteService.AgregarPago(paciente, _Pago);
+                    turno.Estado = EstadoTurno.ABONADO;
 
                     MessageBox.Show("¡Pago registrado correctamente!", "Éxito",
                                   MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -194,8 +228,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                     btnImprimir.Enabled = true;
                     btnCancelar.Enabled = false;
                     btnConfirmar.Enabled = false;
-
-                    turno.Estado = EstadoTurno.ABONADO;
+                    cboxMedioPago.Enabled = false;
                 }
                 else
                 {
@@ -217,7 +250,9 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 using (SaveFileDialog saveDialog = new SaveFileDialog())
                 {
                     saveDialog.Filter = "PDF files (*.pdf)|*.pdf";
-                    saveDialog.FileName = $"Comprobante_Pago_{_Pago.IdPago}_{DateTime.Now:yyyyMMdd}.pdf";
+                    var paciente = PacienteService.ObtenerPacientePorID(_Pago.IdPaciente);
+
+                    saveDialog.FileName = $"Comprobante_Pago_ID{_Pago.IdPago}_{paciente.NombreCompleto}_{DateTime.Now:yyyyMMdd}.pdf";
 
                     if (saveDialog.ShowDialog() == DialogResult.OK)
                     {
@@ -226,6 +261,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                         MessageBox.Show($"Comprobante generado exitosamente:\n{saveDialog.FileName}",
                                       "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        this.DialogResult = DialogResult.OK;
                         this.Close();
                     }
                 }

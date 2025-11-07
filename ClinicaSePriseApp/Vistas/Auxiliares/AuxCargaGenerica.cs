@@ -63,6 +63,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             AjustarMargenScroll();
         }
 
+        // Estilos Visuales
         private void AplicarEstilosLiquidaciones()
         {
             mainTLP.BackColor = PaletaColores.azulClaro;
@@ -82,6 +83,8 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             }
         }
 
+
+        // Carga de Datos
         private void CargarLiquidaciones()
         {
             if (_Profesional == null)
@@ -99,7 +102,6 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             lblNombre.Text = $"Profesional: {_Profesional.NombreCompleto}";
             CargarRecibos();
         }
-
         private void CargarRecibos()
         {
             if (_Profesional == null) return;
@@ -141,7 +143,6 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
             AjustarMargenScroll();
         }
-
         private void AgregarHeaderLiquidaciones(int fila)
         {
             Label lblHeaderFecha = new Label();
@@ -181,7 +182,6 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             dataTLP.Controls.Add(lblHeaderMonto, 2, fila);
             dataTLP.Controls.Add(lblHeaderDescargar, 3, fila);
         }
-
         private void AgregarFilaLiquidacion(E_Liquidacion liquidacion, int fila)
         {
             System.Drawing.Color colorFondo = fila % 2 == 0 ? PaletaColores.azulClaro : PaletaColores.celeste;
@@ -229,6 +229,8 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             dataTLP.Controls.Add(btnDescargar, 3, fila);
         }
 
+
+        // Metodos Auxiliares
         private void DescargarComprobanteLiquidacion(E_Liquidacion liquidacion)
         {
             try
@@ -253,7 +255,6 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void GenerarComprobanteLiquidacion(E_Liquidacion liquidacion, string filePath)
         {
             Document.Create(container =>
@@ -315,11 +316,15 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 });
             }).GeneratePdf(filePath);
         }
-
+        
+        
+        // Botones        
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+
 
         // PARA CARGA DE TURNOS (PACIENTE)
         private E_Paciente _Paciente;

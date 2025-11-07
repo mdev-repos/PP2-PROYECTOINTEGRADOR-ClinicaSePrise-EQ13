@@ -39,19 +39,23 @@
             btnFiltros = new Button();
             contentTLP = new TableLayoutPanel();
             contentLbl = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            filtrosTLP = new TableLayoutPanel();
+            cbEspecialidad = new CheckBox();
             especialidadCbx = new ComboBox();
+            cbFecha = new CheckBox();
+            dtpTurnos = new DateTimePicker();
+            cbEstado = new CheckBox();
+            estadoCbx = new ComboBox();
+            cbProfesional = new CheckBox();
             profesionalCbx = new ComboBox();
             profesionalBindingSource = new BindingSource(components);
-            estadoCbx = new ComboBox();
-            dtpTurnos = new DateTimePicker();
             dataGridTLP = new TableLayoutPanel();
             turnosDgv = new DataGridView();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             contentTLP.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
+            filtrosTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)profesionalBindingSource).BeginInit();
             dataGridTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)turnosDgv).BeginInit();
@@ -174,7 +178,7 @@
             contentTLP.ColumnCount = 1;
             contentTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             contentTLP.Controls.Add(contentLbl, 0, 1);
-            contentTLP.Controls.Add(tableLayoutPanel1, 0, 2);
+            contentTLP.Controls.Add(filtrosTLP, 0, 2);
             contentTLP.Controls.Add(dataGridTLP, 0, 3);
             contentTLP.Dock = DockStyle.Fill;
             contentTLP.Location = new Point(0, 0);
@@ -202,73 +206,131 @@
             contentLbl.Text = "      GESTION DE TURNOS";
             contentLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // tableLayoutPanel1
+            // filtrosTLP
             // 
-            tableLayoutPanel1.ColumnCount = 6;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.5F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            tableLayoutPanel1.Controls.Add(especialidadCbx, 2, 0);
-            tableLayoutPanel1.Controls.Add(profesionalCbx, 3, 0);
-            tableLayoutPanel1.Controls.Add(estadoCbx, 4, 0);
-            tableLayoutPanel1.Controls.Add(dtpTurnos, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 157);
-            tableLayoutPanel1.Margin = new Padding(0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(1443, 105);
-            tableLayoutPanel1.TabIndex = 1;
+            filtrosTLP.ColumnCount = 7;
+            filtrosTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            filtrosTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            filtrosTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+            filtrosTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            filtrosTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            filtrosTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
+            filtrosTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            filtrosTLP.Controls.Add(cbEspecialidad, 1, 2);
+            filtrosTLP.Controls.Add(especialidadCbx, 2, 2);
+            filtrosTLP.Controls.Add(cbFecha, 1, 1);
+            filtrosTLP.Controls.Add(dtpTurnos, 2, 1);
+            filtrosTLP.Controls.Add(cbEstado, 4, 2);
+            filtrosTLP.Controls.Add(estadoCbx, 5, 2);
+            filtrosTLP.Controls.Add(cbProfesional, 4, 1);
+            filtrosTLP.Controls.Add(profesionalCbx, 5, 1);
+            filtrosTLP.Dock = DockStyle.Fill;
+            filtrosTLP.Location = new Point(0, 157);
+            filtrosTLP.Margin = new Padding(0);
+            filtrosTLP.Name = "filtrosTLP";
+            filtrosTLP.RowCount = 3;
+            filtrosTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            filtrosTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
+            filtrosTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
+            filtrosTLP.Size = new Size(1443, 105);
+            filtrosTLP.TabIndex = 1;
+            // 
+            // cbEspecialidad
+            // 
+            cbEspecialidad.CheckAlign = ContentAlignment.MiddleCenter;
+            cbEspecialidad.Dock = DockStyle.Fill;
+            cbEspecialidad.ImageAlign = ContentAlignment.TopLeft;
+            cbEspecialidad.Location = new Point(75, 60);
+            cbEspecialidad.Name = "cbEspecialidad";
+            cbEspecialidad.Size = new Size(66, 42);
+            cbEspecialidad.TabIndex = 9;
+            cbEspecialidad.TextAlign = ContentAlignment.TopLeft;
+            cbEspecialidad.UseVisualStyleBackColor = true;
             // 
             // especialidadCbx
             // 
-            especialidadCbx.Anchor = AnchorStyles.None;
+            especialidadCbx.Dock = DockStyle.Fill;
             especialidadCbx.Font = new Font("LEMON MILK", 7.8F);
             especialidadCbx.FormattingEnabled = true;
-            especialidadCbx.Location = new Point(403, 39);
+            especialidadCbx.Location = new Point(147, 67);
+            especialidadCbx.Margin = new Padding(3, 10, 3, 3);
             especialidadCbx.Name = "especialidadCbx";
-            especialidadCbx.Size = new Size(310, 27);
+            especialidadCbx.Size = new Size(499, 27);
             especialidadCbx.TabIndex = 4;
+            // 
+            // cbFecha
+            // 
+            cbFecha.CheckAlign = ContentAlignment.MiddleCenter;
+            cbFecha.Dock = DockStyle.Fill;
+            cbFecha.ImageAlign = ContentAlignment.TopLeft;
+            cbFecha.Location = new Point(75, 13);
+            cbFecha.Name = "cbFecha";
+            cbFecha.Size = new Size(66, 41);
+            cbFecha.TabIndex = 8;
+            cbFecha.TextAlign = ContentAlignment.TopLeft;
+            cbFecha.UseVisualStyleBackColor = true;
+            // 
+            // dtpTurnos
+            // 
+            dtpTurnos.Dock = DockStyle.Fill;
+            dtpTurnos.Font = new Font("LEMON MILK", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpTurnos.Location = new Point(147, 20);
+            dtpTurnos.Margin = new Padding(3, 10, 3, 3);
+            dtpTurnos.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
+            dtpTurnos.Name = "dtpTurnos";
+            dtpTurnos.Size = new Size(499, 25);
+            dtpTurnos.TabIndex = 7;
+            // 
+            // cbEstado
+            // 
+            cbEstado.CheckAlign = ContentAlignment.MiddleCenter;
+            cbEstado.Dock = DockStyle.Fill;
+            cbEstado.ImageAlign = ContentAlignment.TopLeft;
+            cbEstado.Location = new Point(796, 60);
+            cbEstado.Name = "cbEstado";
+            cbEstado.Size = new Size(66, 42);
+            cbEstado.TabIndex = 11;
+            cbEstado.TextAlign = ContentAlignment.TopLeft;
+            cbEstado.UseVisualStyleBackColor = true;
+            // 
+            // estadoCbx
+            // 
+            estadoCbx.Dock = DockStyle.Fill;
+            estadoCbx.Font = new Font("LEMON MILK", 7.8F);
+            estadoCbx.FormattingEnabled = true;
+            estadoCbx.Location = new Point(868, 67);
+            estadoCbx.Margin = new Padding(3, 10, 3, 3);
+            estadoCbx.Name = "estadoCbx";
+            estadoCbx.Size = new Size(499, 27);
+            estadoCbx.TabIndex = 6;
+            // 
+            // cbProfesional
+            // 
+            cbProfesional.CheckAlign = ContentAlignment.MiddleCenter;
+            cbProfesional.Dock = DockStyle.Fill;
+            cbProfesional.ImageAlign = ContentAlignment.TopLeft;
+            cbProfesional.Location = new Point(796, 13);
+            cbProfesional.Name = "cbProfesional";
+            cbProfesional.Size = new Size(66, 41);
+            cbProfesional.TabIndex = 10;
+            cbProfesional.TextAlign = ContentAlignment.TopLeft;
+            cbProfesional.UseVisualStyleBackColor = true;
             // 
             // profesionalCbx
             // 
-            profesionalCbx.Anchor = AnchorStyles.None;
             profesionalCbx.DataSource = profesionalBindingSource;
+            profesionalCbx.Dock = DockStyle.Fill;
             profesionalCbx.Font = new Font("LEMON MILK", 7.8F);
             profesionalCbx.FormattingEnabled = true;
-            profesionalCbx.Location = new Point(727, 39);
+            profesionalCbx.Location = new Point(868, 20);
+            profesionalCbx.Margin = new Padding(3, 10, 3, 3);
             profesionalCbx.Name = "profesionalCbx";
-            profesionalCbx.Size = new Size(310, 27);
+            profesionalCbx.Size = new Size(499, 27);
             profesionalCbx.TabIndex = 5;
             // 
             // profesionalBindingSource
             // 
             profesionalBindingSource.DataSource = typeof(Entidades.E_Profesional);
-            // 
-            // estadoCbx
-            // 
-            estadoCbx.Anchor = AnchorStyles.None;
-            estadoCbx.Font = new Font("LEMON MILK", 7.8F);
-            estadoCbx.FormattingEnabled = true;
-            estadoCbx.Location = new Point(1051, 39);
-            estadoCbx.Name = "estadoCbx";
-            estadoCbx.Size = new Size(310, 27);
-            estadoCbx.TabIndex = 6;
-            // 
-            // dtpTurnos
-            // 
-            dtpTurnos.Anchor = AnchorStyles.None;
-            dtpTurnos.Font = new Font("LEMON MILK", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpTurnos.Location = new Point(79, 40);
-            dtpTurnos.MinDate = new DateTime(2025, 10, 30, 0, 0, 0, 0);
-            dtpTurnos.Name = "dtpTurnos";
-            dtpTurnos.Size = new Size(310, 25);
-            dtpTurnos.TabIndex = 7;
             // 
             // dataGridTLP
             // 
@@ -290,11 +352,11 @@
             // 
             turnosDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             turnosDgv.Dock = DockStyle.Fill;
-            turnosDgv.Location = new Point(72, 0);
-            turnosDgv.Margin = new Padding(0, 0, 0, 50);
+            turnosDgv.Location = new Point(72, 15);
+            turnosDgv.Margin = new Padding(0, 15, 0, 15);
             turnosDgv.Name = "turnosDgv";
             turnosDgv.RowHeadersWidth = 51;
-            turnosDgv.Size = new Size(1298, 743);
+            turnosDgv.Size = new Size(1298, 763);
             turnosDgv.TabIndex = 7;
             // 
             // AdmGestionTurnos
@@ -317,7 +379,7 @@
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             contentTLP.ResumeLayout(false);
             contentTLP.PerformLayout();
-            tableLayoutPanel1.ResumeLayout(false);
+            filtrosTLP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)profesionalBindingSource).EndInit();
             dataGridTLP.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)turnosDgv).EndInit();
@@ -334,7 +396,7 @@
         private Button btnVolver;
         private TableLayoutPanel contentTLP;
         private Label contentLbl;
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel filtrosTLP;
         private ComboBox especialidadCbx;
         private ComboBox profesionalCbx;
         private ComboBox estadoCbx;
@@ -343,5 +405,9 @@
         private BindingSource profesionalBindingSource;
         private DateTimePicker dtpTurnos;
         private Button btnFiltros;
+        private CheckBox cbFecha;
+        private CheckBox cbEspecialidad;
+        private CheckBox cbProfesional;
+        private CheckBox cbEstado;
     }
 }

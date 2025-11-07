@@ -217,7 +217,7 @@
             contentLbl.Name = "contentLbl";
             contentLbl.Size = new Size(756, 72);
             contentLbl.TabIndex = 0;
-            contentLbl.Text = "DETALLE DE TURNO";
+            contentLbl.Text = "    DETALLE DE TURNO";
             contentLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // viewTLP

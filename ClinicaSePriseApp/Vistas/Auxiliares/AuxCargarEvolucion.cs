@@ -57,6 +57,10 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 btnConfirmar.BackColor = PaletaColores.azulOscuro;
                 btnConfirmar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
             }
+
+            txtMotivo.ForeColor = PaletaColores.azulOscuro;
+            txtDiagnostico.ForeColor = PaletaColores.azulOscuro;
+            txtObservaciones.ForeColor = PaletaColores.azulOscuro;
         }
 
         private void CargarDatos()
@@ -76,11 +80,14 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             var fecha = DateOnly.FromDateTime(DateTime.Now);
             lblFechaNombre.Text = $"{fecha} | {_Paciente.NombreCompleto}";
 
-            txtboxObservaciones.PlaceholderText = "Ingrese las observaciones de la evolución aquí...";
+            txtMotivo.PlaceholderText = "Ingrese el motivo de la consulta aquí...";
+            txtDiagnostico.PlaceholderText = "Ingrese su diagnóstico aquí...";
+            txtObservaciones.PlaceholderText = "Ingrese sus observaciones aquí...";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -88,38 +95,64 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         {
             if (_Paciente == null)
             {
-                DialogResult confirmacion = MessageBox.Show(
-                    "Esta seguro que desea cargar la evolución de esta consulta?" +
-                    "Esta acción no puede deshacerse.",
-                    "Advertencia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
+                MessageBox.Show("Error: No se encontró el paciente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.DialogResult = DialogResult.Cancel;
                 this.Close();
                 return;
             }
 
-            var entradaNueva = txtboxObservaciones.Text.Trim();
+            // Validar que haya datos
+            if (string.IsNullOrWhiteSpace(txtMotivo.Text) &&
+                string.IsNullOrWhiteSpace(txtDiagnostico.Text) &&
+                string.IsNullOrWhiteSpace(txtObservaciones.Text))
+            {
+                MessageBox.Show("Debe completar al menos un campo para cargar la evolución.", "Advertencia",
+                               MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            E_Entrada evolucion = new E_Entrada(
-                DDBB_Simulation.EntradasDB.Count + 1,
-                idHistoria: _Paciente.HistoriaClinica.IdHistoriaClinica,
-                idProfesional: _Profesional.IdProfesional,
-                observaciones: entradaNueva,
-                fecha: DateTime.Now
+            DialogResult confirmacion = MessageBox.Show(
+                $"¿Está seguro que desea cargar la evolución del Paciente {_Paciente.NombreCompleto}?\n\n" +
+                "✅ Se guardará en la historia clínica\n" +
+                "✅ El turno se marcará como finalizado\n" +
+                "✅ Esta acción no puede deshacerse",
+                "Confirmar Evolución",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
             );
 
-            _Paciente.HistoriaClinica.Entradas.Add(evolucion);
+            if (confirmacion == DialogResult.No) return;
 
-            DialogResult resultado = MessageBox.Show(
-                    "Evolución cargada con exito.",
-                    "Advertencia",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
+            try
+            {
+                var motivo = txtMotivo.Text.Trim();
+                var diagnostico = txtDiagnostico.Text.Trim();
+                var observaciones = txtObservaciones.Text.Trim();
+
+                var entradaNueva = $"Paciente: {_Paciente.NombreCompleto}\n\n" +
+                    $"Motivo de la Consulta: {motivo}\n\n" +
+                    $"Diagnóstico: {diagnostico}\n\n" +
+                    $"Observaciones: {observaciones}";
+
+                E_Entrada evolucion = new E_Entrada(
+                    DDBB_Simulation.EntradasDB.Count + 1,
+                    idHistoria: _Paciente.HistoriaClinica.IdHistoriaClinica,
+                    idProfesional: _Profesional.IdProfesional,
+                    observaciones: entradaNueva,
+                    fecha: DateTime.Now
                 );
 
-            this.Close();
+                _Paciente.HistoriaClinica.Entradas.Add(evolucion);
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar la evolución: {ex.Message}", "Error",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
