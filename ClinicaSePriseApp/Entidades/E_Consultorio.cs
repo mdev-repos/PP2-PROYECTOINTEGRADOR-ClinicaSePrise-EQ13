@@ -8,8 +8,8 @@ namespace ClinicaSePriseApp.Entidades
 {
     public class E_Consultorio
     {
-        public string IdConsultorio { get; set; }
-        public string IdProfesional { get; set; }
+        public int IdConsultorio { get; set; }
+        public int IdProfesional { get; set; }
         public List<E_Insumo> Insumos { get; set; }
     }
 }

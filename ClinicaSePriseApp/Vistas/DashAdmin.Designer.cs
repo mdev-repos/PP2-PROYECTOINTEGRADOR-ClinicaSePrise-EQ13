@@ -50,10 +50,10 @@
             btnInsumos.Dock = DockStyle.Fill;
             btnInsumos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnInsumos.ForeColor = Color.White;
-            btnInsumos.Location = new Point(0, 727);
+            btnInsumos.Location = new Point(0, 543);
             btnInsumos.Margin = new Padding(0);
             btnInsumos.Name = "btnInsumos";
-            btnInsumos.Size = new Size(470, 82);
+            btnInsumos.Size = new Size(410, 61);
             btnInsumos.TabIndex = 3;
             btnInsumos.Text = "GESTIONAR INSUMOS";
             btnInsumos.UseVisualStyleBackColor = false;
@@ -65,10 +65,10 @@
             btnConsultorios.Dock = DockStyle.Fill;
             btnConsultorios.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnConsultorios.ForeColor = Color.White;
-            btnConsultorios.Location = new Point(0, 594);
+            btnConsultorios.Location = new Point(0, 444);
             btnConsultorios.Margin = new Padding(0);
             btnConsultorios.Name = "btnConsultorios";
-            btnConsultorios.Size = new Size(470, 82);
+            btnConsultorios.Size = new Size(410, 61);
             btnConsultorios.TabIndex = 2;
             btnConsultorios.Text = "GESTIONAR CONSULTORIOS";
             btnConsultorios.UseVisualStyleBackColor = false;
@@ -80,10 +80,10 @@
             btnPacientes.Dock = DockStyle.Fill;
             btnPacientes.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnPacientes.ForeColor = Color.White;
-            btnPacientes.Location = new Point(0, 461);
+            btnPacientes.Location = new Point(0, 345);
             btnPacientes.Margin = new Padding(0);
             btnPacientes.Name = "btnPacientes";
-            btnPacientes.Size = new Size(470, 82);
+            btnPacientes.Size = new Size(410, 61);
             btnPacientes.TabIndex = 1;
             btnPacientes.Text = "GESTIONAR PACIENTES";
             btnPacientes.UseVisualStyleBackColor = false;
@@ -95,10 +95,10 @@
             btnTurnos.Dock = DockStyle.Fill;
             btnTurnos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnTurnos.ForeColor = Color.White;
-            btnTurnos.Location = new Point(0, 328);
+            btnTurnos.Location = new Point(0, 246);
             btnTurnos.Margin = new Padding(0);
             btnTurnos.Name = "btnTurnos";
-            btnTurnos.Size = new Size(470, 82);
+            btnTurnos.Size = new Size(410, 61);
             btnTurnos.TabIndex = 0;
             btnTurnos.Text = "GESTIONAR TURNOS";
             btnTurnos.UseVisualStyleBackColor = false;
@@ -110,10 +110,10 @@
             btnLogout.Dock = DockStyle.Fill;
             btnLogout.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnLogout.ForeColor = Color.White;
-            btnLogout.Location = new Point(0, 880);
+            btnLogout.Location = new Point(0, 657);
             btnLogout.Margin = new Padding(0);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(470, 82);
+            btnLogout.Size = new Size(410, 61);
             btnLogout.TabIndex = 4;
             btnLogout.Text = "LOG OUT";
             btnLogout.UseVisualStyleBackColor = false;
@@ -128,7 +128,7 @@
             picBox.Location = new Point(0, 0);
             picBox.Margin = new Padding(0);
             picBox.Name = "picBox";
-            picBox.Size = new Size(1426, 1033);
+            picBox.Size = new Size(1248, 775);
             picBox.SizeMode = PictureBoxSizeMode.StretchImage;
             picBox.TabIndex = 0;
             picBox.TabStop = false;
@@ -144,7 +144,8 @@
             menuTLP.Controls.Add(btnPacientes, 0, 4);
             menuTLP.Controls.Add(picLogo, 0, 0);
             menuTLP.Dock = DockStyle.Fill;
-            menuTLP.Location = new Point(1429, 3);
+            menuTLP.Location = new Point(1251, 2);
+            menuTLP.Margin = new Padding(3, 2, 3, 2);
             menuTLP.Name = "menuTLP";
             menuTLP.RowCount = 12;
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
@@ -159,7 +160,7 @@
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 7F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
-            menuTLP.Size = new Size(470, 1027);
+            menuTLP.Size = new Size(410, 771);
             menuTLP.TabIndex = 2;
             // 
             // picLogo
@@ -169,7 +170,7 @@
             picLogo.Location = new Point(0, 0);
             picLogo.Margin = new Padding(0);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(470, 308);
+            picLogo.Size = new Size(410, 231);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 5;
             picLogo.TabStop = false;
@@ -187,17 +188,18 @@
             mainTLP.Name = "mainTLP";
             mainTLP.RowCount = 1;
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            mainTLP.Size = new Size(1902, 1033);
+            mainTLP.Size = new Size(1664, 775);
             mainTLP.TabIndex = 1;
             // 
             // DashAdmin
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1902, 1033);
+            ClientSize = new Size(1664, 775);
             Controls.Add(mainTLP);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(1024, 768);
+            Margin = new Padding(3, 2, 3, 2);
+            MinimumSize = new Size(898, 586);
             Name = "DashAdmin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clinica SePrise  ||  Dashboard";
