@@ -28,68 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            mainTLP = new TableLayoutPanel();
-            lblHistoria = new Label();
-            lblNombre = new Label();
-            botonesTLP = new TableLayoutPanel();
-            btnCerrar = new Button();
             historiaContainerPanel = new Panel();
             entradasTLP = new TableLayoutPanel();
-            mainTLP.SuspendLayout();
-            botonesTLP.SuspendLayout();
+            botonesTLP = new TableLayoutPanel();
+            btnCerrar = new Button();
+            lblNombre = new Label();
+            lblHistoria = new Label();
+            mainTLP = new TableLayoutPanel();
             historiaContainerPanel.SuspendLayout();
+            botonesTLP.SuspendLayout();
+            mainTLP.SuspendLayout();
             SuspendLayout();
             // 
-            // mainTLP
+            // historiaContainerPanel
             // 
-            mainTLP.ColumnCount = 3;
-            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
-            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            mainTLP.Controls.Add(lblHistoria, 1, 0);
-            mainTLP.Controls.Add(lblNombre, 1, 1);
-            mainTLP.Controls.Add(botonesTLP, 1, 4);
-            mainTLP.Controls.Add(historiaContainerPanel, 1, 2);
-            mainTLP.Dock = DockStyle.Fill;
-            mainTLP.Location = new Point(0, 0);
-            mainTLP.Margin = new Padding(0);
-            mainTLP.Name = "mainTLP";
-            mainTLP.RowCount = 6;
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13.06664F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13.06664F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 50.25631F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.030757F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5489F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.030757F));
-            mainTLP.Size = new Size(700, 500);
-            mainTLP.TabIndex = 1;
+            historiaContainerPanel.AutoScroll = true;
+            historiaContainerPanel.Controls.Add(entradasTLP);
+            historiaContainerPanel.Dock = DockStyle.Fill;
+            historiaContainerPanel.Location = new Point(70, 130);
+            historiaContainerPanel.Margin = new Padding(0);
+            historiaContainerPanel.Name = "historiaContainerPanel";
+            historiaContainerPanel.Size = new Size(560, 251);
+            historiaContainerPanel.TabIndex = 10;
             // 
-            // lblHistoria
+            // entradasTLP
             // 
-            lblHistoria.AutoSize = true;
-            lblHistoria.Dock = DockStyle.Fill;
-            lblHistoria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHistoria.Location = new Point(70, 0);
-            lblHistoria.Margin = new Padding(0);
-            lblHistoria.Name = "lblHistoria";
-            lblHistoria.Size = new Size(560, 65);
-            lblHistoria.TabIndex = 1;
-            lblHistoria.Text = "Historia Clínica";
-            lblHistoria.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // lblNombre
-            // 
-            lblNombre.AllowDrop = true;
-            lblNombre.AutoSize = true;
-            lblNombre.Dock = DockStyle.Fill;
-            lblNombre.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNombre.Location = new Point(70, 65);
-            lblNombre.Margin = new Padding(0);
-            lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(560, 65);
-            lblNombre.TabIndex = 2;
-            lblNombre.Text = "Paciente: ";
-            lblNombre.TextAlign = ContentAlignment.MiddleLeft;
+            entradasTLP.AutoSize = true;
+            entradasTLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            entradasTLP.ColumnCount = 3;
+            entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            entradasTLP.Dock = DockStyle.Top;
+            entradasTLP.Location = new Point(0, 0);
+            entradasTLP.Margin = new Padding(0);
+            entradasTLP.Name = "entradasTLP";
+            entradasTLP.RowCount = 1;
+            entradasTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            entradasTLP.Size = new Size(560, 0);
+            entradasTLP.TabIndex = 0;
             // 
             // botonesTLP
             // 
@@ -120,33 +97,56 @@
             btnCerrar.UseVisualStyleBackColor = true;
             btnCerrar.Click += btnCerrar_Click;
             // 
-            // historiaContainerPanel
+            // lblNombre
             // 
-            historiaContainerPanel.AutoScroll = true;
-            historiaContainerPanel.Controls.Add(entradasTLP);
-            historiaContainerPanel.Dock = DockStyle.Fill;
-            historiaContainerPanel.Location = new Point(70, 130);
-            historiaContainerPanel.Margin = new Padding(0);
-            historiaContainerPanel.Name = "historiaContainerPanel";
-            historiaContainerPanel.Size = new Size(560, 251);
-            historiaContainerPanel.TabIndex = 10;
+            lblNombre.AllowDrop = true;
+            lblNombre.AutoSize = true;
+            lblNombre.Dock = DockStyle.Fill;
+            lblNombre.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNombre.Location = new Point(70, 65);
+            lblNombre.Margin = new Padding(0);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(560, 65);
+            lblNombre.TabIndex = 2;
+            lblNombre.Text = "Paciente: ";
+            lblNombre.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // entradasTLP
+            // lblHistoria
             // 
-            entradasTLP.AutoSize = true;
-            entradasTLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            entradasTLP.ColumnCount = 3;
-            entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            entradasTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            entradasTLP.Dock = DockStyle.Top;
-            entradasTLP.Location = new Point(0, 0);
-            entradasTLP.Margin = new Padding(0);
-            entradasTLP.Name = "entradasTLP";
-            entradasTLP.RowCount = 1;
-            entradasTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            entradasTLP.Size = new Size(560, 0);
-            entradasTLP.TabIndex = 0;
+            lblHistoria.AutoSize = true;
+            lblHistoria.Dock = DockStyle.Fill;
+            lblHistoria.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHistoria.Location = new Point(70, 0);
+            lblHistoria.Margin = new Padding(0);
+            lblHistoria.Name = "lblHistoria";
+            lblHistoria.Size = new Size(560, 65);
+            lblHistoria.TabIndex = 1;
+            lblHistoria.Text = "Historia Clínica";
+            lblHistoria.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // mainTLP
+            // 
+            mainTLP.ColumnCount = 3;
+            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            mainTLP.Controls.Add(lblHistoria, 1, 0);
+            mainTLP.Controls.Add(lblNombre, 1, 1);
+            mainTLP.Controls.Add(botonesTLP, 1, 4);
+            mainTLP.Controls.Add(historiaContainerPanel, 1, 2);
+            mainTLP.Dock = DockStyle.Fill;
+            mainTLP.Location = new Point(0, 0);
+            mainTLP.Margin = new Padding(0);
+            mainTLP.Name = "mainTLP";
+            mainTLP.RowCount = 6;
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13.06664F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13.06664F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 50.25631F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.030757F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5489F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.030757F));
+            mainTLP.Size = new Size(700, 500);
+            mainTLP.TabIndex = 1;
             // 
             // AuxHistoriaClinica
             // 
@@ -160,22 +160,22 @@
             Name = "AuxHistoriaClinica";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Consulta Historia Clinica";
-            mainTLP.ResumeLayout(false);
-            mainTLP.PerformLayout();
-            botonesTLP.ResumeLayout(false);
             historiaContainerPanel.ResumeLayout(false);
             historiaContainerPanel.PerformLayout();
+            botonesTLP.ResumeLayout(false);
+            mainTLP.ResumeLayout(false);
+            mainTLP.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TableLayoutPanel mainTLP;
-        private Button btnCerrar;
-        private Label lblHistoria;
-        private Label lblNombre;
-        private TableLayoutPanel botonesTLP;
         private Panel historiaContainerPanel;
         private TableLayoutPanel entradasTLP;
+        private TableLayoutPanel botonesTLP;
+        private Button btnCerrar;
+        private Label lblNombre;
+        private Label lblHistoria;
+        private TableLayoutPanel mainTLP;
     }
 }
