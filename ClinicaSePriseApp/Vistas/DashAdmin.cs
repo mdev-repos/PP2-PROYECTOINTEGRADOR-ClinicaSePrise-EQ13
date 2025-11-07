@@ -116,8 +116,10 @@ namespace ClinicaSePriseApp.Vistas
             {
                 return;
             }
-
-            
+            AdmGestionConsultorios admGestionConsultorios = new AdmGestionConsultorios();
+            this.Hide();
+            admGestionConsultorios.FormClosed += (s, args) => this.Close();
+            admGestionConsultorios.Show();
         }        
         private void btnInsumos_Click(object sender, EventArgs e)
         {
@@ -160,12 +162,5 @@ namespace ClinicaSePriseApp.Vistas
             login.Show();
         }
 
-        private void btnConsultorios_Click(object sender, EventArgs e)
-        {
-            AdmGestionConsultorios admGestionConsultorios = new AdmGestionConsultorios();
-            this.Hide();
-            admGestionConsultorios.FormClosed += (s, args) => this.Close();
-            admGestionConsultorios.Show();
-        }
     }
 }
