@@ -91,5 +91,13 @@ namespace ClinicaSePriseApp.Vistas
             admGestionPacientes.FormClosed += (s, args) => this.Close();
             admGestionPacientes.Show();
         }
+
+        private void btnConsultorios_Click(object sender, EventArgs e)
+        {
+            AdmGestionConsultorios admGestionConsultorios = new AdmGestionConsultorios();
+            this.Hide();
+            admGestionConsultorios.FormClosed += (s, args) => this.Close();
+            admGestionConsultorios.Show();
+        }
     }
 }
