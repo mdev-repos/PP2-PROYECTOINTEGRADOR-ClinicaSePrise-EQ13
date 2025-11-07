@@ -158,6 +158,18 @@ namespace ClinicaSePriseApp.Vistas
                 return;
             }
 
+            if (_tarjetaSeleccionada.Turno.Estado == Entidades.Enums.EstadoTurno.DISPONIBLE)
+            {
+                DialogResult resultado = MessageBox.Show(
+                "El Turno seleccionado aún no fue reservado.",
+                "Confirmar",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+
+                return;
+            }
+
             var turno = TurnoService.ObtenerTurnoPorID(_tarjetaSeleccionada.Turno.IdTurno);
 
             if (turno == null)
@@ -196,6 +208,8 @@ namespace ClinicaSePriseApp.Vistas
             }
 
             var turno = TurnoService.ObtenerTurnoPorID(turnoID);
+
+            turno.Estado = Entidades.Enums.EstadoTurno.EN_ATENCION;
 
             ProfADAtencionMedica atencionMedica = new ProfADAtencionMedica(_Profesional, turno);
             this.Hide();

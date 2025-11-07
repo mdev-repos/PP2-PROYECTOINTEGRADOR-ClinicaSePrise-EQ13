@@ -153,29 +153,31 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         {
             Label lblFecha = new Label();
             lblFecha.Text = entrada.FechaEntrada.ToString("dd/MM/yyyy");
-            lblFecha.TextAlign = ContentAlignment.MiddleLeft;
+            lblFecha.TextAlign = ContentAlignment.MiddleCenter;
             lblFecha.Dock = DockStyle.Fill;
-            lblFecha.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
-            lblFecha.ForeColor = Color.White;
+            lblFecha.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
+            lblFecha.ForeColor = PaletaColores.azulOscuro;
+            lblFecha.BackColor = Color.White;
             lblFecha.Padding = new Padding(5, 0, 0, 0);
 
             Label lblMedico = new Label();
             var profesional = ProfesionalService.ObtenerProfesionalPorID(entrada.IdProfesional);
             lblMedico.Text = profesional != null ? $"Dr. {profesional.NombreCompleto}" : "Médico no encontrado";
-            lblMedico.TextAlign = ContentAlignment.MiddleLeft;
+            lblMedico.TextAlign = ContentAlignment.MiddleCenter;
             lblMedico.Dock = DockStyle.Fill;
-            lblMedico.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
-            lblMedico.ForeColor = Color.White;
+            lblMedico.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
+            lblMedico.ForeColor = PaletaColores.azulOscuro;
+            lblMedico.BackColor = Color.White;
             lblMedico.Padding = new Padding(5, 0, 0, 0);
 
             Button btnVer = new Button();
             btnVer.Text = string.IsNullOrEmpty(entrada.Observaciones) ? "Sin observaciones" : "VER";
             btnVer.Enabled = !string.IsNullOrEmpty(entrada.Observaciones);
             btnVer.Dock = DockStyle.Fill;
-            btnVer.Font = new Font(Fuente.TIPOGRAFIA, Fuente.S, FontStyle.Regular);
-            btnVer.BackColor = btnVer.Enabled ? PaletaColores.azulVerde : Color.Gray;
+            btnVer.Font = new Font(Fuente.TIPOGRAFIA, Fuente.S, FontStyle.Bold);
+            btnVer.BackColor = btnVer.Enabled ? PaletaColores.azulClaro : Color.Gray;
             btnVer.ForeColor = Color.White;
-            btnVer.Margin = new Padding(10, 5, 10, 5);
+            btnVer.Margin = new Padding(0);
 
             if (btnVer.Enabled)
             {
@@ -191,7 +193,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         {
             MessageBox.Show(
                 entrada.Observaciones,
-                $"Observaciones - {entrada.FechaEntrada:dd/MM/yyyy}",
+                $"{entrada.FechaEntrada:dd/MM/yyyy}  |  {ProfesionalService.ObtenerProfesionalPorID(entrada.IdProfesional).NombreCompleto}",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
             );

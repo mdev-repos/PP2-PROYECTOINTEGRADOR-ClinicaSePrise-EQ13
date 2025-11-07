@@ -72,6 +72,7 @@
             btnConsultorios.TabIndex = 2;
             btnConsultorios.Text = "GESTIONAR CONSULTORIOS";
             btnConsultorios.UseVisualStyleBackColor = false;
+            btnConsultorios.Click += btnConsultorios_Click;
             // 
             // btnPacientes
             // 

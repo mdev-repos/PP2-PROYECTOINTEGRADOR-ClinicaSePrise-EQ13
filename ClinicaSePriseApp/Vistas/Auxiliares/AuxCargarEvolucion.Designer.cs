@@ -35,7 +35,9 @@
             botonesTLP = new TableLayoutPanel();
             btnCancelar = new Button();
             btnConfirmar = new Button();
-            txtboxObservaciones = new TextBox();
+            txtMotivo = new TextBox();
+            txtDiagnostico = new TextBox();
+            txtObservaciones = new TextBox();
             mainTLP.SuspendLayout();
             botonesTLP.SuspendLayout();
             SuspendLayout();
@@ -48,19 +50,23 @@
             mainTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             mainTLP.Controls.Add(lblHistoria, 1, 0);
             mainTLP.Controls.Add(lblFechaNombre, 1, 1);
-            mainTLP.Controls.Add(botonesTLP, 1, 4);
-            mainTLP.Controls.Add(txtboxObservaciones, 1, 2);
+            mainTLP.Controls.Add(botonesTLP, 1, 6);
+            mainTLP.Controls.Add(txtMotivo, 1, 2);
+            mainTLP.Controls.Add(txtDiagnostico, 1, 3);
+            mainTLP.Controls.Add(txtObservaciones, 1, 4);
             mainTLP.Dock = DockStyle.Fill;
             mainTLP.Location = new Point(0, 0);
             mainTLP.Margin = new Padding(0);
             mainTLP.Name = "mainTLP";
-            mainTLP.RowCount = 6;
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13.06664F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13.06664F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 50.25631F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.030757F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5489F));
-            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.030757F));
+            mainTLP.RowCount = 8;
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
+            mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
             mainTLP.Size = new Size(700, 500);
             mainTLP.TabIndex = 2;
             // 
@@ -102,12 +108,12 @@
             botonesTLP.Controls.Add(btnCancelar, 3, 0);
             botonesTLP.Controls.Add(btnConfirmar, 1, 0);
             botonesTLP.Dock = DockStyle.Fill;
-            botonesTLP.Location = new Point(70, 411);
+            botonesTLP.Location = new Point(70, 410);
             botonesTLP.Margin = new Padding(0);
             botonesTLP.Name = "botonesTLP";
             botonesTLP.RowCount = 1;
             botonesTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            botonesTLP.Size = new Size(560, 57);
+            botonesTLP.Size = new Size(560, 60);
             botonesTLP.TabIndex = 9;
             // 
             // btnCancelar
@@ -115,7 +121,7 @@
             btnCancelar.Dock = DockStyle.Fill;
             btnCancelar.Location = new Point(319, 3);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(162, 51);
+            btnCancelar.Size = new Size(162, 54);
             btnCancelar.TabIndex = 1;
             btnCancelar.Text = "CANCELAR";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -126,21 +132,41 @@
             btnConfirmar.Dock = DockStyle.Fill;
             btnConfirmar.Location = new Point(77, 3);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(162, 51);
+            btnConfirmar.Size = new Size(162, 54);
             btnConfirmar.TabIndex = 2;
             btnConfirmar.Text = "CONFIRMAR";
             btnConfirmar.UseVisualStyleBackColor = true;
             btnConfirmar.Click += btnConfirmar_Click;
             // 
-            // txtboxObservaciones
+            // txtMotivo
             // 
-            txtboxObservaciones.Dock = DockStyle.Fill;
-            txtboxObservaciones.Location = new Point(71, 131);
-            txtboxObservaciones.Margin = new Padding(1);
-            txtboxObservaciones.Multiline = true;
-            txtboxObservaciones.Name = "txtboxObservaciones";
-            txtboxObservaciones.Size = new Size(558, 249);
-            txtboxObservaciones.TabIndex = 10;
+            txtMotivo.Dock = DockStyle.Fill;
+            txtMotivo.Location = new Point(71, 131);
+            txtMotivo.Margin = new Padding(1);
+            txtMotivo.Multiline = true;
+            txtMotivo.Name = "txtMotivo";
+            txtMotivo.Size = new Size(558, 48);
+            txtMotivo.TabIndex = 11;
+            // 
+            // txtDiagnostico
+            // 
+            txtDiagnostico.Dock = DockStyle.Fill;
+            txtDiagnostico.Location = new Point(71, 181);
+            txtDiagnostico.Margin = new Padding(1);
+            txtDiagnostico.Multiline = true;
+            txtDiagnostico.Name = "txtDiagnostico";
+            txtDiagnostico.Size = new Size(558, 98);
+            txtDiagnostico.TabIndex = 12;
+            // 
+            // txtObservaciones
+            // 
+            txtObservaciones.Dock = DockStyle.Fill;
+            txtObservaciones.Location = new Point(71, 281);
+            txtObservaciones.Margin = new Padding(1);
+            txtObservaciones.Multiline = true;
+            txtObservaciones.Name = "txtObservaciones";
+            txtObservaciones.Size = new Size(558, 98);
+            txtObservaciones.TabIndex = 13;
             // 
             // AuxCargarEvolucion
             // 
@@ -169,6 +195,8 @@
         private TableLayoutPanel botonesTLP;
         private Button btnCancelar;
         private Button btnConfirmar;
-        private TextBox txtboxObservaciones;
+        private TextBox txtMotivo;
+        private TextBox txtDiagnostico;
+        private TextBox txtObservaciones;
     }
 }

@@ -98,7 +98,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             var fecha = DateOnly.FromDateTime(DateTime.Now);
 
-            contentLbl.Text = $"    {fecha}  |  {_Paciente.NombreCompleto}";
+            contentLbl.Text = $"    {_Turno.FechaTurno:dd/MM/yyyy HH:mm}hs    |    Paciente: {_Paciente.NombreCompleto}";
             lblPacienteInfo.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
             lblHistoria.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
 
@@ -112,11 +112,11 @@ namespace ClinicaSePriseApp.Vistas
         private void CargarDatos()
         {
             lblDNI.Text = $"DNI: {_Paciente.Dni}";
-            lblGenero.Text = $"Género: {_Paciente.Genero}";
+            lblGenero.Text = $"Género: {EnumHelper.GetDescription(_Paciente.Genero)}";
             lblFechaNac.Text = $"Fecha de Nacimiento: {_Paciente.FechaNacimiento}";
             var edad = CalcularEdad(_Paciente.FechaNacimiento);
             lblEdad.Text = $"Edad: {edad} años";
-            lblOS.Text = $"Obra Social: {_Paciente.ObraSocial}";
+            lblOS.Text = $"Obra Social: {EnumHelper.GetDescription(_Paciente.ObraSocial)}";
             lblNumAfiliado.Text = $"N° {_Paciente.NumeroAfiliado}";
             lblTelefono.Text = $"Teléfono: {_Paciente.Telefono}";
             lblEmail.Text = $"Email: {_Paciente.Email}";
@@ -240,7 +240,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             MessageBox.Show(
                 entrada.Observaciones,
-                $"Observaciones - {entrada.FechaEntrada:dd/MM/yyyy}",
+                $"{entrada.FechaEntrada:dd/MM/yyyy}  |  {ProfesionalService.ObtenerProfesionalPorID(entrada.IdProfesional).NombreCompleto}",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
             );
@@ -257,11 +257,40 @@ namespace ClinicaSePriseApp.Vistas
             return edad;
         }
 
+        private void VolverAAgenda()
+        {
+            ProfAgendaDiaria agendaDiaria = new ProfAgendaDiaria(_Profesional);
+            this.Hide();
+            agendaDiaria.FormClosed += (s, args) => this.Close();
+            agendaDiaria.Show();
+        }
+
         // Botones        
         private void btnCargarEvolucion_Click(object sender, EventArgs e)
         {
-            AuxCargarEvolucion cargarEvolucion = new AuxCargarEvolucion(_Paciente, _Profesional);
-            cargarEvolucion.ShowDialog();
+            using (AuxCargarEvolucion cargarEvolucion = new AuxCargarEvolucion(_Paciente, _Profesional))
+            {
+                if (cargarEvolucion.ShowDialog() == DialogResult.OK)
+                {
+                    _Turno.Estado = Entidades.Enums.EstadoTurno.FINALIZADO;
+                    
+                    MessageBox.Show(
+                        $"✅ Atención finalizada exitosamente\n\n" +
+                        $"Paciente: {_Paciente.NombreCompleto}\n" +
+                        $"Turno marcado como: {EnumHelper.GetDescription(_Turno.Estado)}",
+                        "Atención Finalizada",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
+                    VolverAAgenda();
+                }
+                else
+                {
+                    MessageBox.Show("La evolución no fue guardada.", "Cancelado",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void btnLLamar_Click(object sender, EventArgs e)
@@ -280,6 +309,8 @@ namespace ClinicaSePriseApp.Vistas
             );
 
             if (resultado == DialogResult.Cancel) return;
+
+            _Turno.Estado = Entidades.Enums.EstadoTurno.ABONADO;
 
             ProfAgendaDiaria agendaDiaria = new ProfAgendaDiaria(_Profesional);
             this.Hide();
