@@ -33,18 +33,18 @@
             menuTLP = new TableLayoutPanel();
             picLogo = new PictureBox();
             btnVolver = new Button();
-            btnAnadir = new Button();
-            btnActualizar = new Button();
+            btnAñadirInsumo = new Button();
+            btnActualizarInsumo = new Button();
             contentTLP = new TableLayoutPanel();
             contentLbl = new Label();
             dataGridTLP = new TableLayoutPanel();
-            turnosDgv = new DataGridView();
+            dgvInsumos = new DataGridView();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             contentTLP.SuspendLayout();
             dataGridTLP.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)turnosDgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvInsumos).BeginInit();
             SuspendLayout();
             // 
             // mainTLP
@@ -56,10 +56,11 @@
             mainTLP.Controls.Add(contentTLP, 0, 0);
             mainTLP.Dock = DockStyle.Fill;
             mainTLP.Location = new Point(0, 0);
+            mainTLP.Margin = new Padding(3, 2, 3, 2);
             mainTLP.Name = "mainTLP";
             mainTLP.RowCount = 1;
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            mainTLP.Size = new Size(1902, 1033);
+            mainTLP.Size = new Size(1664, 775);
             mainTLP.TabIndex = 1;
             // 
             // menuTLP
@@ -69,10 +70,10 @@
             menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             menuTLP.Controls.Add(picLogo, 0, 0);
             menuTLP.Controls.Add(btnVolver, 0, 6);
-            menuTLP.Controls.Add(btnAnadir, 0, 2);
-            menuTLP.Controls.Add(btnActualizar, 0, 4);
+            menuTLP.Controls.Add(btnAñadirInsumo, 0, 2);
+            menuTLP.Controls.Add(btnActualizarInsumo, 0, 4);
             menuTLP.Dock = DockStyle.Fill;
-            menuTLP.Location = new Point(1426, 0);
+            menuTLP.Location = new Point(1248, 0);
             menuTLP.Margin = new Padding(0);
             menuTLP.Name = "menuTLP";
             menuTLP.RowCount = 8;
@@ -84,7 +85,7 @@
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 26F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.Size = new Size(476, 1033);
+            menuTLP.Size = new Size(416, 775);
             menuTLP.TabIndex = 0;
             // 
             // picLogo
@@ -95,7 +96,7 @@
             picLogo.Location = new Point(0, 0);
             picLogo.Margin = new Padding(0);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(476, 309);
+            picLogo.Size = new Size(416, 232);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
@@ -106,42 +107,42 @@
             btnVolver.Dock = DockStyle.Fill;
             btnVolver.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnVolver.ForeColor = Color.White;
-            btnVolver.Location = new Point(0, 863);
+            btnVolver.Location = new Point(0, 649);
             btnVolver.Margin = new Padding(0);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(476, 82);
+            btnVolver.Size = new Size(416, 62);
             btnVolver.TabIndex = 8;
             btnVolver.Text = "VOLVER AL DASHBOARD";
             btnVolver.UseVisualStyleBackColor = false;
             btnVolver.Click += btnVolver_Click;
             // 
-            // btnAnadir
+            // btnAñadirInsumo
             // 
-            btnAnadir.BackColor = Color.CornflowerBlue;
-            btnAnadir.Dock = DockStyle.Fill;
-            btnAnadir.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnAnadir.ForeColor = Color.White;
-            btnAnadir.Location = new Point(0, 370);
-            btnAnadir.Margin = new Padding(0);
-            btnAnadir.Name = "btnAnadir";
-            btnAnadir.Size = new Size(476, 82);
-            btnAnadir.TabIndex = 1;
-            btnAnadir.Text = "AÑADIR INSUMO";
-            btnAnadir.UseVisualStyleBackColor = false;
+            btnAñadirInsumo.BackColor = Color.CornflowerBlue;
+            btnAñadirInsumo.Dock = DockStyle.Fill;
+            btnAñadirInsumo.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnAñadirInsumo.ForeColor = Color.White;
+            btnAñadirInsumo.Location = new Point(0, 278);
+            btnAñadirInsumo.Margin = new Padding(0);
+            btnAñadirInsumo.Name = "btnAñadirInsumo";
+            btnAñadirInsumo.Size = new Size(416, 62);
+            btnAñadirInsumo.TabIndex = 1;
+            btnAñadirInsumo.Text = "AÑADIR INSUMO";
+            btnAñadirInsumo.UseVisualStyleBackColor = false;
             // 
-            // btnActualizar
+            // btnActualizarInsumo
             // 
-            btnActualizar.BackColor = Color.CornflowerBlue;
-            btnActualizar.Dock = DockStyle.Fill;
-            btnActualizar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            btnActualizar.ForeColor = Color.White;
-            btnActualizar.Location = new Point(0, 513);
-            btnActualizar.Margin = new Padding(0);
-            btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(476, 82);
-            btnActualizar.TabIndex = 2;
-            btnActualizar.Text = "ACTUALIZAR INSUMO";
-            btnActualizar.UseVisualStyleBackColor = false;
+            btnActualizarInsumo.BackColor = Color.CornflowerBlue;
+            btnActualizarInsumo.Dock = DockStyle.Fill;
+            btnActualizarInsumo.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnActualizarInsumo.ForeColor = Color.White;
+            btnActualizarInsumo.Location = new Point(0, 386);
+            btnActualizarInsumo.Margin = new Padding(0);
+            btnActualizarInsumo.Name = "btnActualizarInsumo";
+            btnActualizarInsumo.Size = new Size(416, 62);
+            btnActualizarInsumo.TabIndex = 2;
+            btnActualizarInsumo.Text = "ACTUALIZAR INSUMO";
+            btnActualizarInsumo.UseVisualStyleBackColor = false;
             // 
             // contentTLP
             // 
@@ -158,7 +159,7 @@
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 80F));
-            contentTLP.Size = new Size(1426, 1033);
+            contentTLP.Size = new Size(1248, 775);
             contentTLP.TabIndex = 1;
             // 
             // contentLbl
@@ -166,11 +167,11 @@
             contentLbl.AutoSize = true;
             contentLbl.BackColor = SystemColors.GradientInactiveCaption;
             contentLbl.Dock = DockStyle.Fill;
-            contentLbl.Font = new Font("LEMON MILK", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            contentLbl.Location = new Point(0, 51);
+            contentLbl.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            contentLbl.Location = new Point(0, 38);
             contentLbl.Margin = new Padding(0);
             contentLbl.Name = "contentLbl";
-            contentLbl.Size = new Size(1426, 103);
+            contentLbl.Size = new Size(1248, 77);
             contentLbl.TabIndex = 0;
             contentLbl.Text = "      GESTION DE INSUMOS";
             contentLbl.TextAlign = ContentAlignment.MiddleLeft;
@@ -181,35 +182,36 @@
             dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
             dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
             dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            dataGridTLP.Controls.Add(turnosDgv, 1, 0);
+            dataGridTLP.Controls.Add(dgvInsumos, 1, 0);
             dataGridTLP.Dock = DockStyle.Fill;
-            dataGridTLP.Location = new Point(0, 205);
+            dataGridTLP.Location = new Point(0, 153);
             dataGridTLP.Margin = new Padding(0);
             dataGridTLP.Name = "dataGridTLP";
             dataGridTLP.RowCount = 1;
             dataGridTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            dataGridTLP.Size = new Size(1426, 828);
+            dataGridTLP.Size = new Size(1248, 622);
             dataGridTLP.TabIndex = 2;
             // 
-            // turnosDgv
+            // dgvInsumos
             // 
-            turnosDgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            turnosDgv.Dock = DockStyle.Fill;
-            turnosDgv.Location = new Point(71, 0);
-            turnosDgv.Margin = new Padding(0, 0, 0, 50);
-            turnosDgv.Name = "turnosDgv";
-            turnosDgv.RowHeadersWidth = 51;
-            turnosDgv.Size = new Size(1283, 778);
-            turnosDgv.TabIndex = 7;
+            dgvInsumos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvInsumos.Dock = DockStyle.Fill;
+            dgvInsumos.Location = new Point(62, 0);
+            dgvInsumos.Margin = new Padding(0, 0, 0, 38);
+            dgvInsumos.Name = "dgvInsumos";
+            dgvInsumos.RowHeadersWidth = 51;
+            dgvInsumos.Size = new Size(1123, 584);
+            dgvInsumos.TabIndex = 7;
             // 
             // AdmGestionInsumos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1902, 1033);
+            ClientSize = new Size(1664, 775);
             Controls.Add(mainTLP);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(1024, 768);
+            Margin = new Padding(3, 2, 3, 2);
+            MinimumSize = new Size(898, 586);
             Name = "AdmGestionInsumos";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clinica SePrise  ||  Gestion de Insumos";
@@ -221,7 +223,7 @@
             contentTLP.ResumeLayout(false);
             contentTLP.PerformLayout();
             dataGridTLP.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)turnosDgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvInsumos).EndInit();
             ResumeLayout(false);
         }
 
@@ -231,11 +233,11 @@
         private TableLayoutPanel menuTLP;
         private PictureBox picLogo;
         private Button btnVolver;
-        private Button btnAnadir;
-        private Button btnActualizar;
+        private Button btnAñadirInsumo;
+        private Button btnActualizarInsumo;
         private TableLayoutPanel contentTLP;
         private Label contentLbl;
         private TableLayoutPanel dataGridTLP;
-        private DataGridView turnosDgv;
+        private DataGridView dgvInsumos;
     }
 }
