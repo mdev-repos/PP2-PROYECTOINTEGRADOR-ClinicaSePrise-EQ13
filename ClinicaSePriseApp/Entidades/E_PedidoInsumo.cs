@@ -21,6 +21,7 @@ namespace ClinicaSePriseApp.Entidades
         public E_PedidoInsumo(int idProfesional, List<E_InsumoSolicitado> insumosSolicitados)
         {
             ID_AUTOINCREMENT++;
+
             IdPedido = ID_AUTOINCREMENT;
             FechaPedido = DateOnly.FromDateTime(DateTime.Now);
             IdProfesional = idProfesional;

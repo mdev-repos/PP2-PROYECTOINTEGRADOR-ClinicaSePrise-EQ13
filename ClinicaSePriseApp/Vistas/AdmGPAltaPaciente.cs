@@ -19,6 +19,8 @@ namespace ClinicaSePriseApp.Vistas
         {
             InitializeComponent();
             this.Load += AdmGPAltaPaciente_Load;
+
+            ajustarPaneles();
         }
 
         private void AdmGPAltaPaciente_Load(object sender, EventArgs e)
@@ -31,6 +33,39 @@ namespace ClinicaSePriseApp.Vistas
             cboxObraSocial.DataSource = EnumHelper.GetEnumValuesWithDescriptions<ObraSocial>();
             cboxObraSocial.DisplayMember = "Value";
             cboxObraSocial.ValueMember = "Key";
+        }
+
+        private void ajustarPaneles()
+        {
+            mainTLP.BackColor = PaletaColores.celeste;
+            menuTLP.BackColor = PaletaColores.bgGris;
+
+            contentLbl.BackColor = PaletaColores.bgGris;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+
+
+            foreach (Control boton in menuTLP.Controls)
+            {
+                boton.Dock = DockStyle.Fill;
+
+                if (boton == btnVolver)
+                {
+                    boton.BackColor = PaletaColores.rosa;
+                }
+                else if (boton == picLogo)
+                {
+                    boton.BackColor = Color.Transparent;
+                }
+                else
+                {
+                    boton.BackColor = PaletaColores.azulOscuro;
+                }
+
+                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+                boton.ForeColor = Color.White;
+            }
+
+            lblTurno.ForeColor = Color.White;
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -98,13 +133,8 @@ namespace ClinicaSePriseApp.Vistas
 
             var generoSeleccionado = (Genero)cboxGenero.SelectedValue;
             var obraSocialSeleccionada = (ObraSocial)cboxObraSocial.SelectedValue;
-
-            int nuevoId = DDBB_Simulation.PacientesDB.Any()
-                ? DDBB_Simulation.PacientesDB.Max(p => p.IdPaciente) + 1
-                : 1;
-
+            
             var nuevoPaciente = new E_Paciente(
-                idPaciente: nuevoId,
                 apellido: txtApellido.Text.Trim(),
                 nombre: txtNombre.Text.Trim(),
                 dni: dniIngresado,

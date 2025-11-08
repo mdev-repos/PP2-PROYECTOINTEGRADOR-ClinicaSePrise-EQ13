@@ -58,10 +58,11 @@
             mainTLP.Controls.Add(contentTLP, 0, 0);
             mainTLP.Dock = DockStyle.Fill;
             mainTLP.Location = new Point(0, 0);
+            mainTLP.Margin = new Padding(3, 4, 3, 4);
             mainTLP.Name = "mainTLP";
             mainTLP.RowCount = 1;
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            mainTLP.Size = new Size(800, 450);
+            mainTLP.Size = new Size(914, 600);
             mainTLP.TabIndex = 2;
             // 
             // menuTLP
@@ -73,7 +74,7 @@
             menuTLP.Controls.Add(picLogo, 0, 0);
             menuTLP.Controls.Add(btnAsignarLiberar, 0, 2);
             menuTLP.Dock = DockStyle.Fill;
-            menuTLP.Location = new Point(600, 0);
+            menuTLP.Location = new Point(685, 0);
             menuTLP.Margin = new Padding(0);
             menuTLP.Name = "menuTLP";
             menuTLP.RowCount = 10;
@@ -87,7 +88,7 @@
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.Size = new Size(200, 450);
+            menuTLP.Size = new Size(229, 600);
             menuTLP.TabIndex = 0;
             // 
             // btnVolver
@@ -95,10 +96,10 @@
             btnVolver.BackColor = Color.Pink;
             btnVolver.Dock = DockStyle.Fill;
             btnVolver.ForeColor = Color.White;
-            btnVolver.Location = new Point(0, 378);
+            btnVolver.Location = new Point(0, 504);
             btnVolver.Margin = new Padding(0);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(200, 36);
+            btnVolver.Size = new Size(229, 48);
             btnVolver.TabIndex = 13;
             btnVolver.Text = "VOLVER AL DASHBOARD";
             btnVolver.UseVisualStyleBackColor = false;
@@ -112,7 +113,7 @@
             picLogo.Location = new Point(0, 0);
             picLogo.Margin = new Padding(0);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(200, 135);
+            picLogo.Size = new Size(229, 180);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
@@ -123,10 +124,10 @@
             btnAsignarLiberar.Dock = DockStyle.Fill;
             btnAsignarLiberar.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAsignarLiberar.ForeColor = Color.White;
-            btnAsignarLiberar.Location = new Point(0, 162);
+            btnAsignarLiberar.Location = new Point(0, 216);
             btnAsignarLiberar.Margin = new Padding(0);
             btnAsignarLiberar.Name = "btnAsignarLiberar";
-            btnAsignarLiberar.Size = new Size(200, 36);
+            btnAsignarLiberar.Size = new Size(229, 48);
             btnAsignarLiberar.TabIndex = 1;
             btnAsignarLiberar.Text = "ASIGNAR / LIBERAR";
             btnAsignarLiberar.UseVisualStyleBackColor = false;
@@ -145,8 +146,8 @@
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 5.55555534F));
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 11.1111107F));
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
-            contentTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            contentTLP.Size = new Size(600, 450);
+            contentTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            contentTLP.Size = new Size(685, 600);
             contentTLP.TabIndex = 1;
             // 
             // contentLbl
@@ -155,10 +156,10 @@
             contentLbl.BackColor = SystemColors.GradientInactiveCaption;
             contentLbl.Dock = DockStyle.Fill;
             contentLbl.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            contentLbl.Location = new Point(0, 25);
+            contentLbl.Location = new Point(0, 33);
             contentLbl.Margin = new Padding(0);
             contentLbl.Name = "contentLbl";
-            contentLbl.Size = new Size(600, 50);
+            contentLbl.Size = new Size(685, 66);
             contentLbl.TabIndex = 0;
             contentLbl.Text = "      GESTION DE CONSULTORIOS";
             contentLbl.TextAlign = ContentAlignment.MiddleLeft;
@@ -166,17 +167,17 @@
             // dataGridTLP
             // 
             dataGridTLP.ColumnCount = 3;
-            dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
-            dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 90F));
-            dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));
+            dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
+            dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 94F));
+            dataGridTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
             dataGridTLP.Controls.Add(dgvConsultorios, 1, 0);
             dataGridTLP.Dock = DockStyle.Fill;
-            dataGridTLP.Location = new Point(0, 75);
+            dataGridTLP.Location = new Point(0, 99);
             dataGridTLP.Margin = new Padding(0);
             dataGridTLP.Name = "dataGridTLP";
             dataGridTLP.RowCount = 1;
             dataGridTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            dataGridTLP.Size = new Size(600, 375);
+            dataGridTLP.Size = new Size(685, 501);
             dataGridTLP.TabIndex = 2;
             // 
             // dgvConsultorios
@@ -184,20 +185,21 @@
             dgvConsultorios.BackgroundColor = Color.CornflowerBlue;
             dgvConsultorios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvConsultorios.Dock = DockStyle.Fill;
-            dgvConsultorios.Location = new Point(30, 0);
-            dgvConsultorios.Margin = new Padding(0, 0, 0, 53);
+            dgvConsultorios.Location = new Point(20, 20);
+            dgvConsultorios.Margin = new Padding(0, 20, 0, 20);
             dgvConsultorios.Name = "dgvConsultorios";
             dgvConsultorios.RowHeadersWidth = 51;
-            dgvConsultorios.Size = new Size(540, 322);
+            dgvConsultorios.Size = new Size(643, 461);
             dgvConsultorios.TabIndex = 7;
             // 
             // AdmGestionConsultorios
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(mainTLP);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "AdmGestionConsultorios";
             Text = "Clinica SePrise  ||  Gestion de Consultorios";
             mainTLP.ResumeLayout(false);

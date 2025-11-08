@@ -35,10 +35,8 @@
             botonesTLP = new TableLayoutPanel();
             btnCerrar = new Button();
             containerPanel = new Panel();
-            dataTLP = new TableLayoutPanel();
             mainTLP.SuspendLayout();
             botonesTLP.SuspendLayout();
-            containerPanel.SuspendLayout();
             SuspendLayout();
             // 
             // mainTLP
@@ -126,31 +124,12 @@
             // containerPanel
             // 
             containerPanel.AutoScroll = true;
-            containerPanel.Controls.Add(dataTLP);
             containerPanel.Dock = DockStyle.Fill;
             containerPanel.Location = new Point(70, 130);
             containerPanel.Margin = new Padding(0);
             containerPanel.Name = "containerPanel";
             containerPanel.Size = new Size(560, 251);
             containerPanel.TabIndex = 10;
-            // 
-            // dataTLP
-            // 
-            dataTLP.AutoSize = true;
-            dataTLP.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            dataTLP.ColumnCount = 4;
-            dataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            dataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            dataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            dataTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
-            dataTLP.Dock = DockStyle.Top;
-            dataTLP.Location = new Point(0, 0);
-            dataTLP.Margin = new Padding(0);
-            dataTLP.Name = "dataTLP";
-            dataTLP.RowCount = 1;
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            dataTLP.Size = new Size(560, 0);
-            dataTLP.TabIndex = 0;
             // 
             // AuxCargaGenerica
             // 
@@ -168,8 +147,6 @@
             mainTLP.ResumeLayout(false);
             mainTLP.PerformLayout();
             botonesTLP.ResumeLayout(false);
-            containerPanel.ResumeLayout(false);
-            containerPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -181,6 +158,5 @@
         private TableLayoutPanel botonesTLP;
         private Button btnCerrar;
         private Panel containerPanel;
-        private TableLayoutPanel dataTLP;
     }
 }

@@ -52,6 +52,8 @@ namespace ClinicaSePriseApp.Entidades.Enums
         [Description("Grupo Médico Sur")]
         GRUPO_MEDICO_SUR,
         [Description("Servicio Superior")]
-        SERVICIO_SUPERIOR
+        SERVICIO_SUPERIOR,
+        [Description("O.M.I.N.T.")]
+        OMINT
     }
 }

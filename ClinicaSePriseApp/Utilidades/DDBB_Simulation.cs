@@ -12,29 +12,19 @@ namespace ClinicaSePriseApp.Utilidades
     public static class DDBB_Simulation
     {
         public static List<E_Usuario> UsuariosDB { get; set; } = new List<E_Usuario>();
-
         public static List<E_Administrativo> AdministrativosDB { get; set; } = new List<E_Administrativo>();
-
         public static List<E_Profesional> ProfesionalesDB { get; set; } = new List<E_Profesional>();
         public static List<E_Disponibilidad> DisponibilidadesDB { get; set; } = new List<E_Disponibilidad>();
         public static List<E_Liquidacion> LiquidacionesDB { get; set; } = new List<E_Liquidacion>();
-
-
         public static List<E_Turno> TurnosDB { get; set; } = new List<E_Turno>();
-
-
         public static List<E_Paciente> PacientesDB { get; set; } = new List<E_Paciente>();
         public static List<E_HistoriaClinica> HistoriasClinicas { get; set; } = new List<E_HistoriaClinica>();
         public static List<E_Entrada> EntradasDB { get; set; } = new List<E_Entrada>();
         public static List<E_Pago> PagosDB { get; set; } = new List<E_Pago>();
-
         public static List<E_Consultorio> ConsultoriosDB { get; set; } = new List<E_Consultorio>();
         public static List<E_Insumo> InsumosDB { get; set; } = new List<E_Insumo>();
         public static List<E_PedidoInsumo> PedidosInsumos { get; set; } = new List<E_PedidoInsumo>();
 
-
-
-        // CARGA DE DATOS DE PRUEBAS
         public static void InicializarDatosPrueba()
         {
             // LIMPIAR LISTAS
@@ -45,629 +35,372 @@ namespace ClinicaSePriseApp.Utilidades
             TurnosDB.Clear();
             InsumosDB.Clear();
             ConsultoriosDB.Clear();
+            PagosDB.Clear();
+            LiquidacionesDB.Clear();
+            PedidosInsumos.Clear();
+            EntradasDB.Clear();
 
+            // RESET AUTOINCREMENT
+            ResetAutoIncrementCounters();
 
-            // CARGA DE DATOS SIMULADOS
+            // FECHA BASE PARA LA SIMULACIÓN (8/11/2025 - SÁBADO)
+            var fechaHoy = new DateOnly(2025, 11, 8);
+            var fechaAyer = fechaHoy.AddDays(-1);
+            var fechaManana = fechaHoy.AddDays(1);
+            var fechaPasado = fechaHoy.AddDays(2);
+            var fechaSemanaPasada = fechaHoy.AddDays(-7);
+            var fechaMesPasado = fechaHoy.AddMonths(-1);
 
-            // ADMINISTRATIVOS
-            // Usuario
-            var useradm1 = new E_Usuario(1, "admin", "1234", Rol.ADMINISTRATIVO);
+            // ========== ADMINISTRATIVOS ==========
+            var userAdm1 = new E_Usuario("admin", "1234", Rol.ADMINISTRATIVO);
             var administrativo1 = new E_Administrativo(
-                1,
-                1,
-                "Mazzitelli",
-                "Matias",
-                "22333555",
-                Genero.H,
-                new DateOnly(1989, 10, 2),
-                "Calle Falsa 123",
-                "1155579992",
-                "admin1@seprise.com");
+                userAdm1.IdUsuario,
+                "Gonzalez", "Laura", "30123456", Genero.M, new DateOnly(1985, 3, 15),
+                "Av. Siempre Viva 742", "1156789012", "l.gonzalez@clinica.com");
 
-            // Usuario
-            var useradm2 = new E_Usuario(2, "benitez", "1234", Rol.ADMINISTRATIVO);
-            var administrativo2 = new E_Administrativo(
-                2,
-                2,
-                "Benitez",
-                "Guillermo",
-                "33111555",
-                Genero.H,
-                new DateOnly(1992, 7, 12),
-                "Calle Falsa 345",
-                "1155577662",
-                "admin2@seprise.com");
-
-            UsuariosDB.Add(useradm1);
+            UsuariosDB.Add(userAdm1);
             AdministrativosDB.Add(administrativo1);
 
-            UsuariosDB.Add(useradm2);
-            AdministrativosDB.Add(administrativo2);
+            // ========== PROFESIONALES ==========
 
+            // PROFESIONAL 1 (PRINCIPAL - DR. GARCÍA - PARA GRABACIÓN)
+            var dispProf1 = new List<E_Disponibilidad>
+            {
+                new E_Disponibilidad(DayOfWeek.Monday, new TimeSpan(8, 0, 0), new TimeSpan(12, 0, 0)),
+                new E_Disponibilidad(DayOfWeek.Wednesday, new TimeSpan(8, 0, 0), new TimeSpan(12, 0, 0)),
+                new E_Disponibilidad(DayOfWeek.Friday, new TimeSpan(8, 0, 0), new TimeSpan(12, 0, 0)),
+                new E_Disponibilidad(DayOfWeek.Saturday, new TimeSpan(16, 0, 0), new TimeSpan(22, 0, 0)) // DISPONIBILIDAD PARA HOY
+            };
 
-            // PROFESIONALES
-
-            // Profesional 1
-            // Disponibilidad
-            var disponibilidad1a = new E_Disponibilidad(
-                1,
-                DayOfWeek.Monday,
-                new TimeSpan(7, 0, 0),
-                new TimeSpan(13, 0, 0));
-
-            var disponibilidad1b = new E_Disponibilidad(
-                2,
-                DayOfWeek.Tuesday,
-                new TimeSpan(10, 0, 0),
-                new TimeSpan(16, 0, 0));
-
-            List<E_Disponibilidad> prof1disp = new List<E_Disponibilidad>();
-            prof1disp.Add(disponibilidad1a);
-            prof1disp.Add(disponibilidad1b);
-
-            // Usuario
-            E_Usuario userprof1 = new E_Usuario(3, "medico1", "1234", Rol.PROFESIONAL);
-
+            var userProf1 = new E_Usuario("medico", "1234", Rol.PROFESIONAL);
             var profesional1 = new E_Profesional(
-                1,
-                3,
-                EspecialidadMedica.CLINICA_MEDICA,
-                "123765",
-                prof1disp,
-                "Alvarez",
-                "Ignacio",
-                "11222333",
-                Genero.H,
-                new DateOnly(1993, 6, 18),
-                "Casa di galeno",
-                "1177558844",
-                "profesional1@seprise.com");
+                userProf1.IdUsuario, EspecialidadMedica.CARDIOLOGIA, "MP12345", dispProf1,
+                "García", "Roberto", "20123456", Genero.H, new DateOnly(1978, 6, 20),
+                "Calle Médicos 123", "1167890123", "r.garcia@clinica.com");
 
-            UsuariosDB.Add(userprof1);
+            UsuariosDB.Add(userProf1);
             ProfesionalesDB.Add(profesional1);
+            DisponibilidadesDB.AddRange(dispProf1);
 
-            // Profesional 2
-            // Disponibilidad
-            var disponibilidad2b = new E_Disponibilidad(
-                3,
-                DayOfWeek.Wednesday,
-                new TimeSpan(12, 0, 0),
-                new TimeSpan(18, 0, 0));
+            // LIQUIDACIONES DEL DR. GARCÍA (5 MESES HACIA ATRÁS)
+            var liquidacionesProf1 = new List<E_Liquidacion>
+            {
+                new E_Liquidacion(profesional1.IdProfesional, new DateOnly(2025, 11, 1), "Octubre 2025", 185000m),
+                new E_Liquidacion(profesional1.IdProfesional, new DateOnly(2025, 10, 1), "Septiembre 2025", 172000m),
+                new E_Liquidacion(profesional1.IdProfesional, new DateOnly(2025, 9, 1), "Agosto 2025", 168000m),
+                new E_Liquidacion(profesional1.IdProfesional, new DateOnly(2025, 8, 1), "Julio 2025", 155000m),
+                new E_Liquidacion(profesional1.IdProfesional, new DateOnly(2025, 7, 1), "Junio 2025", 148000m)
+            };
 
-            var disponibilidad2a = new E_Disponibilidad(
-                4,
-                DayOfWeek.Friday,
-                new TimeSpan(9, 0, 0),
-                new TimeSpan(15, 0, 0));
+            LiquidacionesDB.AddRange(liquidacionesProf1);
+            profesional1.Liquidaciones.AddRange(liquidacionesProf1);
 
-            List<E_Disponibilidad> prof2disp = new List<E_Disponibilidad>();
-            prof2disp.Add(disponibilidad2a);
-            prof2disp.Add(disponibilidad2b);
+            // PROFESIONAL 2
+            var dispProf2 = new List<E_Disponibilidad>
+            {
+                new E_Disponibilidad(DayOfWeek.Tuesday, new TimeSpan(9, 0, 0), new TimeSpan(13, 0, 0)),
+                new E_Disponibilidad(DayOfWeek.Thursday, new TimeSpan(9, 0, 0), new TimeSpan(13, 0, 0))
+            };
 
-            // Usuario
-            E_Usuario userprof2 = new E_Usuario(4, "medico2", "1234", Rol.PROFESIONAL);
-
+            var userProf2 = new E_Usuario("dramartinez", "1234", Rol.PROFESIONAL);
             var profesional2 = new E_Profesional(
-                2,
-                4,
-                EspecialidadMedica.UROLOGIA,
-                "9876543",
-                prof2disp,
-                "Galeno",
-                "Julieta",
-                "33772885",
-                Genero.M,
-                new DateOnly(2003, 4, 23),
-                "Casa di galeno",
-                "1177558844",
-                "profesional2@seprise.com");
+                userProf2.IdUsuario, EspecialidadMedica.PEDIATRIA, "MP54321", dispProf2,
+                "Martínez", "Ana", "25123456", Genero.M, new DateOnly(1982, 9, 12),
+                "Av. Salud 456", "1178901234", "a.martinez@clinica.com");
 
-            UsuariosDB.Add(userprof2);
+            UsuariosDB.Add(userProf2);
             ProfesionalesDB.Add(profesional2);
+            DisponibilidadesDB.AddRange(dispProf2);
 
-            // Profesional 3
-            // Variables para pruebas
-            var fecha = DateOnly.FromDateTime(DateTime.Now);
+            // PROFESIONAL 3
+            var dispProf3 = new List<E_Disponibilidad>
+            {
+                new E_Disponibilidad(DayOfWeek.Monday, new TimeSpan(10, 0, 0), new TimeSpan(14, 0, 0)),
+                new E_Disponibilidad(DayOfWeek.Wednesday, new TimeSpan(10, 0, 0), new TimeSpan(14, 0, 0)),
+                new E_Disponibilidad(DayOfWeek.Friday, new TimeSpan(10, 0, 0), new TimeSpan(14, 0, 0))
+            };
 
-            // Disponibilidad
-            var disponibilidad3a = new E_Disponibilidad(
-                    5,
-                    fecha.DayOfWeek,
-                    new TimeSpan(7, 0, 0),
-                    new TimeSpan(23, 0, 0));
-
-            var disponibilidad3b = new E_Disponibilidad(
-                6,
-                fecha.AddDays(1).DayOfWeek,
-                new TimeSpan(7, 0, 0),
-                new TimeSpan(15, 0, 0));
-
-            var disponibilidad3c = new E_Disponibilidad(
-                6,
-                fecha.AddDays(3).DayOfWeek,
-                new TimeSpan(7, 0, 0),
-                new TimeSpan(15, 0, 0));
-
-            List<E_Disponibilidad> prof3disp = new List<E_Disponibilidad>();
-            prof3disp.Add(disponibilidad3a);
-            prof3disp.Add(disponibilidad3b);
-            prof3disp.Add(disponibilidad3b);
-
-            // Usuario
-            E_Usuario userprof3 = new E_Usuario(5, "medico", "1234", Rol.PROFESIONAL);
-
+            var userProf3 = new E_Usuario("drlopez", "1234", Rol.PROFESIONAL);
             var profesional3 = new E_Profesional(
-                3,
-                5,
-                EspecialidadMedica.NEUROLOGIA,
-                "345678",
-                prof3disp,
-                "Mazzitelli",
-                "Matias",
-                "33444555",
-                Genero.H,
-                new DateOnly(1993, 6, 18),
-                "Casa di galeno",
-                "1177558844",
-                "profesional3@seprise.com");
+                userProf3.IdUsuario, EspecialidadMedica.TRAUMATOLOGIA, "MP67890", dispProf3,
+                "López", "Carlos", "28123456", Genero.H, new DateOnly(1975, 11, 5),
+                "Bv. Especialistas 789", "1189012345", "c.lopez@clinica.com");
 
-            // Liquidaciones
-            E_Liquidacion liquidacion3a = new E_Liquidacion(
-                1,
-                profesional3.IdProfesional,
-                new DateOnly(2025, 8, 1),
-                "Julio",
-                15000m);
-            profesional3.Liquidaciones.Add(liquidacion3a);
-            LiquidacionesDB.Add(liquidacion3a);
-
-            E_Liquidacion liquidacion3b = new E_Liquidacion(
-                2,
-                profesional3.IdProfesional,
-                new DateOnly(2025, 9, 1),
-                "Agosto",
-                20000m);
-            profesional3.Liquidaciones.Add(liquidacion3b);
-            LiquidacionesDB.Add(liquidacion3b);
-
-            E_Liquidacion liquidacion3c = new E_Liquidacion(
-                3,
-                profesional3.IdProfesional,
-                new DateOnly(2025, 10, 1),
-                "Septiembre",
-                18000m);
-            profesional3.Liquidaciones.Add(liquidacion3c);
-            LiquidacionesDB.Add(liquidacion3c);
-
-            E_Liquidacion liquidacion3d = new E_Liquidacion(
-                4,
-                profesional3.IdProfesional,
-                new DateOnly(2025, 11, 1),
-                "Octubre",
-                22000m);
-            profesional3.Liquidaciones.Add(liquidacion3d);
-            LiquidacionesDB.Add(liquidacion3d);
-
-
-            UsuariosDB.Add(userprof3);
+            UsuariosDB.Add(userProf3);
             ProfesionalesDB.Add(profesional3);
+            DisponibilidadesDB.AddRange(dispProf3);
 
+            // ========== PACIENTES ==========
 
-            // PACIENTES
+            // PACIENTE 1 (CON TURNOS ABONADOS - HISTORIA CLÍNICA COMPLETA)
             var paciente1 = new E_Paciente(
-                1,
-                "Perez",
-                "Juan",
-                "12988123",
-                Genero.H,
-                new DateOnly(1956, 12, 16),
-                "Casa 321",
-                "46759922",
-                "correo1@prueba.com",
-                ObraSocial.PARTICULAR,
-                "1");
+                "Pérez", "María", "34123456", Genero.M, new DateOnly(1990, 2, 14),
+                "Calle Principal 123", "1156781234", "maria.perez@email.com",
+                ObraSocial.OSDE, "OSDE-123456");
 
-            var historia1 = paciente1.HistoriaClinica;
+            // Historia clínica paciente 1 (MÚLTIPLES ENTRADAS)
+            var entrada1a = new E_Entrada(
+                paciente1.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Control cardiológico rutinario\n\nDiagnóstico: Estado cardiovascular estable\n\nObservaciones: ECG dentro de parámetros normales.",
+                new DateTime(fechaHoy.AddMonths(-6), new TimeOnly(9, 0)));
+            
+            var entrada1b = new E_Entrada(
+                paciente1.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Palpitaciones ocasionales\n\nDiagnóstico: Arritmia benigna\n\nObservaciones: Se indica Holter de 24 horas y reducir consumo de cafeína.",
+                new DateTime(fechaHoy.AddMonths(-3), new TimeOnly(10, 30)));
 
-            // Entradas
-            E_Entrada entrada1a = new E_Entrada(
-                1,
-                historia1.IdHistoriaClinica,
-                profesional3.IdProfesional,
-                "Motivo: Dolor de cabeza recurrente\n\nDiagnóstico: La mujer lo gorrea.\n\nObservaciones: Se le receta al paciente reposo e Ibuprofeno 600 cada 5 minutos.",
-                new DateTime(new DateOnly(2025, 7, 6), new TimeOnly(7, 45)));
+            var entrada1c = new E_Entrada(
+                paciente1.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Seguimiento tratamiento\n\nDiagnóstico: Mejoría significativa\n\nObservaciones: Paciente responde bien a medicación, continuar igual.",
+                new DateTime(fechaHoy.AddMonths(-1), new TimeOnly(11, 15)));
 
-            historia1.Entradas.Add(entrada1a);
+            paciente1.HistoriaClinica.Entradas.AddRange(new[] { entrada1a, entrada1b, entrada1c });
+            EntradasDB.AddRange(new[] { entrada1a, entrada1b, entrada1c });
 
-            E_Entrada entrada1b = new E_Entrada(
-                2,
-                historia1.IdHistoriaClinica,
-                profesional1.IdProfesional,
-                "Motivo: Dolor de ojos\n\nDiagnóstico: El paciente pasa mucho tiempo frente a pantallas.\n\nObservaciones: Se le recomienda al paciente dejar de jugar al LOL.",
-                new DateTime(new DateOnly(2025, 9, 16), new TimeOnly(9, 15)));
-
-            historia1.Entradas.Add(entrada1b);
-
-
+            // PACIENTE 2 (CON TURNOS ABONADOS - HISTORIA CLÍNICA COMPLETA)
             var paciente2 = new E_Paciente(
-                2,
-                "Mesa",
-                "Florinda",
-                "16988123",
-                Genero.M,
-                new DateOnly(1976, 7, 29),
-                "Casa 123",
-                "47582948",
-                "correo2@prueba.com",
-                ObraSocial.SANCOR_SALUD,
-                "600/123");
+                "Gómez", "Juan", "35123456", Genero.H, new DateOnly(1985, 7, 22),
+                "Av. Central 456", "1167895678", "juan.gomez@email.com",
+                ObraSocial.SWISS_MEDICAL, "SM-789012");
 
-            var historia2 = paciente2.HistoriaClinica;
+            // Historia clínica paciente 2 (MÚLTIPLES ENTRADAS)
+            var entrada2a = new E_Entrada(
+                paciente2.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Dolor precordial\n\nDiagnóstico: Angina de pecho estable\n\nObservaciones: Se realiza ergometría con resultado positivo.",
+                new DateTime(fechaHoy.AddMonths(-5), new TimeOnly(8, 30)));
+            
+            var entrada2b = new E_Entrada(
+                paciente2.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Control post tratamiento\n\nDiagnóstico: Mejoría del dolor precordial\n\nObservaciones: Paciente refiere mejoría con medicación indicada.",
+                new DateTime(fechaHoy.AddMonths(-2), new TimeOnly(10, 0)));
 
-            // Entradas
-            E_Entrada entrada2a = new E_Entrada(
-                3,
-                historia1.IdHistoriaClinica,
-                profesional2.IdProfesional,
-                "Motivo: Dolor de cabeza recurrente\n\nDiagnóstico: La mujer lo gorrea.\n\nObservaciones: Se le receta al paciente reposo e Ibuprofeno 600 cada 5 minutos.",
-                new DateTime(new DateOnly(2025, 10, 12), new TimeOnly(7, 45)));
+            var entrada2c = new E_Entrada(
+                paciente2.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Revisión anual\n\nDiagnóstico: Estabilidad clínica\n\nObservaciones: Mantener tratamiento actual y control en 6 meses.",
+                new DateTime(fechaHoy.AddMonths(-1), new TimeOnly(14, 45)));
 
-            historia2.Entradas.Add(entrada2a);
+            paciente2.HistoriaClinica.Entradas.AddRange(new[] { entrada2a, entrada2b, entrada2c });
+            EntradasDB.AddRange(new[] { entrada2a, entrada2b, entrada2c });
 
-            E_Entrada entrada2b = new E_Entrada(
-                4,
-                historia1.IdHistoriaClinica,
-                profesional1.IdProfesional,
-                "Motivo: Dolor de ojos\n\nDiagnóstico: El paciente pasa mucho tiempo frente a pantallas.\n\nObservaciones: Se le recomienda al paciente dejar de jugar al LOL.",
-                new DateTime(new DateOnly(2025, 11, 4), new TimeOnly(9, 15)));
+            // PACIENTE 3 (CON TURNOS ABONADOS - HISTORIA CLÍNICA COMPLETA)
+            var paciente3 = new E_Paciente(
+                "Rodríguez", "Lucía", "29123456", Genero.M, new DateOnly(1995, 12, 3),
+                "Calle Secundaria 789", "1178906789", "lucia.rodriguez@email.com",
+                ObraSocial.PARTICULAR, "PART-001");
 
-            historia2.Entradas.Add(entrada2b);
+            // Historia clínica paciente 3 (MÚLTIPLES ENTRADAS)
+            var entrada3a = new E_Entrada(
+                paciente3.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Soplo cardíaco\n\nDiagnóstico: Soplo inocente\n\nObservaciones: Ecocardiograma normal, no requiere tratamiento.",
+                new DateTime(fechaHoy.AddMonths(-4), new TimeOnly(9, 45)));
+            
+            var entrada3b = new E_Entrada(
+                paciente3.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Mareos ocasionales\n\nDiagnóstico: Hipotensión ortostática\n\nObservaciones: Recomendado aumentar hidratación y levantarse lentamente.",
+                new DateTime(fechaHoy.AddMonths(-2), new TimeOnly(11, 30)));
 
+            var entrada3c = new E_Entrada(
+                paciente3.HistoriaClinica.IdHistoriaClinica, profesional1.IdProfesional,
+                "Motivo: Control rutinario\n\nDiagnóstico: Estabilidad del soplo\n\nObservaciones: Paciente asintomática, continuar seguimiento anual.",
+                new DateTime(fechaHoy.AddMonths(-1), new TimeOnly(15, 20)));
 
-            PacientesDB.Add(paciente1);
-            PacientesDB.Add(paciente2);
+            paciente3.HistoriaClinica.Entradas.AddRange(new[] { entrada3a, entrada3b, entrada3c });
+            EntradasDB.AddRange(new[] { entrada3a, entrada3b, entrada3c });
 
+            // PACIENTE 4
+            var paciente4 = new E_Paciente(
+                "Fernández", "Pedro", "32123456", Genero.H, new DateOnly(1978, 4, 18),
+                "Bv. Norte 321", "1189017890", "pedro.fernandez@email.com",
+                ObraSocial.GALENO, "GAL-456789");
 
+            // PACIENTE 5
+            var paciente5 = new E_Paciente(
+                "Díaz", "Ana", "27123456", Genero.M, new DateOnly(1988, 9, 30),
+                "Av. Sur 654", "1190128901", "ana.diaz@email.com",
+                ObraSocial.OMINT, "OMI-987654");
 
-            // TURNOS
+            // PACIENTES ORIGINALES ADAPTADOS
+            var pacienteJuan = new E_Paciente(
+                "Perez", "Juan", "11222333", Genero.H, new DateOnly(1956, 12, 16),
+                "Calle Falsa 321", "46759922", "juan.perez@email.com",
+                ObraSocial.PARTICULAR, "PART-112233");
 
-            // Turnos Profesional 1
-            var turno1 = new E_Turno(
-                1,
-                new DateTime(2025, 11, 10, 7, 0, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno1);
-            profesional1.AgendaMedica.Add(turno1);
+            var pacienteFlorinda = new E_Paciente(
+                "Mesa", "Florinda", "22333444", Genero.M, new DateOnly(1976, 7, 29),
+                "Calle Falsa 123", "47582948", "florinda.mesa@email.com",
+                ObraSocial.SANCOR_SALUD, "SANCOR-600123");
 
-            var turno2 = new E_Turno(
-                2,
-                new DateTime(2025, 11, 10, 7, 15, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno2);
-            profesional1.AgendaMedica.Add(turno2);
+            PacientesDB.AddRange(new[] { paciente1, paciente2, paciente3, paciente4, paciente5, pacienteJuan, pacienteFlorinda });
 
-            var turno3 = new E_Turno(
-                3,
-                new DateTime(2025, 11, 10, 7, 30, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno3);
-            profesional1.AgendaMedica.Add(turno3);
+            // ========== TURNOS DEL DR. GARCÍA PARA HOY (16:00 - 22:00) ==========
 
-            var turno4 = new E_Turno(
-                4,
-                new DateTime(2025, 11, 10, 7, 45, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno4);
-            profesional1.AgendaMedica.Add(turno4);
+            var turnosHoyProf1 = new List<E_Turno>();
+            var horaInicio = new TimeSpan(16, 0, 0);
 
-            var turno5 = new E_Turno(
-                5,
-                new DateTime(2025, 11, 10, 8, 0, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno5);
-            profesional1.AgendaMedica.Add(turno5);
+            // GENERAR TURNOS CADA 15 MINUTOS DE 16:00 A 22:00
+            for (int i = 0; i < 24; i++) // 6 horas * 4 turnos por hora = 24 turnos
+            {
+                int totalMinutos = 16 * 60 + (i * 15); // 16:00 en minutos + incremento
+                int horas = totalMinutos / 60;
+                int minutos = totalMinutos % 60;
 
-            var turno6 = new E_Turno(
-                6,
-                new DateTime(2025, 11, 10, 8, 15, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno6);
-            profesional1.AgendaMedica.Add(turno6);
-
-            var turno7 = new E_Turno(
-                7,
-                new DateTime(2025, 11, 10, 8, 30, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno7);
-            profesional1.AgendaMedica.Add(turno7);
-
-            var turno8 = new E_Turno(
-                8,
-                new DateTime(2025, 11, 10, 8, 45, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno8);
-            profesional1.AgendaMedica.Add(turno8);
-
-            var turno9 = new E_Turno(
-                9,
-                new DateTime(2025, 11, 10, 9, 0, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno9);
-            profesional1.AgendaMedica.Add(turno9);
-
-            var turno10 = new E_Turno(
-                10,
-                new DateTime(2025, 11, 10, 9, 15, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno10);
-            profesional1.AgendaMedica.Add(turno10);
-
-            var turno11 = new E_Turno(
-                11,
-                new DateTime(2025, 11, 10, 9, 30, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno11);
-            profesional1.AgendaMedica.Add(turno11);
-
-            var turno12 = new E_Turno(
-                12,
-                new DateTime(2025, 11, 10, 9, 45, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno12);
-            profesional1.AgendaMedica.Add(turno12);
-
-            var turno13 = new E_Turno(
-                13,
-                new DateTime(2025, 11, 10, 10, 0, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno13);
-            profesional1.AgendaMedica.Add(turno13);
-
-            var turno14 = new E_Turno(
-                14,
-                new DateTime(2025, 11, 10, 10, 15, 0),
-                profesional1.IdProfesional,
-                3000m);
-            TurnosDB.Add(turno14);
-            profesional1.AgendaMedica.Add(turno14);
-
-
-            // Turnos Profesional 3
-            var turno15 = new E_Turno(
-                15,
-                new DateTime(2025, fecha.Month, fecha.Day, 7, 0, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno15);
-            profesional3.AgendaMedica.Add(turno15);
-            TurnoService.AsignarTurno(turno15, paciente1);
-
-
-            var turno16 = new E_Turno(
-                16,
-                new DateTime(2025, fecha.Month, fecha.Day, 7, 45, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno16);
-            profesional3.AgendaMedica.Add(turno16);
-
-            var turno17 = new E_Turno(
-                17,
-                new DateTime(2025, fecha.Month, fecha.Day, 8, 30, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno17);
-            profesional3.AgendaMedica.Add(turno17);
-            TurnoService.AsignarTurno(turno17, paciente2);
-
-            var turno18 = new E_Turno(
-                18,
-                new DateTime(2025, fecha.Month, fecha.Day, 9, 15, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno18);
-            profesional3.AgendaMedica.Add(turno18);
-            TurnoService.AsignarTurno(turno18, paciente1);
-
-            var turno19 = new E_Turno(
-                19,
-                new DateTime(2025, fecha.Month, fecha.Day, 10, 0, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno19);
-            profesional3.AgendaMedica.Add(turno19);
-            TurnoService.AsignarTurno(turno19, paciente2);
-            turno19.Estado = EstadoTurno.ABONADO; // HARDCORE PARA PRUEBA
-
-            var turno20 = new E_Turno(
-                20,
-                new DateTime(2025, fecha.Month, fecha.Day, 10, 45, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno20);
-            profesional3.AgendaMedica.Add(turno20);
-            TurnoService.AsignarTurno(turno20, paciente1);
-            turno20.Estado = EstadoTurno.ABONADO; // HARDCORE PARA PRUEBA
-
-            var turno21 = new E_Turno(
-                21,
-                new DateTime(2025, fecha.Month, fecha.Day, 11, 30, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno21);
-            profesional3.AgendaMedica.Add(turno21);
-
-            var turno22 = new E_Turno(
-                22,
-                new DateTime(2025, fecha.Month, fecha.Day, 12, 15, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno22);
-            profesional3.AgendaMedica.Add(turno22);
-
-            var turno23 = new E_Turno(
-                23,
-                new DateTime(2025, fecha.Month, fecha.Day, 13, 0, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno23);
-            profesional3.AgendaMedica.Add(turno23);
-
-            var turno24 = new E_Turno(
-                24,
-                new DateTime(2025, fecha.Month, fecha.Day, 13, 45, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno24);
-            profesional3.AgendaMedica.Add(turno24);
-
-            var turno25 = new E_Turno(
-                25,
-                new DateTime(2025, fecha.Month, fecha.Day, 14, 30, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno25);
-            profesional3.AgendaMedica.Add(turno25);
-
-            var turno26 = new E_Turno(
-                26,
-                new DateTime(2025, fecha.Month, fecha.Day, 15, 15, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno26);
-            profesional3.AgendaMedica.Add(turno26);
-
-            var turno27 = new E_Turno(
-                27,
-                new DateTime(2025, fecha.Month, fecha.Day, 16, 0, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno27);
-            profesional3.AgendaMedica.Add(turno27);
-
-            var turno28 = new E_Turno(
-                28,
-                new DateTime(2025, fecha.Month, fecha.Day, 16, 45, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno28);
-            profesional3.AgendaMedica.Add(turno28);
-
-            var turno29 = new E_Turno(
-                29,
-                new DateTime(2025, fecha.Month, fecha.Day, 17, 30, 0),
-                profesional3.IdProfesional,
-                5000m);
-            TurnosDB.Add(turno29);
-            profesional3.AgendaMedica.Add(turno29);
-
-
-            // INSUMOS
-            var insumo1 = new E_Insumo(
-                "COD/11",
-                "Jeringa Porter",
-                "Jeringa descartable para uso unico, con capacidad para 300mm de solucion, marca Porter.",
-                400);
-            InsumosDB.Add(insumo1);
-
-            var insumo2 = new E_Insumo(
-                "COD/22",
-                "Guantes de Nitrilo",
-                "Guantes de nitrilo sin polvo, talla M, caja con 100 unidades.",
-                150);
-            InsumosDB.Add(insumo2);
-
-            var insumo3 = new E_Insumo(
-                "COD/33",
-                "Barbijo Quirurgico",
-                "Barbijo quirurgico tricapa con elásticos para las orejas, caja con 50 unidades.",
-                200);
-            InsumosDB.Add(insumo3);
-
-            var insumo4 = new E_Insumo(
-                "COD/44",
-                "Termometro Digital",
-                "Termometro digital infrarrojo para uso oral, auricular o en frente, con pantalla LCD.",
-                75);
-            InsumosDB.Add(insumo4);
-
-            var insumo5 = new E_Insumo(
-                "COD/55",
-                "Alcohol en Gel",
-                "Alcohol en gel al 70% para desinfeccion de manos y superficies, envase de 500ml.",
-                120);
-            InsumosDB.Add(insumo5);
-
-            var insumo6 = new E_Insumo(
-                "COD/66",
-                "Venda Elastica",
-                "Venda elastica autoadhesiva para soporte y compresion, rollo de 5cm x 4.5m.",
-                90);
-            InsumosDB.Add(insumo6);
-
-            var insumo7 = new E_Insumo(
-                "COD/77",
-                "Termometro Digital",
-                "Termometro digital infrarrojo para uso oral, auricular o en frente, con pantalla LCD.",
-                75);
-            InsumosDB.Add(insumo7);
-
-            var insumo8 = new E_Insumo(
-                "COD/88",
-                "Alcohol en Gel",
-                "Alcohol en gel al 70% para desinfeccion de manos y superficies, envase de 500ml.",
-                120);
-            InsumosDB.Add(insumo8);
-
-            var insumo9 = new E_Insumo(
-                "COD/99",
-                "Venda Elastica",
-                "Venda elastica autoadhesiva para soporte y compresion, rollo de 5cm x 4.5m.",
-                90);
-            InsumosDB.Add(insumo9);
-
-            var insumo10 = new E_Insumo(
-                "COD/100",
-                "Guantes de Nitrilo",
-                "Guantes de nitrilo sin polvo, talla M, caja con 100 unidades.",
-                150);
-            InsumosDB.Add(insumo10);
-
-            var insumo11 = new E_Insumo(
-                "COD/110",
-                "Barbijo Quirurgico",
-                "Barbijo quirurgico tricapa con elásticos para las orejas, caja con 50 unidades.",
-                200);
-            InsumosDB.Add(insumo11);
-
-
-            // SOLICITUD DE INSUMOS
-            var insumoSolicitado1a = new E_InsumoSolicitado(insumo1, 10);
-            var insumoSolicitado1b = new E_InsumoSolicitado(insumo4, 30);
-            var insumoSolicitado1c = new E_InsumoSolicitado(insumo6, 20);
-
-            var listaInsumosSolicitados1 = new List<E_InsumoSolicitado>();
-            listaInsumosSolicitados1.Add(insumoSolicitado1a);
-            listaInsumosSolicitados1.Add(insumoSolicitado1b);
-            listaInsumosSolicitados1.Add(insumoSolicitado1c);
-
-            var pedido1 = new E_PedidoInsumo(
-                profesional1.IdProfesional,
-                listaInsumosSolicitados1
+                var turno = new E_Turno(
+                    new DateTime(fechaHoy.Year, fechaHoy.Month, fechaHoy.Day, horas, minutos, 0),
+                    profesional1.IdProfesional,
+                    5000m
                 );
+                turnosHoyProf1.Add(turno);
+            }
+
+            // ASIGNAR ESTADOS SEGÚN REQUISITOS
+            for (int i = 0; i < turnosHoyProf1.Count; i++)
+            {
+                var turno = turnosHoyProf1[i];
+                
+                // Turnos 16:00 - 19:00 (primeros 12 turnos): FINALIZADO
+                if (i < 12)
+                {
+                    turno.Estado = EstadoTurno.FINALIZADO;
+                    // Asignar pacientes aleatorios a algunos turnos finalizados
+                    if (i % 2 == 0)
+                    {
+                        turno.IdPaciente = paciente1.IdPaciente;
+                        paciente1.Reservas.Add(turno);
+                    }
+                    else if (i % 3 == 0)
+                    {
+                        turno.IdPaciente = paciente2.IdPaciente;
+                        paciente2.Reservas.Add(turno);
+                    }
+                }
+                // Siguientes 5 turnos (19:00 - 20:00): ABONADO
+                else if (i < 17)
+                {
+                    turno.Estado = EstadoTurno.ABONADO;
+                    // Asignar pacientes con historia clínica completa
+                    if (i == 12) { turno.IdPaciente = paciente1.IdPaciente; paciente1.Reservas.Add(turno); }
+                    else if (i == 13) { turno.IdPaciente = paciente2.IdPaciente; paciente2.Reservas.Add(turno); }
+                    else if (i == 14) { turno.IdPaciente = paciente3.IdPaciente; paciente3.Reservas.Add(turno); }
+                    else if (i == 15) { turno.IdPaciente = paciente1.IdPaciente; paciente1.Reservas.Add(turno); }
+                    else if (i == 16) { turno.IdPaciente = paciente2.IdPaciente; paciente2.Reservas.Add(turno); }
+                }
+                // Resto de turnos (20:00 - 22:00): VARIOS ESTADOS
+                else
+                {
+                    if (i % 2 == 0)
+                    {
+                        turno.Estado = EstadoTurno.ASIGNADO;
+                        // Asignar algunos pacientes
+                        if (i == 18) { turno.IdPaciente = paciente4.IdPaciente; paciente4.Reservas.Add(turno); }
+                        else if (i == 20) { turno.IdPaciente = paciente5.IdPaciente; paciente5.Reservas.Add(turno); }
+                    }
+                    else
+                    {
+                        turno.Estado = EstadoTurno.DISPONIBLE;
+                    }
+                }
+            }
+
+            // AGREGAR TURNOS A LA BASE DE DATOS
+            foreach (var turno in turnosHoyProf1)
+            {
+                TurnosDB.Add(turno);
+                profesional1.AgendaMedica.Add(turno);
+            }
+
+            // ========== PAGOS ==========
+
+            // Pagos para turnos ABONADOS
+            var pagosAbonados = new List<E_Pago>
+            {
+                new E_Pago(paciente1.IdPaciente, turnosHoyProf1[12].IdTurno, 5000m)
+                {
+                    Estado = EstadoPago.REALIZADO,
+                    MetodoPago = MetodoPago.TARJETA_CREDITO,
+                    FechaPago = fechaHoy
+                },
+                new E_Pago(paciente2.IdPaciente, turnosHoyProf1[13].IdTurno, 5000m)
+                {
+                    Estado = EstadoPago.REALIZADO,
+                    MetodoPago = MetodoPago.EFECTIVO,
+                    FechaPago = fechaHoy
+                },
+                new E_Pago(paciente3.IdPaciente, turnosHoyProf1[14].IdTurno, 5000m)
+                {
+                    Estado = EstadoPago.REALIZADO,
+                    MetodoPago = MetodoPago.TRANSFERENCIA,
+                    FechaPago = fechaHoy
+                },
+                new E_Pago(paciente1.IdPaciente, turnosHoyProf1[15].IdTurno, 5000m)
+                {
+                    Estado = EstadoPago.REALIZADO,
+                    MetodoPago = MetodoPago.TARJETA_DEBITO,
+                    FechaPago = fechaHoy
+                },
+                new E_Pago(paciente2.IdPaciente, turnosHoyProf1[16].IdTurno, 5000m)
+                {
+                    Estado = EstadoPago.REALIZADO,
+                    MetodoPago = MetodoPago.EFECTIVO,
+                    FechaPago = fechaHoy
+                }
+            };
+
+            PagosDB.AddRange(pagosAbonados);
+            paciente1.PagosRealizados.Add(pagosAbonados[0]);
+            paciente1.PagosRealizados.Add(pagosAbonados[3]);
+            paciente2.PagosRealizados.Add(pagosAbonados[1]);
+            paciente2.PagosRealizados.Add(pagosAbonados[4]);
+            paciente3.PagosRealizados.Add(pagosAbonados[2]);
+
+            // ========== INSUMOS ==========
+            var insumos = new List<E_Insumo>
+            {
+                new E_Insumo("JER-001", "Jeringa 10ml", "Jeringa descartable 10ml", 200),
+                new E_Insumo("GNT-M", "Guantes M", "Guantes de latex talla M", 500),
+                new E_Insumo("ALG-500", "Alcohol gel", "Alcohol en gel 500ml", 50),
+                new E_Insumo("CUB-B", "Cubrebocas", "Cubrebocas quirúrgico", 300),
+                new E_Insumo("AGA-100", "Gasas", "Gasas estériles 10x10", 150)
+            };
+
+            InsumosDB.AddRange(insumos);
+
+            // ========== PEDIDOS DE INSUMOS ==========
+            var insumosSolicitados = new List<E_InsumoSolicitado>
+            {
+                new E_InsumoSolicitado(insumos[0], 50),
+                new E_InsumoSolicitado(insumos[1], 100),
+                new E_InsumoSolicitado(insumos[2], 10)
+            };
+
+            var pedidoInsumo = new E_PedidoInsumo(profesional1.IdProfesional, insumosSolicitados);
+            PedidosInsumos.Add(pedidoInsumo);
+
+            // ========== CONSULTORIOS ==========
+            var consultorio1 = new E_Consultorio();
+            consultorio1.IdProfesional = profesional1.IdProfesional;
+            consultorio1.Insumos.AddRange(insumos.Take(3));
+
+            var consultorio2 = new E_Consultorio();
+            consultorio2.IdProfesional = profesional2.IdProfesional;
+            consultorio2.Insumos.AddRange(insumos.Skip(2).Take(2));
+
+            ConsultoriosDB.AddRange(new[] { consultorio1, consultorio2 });
+
+            // ACTUALIZAR CONTADORES
+            profesional1.ConsultasAtendidas = 12; // Todos los turnos finalizados
+        }
+
+        private static void ResetAutoIncrementCounters()
+        {
+            // Usar reflexión para resetear todos los contadores static
+            var fields = typeof(DDBB_Simulation).Assembly.GetTypes()
+                .SelectMany(t => t.GetFields(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic))
+                .Where(f => f.Name == "ID_AUTOINCREMENT");
+
+            foreach (var field in fields)
+            {
+                field.SetValue(null, 0);
+            }
         }
     }
 }

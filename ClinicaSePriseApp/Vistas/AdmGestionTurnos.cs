@@ -69,6 +69,7 @@ namespace ClinicaSePriseApp.Vistas
             turnosDgv.BackgroundColor = PaletaColores.celeste;
 
             contentLbl.BackColor = PaletaColores.bgGris;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
 
             foreach (Control boton in menuTLP.Controls)
             {

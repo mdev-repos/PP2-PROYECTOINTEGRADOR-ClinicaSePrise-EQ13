@@ -61,27 +61,14 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             cboxHorarios.Enabled = false;
             btnConfirmar.Enabled = false;
         }
-        private class HorarioDisplay
-        {
-            public DateTime Horario { get; set; }
-            public string Display => Horario.ToString("HH:mm") + " hs";
-        }
 
-        // Carga de Datos
         private void CargarHorarios()
         {
             var horarios = CalcularHorarios();
-
-            var horariosDisplay = horarios
-                .Select(h => new HorarioDisplay { Horario = h })
-                .ToList();
-
-            cboxHorarios.DataSource = horariosDisplay;
-            cboxHorarios.DisplayMember = "Display";
-            cboxHorarios.ValueMember = "Horario";
+            cboxHorarios.DataSource = horarios;
+            cboxHorarios.DisplayMember = "TimeOfDay";
         }
 
-        // Metodos Auxiliares
         private List<DateTime> CalcularHorarios()
         {
             List<DateTime> horariosDisponibles = new List<DateTime>();
@@ -94,16 +81,13 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 return horariosDisponibles;
 
             int horaInicio = dispo.HoraInicio.Hours;
-            int minutoInicio = dispo.HoraInicio.Minutes;
             int horaFin = dispo.HoraFin.Hours;
 
-            DateTime horarioCreado = new DateTime(hoy.Year, hoy.Month, hoy.Day, horaInicio, minutoInicio, 0);
+            DateTime horarioCreado = new DateTime(hoy.Year, hoy.Month, hoy.Day, horaInicio, 55, 0);
             DateTime horaFinal = new DateTime(hoy.Year, hoy.Month, hoy.Day, horaFin, 0, 0);
 
-            // Corregido: usar while con incremento correcto
             while (horarioCreado <= horaFinal)
             {
-                // Verificar si el horario está disponible (no existe en la agenda)
                 bool horarioOcupado = _Profesional.AgendaMedica
                     .Any(t => t.FechaTurno == horarioCreado);
 
@@ -112,7 +96,6 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                     horariosDisponibles.Add(horarioCreado);
                 }
 
-                // Incrementar en 1 hora
                 horarioCreado = horarioCreado.AddHours(1);
             }
 
@@ -153,7 +136,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 return;
             }
 
-            _HorarioSeleccionado = (DateTime)cboxHorarios.SelectedValue;
+            _HorarioSeleccionado = (DateTime)cboxHorarios.SelectedItem;
 
             var turno = TurnoService.CrearTurno(
                 _HorarioSeleccionado,
@@ -165,7 +148,6 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             _PacienteSeleccionado.Reservas.Add(turno);
 
             E_Pago pago = new E_Pago(
-                DDBB_Simulation.PagosDB.Count + 1,
                 _PacienteSeleccionado.IdPaciente,
                 turno.IdTurno,
                 turno.Monto);

@@ -20,8 +20,41 @@ namespace ClinicaSePriseApp.Vistas
             InitializeComponent();
             pacienteActual = paciente;
             this.Load += AdmGPModificarPaciente_Load;
+            ajustarPaneles();
         }
 
+        private void ajustarPaneles()
+        {
+            mainTLP.BackColor = PaletaColores.celeste;
+            menuTLP.BackColor = PaletaColores.bgGris;
+
+            contentLbl.BackColor = PaletaColores.bgGris;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+
+
+            foreach (Control boton in menuTLP.Controls)
+            {
+                boton.Dock = DockStyle.Fill;
+
+                if (boton == btnVolver)
+                {
+                    boton.BackColor = PaletaColores.rosa;
+                }
+                else if (boton == picLogo)
+                {
+                    boton.BackColor = Color.Transparent;
+                }
+                else
+                {
+                    boton.BackColor = PaletaColores.azulOscuro;
+                }
+
+                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+                boton.ForeColor = Color.White;
+            }
+
+            lblTurno.ForeColor = Color.White;
+        }
         private void btnVolver_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(

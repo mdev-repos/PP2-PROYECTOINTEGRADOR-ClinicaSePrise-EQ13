@@ -1,4 +1,6 @@
 ﻿using ClinicaSePriseApp.Datos;
+using ClinicaSePriseApp.Entidades;
+using ClinicaSePriseApp.Servicios;
 using ClinicaSePriseApp.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,8 @@ namespace ClinicaSePriseApp.Vistas
         public AdmGestionPacientes()
         {
             InitializeComponent();
+
+            ajustarPaneles();
         }
 
         private void AdmGestionPacientes_Load(object sender, EventArgs e)
@@ -25,6 +29,38 @@ namespace ClinicaSePriseApp.Vistas
             ConfigurarGrillaPacientes();
             CargarTodosLosPacientes();
             pacientesDgv.CellPainting += pacientesDgv_CellPainting;
+        }
+
+        private void ajustarPaneles()
+        {
+            mainTLP.BackColor = PaletaColores.celeste;
+            menuTLP.BackColor = PaletaColores.bgGris;
+
+            contentLbl.BackColor = PaletaColores.bgGris;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+
+            pacientesDgv.BorderStyle = BorderStyle.None;
+
+            foreach (Control boton in menuTLP.Controls)
+            {
+                boton.Dock = DockStyle.Fill;
+
+                if (boton == btnVolver)
+                {
+                    boton.BackColor = PaletaColores.rosa;
+                }
+                else if (boton == picLogo)
+                {
+                    boton.BackColor = Color.Transparent;
+                }
+                else
+                {
+                    boton.BackColor = PaletaColores.azulOscuro;
+                }
+
+                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+                boton.ForeColor = Color.White;
+            }
         }
 
         private void MostrarPlaceholderDni()
@@ -43,17 +79,6 @@ namespace ClinicaSePriseApp.Vistas
             dashAdmin.Show();
         }
 
-        private void AjustarFondoGrilla()
-        {
-            if (pacientesDgv.Rows.Count <= 2)
-            {
-                pacientesDgv.BackgroundColor = Color.CornflowerBlue;
-            }
-            else
-            {
-                pacientesDgv.BackgroundColor = SystemColors.Window;
-            }
-        }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -67,13 +92,25 @@ namespace ClinicaSePriseApp.Vistas
             }
             txtDni.BackColor = SystemColors.Window;
 
-            var repo = new PacienteRepository();
-            var paciente = repo.ObtenerPacientePorDNI(dniIngresado);
+            var pacienteEncontrado = PacienteService.ObtenerPacientePorDNI(dniIngresado);
 
-            if (paciente != null)
-            {
-                pacientesDgv.DataSource = new List<Entidades.E_Paciente> { paciente };
-                AjustarFondoGrilla();
+            if (pacienteEncontrado != null)
+            {                
+                var listaTransformada = new List<object>
+                {
+                    new
+                    {
+                        Dni = pacienteEncontrado.Dni,
+                        NombreApellido = pacienteEncontrado.NombreCompleto,
+                        ObraSocial = EnumHelper.GetDescription(pacienteEncontrado.ObraSocial),
+                        NumeroAfiliado = pacienteEncontrado.NumeroAfiliado,
+                        Turnos = "Ver",
+                        Pagos = "Ver",
+                        PacienteOriginal = pacienteEncontrado
+                    }
+                };
+
+                pacientesDgv.DataSource = listaTransformada;                
             }
             else
             {
@@ -122,9 +159,8 @@ namespace ClinicaSePriseApp.Vistas
 
         private void CargarTodosLosPacientes()
         {
-            var repo = new PacienteRepository();
-            var listaPacientes = repo.ObtenerTodosLosPacientes();
-
+            var listaPacientes = PacienteService.ObtenerTodosLosPacientes();
+            
             var listaTransformada = listaPacientes.Select(p => new
             {
                 Dni = p.Dni,
@@ -137,7 +173,6 @@ namespace ClinicaSePriseApp.Vistas
             }).ToList();
 
             pacientesDgv.DataSource = listaTransformada;
-            AjustarFondoGrilla();
         }
 
 
@@ -149,7 +184,6 @@ namespace ClinicaSePriseApp.Vistas
 
             AplicarEstiloGrilla(pacientesDgv);
 
-            // Columnas de datos
             pacientesDgv.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Dni",
@@ -206,7 +240,7 @@ namespace ClinicaSePriseApp.Vistas
         private void AplicarEstiloGrilla(DataGridView dgv)
         {
             dgv.RowHeadersVisible = false;
-            dgv.BackgroundColor = PaletaColores.bgCeleste;
+            dgv.BackgroundColor = PaletaColores.celeste;
             dgv.DefaultCellStyle.BackColor = Color.White;
             dgv.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;

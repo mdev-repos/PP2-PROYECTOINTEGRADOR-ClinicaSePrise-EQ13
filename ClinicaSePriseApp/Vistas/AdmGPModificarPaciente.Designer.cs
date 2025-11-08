@@ -39,6 +39,7 @@
             viewTLP = new TableLayoutPanel();
             imgPicBox = new PictureBox();
             dataTLP = new TableLayoutPanel();
+            dateFechaNacimiento = new DateTimePicker();
             txtNroAfiliado = new TextBox();
             lblNroAfiliado = new Label();
             cboxObraSocial = new ComboBox();
@@ -59,7 +60,6 @@
             lblNombre = new Label();
             txtNombre = new TextBox();
             cboxGenero = new ComboBox();
-            dateFechaNacimiento = new DateTimePicker();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -82,7 +82,7 @@
             mainTLP.Name = "mainTLP";
             mainTLP.RowCount = 1;
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            mainTLP.Size = new Size(1664, 775);
+            mainTLP.Size = new Size(1902, 1033);
             mainTLP.TabIndex = 3;
             // 
             // menuTLP
@@ -94,7 +94,7 @@
             menuTLP.Controls.Add(btnVolver, 0, 8);
             menuTLP.Controls.Add(btnConfirmar, 0, 2);
             menuTLP.Dock = DockStyle.Fill;
-            menuTLP.Location = new Point(1248, 0);
+            menuTLP.Location = new Point(1426, 0);
             menuTLP.Margin = new Padding(0);
             menuTLP.Name = "menuTLP";
             menuTLP.RowCount = 10;
@@ -108,7 +108,7 @@
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 12F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.Size = new Size(416, 775);
+            menuTLP.Size = new Size(476, 1033);
             menuTLP.TabIndex = 0;
             // 
             // picLogo
@@ -119,7 +119,7 @@
             picLogo.Location = new Point(0, 0);
             picLogo.Margin = new Padding(0);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(416, 232);
+            picLogo.Size = new Size(476, 309);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
@@ -129,10 +129,10 @@
             btnVolver.BackColor = Color.Pink;
             btnVolver.Dock = DockStyle.Fill;
             btnVolver.ForeColor = Color.White;
-            btnVolver.Location = new Point(0, 649);
+            btnVolver.Location = new Point(0, 861);
             btnVolver.Margin = new Padding(0);
             btnVolver.Name = "btnVolver";
-            btnVolver.Size = new Size(416, 62);
+            btnVolver.Size = new Size(476, 82);
             btnVolver.TabIndex = 8;
             btnVolver.Text = "VOLVER A PACIENTES";
             btnVolver.UseVisualStyleBackColor = false;
@@ -143,10 +143,10 @@
             btnConfirmar.BackColor = Color.CornflowerBlue;
             btnConfirmar.Dock = DockStyle.Fill;
             btnConfirmar.ForeColor = Color.White;
-            btnConfirmar.Location = new Point(0, 278);
+            btnConfirmar.Location = new Point(0, 370);
             btnConfirmar.Margin = new Padding(0);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(416, 62);
+            btnConfirmar.Size = new Size(476, 82);
             btnConfirmar.TabIndex = 9;
             btnConfirmar.Text = "CONFIRMAR";
             btnConfirmar.UseVisualStyleBackColor = false;
@@ -167,7 +167,7 @@
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 0F));
             contentTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
-            contentTLP.Size = new Size(1248, 775);
+            contentTLP.Size = new Size(1426, 1033);
             contentTLP.TabIndex = 1;
             // 
             // contentLbl
@@ -176,12 +176,12 @@
             contentLbl.BackColor = SystemColors.GradientInactiveCaption;
             contentLbl.Dock = DockStyle.Fill;
             contentLbl.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            contentLbl.Location = new Point(0, 38);
+            contentLbl.Location = new Point(0, 51);
             contentLbl.Margin = new Padding(0);
             contentLbl.Name = "contentLbl";
-            contentLbl.Size = new Size(1248, 77);
+            contentLbl.Size = new Size(1426, 103);
             contentLbl.TabIndex = 0;
-            contentLbl.Text = "MODIFICAR PACIENTE";
+            contentLbl.Text = "    MODIFICAR PACIENTE";
             contentLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // viewTLP
@@ -189,26 +189,25 @@
             viewTLP.ColumnCount = 2;
             viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 18F));
+            viewTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 21F));
             viewTLP.Controls.Add(imgPicBox, 1, 0);
             viewTLP.Controls.Add(dataTLP, 0, 0);
             viewTLP.Dock = DockStyle.Fill;
-            viewTLP.Location = new Point(0, 115);
+            viewTLP.Location = new Point(0, 154);
             viewTLP.Margin = new Padding(0);
             viewTLP.Name = "viewTLP";
             viewTLP.RowCount = 1;
             viewTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            viewTLP.Size = new Size(1248, 660);
+            viewTLP.Size = new Size(1426, 879);
             viewTLP.TabIndex = 1;
             // 
             // imgPicBox
             // 
             imgPicBox.Dock = DockStyle.Fill;
             imgPicBox.Image = (Image)resources.GetObject("imgPicBox.Image");
-            imgPicBox.Location = new Point(627, 2);
-            imgPicBox.Margin = new Padding(3, 2, 3, 2);
+            imgPicBox.Location = new Point(716, 3);
             imgPicBox.Name = "imgPicBox";
-            imgPicBox.Size = new Size(618, 656);
+            imgPicBox.Size = new Size(707, 873);
             imgPicBox.SizeMode = PictureBoxSizeMode.Zoom;
             imgPicBox.TabIndex = 0;
             imgPicBox.TabStop = false;
@@ -240,8 +239,8 @@
             dataTLP.Controls.Add(txtNombre, 1, 1);
             dataTLP.Controls.Add(cboxGenero, 1, 4);
             dataTLP.Dock = DockStyle.Fill;
-            dataTLP.Location = new Point(4, 0);
-            dataTLP.Margin = new Padding(4, 0, 0, 0);
+            dataTLP.Location = new Point(20, 0);
+            dataTLP.Margin = new Padding(20, 0, 20, 0);
             dataTLP.Name = "dataTLP";
             dataTLP.RowCount = 11;
             dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
@@ -255,16 +254,25 @@
             dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
             dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
             dataTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 9F));
-            dataTLP.Size = new Size(620, 660);
+            dataTLP.Size = new Size(673, 879);
             dataTLP.TabIndex = 2;
+            // 
+            // dateFechaNacimiento
+            // 
+            dateFechaNacimiento.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dateFechaNacimiento.Location = new Point(323, 429);
+            dateFechaNacimiento.Margin = new Padding(3, 4, 3, 4);
+            dateFechaNacimiento.Name = "dateFechaNacimiento";
+            dateFechaNacimiento.Size = new Size(347, 27);
+            dateFechaNacimiento.TabIndex = 41;
             // 
             // txtNroAfiliado
             // 
             txtNroAfiliado.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNroAfiliado.Location = new Point(295, 617);
+            txtNroAfiliado.Location = new Point(320, 825);
             txtNroAfiliado.Margin = new Padding(0);
             txtNroAfiliado.Name = "txtNroAfiliado";
-            txtNroAfiliado.Size = new Size(325, 23);
+            txtNroAfiliado.Size = new Size(353, 27);
             txtNroAfiliado.TabIndex = 40;
             txtNroAfiliado.Text = " ";
             // 
@@ -273,11 +281,12 @@
             lblNroAfiliado.AutoSize = true;
             lblNroAfiliado.Dock = DockStyle.Fill;
             lblNroAfiliado.Enabled = false;
+            lblNroAfiliado.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblNroAfiliado.ForeColor = Color.Black;
-            lblNroAfiliado.Location = new Point(0, 597);
+            lblNroAfiliado.Location = new Point(0, 798);
             lblNroAfiliado.Margin = new Padding(0);
             lblNroAfiliado.Name = "lblNroAfiliado";
-            lblNroAfiliado.Size = new Size(295, 63);
+            lblNroAfiliado.Size = new Size(320, 81);
             lblNroAfiliado.TabIndex = 39;
             lblNroAfiliado.Text = "Nro Afiliado: ";
             lblNroAfiliado.TextAlign = ContentAlignment.MiddleLeft;
@@ -286,54 +295,55 @@
             // 
             cboxObraSocial.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cboxObraSocial.FormattingEnabled = true;
-            cboxObraSocial.Location = new Point(298, 556);
+            cboxObraSocial.Location = new Point(323, 744);
+            cboxObraSocial.Margin = new Padding(3, 4, 3, 4);
             cboxObraSocial.Name = "cboxObraSocial";
-            cboxObraSocial.Size = new Size(319, 23);
+            cboxObraSocial.Size = new Size(347, 28);
             cboxObraSocial.TabIndex = 36;
             // 
             // txtMail
             // 
             txtMail.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtMail.Location = new Point(295, 497);
+            txtMail.Location = new Point(320, 666);
             txtMail.Margin = new Padding(0);
             txtMail.Name = "txtMail";
-            txtMail.Size = new Size(325, 23);
+            txtMail.Size = new Size(353, 27);
             txtMail.TabIndex = 33;
             // 
             // txtTelefono
             // 
             txtTelefono.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtTelefono.Location = new Point(295, 438);
+            txtTelefono.Location = new Point(320, 587);
             txtTelefono.Margin = new Padding(0);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(325, 23);
+            txtTelefono.Size = new Size(353, 27);
             txtTelefono.TabIndex = 32;
             // 
             // txtDireccion
             // 
             txtDireccion.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtDireccion.Location = new Point(295, 379);
+            txtDireccion.Location = new Point(320, 508);
             txtDireccion.Margin = new Padding(0);
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(325, 23);
+            txtDireccion.Size = new Size(353, 27);
             txtDireccion.TabIndex = 31;
             // 
             // txtDni
             // 
             txtDni.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtDni.Location = new Point(295, 202);
+            txtDni.Location = new Point(320, 271);
             txtDni.Margin = new Padding(0);
             txtDni.Name = "txtDni";
-            txtDni.Size = new Size(325, 23);
+            txtDni.Size = new Size(353, 27);
             txtDni.TabIndex = 28;
             // 
             // txtApellido
             // 
             txtApellido.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtApellido.Location = new Point(295, 143);
+            txtApellido.Location = new Point(320, 192);
             txtApellido.Margin = new Padding(0);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(325, 23);
+            txtApellido.Size = new Size(353, 27);
             txtApellido.TabIndex = 27;
             // 
             // lblObraSocial
@@ -341,10 +351,11 @@
             lblObraSocial.AutoSize = true;
             lblObraSocial.Dock = DockStyle.Fill;
             lblObraSocial.Enabled = false;
-            lblObraSocial.Location = new Point(0, 538);
+            lblObraSocial.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblObraSocial.Location = new Point(0, 719);
             lblObraSocial.Margin = new Padding(0);
             lblObraSocial.Name = "lblObraSocial";
-            lblObraSocial.Size = new Size(295, 59);
+            lblObraSocial.Size = new Size(320, 79);
             lblObraSocial.TabIndex = 25;
             lblObraSocial.Text = "Obra Social: ";
             lblObraSocial.TextAlign = ContentAlignment.MiddleLeft;
@@ -354,10 +365,11 @@
             lblEmail.AutoSize = true;
             lblEmail.Dock = DockStyle.Fill;
             lblEmail.Enabled = false;
-            lblEmail.Location = new Point(0, 479);
+            lblEmail.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblEmail.Location = new Point(0, 640);
             lblEmail.Margin = new Padding(0);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(295, 59);
+            lblEmail.Size = new Size(320, 79);
             lblEmail.TabIndex = 23;
             lblEmail.Text = "E-mail: ";
             lblEmail.TextAlign = ContentAlignment.MiddleLeft;
@@ -367,10 +379,11 @@
             lblTelefono.AutoSize = true;
             lblTelefono.Dock = DockStyle.Fill;
             lblTelefono.Enabled = false;
-            lblTelefono.Location = new Point(0, 420);
+            lblTelefono.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTelefono.Location = new Point(0, 561);
             lblTelefono.Margin = new Padding(0);
             lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(295, 59);
+            lblTelefono.Size = new Size(320, 79);
             lblTelefono.TabIndex = 21;
             lblTelefono.Text = "Teléfono: ";
             lblTelefono.TextAlign = ContentAlignment.MiddleLeft;
@@ -380,10 +393,11 @@
             label7.AutoSize = true;
             label7.Dock = DockStyle.Fill;
             label7.Enabled = false;
-            label7.Location = new Point(0, 361);
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label7.Location = new Point(0, 482);
             label7.Margin = new Padding(0);
             label7.Name = "label7";
-            label7.Size = new Size(295, 59);
+            label7.Size = new Size(320, 79);
             label7.TabIndex = 19;
             label7.Text = "Dirección: ";
             label7.TextAlign = ContentAlignment.MiddleLeft;
@@ -393,10 +407,11 @@
             lblFechaNacimiento.AutoSize = true;
             lblFechaNacimiento.Dock = DockStyle.Fill;
             lblFechaNacimiento.Enabled = false;
-            lblFechaNacimiento.Location = new Point(0, 302);
+            lblFechaNacimiento.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblFechaNacimiento.Location = new Point(0, 403);
             lblFechaNacimiento.Margin = new Padding(0);
             lblFechaNacimiento.Name = "lblFechaNacimiento";
-            lblFechaNacimiento.Size = new Size(295, 59);
+            lblFechaNacimiento.Size = new Size(320, 79);
             lblFechaNacimiento.TabIndex = 12;
             lblFechaNacimiento.Text = "Fecha de nacimiento:";
             lblFechaNacimiento.TextAlign = ContentAlignment.MiddleLeft;
@@ -406,10 +421,11 @@
             lblGenero.AutoSize = true;
             lblGenero.Dock = DockStyle.Fill;
             lblGenero.Enabled = false;
-            lblGenero.Location = new Point(0, 243);
+            lblGenero.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblGenero.Location = new Point(0, 324);
             lblGenero.Margin = new Padding(0);
             lblGenero.Name = "lblGenero";
-            lblGenero.Size = new Size(295, 59);
+            lblGenero.Size = new Size(320, 79);
             lblGenero.TabIndex = 4;
             lblGenero.Text = "Género: ";
             lblGenero.TextAlign = ContentAlignment.MiddleLeft;
@@ -419,10 +435,11 @@
             lblDni.AutoSize = true;
             lblDni.Dock = DockStyle.Fill;
             lblDni.Enabled = false;
-            lblDni.Location = new Point(0, 184);
+            lblDni.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblDni.Location = new Point(0, 245);
             lblDni.Margin = new Padding(0);
             lblDni.Name = "lblDni";
-            lblDni.Size = new Size(295, 59);
+            lblDni.Size = new Size(320, 79);
             lblDni.TabIndex = 3;
             lblDni.Text = "DNI: ";
             lblDni.TextAlign = ContentAlignment.MiddleLeft;
@@ -432,10 +449,11 @@
             lblApellido.AutoSize = true;
             lblApellido.Dock = DockStyle.Fill;
             lblApellido.Enabled = false;
-            lblApellido.Location = new Point(0, 125);
+            lblApellido.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblApellido.Location = new Point(0, 166);
             lblApellido.Margin = new Padding(0);
             lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(295, 59);
+            lblApellido.Size = new Size(320, 79);
             lblApellido.TabIndex = 2;
             lblApellido.Text = "Apellido: ";
             lblApellido.TextAlign = ContentAlignment.MiddleLeft;
@@ -449,7 +467,7 @@
             lblTurno.Location = new Point(0, 0);
             lblTurno.Margin = new Padding(0);
             lblTurno.Name = "lblTurno";
-            lblTurno.Size = new Size(620, 66);
+            lblTurno.Size = new Size(673, 87);
             lblTurno.TabIndex = 0;
             lblTurno.Text = "DATOS DEL PACIENTE";
             lblTurno.TextAlign = ContentAlignment.MiddleCenter;
@@ -459,10 +477,11 @@
             lblNombre.AutoSize = true;
             lblNombre.Dock = DockStyle.Fill;
             lblNombre.Enabled = false;
-            lblNombre.Location = new Point(0, 66);
+            lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblNombre.Location = new Point(0, 87);
             lblNombre.Margin = new Padding(0);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(295, 59);
+            lblNombre.Size = new Size(320, 79);
             lblNombre.TabIndex = 1;
             lblNombre.Text = "Nombre: ";
             lblNombre.TextAlign = ContentAlignment.MiddleLeft;
@@ -470,37 +489,31 @@
             // txtNombre
             // 
             txtNombre.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtNombre.Location = new Point(295, 84);
+            txtNombre.Location = new Point(320, 113);
             txtNombre.Margin = new Padding(0);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(325, 23);
+            txtNombre.Size = new Size(353, 27);
             txtNombre.TabIndex = 26;
             // 
             // cboxGenero
             // 
             cboxGenero.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cboxGenero.FormattingEnabled = true;
-            cboxGenero.Location = new Point(298, 261);
+            cboxGenero.Location = new Point(323, 349);
+            cboxGenero.Margin = new Padding(3, 4, 3, 4);
             cboxGenero.Name = "cboxGenero";
-            cboxGenero.Size = new Size(319, 23);
+            cboxGenero.Size = new Size(347, 28);
             cboxGenero.TabIndex = 34;
-            // 
-            // dateFechaNacimiento
-            // 
-            dateFechaNacimiento.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            dateFechaNacimiento.Location = new Point(298, 320);
-            dateFechaNacimiento.Name = "dateFechaNacimiento";
-            dateFechaNacimiento.Size = new Size(319, 23);
-            dateFechaNacimiento.TabIndex = 41;
             // 
             // AdmGPModificarPaciente
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1664, 775);
+            ClientSize = new Size(1902, 1033);
             Controls.Add(mainTLP);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(898, 586);
+            Margin = new Padding(3, 4, 3, 4);
+            MinimumSize = new Size(1024, 766);
             Name = "AdmGPModificarPaciente";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clinica SePrise  ||  Modificar Paciente";
