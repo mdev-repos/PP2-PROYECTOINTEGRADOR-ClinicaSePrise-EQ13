@@ -173,7 +173,7 @@ namespace ClinicaSePriseApp.Utilidades
                     5,
                     fecha.DayOfWeek,
                     new TimeSpan(7, 0, 0),
-                    new TimeSpan(15, 0, 0));
+                    new TimeSpan(23, 0, 0));
 
             var disponibilidad3b = new E_Disponibilidad(
                 6,
@@ -540,6 +540,38 @@ namespace ClinicaSePriseApp.Utilidades
                 5000m);
             TurnosDB.Add(turno25);
             profesional3.AgendaMedica.Add(turno25);
+
+            var turno26 = new E_Turno(
+                26,
+                new DateTime(2025, fecha.Month, fecha.Day, 15, 15, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno26);
+            profesional3.AgendaMedica.Add(turno26);
+
+            var turno27 = new E_Turno(
+                27,
+                new DateTime(2025, fecha.Month, fecha.Day, 16, 0, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno27);
+            profesional3.AgendaMedica.Add(turno27);
+
+            var turno28 = new E_Turno(
+                28,
+                new DateTime(2025, fecha.Month, fecha.Day, 16, 45, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno28);
+            profesional3.AgendaMedica.Add(turno28);
+
+            var turno29 = new E_Turno(
+                29,
+                new DateTime(2025, fecha.Month, fecha.Day, 17, 30, 0),
+                profesional3.IdProfesional,
+                5000m);
+            TurnosDB.Add(turno29);
+            profesional3.AgendaMedica.Add(turno29);
         }
     }
 }

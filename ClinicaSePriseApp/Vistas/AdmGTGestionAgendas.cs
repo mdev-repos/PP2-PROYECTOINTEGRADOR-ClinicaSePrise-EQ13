@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClinicaSePriseApp.Vistas
 {
@@ -154,7 +155,7 @@ namespace ClinicaSePriseApp.Vistas
 
             foreach (Control label in calendarMonthTLP.Controls)
             {
-                if (label is Button)
+                if (label is System.Windows.Forms.Button)
                 {
                     label.BackColor = PaletaColores.azulClaro;
                     label.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
@@ -447,8 +448,8 @@ namespace ClinicaSePriseApp.Vistas
                     Label lblHora = CrearLabelDato(turno.FechaTurno.ToString("HH:mm"), anchoPorColumna);
                     Label lblEstado = CrearLabelDato(EnumHelper.GetDescription(turno.Estado), anchoPorColumna);
 
-                    Button btnVer = CrearBotonVer(turno);
-                    Button btnEliminar = CrearBotonEliminar(turno);
+                    System.Windows.Forms.Button btnVer = CrearBotonVer(turno);
+                    System.Windows.Forms.Button btnEliminar = CrearBotonEliminar(turno);
 
                     AgendaDataTLP.Controls.Add(lblFecha, 0, i);
                     AgendaDataTLP.Controls.Add(lblHora, 1, i);
@@ -536,9 +537,9 @@ namespace ClinicaSePriseApp.Vistas
             }
         }
 
-        private Button CrearBotonVer(E_Turno turno)
+        private System.Windows.Forms.Button CrearBotonVer(E_Turno turno)
         {
-            Button btn = new Button();
+            System.Windows.Forms.Button btn = new System.Windows.Forms.Button();
             btn.Dock = DockStyle.Fill;
             btn.BackgroundImage = Properties.Resources.icon_editar;
             btn.BackgroundImageLayout = ImageLayout.Zoom;
@@ -552,9 +553,9 @@ namespace ClinicaSePriseApp.Vistas
             return btn;
         }
 
-        private Button CrearBotonEliminar(E_Turno turno)
+        private System.Windows.Forms.Button CrearBotonEliminar(E_Turno turno)
         {
-            Button btn = new Button();
+            System.Windows.Forms.Button btn = new System.Windows.Forms.Button();
             btn.Dock = DockStyle.Fill;
             btn.BackgroundImage = Properties.Resources.icon_borrar;
             btn.BackgroundImageLayout = ImageLayout.Zoom;
@@ -875,75 +876,25 @@ namespace ClinicaSePriseApp.Vistas
             MostrarDialogoSobreturno();
         }
 
-            // Dialog y Creacion del Sobreturno
-            private void MostrarDialogoSobreturno()
+        private void MostrarDialogoSobreturno()
+        {
+            using (var dialog = new AuxSobreTurno(_profesionalSeleccionado))
             {
-                using (var dialog = new AuxSobreturnoDialog())
-                {
-                    if (dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        CrearSobreturno(dialog.PacienteEncontrado, dialog.HoraSobreturno);
-                    }
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {                    
+                    ActualizarInterfazDespuesDeSobreturno();
                 }
             }
+        }
 
-            private void CrearSobreturno(E_Paciente paciente, TimeSpan hora)
-            {
-                try
-                {
-                    TimeSpan duracion;
-                    decimal valorConsulta;
+        private void ActualizarInterfazDespuesDeSobreturno()
+        {
+            CargarTurnosEnTLP(_fechaSeleccionada);
+            ColorearCalendarioSegunProfesional(_profesionalSeleccionado, _fechaSeleccionada.Year, _fechaSeleccionada.Month);
 
-                    switch (_profesionalSeleccionado.Especialidad)
-                    {
-                        case EspecialidadMedica.NEUROLOGIA:
-                            duracion = new TimeSpan(0, 45, 0);
-                            valorConsulta = 5000m;
-                            break;
-                        case EspecialidadMedica.UROLOGIA:
-                            duracion = new TimeSpan(0, 30, 0);
-                            valorConsulta = 4000m;
-                            break;
-                        default:
-                            duracion = new TimeSpan(0, 15, 0);
-                            valorConsulta = 3000m;
-                            break;
-                    }
-
-                    DateTime fechaTurno = _fechaSeleccionada.Date.Add(hora);
-
-                    E_Turno sobreturno = new E_Turno(
-                        DDBB_Simulation.TurnosDB.Count + 1,
-                        fechaTurno,
-                        _profesionalSeleccionado.IdProfesional,
-                        valorConsulta
-                    );
-
-                    sobreturno.IdPaciente = paciente.IdPaciente;
-                    sobreturno.Estado = EstadoTurno.ASIGNADO;
-
-                    TurnoService.GuardarTurno(sobreturno);
-
-                    ProfesionalService.AgregarTurnoEnAgenda(_profesionalSeleccionado, sobreturno);
-
-                    paciente.Reservas.Add(sobreturno);
-
-                    MessageBox.Show($"Sobreturno creado exitosamente para:\n" +
-                                   $"Paciente: {paciente.NombreCompleto}\n" +
-                                   $"Fecha: {fechaTurno:dd/MM/yyyy HH:mm}\n" +
-                                   $"Profesional: {_profesionalSeleccionado.NombreCompleto}",
-                                   "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    CargarTurnosEnTLP(_fechaSeleccionada);
-                    ColorearCalendarioSegunProfesional(_profesionalSeleccionado, _fechaSeleccionada.Year, _fechaSeleccionada.Month);
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error al crear el sobreturno: {ex.Message}", "Error",
-                                   MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            MessageBox.Show("Sobreturno creado y procesado exitosamente.", "Éxito",
+                           MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
