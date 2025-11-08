@@ -1,6 +1,7 @@
 ﻿using ClinicaSePriseApp.Datos;
 using ClinicaSePriseApp.Entidades;
 using ClinicaSePriseApp.Utilidades;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,27 @@ namespace ClinicaSePriseApp.Servicios
         public static void GuardarTurno(E_Turno nuevoTurno)
         {
             turnoRepo.GuardarTurno(nuevoTurno);
-        }              
+        }
 
-        
+        public static E_Turno CrearTurno(DateTime fecha, E_Profesional profesional, E_Paciente paciente)
+        {
+            // Monto
+            decimal monto = CalcularMontoTurno(profesional);
+
+            E_Turno turno = new E_Turno(
+                DDBB_Simulation.TurnosDB.Count + 1,
+                fecha,
+                profesional.IdProfesional,
+                paciente.IdPaciente,
+                monto,
+                Entidades.Enums.EstadoTurno.ASIGNADO
+                );
+
+            GuardarTurno(turno);
+
+            return turno;
+        }
+
         public static void CrearAgendaMedica(E_Profesional profesional, DateOnly dia)
         {
             // Obtener horario inicial y final
@@ -80,7 +99,24 @@ namespace ClinicaSePriseApp.Servicios
             }
         }
        
-
+        private static decimal CalcularMontoTurno(E_Profesional profesional)
+        {
+            decimal monto;
+            switch (profesional.Especialidad)
+            {
+                case Entidades.Enums.EspecialidadMedica.NEUROLOGIA:
+                    monto = 15000m;
+                    break;
+                case Entidades.Enums.EspecialidadMedica.UROLOGIA:
+                    monto = 10000m;
+                    break;
+                default:
+                    monto = 7000m;
+                    break;
+            }
+            return monto;
+        }
+        
         // READ
         public static E_Turno? ObtenerTurnoPorID(int id)
         {

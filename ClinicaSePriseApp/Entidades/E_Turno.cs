@@ -27,5 +27,15 @@ namespace ClinicaSePriseApp.Entidades
             IdProfesional = idProf;
             Monto = monto;
         }
+
+        public E_Turno(int id, DateTime fecha, int idProf, int? idPac, decimal monto, EstadoTurno estado)
+        {
+            IdTurno = id;
+            FechaTurno = fecha;
+            IdProfesional = idProf;
+            IdPaciente = idPac;
+            Monto = monto;
+            Estado = estado;
+        }
     }
 }

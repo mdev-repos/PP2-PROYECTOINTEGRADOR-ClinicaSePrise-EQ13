@@ -329,7 +329,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         // PARA CARGA DE TURNOS (PACIENTE)
         private E_Paciente _Paciente;
 
-        public AuxCargaGenerica(E_Paciente paciente)
+        public AuxCargaGenerica(E_Paciente paciente, List<E_Turno> turnos)
         {
             InitializeComponent();
             _Paciente = paciente;
@@ -364,6 +364,27 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         private void btnCerrar_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+        // PARA CARGA DE PAGOS (PACIENTE)
+        public AuxCargaGenerica(E_Paciente paciente, List<E_Pago> pagos)
+        {
+            InitializeComponent();
+
+            _Paciente = paciente;
+        }
+
+
+        // PARA CARGA DE INSUMOS (CONSULTORIO)
+        private E_Consultorio _Consultorio;
+        public AuxCargaGenerica(E_Consultorio consultorio)
+        { 
+            InitializeComponent();
+
+            _Consultorio = consultorio;
+
+            
         }
     }
 }
