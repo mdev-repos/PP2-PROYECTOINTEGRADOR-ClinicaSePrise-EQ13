@@ -93,7 +93,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                     "Desea acceder a su agenda del dia?",
-                    "Confirmar Asignación",
+                    "Confirmar Ingreso a la Agenda Médica",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2
@@ -114,7 +114,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                     "Desea acceder al menú de insumos?",
-                    "Confirmar Asignación",
+                    "Confirmar Ingreso a Solicitud de Insumos",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2
@@ -133,7 +133,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                     "Desea consultar sus liquidaciones?",
-                    "Confirmar Asignación",
+                    "Confirmar Ingreso a Mis Liquidaciones",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2
@@ -152,7 +152,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                     "Desea cerrar su sesión actual?",
-                    "Confirmar Asignación",
+                    "Confirmar Cierre de Sesión",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2

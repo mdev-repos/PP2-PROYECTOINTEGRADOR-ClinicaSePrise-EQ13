@@ -652,6 +652,22 @@ namespace ClinicaSePriseApp.Utilidades
                 "Barbijo quirurgico tricapa con elásticos para las orejas, caja con 50 unidades.",
                 200);
             InsumosDB.Add(insumo11);
+
+
+            // SOLICITUD DE INSUMOS
+            var insumoSolicitado1a = new E_InsumoSolicitado(insumo1, 10);
+            var insumoSolicitado1b = new E_InsumoSolicitado(insumo4, 30);
+            var insumoSolicitado1c = new E_InsumoSolicitado(insumo6, 20);
+
+            var listaInsumosSolicitados1 = new List<E_InsumoSolicitado>();
+            listaInsumosSolicitados1.Add(insumoSolicitado1a);
+            listaInsumosSolicitados1.Add(insumoSolicitado1b);
+            listaInsumosSolicitados1.Add(insumoSolicitado1c);
+
+            var pedido1 = new E_PedidoInsumo(
+                profesional1.IdProfesional,
+                listaInsumosSolicitados1
+                );
         }
     }
 }

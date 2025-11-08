@@ -14,11 +14,11 @@ namespace ClinicaSePriseApp.Entidades
         public int IdPedido { get; set; }
         public DateOnly FechaPedido { get; set; }
         public int IdProfesional { get; set; }
-        public List<E_Insumo> InsumosSolicitados { get; set; }
+        public List<E_InsumoSolicitado> InsumosSolicitados { get; set; }
         public EstadoPedidoInsumo EstadoPedidoInsumo { get; set; }
 
 
-        public E_PedidoInsumo(int idProfesional, List<E_Insumo> insumosSolicitados)
+        public E_PedidoInsumo(int idProfesional, List<E_InsumoSolicitado> insumosSolicitados)
         {
             ID_AUTOINCREMENT++;
             IdPedido = ID_AUTOINCREMENT;
