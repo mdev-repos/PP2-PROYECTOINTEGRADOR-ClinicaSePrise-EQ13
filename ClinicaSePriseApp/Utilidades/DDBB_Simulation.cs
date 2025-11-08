@@ -30,6 +30,7 @@ namespace ClinicaSePriseApp.Utilidades
 
         public static List<E_Consultorio> ConsultoriosDB { get; set; } = new List<E_Consultorio>();
         public static List<E_Insumo> InsumosDB { get; set; } = new List<E_Insumo>();
+        public static List<E_PedidoInsumo> PedidosInsumos { get; set; } = new List<E_PedidoInsumo>();
 
 
 
@@ -572,6 +573,85 @@ namespace ClinicaSePriseApp.Utilidades
                 5000m);
             TurnosDB.Add(turno29);
             profesional3.AgendaMedica.Add(turno29);
+
+
+            // INSUMOS
+            var insumo1 = new E_Insumo(
+                "COD/11",
+                "Jeringa Porter",
+                "Jeringa descartable para uso unico, con capacidad para 300mm de solucion, marca Porter.",
+                400);
+            InsumosDB.Add(insumo1);
+
+            var insumo2 = new E_Insumo(
+                "COD/22",
+                "Guantes de Nitrilo",
+                "Guantes de nitrilo sin polvo, talla M, caja con 100 unidades.",
+                150);
+            InsumosDB.Add(insumo2);
+
+            var insumo3 = new E_Insumo(
+                "COD/33",
+                "Barbijo Quirurgico",
+                "Barbijo quirurgico tricapa con elásticos para las orejas, caja con 50 unidades.",
+                200);
+            InsumosDB.Add(insumo3);
+
+            var insumo4 = new E_Insumo(
+                "COD/44",
+                "Termometro Digital",
+                "Termometro digital infrarrojo para uso oral, auricular o en frente, con pantalla LCD.",
+                75);
+            InsumosDB.Add(insumo4);
+
+            var insumo5 = new E_Insumo(
+                "COD/55",
+                "Alcohol en Gel",
+                "Alcohol en gel al 70% para desinfeccion de manos y superficies, envase de 500ml.",
+                120);
+            InsumosDB.Add(insumo5);
+
+            var insumo6 = new E_Insumo(
+                "COD/66",
+                "Venda Elastica",
+                "Venda elastica autoadhesiva para soporte y compresion, rollo de 5cm x 4.5m.",
+                90);
+            InsumosDB.Add(insumo6);
+
+            var insumo7 = new E_Insumo(
+                "COD/77",
+                "Termometro Digital",
+                "Termometro digital infrarrojo para uso oral, auricular o en frente, con pantalla LCD.",
+                75);
+            InsumosDB.Add(insumo7);
+
+            var insumo8 = new E_Insumo(
+                "COD/88",
+                "Alcohol en Gel",
+                "Alcohol en gel al 70% para desinfeccion de manos y superficies, envase de 500ml.",
+                120);
+            InsumosDB.Add(insumo8);
+
+            var insumo9 = new E_Insumo(
+                "COD/99",
+                "Venda Elastica",
+                "Venda elastica autoadhesiva para soporte y compresion, rollo de 5cm x 4.5m.",
+                90);
+            InsumosDB.Add(insumo9);
+
+            var insumo10 = new E_Insumo(
+                "COD/100",
+                "Guantes de Nitrilo",
+                "Guantes de nitrilo sin polvo, talla M, caja con 100 unidades.",
+                150);
+            InsumosDB.Add(insumo10);
+
+            var insumo11 = new E_Insumo(
+                "COD/110",
+                "Barbijo Quirurgico",
+                "Barbijo quirurgico tricapa con elásticos para las orejas, caja con 50 unidades.",
+                200);
+            InsumosDB.Add(insumo11);
         }
     }
 }
