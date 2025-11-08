@@ -54,6 +54,8 @@
             mainTLP.Dock = DockStyle.Fill;
             mainTLP.Location = new Point(0, 0);
             mainTLP.Margin = new Padding(0);
+            mainTLP.MaximumSize = new Size(700, 500);
+            mainTLP.MinimumSize = new Size(700, 500);
             mainTLP.Name = "mainTLP";
             mainTLP.RowCount = 6;
             mainTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 13.06664F));

@@ -124,6 +124,9 @@ namespace ClinicaSePriseApp.Vistas
             {
                 return;
             }
+
+            AuxSolicitarInsumos solicitarInsumos = new AuxSolicitarInsumos(_Profesional);
+            solicitarInsumos.ShowDialog();
         }
 
         private void btnLiquidaciones_Click(object sender, EventArgs e)
