@@ -1,8 +1,4 @@
-﻿/*
-MATIIIIIIIIII SI LEES ESTO LE FALTA VALIDAR EL TEMA DEL COLOR CUANDO SE AGREGA UN INSUMO NUEVO Y AGREGAR EL BOTON DE ELIMINAR INSUMO O CANCELAR EL INGRESO- LO SUBO PARA QUE LO VEAASSSS
-*/
-
-using ClinicaSePriseApp.Entidades;
+﻿using ClinicaSePriseApp.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,12 +12,14 @@ namespace ClinicaSePriseApp.Vistas
         private List<E_Insumo> insumos;
         private Dictionary<string, int> stockMaximoPorInsumo = new Dictionary<string, int>();
 
-        private enum EstadoIngreso { Modificar, Editando, Aceptar }
+        private enum EstadoIngreso { Modificar, Editando }
         private EstadoIngreso estadoIngreso = EstadoIngreso.Modificar;
 
         private readonly Color colorModificar = Utilidades.PaletaColores.btnAzul;
         private readonly Color colorCancelar = Color.Red;
         private readonly Color colorAceptar = Color.Green;
+
+        private Button btnCancelar;
 
         public AdmGestionInsumos()
         {
@@ -71,30 +69,43 @@ namespace ClinicaSePriseApp.Vistas
         {
             dgvInsumos.Dock = DockStyle.Fill;
             dgvInsumos.ReadOnly = true;
-            dgvInsumos.AllowUserToAddRows = false;
-            dgvInsumos.AllowUserToResizeRows = false;
-            dgvInsumos.AllowUserToResizeColumns = false;
             dgvInsumos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvInsumos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvInsumos.BackgroundColor = Color.White;
-            dgvInsumos.BorderStyle = BorderStyle.FixedSingle;
+            dgvInsumos.AllowUserToAddRows = false;
 
             dgvInsumos.CellFormatting += dgvInsumos_CellFormatting;
-            dgvInsumos.CellValueChanged += dgvInsumos_CellValueChanged;
-            dgvInsumos.CellEndEdit += dgvInsumos_CellEndEdit;
             dgvInsumos.CurrentCellChanged += dgvInsumos_CurrentCellChanged;
 
             btnAñadirInsumo.Click += btnAñadirInsumo_Click;
             btnActualizarInsumo.Click += btnActualizarInsumo_Click;
-            dgvInsumos.EditingControlShowing += dgvInsumos_EditingControlShowing;
             btnVolver.Click += btnVolver_Click;
 
+            btnCancelar = new Button
+            {
+                Text = "ELIMINAR INSUMO",
+                BackColor = Color.DarkRed,
+                ForeColor = Color.White,
+                Font = new Font("LEMON MILK", 10, FontStyle.Bold),
+                Visible = false,
+                FlatStyle = FlatStyle.Flat
+            };
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.Click += BtnCancelar_Click;
+
+            if (menuTLP != null && menuTLP.Controls.Contains(btnActualizarInsumo) && menuTLP.Controls.Contains(btnAñadirInsumo))
+            {
+                int indexAdd = menuTLP.Controls.GetChildIndex(btnAñadirInsumo);
+                menuTLP.Controls.Add(btnCancelar);
+                menuTLP.Controls.SetChildIndex(btnCancelar, indexAdd);
+                btnCancelar.Dock = DockStyle.Fill;
+            }
+
+            dgvInsumos.SelectionChanged += DgvInsumos_SelectionChanged;
         }
 
         private void ConfigurarGrilla()
         {
             dgvInsumos.Columns.Clear();
-
             dgvInsumos.Columns.Add(new DataGridViewTextBoxColumn { Name = "colId", HeaderText = "ID", ReadOnly = true });
             dgvInsumos.Columns.Add(new DataGridViewTextBoxColumn { Name = "colNombre", HeaderText = "Nombre" });
             dgvInsumos.Columns.Add(new DataGridViewTextBoxColumn { Name = "colDetalle", HeaderText = "Descripción" });
@@ -111,161 +122,76 @@ namespace ClinicaSePriseApp.Vistas
             };
 
             dgvInsumos.Rows.Clear();
-
             foreach (var insumo in insumos)
                 dgvInsumos.Rows.Add(insumo.IdInsumo, insumo.Nombre, insumo.Detalle, insumo.Cantidad);
         }
 
-        private void dgvInsumos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DgvInsumos_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvInsumos.Columns[e.ColumnIndex].Name == "colCantidad" && e.RowIndex >= 0)
+            if (estadoIngreso == EstadoIngreso.Modificar && dgvInsumos.SelectedRows.Count > 0)
             {
-                var fila = dgvInsumos.Rows[e.RowIndex];
-                string nombre = fila.Cells["colNombre"].Value?.ToString();
-                int cantidad = 0;
-
-                if (!int.TryParse(fila.Cells["colCantidad"].Value?.ToString(), out cantidad))
-                    return;
-
-                string clave = string.IsNullOrWhiteSpace(nombre)
-                    ? fila.Cells["colId"].Value?.ToString()
-                    : nombre;
-
-                if (string.IsNullOrWhiteSpace(clave))
-                    return;
-
-                fila.DefaultCellStyle.BackColor = ObtenerColorPorCantidad(clave, cantidad);
+                btnCancelar.Visible = true;
+                btnCancelar.Text = "ELIMINAR INSUMO";
+                btnCancelar.BackColor = Color.DarkRed;
             }
-        }
-
-        private Color ObtenerColorPorCantidad(string nombre, int cantidad)
-        {
-            int stockMaximo = stockMaximoPorInsumo.ContainsKey(nombre) ? stockMaximoPorInsumo[nombre] : 200;
-            if (stockMaximo <= 0) return Color.Gray; // ✅ Fallback seguro
-
-            double porcentaje = (double)cantidad / stockMaximo;
-
-            if (porcentaje < 0.15) return Color.Red;
-            if (porcentaje < 0.5) return Color.Orange;
-            return Color.White;
-        }
-
-        private void dgvInsumos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            if (dgvInsumos.CurrentCell.OwningColumn.Name == "colCantidad")
+            else if (estadoIngreso == EstadoIngreso.Editando)
             {
-                TextBox txt = e.Control as TextBox;
-                if (txt != null)
-                {
-                    txt.KeyPress -= SoloNumeros_KeyPress; // Evita duplicación
-                    txt.KeyPress += SoloNumeros_KeyPress;
-                }
+                btnCancelar.Visible = true;
+                btnCancelar.Text = "CANCELAR";
+                btnCancelar.BackColor = colorCancelar;
             }
-        }
-
-        private void SoloNumeros_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // Permitir solo dígitos y teclas de control (como Backspace)
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            else
             {
-                e.Handled = true;
+                btnCancelar.Visible = false;
             }
-        }
-
-        private void dgvInsumos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            ValidarFilaEnEdicion();
         }
 
         private void btnAñadirInsumo_Click(object sender, EventArgs e)
         {
-            switch (estadoIngreso)
+            if (estadoIngreso == EstadoIngreso.Modificar)
             {
-                case EstadoIngreso.Modificar:
-                    // ✅ Validación previa: evitar múltiples ingresos simultáneos
-                    if (estadoIngreso == EstadoIngreso.Editando)
-                    {
-                        MessageBox.Show("Complete o cancele el ingreso actual antes de añadir otro.", "Ingreso en curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
+                string nuevoId = GenerarIdUnico("INS");
+                dgvInsumos.ReadOnly = false;
+                dgvInsumos.Rows.Add(nuevoId, "", "", 0);
+                dgvInsumos.CurrentCell = dgvInsumos.Rows[dgvInsumos.Rows.Count - 1].Cells["colNombre"];
+                dgvInsumos.BeginEdit(true);
 
-                    string nuevoId = GenerarIdUnico("INS");
-                    dgvInsumos.ReadOnly = false;
-
-                    dgvInsumos.Rows.Add(nuevoId, "", "", 0);
-                    int nuevaFilaIndex = dgvInsumos.Rows.Count - 1;
-
-                    dgvInsumos.CurrentCell = dgvInsumos.Rows[nuevaFilaIndex].Cells["colNombre"];
-                    dgvInsumos.BeginEdit(true);
-                    dgvInsumos.Focus();
-
-                    btnAñadirInsumo.Text = "CANCELAR INGRESO";
-                    btnAñadirInsumo.BackColor = colorCancelar;
-                    estadoIngreso = EstadoIngreso.Editando;
-                    break;
-
-                case EstadoIngreso.Editando:
-                    dgvInsumos.Rows.RemoveAt(dgvInsumos.Rows.Count - 1);
-                    dgvInsumos.ReadOnly = true;
-
-                    btnAñadirInsumo.Text = "AÑADIR INSUMO";
-                    btnAñadirInsumo.BackColor = colorModificar;
-                    estadoIngreso = EstadoIngreso.Modificar;
-                    break;
-
-                case EstadoIngreso.Aceptar:
-                    var fila = dgvInsumos.Rows[^1];
-                    string id = fila.Cells["colId"].Value?.ToString();
-                    string nombre = fila.Cells["colNombre"].Value?.ToString();
-                    string detalle = fila.Cells["colDetalle"].Value?.ToString();
-                    string cantidadStr = fila.Cells["colCantidad"].Value?.ToString();
-
-                    if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(detalle) || !int.TryParse(cantidadStr, out int cantidad) || cantidad <= 0)
-                    {
-                        MessageBox.Show("Complete todos los campos correctamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    if (ExisteNombre(nombre) || ExisteId(id))
-                    {
-                        MessageBox.Show("El insumo ya existe por nombre o ID.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    insumos.Add(new E_Insumo
-                    {
-                        IdInsumo = id,
-                        Nombre = nombre,
-                        Detalle = detalle,
-                        Cantidad = cantidad
-                    });
-
-                    stockMaximoPorInsumo[nombre] = 200;
-
-                    dgvInsumos.ReadOnly = true;
-                    btnAñadirInsumo.Text = "AÑADIR INSUMO";
-                    btnAñadirInsumo.BackColor = colorModificar;
-                    estadoIngreso = EstadoIngreso.Modificar;
-                    dgvInsumos.InvalidateRow(dgvInsumos.Rows.Count - 1); // ✅ Redibuja la última fila
-
-                    dgvInsumos.Refresh(); // ✅ Forzar redibujado para aplicar color
-
-                    MessageBox.Show("INSUMO AÑADIDO CORRECTAMENTE.", "Ingreso exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break;
+                btnAñadirInsumo.Text = "ACEPTAR INGRESO";
+                btnAñadirInsumo.BackColor = colorAceptar;
+                estadoIngreso = EstadoIngreso.Editando;
+                btnCancelar.Visible = false;
             }
-        }
-
-        private void dgvInsumos_CurrentCellChanged(object sender, EventArgs e)
-        {
-            if (estadoIngreso == EstadoIngreso.Editando)
+            else if (estadoIngreso == EstadoIngreso.Editando)
             {
-                int ultimaFila = dgvInsumos.Rows.Count - 1;
-                if (dgvInsumos.CurrentCell != null && dgvInsumos.CurrentCell.RowIndex != ultimaFila)
+                var fila = dgvInsumos.Rows[dgvInsumos.Rows.Count - 1];
+                string id = fila.Cells["colId"].Value?.ToString();
+                string nombre = fila.Cells["colNombre"].Value?.ToString();
+                string detalle = fila.Cells["colDetalle"].Value?.ToString();
+                string cantidadStr = fila.Cells["colCantidad"].Value?.ToString();
+
+                if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(detalle) ||
+                    !int.TryParse(cantidadStr, out int cantidad) || cantidad <= 0)
                 {
-                    MessageBox.Show("Complete o cancele el ingreso actual antes de cambiar de fila.", "Ingreso en curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dgvInsumos.CurrentCell = dgvInsumos.Rows[ultimaFila].Cells["colNombre"];
-                    dgvInsumos.BeginEdit(true);
+                    MessageBox.Show("Complete todos los campos correctamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                if (ExisteNombre(nombre))
+                {
+                    MessageBox.Show("El insumo ya existe.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                insumos.Add(new E_Insumo { IdInsumo = id, Nombre = nombre, Detalle = detalle, Cantidad = cantidad });
+                stockMaximoPorInsumo[nombre] = 200;
+
+                dgvInsumos.ReadOnly = true;
+                btnAñadirInsumo.Text = "AÑADIR INSUMO";
+                btnAñadirInsumo.BackColor = colorModificar;
+                estadoIngreso = EstadoIngreso.Modificar;
+                dgvInsumos.Refresh();
+
+                MessageBox.Show("INSUMO AÑADIDO CORRECTAMENTE.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -277,13 +203,14 @@ namespace ClinicaSePriseApp.Vistas
                 return;
             }
 
-            bool activarEdicion = dgvInsumos.ReadOnly;
-            dgvInsumos.ReadOnly = !activarEdicion;
-
-            if (activarEdicion)
+            if (dgvInsumos.ReadOnly)
             {
+                dgvInsumos.ReadOnly = false;
                 btnActualizarInsumo.Text = "ACEPTAR CAMBIOS";
                 btnActualizarInsumo.BackColor = colorAceptar;
+                btnCancelar.Visible = true;
+                btnCancelar.Text = "CANCELAR";
+                estadoIngreso = EstadoIngreso.Editando;
             }
             else
             {
@@ -296,9 +223,6 @@ namespace ClinicaSePriseApp.Vistas
                 if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(detalle) || !int.TryParse(cantidadStr, out int cantidad))
                 {
                     MessageBox.Show("Complete todos los campos correctamente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    dgvInsumos.ReadOnly = true;
-                    btnActualizarInsumo.Text = "ACTUALIZAR INSUMO";
-                    btnActualizarInsumo.BackColor = colorModificar;
                     return;
                 }
 
@@ -308,64 +232,92 @@ namespace ClinicaSePriseApp.Vistas
                     insumo.Nombre = nombre;
                     insumo.Detalle = detalle;
                     insumo.Cantidad = cantidad;
-
-                    if (!string.IsNullOrWhiteSpace(nombre))
-                        stockMaximoPorInsumo[nombre] = 200;
-
-                    MessageBox.Show("INSUMO ACTUALIZADO CORRECTAMENTE.", "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    stockMaximoPorInsumo[nombre] = 200;
+                    MessageBox.Show("INSUMO ACTUALIZADO CORRECTAMENTE.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
+                dgvInsumos.ReadOnly = true;
                 btnActualizarInsumo.Text = "ACTUALIZAR INSUMO";
                 btnActualizarInsumo.BackColor = colorModificar;
-                dgvInsumos.Refresh(); // ✅ Forzar redibujado para aplicar color
+                btnCancelar.Visible = false;
+                estadoIngreso = EstadoIngreso.Modificar;
+                dgvInsumos.Refresh();
             }
         }
 
-        private void dgvInsumos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            ValidarFilaEnEdicion();
-        }
-
-        private void ValidarFilaEnEdicion()
-        {
-            if (estadoIngreso != EstadoIngreso.Editando || dgvInsumos.Rows.Count == 0)
+            if (estadoIngreso == EstadoIngreso.Editando)
+            {
+                dgvInsumos.ReadOnly = true;
+                btnActualizarInsumo.Text = "ACTUALIZAR INSUMO";
+                btnActualizarInsumo.BackColor = colorModificar;
+                estadoIngreso = EstadoIngreso.Modificar;
+                btnCancelar.Visible = false;
+                dgvInsumos.Refresh();
                 return;
-
-            var fila = dgvInsumos.Rows[^1];
-
-            foreach (DataGridViewCell celda in fila.Cells)
-            {
-                celda.Style.BackColor = Color.White;
-
-                if (celda.OwningColumn.Name != "colId" && string.IsNullOrWhiteSpace(celda.Value?.ToString()))
-                    celda.Style.BackColor = Color.LightPink;
             }
 
-            string nombre = fila.Cells["colNombre"].Value?.ToString();
-            string detalle = fila.Cells["colDetalle"].Value?.ToString();
-            string cantidadStr = fila.Cells["colCantidad"].Value?.ToString();
-
-            bool nombreOk = !string.IsNullOrWhiteSpace(nombre);
-            bool detalleOk = !string.IsNullOrWhiteSpace(detalle);
-            bool cantidadOk = int.TryParse(cantidadStr, out int cantidad) && cantidad > 0;
-
-            if (nombreOk && !stockMaximoPorInsumo.ContainsKey(nombre))
-                stockMaximoPorInsumo[nombre] = 200;
-
-            if (nombreOk && detalleOk && cantidadOk)
+            if (estadoIngreso == EstadoIngreso.Modificar && dgvInsumos.SelectedRows.Count > 0)
             {
-                btnAñadirInsumo.Text = "ACEPTAR INGRESO";
-                btnAñadirInsumo.BackColor = colorAceptar;
-                estadoIngreso = EstadoIngreso.Aceptar;
+                var fila = dgvInsumos.SelectedRows[0];
+                string id = fila.Cells["colId"].Value?.ToString();
+                var insumo = insumos.FirstOrDefault(i => i.IdInsumo == id);
+                if (insumo != null)
+                {
+                    if (MessageBox.Show($"¿Desea eliminar el insumo '{insumo.Nombre}'?", "Confirmar eliminación",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        insumos.Remove(insumo);
+                        dgvInsumos.Rows.Remove(fila);
+                        MessageBox.Show("Insumo eliminado correctamente.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
             }
-            else
-            {
-                btnAñadirInsumo.Text = "CANCELAR INGRESO";
-                btnAñadirInsumo.BackColor = colorCancelar;
-                estadoIngreso = EstadoIngreso.Editando;
-            }
+        }
 
-            dgvInsumos.InvalidateRow(dgvInsumos.Rows.Count - 1);
+        private void dgvInsumos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvInsumos.Columns[e.ColumnIndex].Name == "colCantidad" && e.RowIndex >= 0)
+            {
+                var fila = dgvInsumos.Rows[e.RowIndex];
+                string nombre = fila.Cells["colNombre"].Value?.ToString();
+                int cantidad = 0;
+                int.TryParse(fila.Cells["colCantidad"].Value?.ToString(), out cantidad);
+                fila.DefaultCellStyle.BackColor = ObtenerColorPorCantidad(nombre, cantidad);
+            }
+        }
+
+        private Color ObtenerColorPorCantidad(string nombre, int cantidad)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+                return Color.Gray;
+
+            int stockMaximo = stockMaximoPorInsumo.ContainsKey(nombre) ? stockMaximoPorInsumo[nombre] : 200;
+            double porcentaje = (double)cantidad / stockMaximo;
+
+            if (porcentaje < 0.15) return Color.Red;
+            if (porcentaje < 0.5) return Color.Orange;
+            return Color.White;
+        }
+
+        private void dgvInsumos_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (estadoIngreso == EstadoIngreso.Editando && dgvInsumos.CurrentCell != null)
+            {
+                int ultimaFila = dgvInsumos.Rows.Count - 1;
+                if (dgvInsumos.CurrentCell.RowIndex != ultimaFila)
+                {
+                    MessageBox.Show("Complete o cancele el ingreso actual antes de cambiar de fila.",
+                        "Ingreso en curso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    this.BeginInvoke((MethodInvoker)delegate
+                    {
+                        dgvInsumos.CurrentCell = dgvInsumos.Rows[ultimaFila].Cells["colNombre"];
+                        dgvInsumos.BeginEdit(true);
+                    });
+                }
+            }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -383,7 +335,6 @@ namespace ClinicaSePriseApp.Vistas
                 .Select(i => ExtraerNumero(i.IdInsumo, prefijo))
                 .DefaultIfEmpty(0)
                 .Max();
-
             return $"{prefijo}{(max + 1):000}";
         }
 
@@ -397,13 +348,5 @@ namespace ClinicaSePriseApp.Vistas
         {
             return insumos.Any(i => i.Nombre.Trim().Equals(nombre.Trim(), StringComparison.OrdinalIgnoreCase));
         }
-
-        private bool ExisteId(string id)
-        {
-            return insumos.Any(i => i.IdInsumo == id);
-        }
-
     }
 }
-
-        
