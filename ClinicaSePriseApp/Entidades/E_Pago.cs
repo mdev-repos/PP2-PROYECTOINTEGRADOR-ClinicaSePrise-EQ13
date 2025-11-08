@@ -10,6 +10,8 @@ namespace ClinicaSePriseApp.Entidades
 {
     public class E_Pago
     {
+        private static int ID_AUTOINCREMENT = 0;
+
         public int IdPago { get; set; }
         public int IdPaciente { get; set; }
         public int IdTurno { get; set; }
@@ -19,10 +21,11 @@ namespace ClinicaSePriseApp.Entidades
         public MetodoPago? MetodoPago { get; set; }
 
 
-        // CONSTRUCTOR
-        public E_Pago(int idPago, int idPaciente, int idTurno, decimal monto)
+        public E_Pago(int idPaciente, int idTurno, decimal monto)
         {
-            IdPago = idPago;
+            ID_AUTOINCREMENT++;
+
+            IdPago = ID_AUTOINCREMENT;
             IdPaciente = idPaciente;
             IdTurno = idTurno;
             Monto = monto;

@@ -11,6 +11,8 @@ namespace ClinicaSePriseApp.Entidades
 {
     public class E_Profesional : E_Persona
     {
+        private static int ID_AUTOINCREMENT = 0;
+
         public int IdProfesional { get; set; }
         public int IdUsuario { get; set; }
         public EspecialidadMedica Especialidad { get; set; }
@@ -23,9 +25,8 @@ namespace ClinicaSePriseApp.Entidades
         public List<E_Liquidacion> Liquidaciones { get; set; } = new List<E_Liquidacion>();
 
 
-        // CONSTRUCTOR
         public E_Profesional(
-            int idProf, int userId, EspecialidadMedica especialidad, string matricula, 
+            int userId, EspecialidadMedica especialidad, string matricula, 
             List<E_Disponibilidad> disponibilidades,
                              
             string apellido, string nombre, string dni, Genero genero, DateOnly fechaNacimiento, 
@@ -33,24 +34,15 @@ namespace ClinicaSePriseApp.Entidades
 
             : base(apellido, nombre, dni, genero, fechaNacimiento, direccion, telefono, email)
         {            
-            IdProfesional = idProf;
+            ID_AUTOINCREMENT++;
+
+            IdProfesional = ID_AUTOINCREMENT;
             IdUsuario = userId;
             Especialidad = especialidad;
             Matricula = matricula;
             Disponibilidades = disponibilidades;
         }
 
-        // RETORNO DE NOMBRE PARA COMBO BOXES
         public string NombreCompleto => $"{Apellido}, {Nombre}";
-
-
-        public bool DiaCompatible(DayOfWeek day)
-        {
-            if (Disponibilidades == null || Disponibilidades.Count == 0)
-                return false;
-
-            return Disponibilidades.Any(d => d.Dia == day);
-        }
-
     }
 }

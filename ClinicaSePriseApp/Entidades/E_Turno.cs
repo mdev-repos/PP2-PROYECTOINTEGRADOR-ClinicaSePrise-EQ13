@@ -11,6 +11,8 @@ namespace ClinicaSePriseApp.Entidades
 {
     public class E_Turno
     {
+        private static int ID_AUTOINCREMENT = 0;
+
         public int IdTurno { get; set; }
         public DateTime FechaTurno { get; set; }
         public int IdProfesional { get; set; }
@@ -20,17 +22,21 @@ namespace ClinicaSePriseApp.Entidades
 
 
         // CONSTRUCTOR
-        public E_Turno(int id, DateTime fecha, int idProf, decimal monto)
+        public E_Turno(DateTime fecha, int idProf, decimal monto)
         {
-            IdTurno = id;
+            ID_AUTOINCREMENT++;
+
+            IdTurno = ID_AUTOINCREMENT;
             FechaTurno = fecha;
             IdProfesional = idProf;
             Monto = monto;
         }
 
-        public E_Turno(int id, DateTime fecha, int idProf, int? idPac, decimal monto, EstadoTurno estado)
+        public E_Turno(DateTime fecha, int idProf, int? idPac, decimal monto, EstadoTurno estado)
         {
-            IdTurno = id;
+            ID_AUTOINCREMENT++;
+
+            IdTurno = ID_AUTOINCREMENT;
             FechaTurno = fecha;
             IdProfesional = idProf;
             IdPaciente = idPac;

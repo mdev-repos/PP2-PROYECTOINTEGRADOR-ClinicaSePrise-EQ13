@@ -9,6 +9,8 @@ namespace ClinicaSePriseApp.Entidades
 {
     public class E_Usuario
     {
+        private static int ID_AUTOINCREMENT = 0;
+
         public int IdUsuario { get; set; }
         public string UserName { get; set; }
         public string UserPass { get; set; }
@@ -16,13 +18,14 @@ namespace ClinicaSePriseApp.Entidades
 
 
         // CONSTRUCTOR
-        public E_Usuario(int id, string name, string pass, Rol rol)
+        public E_Usuario(string name, string pass, Rol rol)
         {
-            this.IdUsuario = id;
+            ID_AUTOINCREMENT++;
+
+            this.IdUsuario = ID_AUTOINCREMENT;
             this.UserName = name;
             this.UserPass = pass;
             this.rol = rol;
         }
-
     }
 }

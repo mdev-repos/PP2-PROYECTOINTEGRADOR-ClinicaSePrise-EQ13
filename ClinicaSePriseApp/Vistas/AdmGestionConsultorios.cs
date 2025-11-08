@@ -2,6 +2,7 @@
 using ClinicaSePriseApp.Entidades;
 using ClinicaSePriseApp.Servicios;
 using ClinicaSePriseApp.Utilidades;
+using ClinicaSePriseApp.Vistas.Auxiliares;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,7 +13,7 @@ namespace ClinicaSePriseApp.Vistas
 {
     public partial class AdmGestionConsultorios : Form
     {
-        private DataGridView dgvConsultorios; // ⚠️ Declaración mantenida, pero no inicializada manualmente (viene del diseñador)
+        private DataGridView dgvConsultorios;
         private List<E_Consultorio> consultorios;
         private List<E_Profesional> profesionales;
         private Panel _loadingPanel;
@@ -22,7 +23,6 @@ namespace ClinicaSePriseApp.Vistas
         {
             InitializeComponent();
 
-            
             this.DoubleBuffered = true;
             this.Size = new Size(1024, 768);
             this.MinimumSize = new Size(1024, 768);
@@ -31,14 +31,10 @@ namespace ClinicaSePriseApp.Vistas
             this.Load += AdmGestionConsultorios_Load;
             this.Resize += AdmGestionConsultorios_Resize;
 
-            btnAsignarLiberar.Click -= btnAsignarLiberar_Click;
             btnAsignarLiberar.Click += btnAsignarLiberar_Click;
-
-            btnVolver.Click -= btnVolver_Click;
             btnVolver.Click += btnVolver_Click;
 
             InitializeLoadingPanel();
-            ConfigurarBotonesPrincipales();
         }
 
         private void AdmGestionConsultorios_Load(object sender, EventArgs e)
@@ -47,11 +43,12 @@ namespace ClinicaSePriseApp.Vistas
 
             try
             {
+                ajustarPaneles();
                 InicializarControles();
                 ConfigurarGrid();
                 InicializarConsultorios();
                 CargarConsultorios();
-                ConfigurarComportamientoVisualGrilla();
+                AjustarColumnasDGV();
             }
             finally
             {
@@ -63,6 +60,7 @@ namespace ClinicaSePriseApp.Vistas
 
         private void AdmGestionConsultorios_Resize(object sender, EventArgs e)
         {
+            ajustarPaneles();
             AjustarLayout();
 
             if (_loadingPanel?.Visible == true)
@@ -72,6 +70,41 @@ namespace ClinicaSePriseApp.Vistas
                     (this.ClientSize.Height - _loadingPanel.Height) / 2
                 );
             }
+
+            if (dgvConsultorios.Rows.Count > 0)
+            {
+                AjustarColumnasDGV();
+            }
+        }
+
+        private void ajustarPaneles()
+        {
+            mainTLP.BackColor = PaletaColores.celeste;
+            menuTLP.BackColor = PaletaColores.bgGris;
+            contentLbl.BackColor = PaletaColores.bgGris;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+            dgvConsultorios.BackgroundColor = PaletaColores.celeste;
+
+            foreach (Control boton in menuTLP.Controls)
+            {
+                boton.Dock = DockStyle.Fill;
+
+                if (boton == btnVolver)
+                    boton.BackColor = PaletaColores.rosa;
+                else if (boton == picLogo)
+                    boton.BackColor = Color.Transparent;
+                else
+                    boton.BackColor = PaletaColores.azulOscuro;
+
+                boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+                boton.ForeColor = Color.White;
+            }
+
+            btnAsignarLiberar.BackColor = PaletaColores.azulOscuro;
+            btnAsignarLiberar.ForeColor = Color.White;
+            btnAsignarLiberar.FlatStyle = FlatStyle.Flat;
+            btnAsignarLiberar.FlatAppearance.BorderSize = 0;
+            btnAsignarLiberar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
         }
 
         private void AjustarLayout()
@@ -98,8 +131,8 @@ namespace ClinicaSePriseApp.Vistas
         {
             _loadingPanel = new Panel
             {
-                Size = new Size(280, 80),
-                BackColor = Color.FromArgb(0, 123, 255),
+                Size = new Size(300, 80),
+                BackColor = PaletaColores.azulClaro,
                 BorderStyle = BorderStyle.FixedSingle,
                 Visible = false
             };
@@ -109,7 +142,7 @@ namespace ClinicaSePriseApp.Vistas
                 Text = "CARGANDO CONSULTORIOS...",
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Fill,
-                Font = new Font("Segoe UI", 14, FontStyle.Bold),
+                Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold),
                 ForeColor = Color.White
             };
 
@@ -138,36 +171,6 @@ namespace ClinicaSePriseApp.Vistas
             btnVolver.Enabled = !show;
         }
 
-        private void ConfigurarBotonesPrincipales()
-        {
-            // Botón Asignar/Liberar
-            btnAsignarLiberar.BackColor = Color.FromArgb(0, 123, 255);
-            btnAsignarLiberar.ForeColor = Color.White;
-            btnAsignarLiberar.FlatStyle = FlatStyle.Flat;
-            btnAsignarLiberar.FlatAppearance.BorderSize = 0;
-            btnAsignarLiberar.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-
-            // Botón Volver
-            btnVolver.BackColor = Color.FromArgb(220, 53, 69);
-            btnVolver.ForeColor = Color.White;
-            btnVolver.FlatStyle = FlatStyle.Flat;
-            btnVolver.FlatAppearance.BorderSize = 0;
-            btnVolver.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-        }
-
-        private void ConfigurarComportamientoVisualGrilla()
-        {
-            dgvConsultorios.AllowUserToResizeRows = false;
-            dgvConsultorios.AllowUserToResizeColumns = false;
-            dgvConsultorios.RowHeadersVisible = false;
-            dgvConsultorios.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dgvConsultorios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgvConsultorios.ScrollBars = ScrollBars.Vertical;
-            dgvConsultorios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvConsultorios.BorderStyle = BorderStyle.FixedSingle;
-            dgvConsultorios.BackgroundColor = Color.White;
-        }
-
         private void InicializarControles()
         {
             dgvConsultorios.ReadOnly = false;
@@ -191,10 +194,18 @@ namespace ClinicaSePriseApp.Vistas
             dgvConsultorios.AutoGenerateColumns = false;
             dgvConsultorios.Columns.Clear();
 
+            // ID Consultorio
+            dgvConsultorios.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "ID",
+                Name = "colId",
+                ReadOnly = true
+            });
+
             // Profesional
             var colProfesional = new DataGridViewComboBoxColumn
             {
-                HeaderText = "Profesional",
+                HeaderText = "PROFESIONAL",
                 DataPropertyName = "IdProfesional",
                 Name = "colProfesional",
                 DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton
@@ -204,33 +215,111 @@ namespace ClinicaSePriseApp.Vistas
             // Especialidad
             dgvConsultorios.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Especialidad",
-                Name = "colEspecialidad"
-            });
-
-            // ID Consultorio
-            dgvConsultorios.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                HeaderText = "ID Consultorio",
-                Name = "colId"
+                HeaderText = "ESPECIALIDAD",
+                Name = "colEspecialidad",
+                ReadOnly = true
             });
 
             // Estado
             dgvConsultorios.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText = "Estado",
-                Name = "colEstado"
+                HeaderText = "ESTADO",
+                Name = "colEstado",
+                ReadOnly = true
             });
 
             // Insumos
             dgvConsultorios.Columns.Add(new DataGridViewButtonColumn
             {
-                HeaderText = "Insumos",
+                HeaderText = "INSUMOS",
                 Name = "colInsumos",
-                Text = "Ver",
+                Text = "VER",
                 UseColumnTextForButtonValue = true,
                 FlatStyle = FlatStyle.Flat
             });
+        }
+
+        private void AjustarColumnasDGV()
+        {
+            if (dgvConsultorios.Columns.Count > 0)
+            {
+                int fontSize = CalcularTamanoFuente();
+
+                dgvConsultorios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                if (dgvConsultorios.Columns.Contains("colId"))
+                {
+                    dgvConsultorios.Columns["colId"].FillWeight = 10;
+                    dgvConsultorios.Columns["colId"].HeaderText = "ID";
+                }
+
+                if (dgvConsultorios.Columns.Contains("colProfesional"))
+                {
+                    dgvConsultorios.Columns["colProfesional"].FillWeight = 35;
+                    dgvConsultorios.Columns["colProfesional"].HeaderText = "PROFESIONAL";
+                }
+
+                if (dgvConsultorios.Columns.Contains("colEspecialidad"))
+                {
+                    dgvConsultorios.Columns["colEspecialidad"].FillWeight = 25;
+                    dgvConsultorios.Columns["colEspecialidad"].HeaderText = "ESPECIALIDAD";
+                }
+
+                if (dgvConsultorios.Columns.Contains("colEstado"))
+                {
+                    dgvConsultorios.Columns["colEstado"].FillWeight = 15;
+                    dgvConsultorios.Columns["colEstado"].HeaderText = "ESTADO";
+                }
+
+                if (dgvConsultorios.Columns.Contains("colInsumos"))
+                {
+                    dgvConsultorios.Columns["colInsumos"].FillWeight = 15;
+                    dgvConsultorios.Columns["colInsumos"].HeaderText = "INSUMOS";
+                }
+
+                dgvConsultorios.EnableHeadersVisualStyles = false;
+
+                dgvConsultorios.ColumnHeadersDefaultCellStyle.BackColor = PaletaColores.azulClaro;
+                dgvConsultorios.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dgvConsultorios.ColumnHeadersDefaultCellStyle.Font = new Font(Fuente.TIPOGRAFIA, fontSize, FontStyle.Bold);
+
+                dgvConsultorios.DefaultCellStyle.SelectionBackColor = PaletaColores.verdeOscuro;
+
+                dgvConsultorios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+                dgvConsultorios.ColumnHeadersHeight = 35 + (fontSize - 8);
+
+                foreach (DataGridViewColumn col in dgvConsultorios.Columns)
+                {
+                    col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    col.DefaultCellStyle.Font = new Font(Fuente.TIPOGRAFIA, fontSize - 0.5f);
+                }
+
+                dgvConsultorios.RowTemplate.Height = 25 + (fontSize - 8);
+
+                dgvConsultorios.RowHeadersVisible = false;
+                dgvConsultorios.BorderStyle = BorderStyle.None;
+                dgvConsultorios.GridColor = Color.LightGray;
+
+                dgvConsultorios.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+            }
+        }
+
+        private int CalcularTamanoFuente()
+        {
+            int anchoPantalla = this.Width;
+
+            if (anchoPantalla <= 800)
+                return 6;
+            else if (anchoPantalla <= 1024)
+                return 7;
+            else if (anchoPantalla <= 1280)
+                return 8;
+            else if (anchoPantalla <= 1366)
+                return 9;
+            else
+                return 10;
         }
 
         private void InicializarConsultorios()
@@ -275,35 +364,57 @@ namespace ClinicaSePriseApp.Vistas
                     var prof = profesionales.FirstOrDefault(p => p.IdProfesional == c.IdProfesional);
                     row.Cells["colProfesional"].Value = prof?.IdProfesional;
                     row.Cells["colEspecialidad"].Value = prof != null ? EnumHelper.GetDescription(prof.Especialidad) : "";
-                    row.Cells["colEstado"].Value = "Ocupado";
+                    row.Cells["colEstado"].Value = "OCUPADO";
                 }
                 else
                 {
                     row.Cells["colProfesional"].Value = null;
                     row.Cells["colEspecialidad"].Value = "";
-                    row.Cells["colEstado"].Value = "Disponible";
+                    row.Cells["colEstado"].Value = "DISPONIBLE";
                 }
             }
         }
 
         private void dgvConsultorios_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            if (e.RowIndex < 0 || e.RowIndex >= dgvConsultorios.Rows.Count) return;
+
+            var row = dgvConsultorios.Rows[e.RowIndex];
+
+            // Formatear columna de estado
+            if (dgvConsultorios.Columns[e.ColumnIndex].Name == "colEstado")
+            {
+                string estado = row.Cells["colEstado"].Value?.ToString() ?? "";
+                if (estado == "OCUPADO")
+                {
+                    row.Cells["colEstado"].Style.ForeColor = Color.Red;
+                    row.Cells["colEstado"].Style.Font = new Font(Fuente.TIPOGRAFIA, CalcularTamanoFuente() - 0.5f, FontStyle.Bold);
+                }
+                else
+                {
+                    row.Cells["colEstado"].Style.ForeColor = PaletaColores.verdeClaro;
+                    row.Cells["colEstado"].Style.Font = new Font(Fuente.TIPOGRAFIA, CalcularTamanoFuente() - 0.5f, FontStyle.Bold);
+                }
+            }
+
+            // Formatear botón de insumos
             if (dgvConsultorios.Columns[e.ColumnIndex].Name == "colInsumos")
             {
-                var row = dgvConsultorios.Rows[e.RowIndex];
-                var cell = (DataGridViewButtonCell)row.Cells["colInsumos"];
                 string estado = row.Cells["colEstado"].Value?.ToString() ?? "";
+                var cell = (DataGridViewButtonCell)row.Cells["colInsumos"];
 
-                if (estado == "Ocupado")
+                if (estado == "OCUPADO")
                 {
-                    cell.Style.BackColor = Color.FromArgb(0, 123, 255);
+                    cell.Style.BackColor = PaletaColores.azulClaro;
                     cell.Style.ForeColor = Color.White;
-                    cell.Style.SelectionBackColor = Color.FromArgb(0, 105, 217);
+                    cell.Style.SelectionBackColor = PaletaColores.azulOscuro;
+                    cell.Style.Font = new Font(Fuente.TIPOGRAFIA, CalcularTamanoFuente() - 1, FontStyle.Bold);
                 }
                 else
                 {
                     cell.Style.BackColor = Color.LightGray;
                     cell.Style.ForeColor = Color.DarkGray;
+                    cell.Style.Font = new Font(Fuente.TIPOGRAFIA, CalcularTamanoFuente() - 1, FontStyle.Regular);
                 }
             }
         }
@@ -336,10 +447,26 @@ namespace ClinicaSePriseApp.Vistas
             if (e.RowIndex < 0 || dgvConsultorios.Columns[e.ColumnIndex].Name != "colInsumos")
                 return;
 
-            var idConsultorio = dgvConsultorios.Rows[e.RowIndex].Cells["colId"].Value;
-            MessageBox.Show($"Abrir gestión de insumos del consultorio {idConsultorio}.", "Insumos");
+            var row = dgvConsultorios.Rows[e.RowIndex];
+            string estado = row.Cells["colEstado"].Value?.ToString() ?? "";
+
+            if (estado != "OCUPADO")
+            {
+                MessageBox.Show("Solo se pueden gestionar insumos en consultorios ocupados.", "Información",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int idConsultorio = Convert.ToInt32(row.Cells["colId"].Value);
+            var consultorio = consultorios.First(c => c.IdConsultorio == idConsultorio);
+
+            // Abrir pantalla de gestión de insumos del consultorio
+            using (var formInsumos = new AuxCargaGenerica(consultorio))
+            {
+                formInsumos.ShowDialog();
+            }
         }
-        
+
         private void btnAsignarLiberar_Click(object sender, EventArgs e)
         {
             if (dgvConsultorios.CurrentRow == null)
@@ -372,7 +499,7 @@ namespace ClinicaSePriseApp.Vistas
                 }
 
                 consultorio.IdProfesional = idProfesionalSeleccionado;
-                row.Cells["colEstado"].Value = "Ocupado";
+                row.Cells["colEstado"].Value = "OCUPADO";
                 MessageBox.Show($"Consultorio {idConsultorio} asignado correctamente.", "Asignación exitosa");
             }
             else
@@ -380,7 +507,7 @@ namespace ClinicaSePriseApp.Vistas
                 consultorio.IdProfesional = 0;
                 row.Cells["colProfesional"].Value = null;
                 row.Cells["colEspecialidad"].Value = "";
-                row.Cells["colEstado"].Value = "Disponible";
+                row.Cells["colEstado"].Value = "DISPONIBLE";
                 MessageBox.Show($"Consultorio {idConsultorio} liberado.", "Liberación exitosa");
             }
 

@@ -28,7 +28,6 @@ namespace ClinicaSePriseApp.Servicios
             decimal monto = CalcularMontoTurno(profesional);
 
             E_Turno turno = new E_Turno(
-                DDBB_Simulation.TurnosDB.Count + 1,
                 fecha,
                 profesional.IdProfesional,
                 paciente.IdPaciente,
@@ -82,7 +81,6 @@ namespace ClinicaSePriseApp.Servicios
                 DateTime fechaTurno = dia.ToDateTime(horaTurno);
                 
                 E_Turno turno = new E_Turno(
-                    DDBB_Simulation.TurnosDB.Count + 1,
                     fechaTurno,
                     profesional.IdProfesional,
                     valorConsulta
@@ -107,7 +105,7 @@ namespace ClinicaSePriseApp.Servicios
                 case Entidades.Enums.EspecialidadMedica.NEUROLOGIA:
                     monto = 15000m;
                     break;
-                case Entidades.Enums.EspecialidadMedica.UROLOGIA:
+                case Entidades.Enums.EspecialidadMedica.CARDIOLOGIA:
                     monto = 10000m;
                     break;
                 default:

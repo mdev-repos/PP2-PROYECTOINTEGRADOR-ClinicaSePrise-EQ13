@@ -392,7 +392,6 @@ namespace ClinicaSePriseApp.Vistas
                 var paciente = PacienteService.ObtenerPacientePorID(turno.IdPaciente);
 
                 E_Pago pago = new E_Pago(
-                    DDBB_Simulation.PagosDB.Count + 1,
                     paciente.IdPaciente,
                     turno.IdTurno,
                     turno.Monto);

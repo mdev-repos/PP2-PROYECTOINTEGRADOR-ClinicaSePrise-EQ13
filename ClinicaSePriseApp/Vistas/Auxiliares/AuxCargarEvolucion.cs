@@ -136,7 +136,6 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                     $"Observaciones: {observaciones}";
 
                 E_Entrada evolucion = new E_Entrada(
-                    DDBB_Simulation.EntradasDB.Count + 1,
                     idHistoria: _Paciente.HistoriaClinica.IdHistoriaClinica,
                     idProfesional: _Profesional.IdProfesional,
                     observaciones: entradaNueva,

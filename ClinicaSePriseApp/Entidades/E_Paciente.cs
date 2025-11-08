@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-//db-simulation
 using static ClinicaSePriseApp.Utilidades.DDBB_Simulation;
 
 namespace ClinicaSePriseApp.Entidades
 {
     public class E_Paciente : E_Persona
     {
+        private static int ID_AUTOINCREMENT = 0;
+
         public int IdPaciente { get; set; }
         public ObraSocial ObraSocial { get; set; }
         public string NumeroAfiliado { get; set; }
@@ -21,33 +21,21 @@ namespace ClinicaSePriseApp.Entidades
         public List<E_Pago> PagosRealizados { get; set; }
 
 
-        // CONSTRUCTOR
-        public E_Paciente(int idPaciente, string apellido, string nombre, string dni, Genero genero,
+        public E_Paciente(string apellido, string nombre, string dni, Genero genero,
                          DateOnly fechaNacimiento, string direccion, string telefono,
                          string email, ObraSocial obraSocial, string numeroAfiliado)
             : base(apellido, nombre, dni, genero, fechaNacimiento, direccion, telefono, email)
         {
-            IdPaciente = idPaciente;
+            ID_AUTOINCREMENT++;
+
+            IdPaciente = ID_AUTOINCREMENT;
             ObraSocial = obraSocial;
             NumeroAfiliado = numeroAfiliado;
-            HistoriaClinica = new E_HistoriaClinica(idPaciente);
+            HistoriaClinica = new E_HistoriaClinica(IdPaciente);
             Reservas = new List<E_Turno>();
             PagosRealizados = new List<E_Pago>();
         }
 
-
-        // OBTENER PACIENTE POR ID
-        public static E_Paciente? ObtenerPacientePorId(int idPaciente)
-        {
-            // Simulación de búsqueda en base de datos
-            // En una implementación real, se buscaría en la base de datos
-
-            return DDBB_Simulation.PacientesDB
-                .FirstOrDefault(p => p.IdPaciente == idPaciente);
-        }
-
-        // RETORNO DE NOMBRE PARA Pantallas
         public string NombreCompleto => $"{Apellido}, {Nombre}";
-
     }
 }

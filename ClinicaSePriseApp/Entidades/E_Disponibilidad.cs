@@ -8,16 +8,19 @@ namespace ClinicaSePriseApp.Entidades
 {
     public class E_Disponibilidad
     {
+        private static int ID_AUTOINCREMENT = 0;
+
         public int IdDisponibilidad { get; set; }
         public DayOfWeek Dia { get; set; }
         public TimeSpan HoraInicio { get; set; }
         public TimeSpan HoraFin { get; set; }
 
 
-        // CONSTRUCTOR
-        public E_Disponibilidad(int id, DayOfWeek day, TimeSpan hrInicio, TimeSpan hrFin) 
+        public E_Disponibilidad(DayOfWeek day, TimeSpan hrInicio, TimeSpan hrFin) 
         {
-            IdDisponibilidad = id;
+            ID_AUTOINCREMENT++;
+
+            IdDisponibilidad = ID_AUTOINCREMENT;
             Dia = day;
             HoraInicio = hrInicio;
             HoraFin = hrFin;
