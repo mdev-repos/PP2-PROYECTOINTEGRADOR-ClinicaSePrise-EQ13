@@ -39,6 +39,7 @@
             contentLbl = new Label();
             dataGridTLP = new TableLayoutPanel();
             dgvInsumos = new DataGridView();
+            btnVerSolicitudes = new Button();
             mainTLP.SuspendLayout();
             menuTLP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
@@ -68,22 +69,25 @@
             menuTLP.ColumnCount = 1;
             menuTLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             menuTLP.Controls.Add(picLogo, 0, 0);
-            menuTLP.Controls.Add(btnVolver, 0, 6);
             menuTLP.Controls.Add(btnAñadirInsumo, 0, 2);
             menuTLP.Controls.Add(btnActualizarInsumo, 0, 4);
+            menuTLP.Controls.Add(btnVolver, 0, 8);
+            menuTLP.Controls.Add(btnVerSolicitudes, 0, 6);
             menuTLP.Dock = DockStyle.Fill;
             menuTLP.Location = new Point(1426, 0);
             menuTLP.Margin = new Padding(0);
             menuTLP.Name = "menuTLP";
-            menuTLP.RowCount = 8;
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 26F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
-            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            menuTLP.RowCount = 10;
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 30.6122456F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.122449F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8.163265F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.122449F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8.163265F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 6.122449F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8.163265F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 10.2040815F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8.163265F));
+            menuTLP.RowStyles.Add(new RowStyle(SizeType.Percent, 8.163265F));
             menuTLP.Size = new Size(476, 1033);
             menuTLP.TabIndex = 0;
             // 
@@ -95,7 +99,7 @@
             picLogo.Location = new Point(0, 0);
             picLogo.Margin = new Padding(0);
             picLogo.Name = "picLogo";
-            picLogo.Size = new Size(476, 309);
+            picLogo.Size = new Size(476, 316);
             picLogo.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo.TabIndex = 0;
             picLogo.TabStop = false;
@@ -103,10 +107,9 @@
             // btnVolver
             // 
             btnVolver.BackColor = Color.Pink;
-            btnVolver.Dock = DockStyle.Fill;
             btnVolver.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnVolver.ForeColor = Color.White;
-            btnVolver.Location = new Point(0, 863);
+            btnVolver.Location = new Point(0, 862);
             btnVolver.Margin = new Padding(0);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(476, 82);
@@ -121,10 +124,10 @@
             btnAñadirInsumo.Dock = DockStyle.Fill;
             btnAñadirInsumo.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnAñadirInsumo.ForeColor = Color.White;
-            btnAñadirInsumo.Location = new Point(0, 370);
+            btnAñadirInsumo.Location = new Point(0, 379);
             btnAñadirInsumo.Margin = new Padding(0);
             btnAñadirInsumo.Name = "btnAñadirInsumo";
-            btnAñadirInsumo.Size = new Size(476, 82);
+            btnAñadirInsumo.Size = new Size(476, 84);
             btnAñadirInsumo.TabIndex = 1;
             btnAñadirInsumo.Text = "AÑADIR INSUMO";
             btnAñadirInsumo.UseVisualStyleBackColor = false;
@@ -135,10 +138,10 @@
             btnActualizarInsumo.Dock = DockStyle.Fill;
             btnActualizarInsumo.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
             btnActualizarInsumo.ForeColor = Color.White;
-            btnActualizarInsumo.Location = new Point(0, 513);
+            btnActualizarInsumo.Location = new Point(0, 526);
             btnActualizarInsumo.Margin = new Padding(0);
             btnActualizarInsumo.Name = "btnActualizarInsumo";
-            btnActualizarInsumo.Size = new Size(476, 82);
+            btnActualizarInsumo.Size = new Size(476, 84);
             btnActualizarInsumo.TabIndex = 2;
             btnActualizarInsumo.Text = "ACTUALIZAR INSUMO";
             btnActualizarInsumo.UseVisualStyleBackColor = false;
@@ -204,6 +207,21 @@
             dgvInsumos.Size = new Size(1283, 777);
             dgvInsumos.TabIndex = 7;
             // 
+            // btnVerSolicitudes
+            // 
+            btnVerSolicitudes.BackColor = Color.CornflowerBlue;
+            btnVerSolicitudes.Dock = DockStyle.Fill;
+            btnVerSolicitudes.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnVerSolicitudes.ForeColor = Color.White;
+            btnVerSolicitudes.Location = new Point(0, 673);
+            btnVerSolicitudes.Margin = new Padding(0);
+            btnVerSolicitudes.Name = "btnVerSolicitudes";
+            btnVerSolicitudes.Size = new Size(476, 84);
+            btnVerSolicitudes.TabIndex = 9;
+            btnVerSolicitudes.Text = "SOLICITUDES DE INSUMOS";
+            btnVerSolicitudes.UseVisualStyleBackColor = false;
+            btnVerSolicitudes.Click += btnVerSolicitudes_Click;
+            // 
             // AdmGestionInsumos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -239,5 +257,6 @@
         private Label contentLbl;
         private TableLayoutPanel dataGridTLP;
         private DataGridView dgvInsumos;
+        private Button btnVerSolicitudes;
     }
 }

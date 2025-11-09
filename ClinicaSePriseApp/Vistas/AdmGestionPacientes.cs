@@ -2,6 +2,7 @@
 using ClinicaSePriseApp.Entidades;
 using ClinicaSePriseApp.Servicios;
 using ClinicaSePriseApp.Utilidades;
+using ClinicaSePriseApp.Vistas.Auxiliares;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,15 +30,16 @@ namespace ClinicaSePriseApp.Vistas
             ConfigurarGrillaPacientes();
             CargarTodosLosPacientes();
             pacientesDgv.CellPainting += pacientesDgv_CellPainting;
+            pacientesDgv.CellContentClick += pacientesDgv_CellContentClick;
         }
 
         private void ajustarPaneles()
         {
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
 
-            contentLbl.BackColor = PaletaColores.bgGris;
-            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
 
             pacientesDgv.BorderStyle = BorderStyle.None;
 
@@ -47,7 +49,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == picLogo)
                 {
@@ -55,7 +57,7 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
@@ -73,6 +75,19 @@ namespace ClinicaSePriseApp.Vistas
         }
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea salir de la Pantalla y volver al Dashboard?",
+                    "Confirmar Regreso",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
             DashAdmin dashAdmin = new DashAdmin();
             this.Hide();
             dashAdmin.FormClosed += (s, args) => this.Close();
@@ -95,7 +110,7 @@ namespace ClinicaSePriseApp.Vistas
             var pacienteEncontrado = PacienteService.ObtenerPacientePorDNI(dniIngresado);
 
             if (pacienteEncontrado != null)
-            {                
+            {
                 var listaTransformada = new List<object>
                 {
                     new
@@ -110,7 +125,7 @@ namespace ClinicaSePriseApp.Vistas
                     }
                 };
 
-                pacientesDgv.DataSource = listaTransformada;                
+                pacientesDgv.DataSource = listaTransformada;
             }
             else
             {
@@ -160,7 +175,7 @@ namespace ClinicaSePriseApp.Vistas
         private void CargarTodosLosPacientes()
         {
             var listaPacientes = PacienteService.ObtenerTodosLosPacientes();
-            
+
             var listaTransformada = listaPacientes.Select(p => new
             {
                 Dni = p.Dni,
@@ -233,14 +248,12 @@ namespace ClinicaSePriseApp.Vistas
                 UseColumnTextForButtonValue = true,
                 SortMode = DataGridViewColumnSortMode.NotSortable
             });
-
-
         }
 
         private void AplicarEstiloGrilla(DataGridView dgv)
         {
             dgv.RowHeadersVisible = false;
-            dgv.BackgroundColor = PaletaColores.celeste;
+            dgv.BackgroundColor = PaletaColores.Skyblue;
             dgv.DefaultCellStyle.BackColor = Color.White;
             dgv.DefaultCellStyle.SelectionBackColor = Color.LightBlue;
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
@@ -250,7 +263,7 @@ namespace ClinicaSePriseApp.Vistas
             dgv.EnableHeadersVisualStyles = false;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -264,8 +277,8 @@ namespace ClinicaSePriseApp.Vistas
                 e.PaintBackground(e.CellBounds, true);
 
                 Color botonColor = pacientesDgv.Columns[e.ColumnIndex].Name == "btnVerTurnos"
-                    ? PaletaColores.btnAzul
-                    : PaletaColores.btnVerde;
+                    ? PaletaColores.DarkBlue
+                    : PaletaColores.GreenishBlue;
 
                 using (Brush brush = new SolidBrush(botonColor))
                 {
@@ -284,6 +297,72 @@ namespace ClinicaSePriseApp.Vistas
                 );
 
                 e.Handled = true;
+            }
+        }
+
+        private void pacientesDgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var grid = (DataGridView)sender;
+
+            if (grid.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
+            {
+                dynamic filaSeleccionada = grid.Rows[e.RowIndex].DataBoundItem;
+                E_Paciente paciente = filaSeleccionada.PacienteOriginal;
+
+                if (grid.Columns[e.ColumnIndex].Name == "btnVerTurnos")
+                {
+                    AbrirVistaTurnosPaciente(paciente);
+                }
+                else if (grid.Columns[e.ColumnIndex].Name == "btnVerPagos")
+                {
+                    AbrirVistaPagosPaciente(paciente);
+                }
+            }
+        }
+
+        private void AbrirVistaTurnosPaciente(E_Paciente paciente)
+        {
+            try
+            {
+                var turnosPaciente = paciente.Reservas;
+
+                turnosPaciente = turnosPaciente?
+                    .OrderByDescending(t => t.FechaTurno)
+                    .ToList() ?? new List<E_Turno>();
+
+                var vistaTurnos = new AuxCargaGenerica(paciente, turnosPaciente);
+                vistaTurnos.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los turnos del paciente: {ex.Message}",
+                              "Error",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
+            }
+        }
+
+        private void AbrirVistaPagosPaciente(E_Paciente paciente)
+        {
+            try
+            {
+                var pagosPaciente = PagoService.ObtenerPagosPorPaciente(paciente.IdPaciente);
+
+                pagosPaciente = pagosPaciente?
+                    .OrderByDescending(p => p.FechaPago ?? DateOnly.MinValue)
+                    .ToList() ?? new List<E_Pago>();
+
+                var vistaPagos = new AuxCargaGenerica(paciente, pagosPaciente);
+                vistaPagos.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los pagos del paciente: {ex.Message}",
+                              "Error",
+                              MessageBoxButtons.OK,
+                              MessageBoxIcon.Error);
             }
         }
 

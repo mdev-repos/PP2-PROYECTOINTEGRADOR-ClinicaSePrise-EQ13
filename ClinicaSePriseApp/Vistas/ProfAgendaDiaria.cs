@@ -55,10 +55,10 @@ namespace ClinicaSePriseApp.Vistas
         {
             if (_Profesional == null) return;
 
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
-            contentLbl.BackColor = PaletaColores.bgGris;
-
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
             contentLbl.Text = $"    {_Fecha}  |  Dr. {_Profesional.NombreCompleto}";
 
             foreach (Control boton in menuTLP.Controls)
@@ -67,7 +67,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == picLogo)
                 {
@@ -75,7 +75,7 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
@@ -221,7 +221,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                 "¿Desea volver al Dashboard?",
-                "Confirmar",
+                "Confirmar Regreso",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2

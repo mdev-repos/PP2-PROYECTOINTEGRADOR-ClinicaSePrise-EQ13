@@ -28,13 +28,6 @@ namespace ClinicaSePriseApp.Datos
             return turnoEncontrado;
         }
 
-        // UPDATE
-        public void ActualizarTurno(E_Turno turnoActualizado)
-        {
-
-        }
-
-
         // DELETE (SOLO SIMULACION)
         public void EliminarTurno(E_Turno turno)
         {

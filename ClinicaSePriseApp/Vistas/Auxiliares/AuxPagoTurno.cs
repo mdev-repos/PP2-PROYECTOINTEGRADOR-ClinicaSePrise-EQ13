@@ -50,7 +50,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         // Estilo
         private void AplicarEstilos() 
         {
-            containerTLP.BackColor = PaletaColores.bgGris;
+            containerTLP.BackColor = PaletaColores.Grey;
 
 
             foreach (Control boton in buttonsTLP.Controls)
@@ -59,15 +59,15 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
                 if (boton == btnCancelar)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == btnConfirmar)
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulVerde;
+                    boton.BackColor = PaletaColores.GreenishBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);

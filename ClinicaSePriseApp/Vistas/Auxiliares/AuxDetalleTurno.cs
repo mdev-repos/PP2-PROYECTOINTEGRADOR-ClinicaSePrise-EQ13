@@ -44,7 +44,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
         private void AplicarEstilos()
         {
-            mainTLP.BackColor = PaletaColores.azulClaro;
+            mainTLP.BackColor = PaletaColores.LightBlue;
 
             foreach (Control tlp in mainTLP.Controls)
             {               
@@ -56,10 +56,10 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 
                 tlp.ForeColor = Color.White;
 
-                btnVerHistoria.BackColor = PaletaColores.azulVerde;
+                btnVerHistoria.BackColor = PaletaColores.GreenishBlue;
                 btnVerHistoria.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
 
-                btnCerrar.BackColor = PaletaColores.rosa;
+                btnCerrar.BackColor = PaletaColores.Pink;
                 btnCerrar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
             }
         }

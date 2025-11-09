@@ -90,7 +90,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         // Estilos Visuales
         private void AplicarEstilosLiquidaciones()
         {
-            mainTLP.BackColor = PaletaColores.azulClaro;
+            mainTLP.BackColor = PaletaColores.LightBlue;
             lblTitulo.Text = "MIS LIQUIDACIONES";
 
             foreach (Control tlp in mainTLP.Controls)
@@ -102,7 +102,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 }
 
                 tlp.ForeColor = System.Drawing.Color.White;
-                btnCerrar.BackColor = PaletaColores.rosa;
+                btnCerrar.BackColor = PaletaColores.Pink;
                 btnCerrar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
             }
         }
@@ -176,7 +176,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             lblHeaderFecha.Dock = DockStyle.Fill;
             lblHeaderFecha.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
             lblHeaderFecha.ForeColor = System.Drawing.Color.White;
-            lblHeaderFecha.BackColor = PaletaColores.azulOscuro;
+            lblHeaderFecha.BackColor = PaletaColores.DarkBlue;
 
             Label lblHeaderPeriodo = new Label();
             lblHeaderPeriodo.Text = "PERIODO";
@@ -184,7 +184,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             lblHeaderPeriodo.Dock = DockStyle.Fill;
             lblHeaderPeriodo.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
             lblHeaderPeriodo.ForeColor = System.Drawing.Color.White;
-            lblHeaderPeriodo.BackColor = PaletaColores.azulOscuro;
+            lblHeaderPeriodo.BackColor = PaletaColores.DarkBlue;
 
             Label lblHeaderMonto = new Label();
             lblHeaderMonto.Text = "MONTO";
@@ -192,7 +192,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             lblHeaderMonto.Dock = DockStyle.Fill;
             lblHeaderMonto.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
             lblHeaderMonto.ForeColor = System.Drawing.Color.White;
-            lblHeaderMonto.BackColor = PaletaColores.azulOscuro;
+            lblHeaderMonto.BackColor = PaletaColores.DarkBlue;
 
             Label lblHeaderDescargar = new Label();
             lblHeaderDescargar.Text = "COMPROBANTE";
@@ -200,7 +200,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             lblHeaderDescargar.Dock = DockStyle.Fill;
             lblHeaderDescargar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
             lblHeaderDescargar.ForeColor = System.Drawing.Color.White;
-            lblHeaderDescargar.BackColor = PaletaColores.azulOscuro;
+            lblHeaderDescargar.BackColor = PaletaColores.DarkBlue;
 
             dataTLP.Controls.Add(lblHeaderFecha, 0, fila);
             dataTLP.Controls.Add(lblHeaderPeriodo, 1, fila);
@@ -210,7 +210,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
         private void AgregarFilaLiquidacion(E_Liquidacion liquidacion, int fila)
         {
-            System.Drawing.Color colorFondo = fila % 2 == 0 ? PaletaColores.azulClaro : PaletaColores.celeste;
+            System.Drawing.Color colorFondo = fila % 2 == 0 ? PaletaColores.LightBlue : PaletaColores.Skyblue;
 
             Label lblFecha = new Label();
             lblFecha.Text = liquidacion.FechaLiquidacion.ToString("MM/yyyy");
@@ -233,7 +233,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             lblMonto.TextAlign = ContentAlignment.MiddleCenter;
             lblMonto.Dock = DockStyle.Fill;
             lblMonto.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
-            lblMonto.ForeColor = PaletaColores.verdeClaro;
+            lblMonto.ForeColor = PaletaColores.LightGreen;
             lblMonto.BackColor = colorFondo;
 
             Button btnDescargar = new Button();
@@ -348,23 +348,29 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             this.Close();
         }
 
+
+
         // PARA CARGA DE TURNOS (PACIENTE)
         private E_Paciente _Paciente;
-
         public AuxCargaGenerica(E_Paciente paciente, List<E_Turno> turnos) : this()
         {
             _Paciente = paciente;
 
-            // Crear TLP con 3 columnas
-            CrearDataTLP(3, new float[] { 25F, 50F, 25F });
+            CrearDataTLP(3, new float[] { 30F, 50F, 20F });
+
+            this.Text = "Clínica SePrise  ||  Consulta de Turnos del Paciente";
 
             AplicarEstilosTurnos();
+            CargarTurnosPaciente(turnos);
+            AjustarMargenScroll();
         }
 
+        // Estilos Visuales para Turnos
         private void AplicarEstilosTurnos()
         {
-            mainTLP.BackColor = PaletaColores.azulClaro;
+            mainTLP.BackColor = PaletaColores.LightBlue;
             lblTitulo.Text = "MIS TURNOS RESERVADOS";
+            lblNombre.Text = $"Paciente: {_Paciente.NombreCompleto}";
 
             foreach (Control tlp in mainTLP.Controls)
             {
@@ -375,22 +381,300 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 }
 
                 tlp.ForeColor = System.Drawing.Color.White;
-                btnCerrar.BackColor = PaletaColores.rosa;
+                btnCerrar.BackColor = PaletaColores.Pink;
                 btnCerrar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
             }
         }
 
-        private void btnCerrar_Click_1(object sender, EventArgs e)
+        // Carga de Datos
+        private void CargarTurnosPaciente(List<E_Turno> turnos)
         {
-            this.Close();
+            if (_Paciente == null || turnos == null)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "Error al cargar los turnos del paciente.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                this.Close();
+                return;
+            }
+
+            CargarListaTurnos(turnos);
         }
+
+        private void CargarListaTurnos(List<E_Turno> turnos)
+        {
+            dataTLP.Controls.Clear();
+            dataTLP.RowStyles.Clear();
+
+            dataTLP.RowCount = turnos.Count + 1;
+            AgregarHeaderTurnos(0);
+
+            if (turnos.Count == 0)
+            {
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+                Label lblMensaje = new Label();
+                lblMensaje.Text = "No hay turnos registrados para este paciente";
+                lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
+                lblMensaje.Dock = DockStyle.Fill;
+                lblMensaje.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Italic);
+                lblMensaje.ForeColor = System.Drawing.Color.White;
+
+                dataTLP.Controls.Add(lblMensaje, 0, 1);
+                dataTLP.SetColumnSpan(lblMensaje, 3);
+                return;
+            }
+
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+            for (int i = 0; i < turnos.Count; i++)
+            {
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                AgregarFilaTurno(turnos[i], i + 1);
+            }
+
+            AjustarMargenScroll();
+        }
+
+        private void AgregarHeaderTurnos(int fila)
+        {
+            string[] headers = { "FECHA", "MÉDICO", "ESTADO" };
+
+            for (int i = 0; i < headers.Length; i++)
+            {
+                Label lblHeader = new Label();
+                lblHeader.Text = headers[i];
+                lblHeader.TextAlign = ContentAlignment.MiddleCenter;
+                lblHeader.Dock = DockStyle.Fill;
+                lblHeader.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
+                lblHeader.ForeColor = System.Drawing.Color.White;
+                lblHeader.BackColor = PaletaColores.DarkBlue;
+
+                dataTLP.Controls.Add(lblHeader, i, fila);
+            }
+        }
+
+        private void AgregarFilaTurno(E_Turno turno, int fila)
+        {
+            System.Drawing.Color colorFondo = fila % 2 == 0 ? PaletaColores.LightBlue : PaletaColores.Skyblue;
+
+            Label lblFecha = new Label();
+            lblFecha.Text = turno.FechaTurno.ToString("dd/MM/yyyy");
+            lblFecha.TextAlign = ContentAlignment.MiddleCenter;
+            lblFecha.Dock = DockStyle.Fill;
+            lblFecha.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
+            lblFecha.ForeColor = System.Drawing.Color.White;
+            lblFecha.BackColor = colorFondo;
+
+            Label lblMedico = new Label();
+            var profesional = ProfesionalService.ObtenerProfesionalPorID(turno.IdProfesional);
+            lblMedico.Text = profesional?.NombreCompleto ?? "No encontrado";
+            lblMedico.TextAlign = ContentAlignment.MiddleCenter;
+            lblMedico.Dock = DockStyle.Fill;
+            lblMedico.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
+            lblMedico.ForeColor = System.Drawing.Color.White;
+            lblMedico.BackColor = colorFondo;
+
+            Label lblEstado = new Label();
+            lblEstado.Text = EnumHelper.GetDescription(turno.Estado);
+            lblEstado.TextAlign = ContentAlignment.MiddleCenter;
+            lblEstado.Dock = DockStyle.Fill;
+            lblEstado.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
+            lblEstado.ForeColor = ObtenerColorEstadoTurno(turno.Estado);
+            lblEstado.BackColor = colorFondo;
+
+            dataTLP.Controls.Add(lblFecha, 0, fila);
+            dataTLP.Controls.Add(lblMedico, 1, fila);
+            dataTLP.Controls.Add(lblEstado, 2, fila);
+        }
+
+        private System.Drawing.Color ObtenerColorEstadoTurno(Entidades.Enums.EstadoTurno estado)
+        {
+            switch (estado)
+            {
+                case Entidades.Enums.EstadoTurno.ASIGNADO:
+                    return System.Drawing.Color.Orange;
+                case Entidades.Enums.EstadoTurno.ABONADO:
+                    return PaletaColores.LightGreen;                
+                case Entidades.Enums.EstadoTurno.FINALIZADO:
+                    return System.Drawing.Color.LightBlue;
+                default:
+                    return System.Drawing.Color.White;
+            }
+        }
+
 
         // PARA CARGA DE PAGOS (PACIENTE)
         public AuxCargaGenerica(E_Paciente paciente, List<E_Pago> pagos) : this()
         {
             _Paciente = paciente;
-            // CrearDataTLP(numeroDeColumnas, anchos);
+
+            CrearDataTLP(4, new float[] { 25F, 20F, 25F, 30F });
+
+            this.Text = "Clínica SePrise  ||  Consulta de Pagos del Paciente";
+
+            AplicarEstilosPagos();
+            CargarPagosPaciente(pagos);
+            AjustarMargenScroll();
         }
+
+        // Estilos Visuales
+        private void AplicarEstilosPagos()
+        {
+            mainTLP.BackColor = PaletaColores.LightBlue;
+            lblTitulo.Text = "MIS PAGOS REALIZADOS";
+            lblNombre.Text = $"Paciente: {_Paciente.NombreCompleto}";
+
+            foreach (Control tlp in mainTLP.Controls)
+            {
+                foreach (Control label in tlp.Controls)
+                {
+                    label.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
+                    label.ForeColor = System.Drawing.Color.White;
+                }
+
+                tlp.ForeColor = System.Drawing.Color.White;
+                btnCerrar.BackColor = PaletaColores.Pink;
+                btnCerrar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            }
+        }
+
+        // Carga de Datos
+        private void CargarPagosPaciente(List<E_Pago> pagos)
+        {
+            if (_Paciente == null || pagos == null)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "Error al cargar los pagos del paciente.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                this.Close();
+                return;
+            }
+
+            CargarListaPagos(pagos);
+        }
+
+        private void CargarListaPagos(List<E_Pago> pagos)
+        {
+            dataTLP.Controls.Clear();
+            dataTLP.RowStyles.Clear();
+
+            dataTLP.RowCount = pagos.Count + 1;
+            AgregarHeaderPagos(0);
+
+            if (pagos.Count == 0)
+            {
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+                Label lblMensaje = new Label();
+                lblMensaje.Text = "No hay pagos registrados para este paciente";
+                lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
+                lblMensaje.Dock = DockStyle.Fill;
+                lblMensaje.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Italic);
+                lblMensaje.ForeColor = System.Drawing.Color.White;
+
+                dataTLP.Controls.Add(lblMensaje, 0, 1);
+                dataTLP.SetColumnSpan(lblMensaje, 4);
+                return;
+            }
+
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+            for (int i = 0; i < pagos.Count; i++)
+            {
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                AgregarFilaPago(pagos[i], i + 1);
+            }
+
+            AjustarMargenScroll();
+        }
+
+        private void AgregarHeaderPagos(int fila)
+        {
+            string[] headers = { "FECHA", "MONTO", "ESTADO", "MÉTODO DE PAGO" };
+
+            for (int i = 0; i < headers.Length; i++)
+            {
+                Label lblHeader = new Label();
+                lblHeader.Text = headers[i];
+                lblHeader.TextAlign = ContentAlignment.MiddleCenter;
+                lblHeader.Dock = DockStyle.Fill;
+                lblHeader.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
+                lblHeader.ForeColor = System.Drawing.Color.White;
+                lblHeader.BackColor = PaletaColores.DarkBlue;
+
+                dataTLP.Controls.Add(lblHeader, i, fila);
+            }
+        }
+
+        private void AgregarFilaPago(E_Pago pago, int fila)
+        {
+            System.Drawing.Color colorFondo = fila % 2 == 0 ? PaletaColores.LightBlue : PaletaColores.Skyblue;
+
+            Label lblFecha = new Label();
+            lblFecha.Text = pago.FechaPago?.ToString("dd/MM/yyyy") ?? "PENDIENTE";
+            lblFecha.TextAlign = ContentAlignment.MiddleCenter;
+            lblFecha.Dock = DockStyle.Fill;
+            lblFecha.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
+            lblFecha.ForeColor = System.Drawing.Color.White;
+            lblFecha.BackColor = colorFondo;
+
+            Label lblMonto = new Label();
+            lblMonto.Text = $"${pago.Monto}";
+            lblMonto.TextAlign = ContentAlignment.MiddleCenter;
+            lblMonto.Dock = DockStyle.Fill;
+            lblMonto.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
+            lblMonto.ForeColor = PaletaColores.LightGreen;
+            lblMonto.BackColor = colorFondo;
+
+            Label lblEstado = new Label();
+            lblEstado.Text = EnumHelper.GetDescription(pago.Estado);
+            lblEstado.TextAlign = ContentAlignment.MiddleCenter;
+            lblEstado.Dock = DockStyle.Fill;
+            lblEstado.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
+            lblEstado.ForeColor = ObtenerColorEstadoPago(pago.Estado);
+            lblEstado.BackColor = colorFondo;
+
+            Label lblMetodo = new Label();
+            lblMetodo.Text = pago.MetodoPago.HasValue
+                ? EnumHelper.GetDescription(pago.MetodoPago.Value)
+                : "NO ESPECIFICADO";
+            lblMetodo.TextAlign = ContentAlignment.MiddleCenter;
+            lblMetodo.Dock = DockStyle.Fill;
+            lblMetodo.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
+            lblMetodo.ForeColor = System.Drawing.Color.White;
+            lblMetodo.BackColor = colorFondo;
+
+            dataTLP.Controls.Add(lblFecha, 0, fila);
+            dataTLP.Controls.Add(lblMonto, 1, fila);
+            dataTLP.Controls.Add(lblEstado, 2, fila);
+            dataTLP.Controls.Add(lblMetodo, 3, fila);
+        }
+
+        private System.Drawing.Color ObtenerColorEstadoPago(Entidades.Enums.EstadoPago estado)
+        {
+            switch (estado)
+            {
+                case Entidades.Enums.EstadoPago.PENDIENTE:
+                    return System.Drawing.Color.Orange;
+                case Entidades.Enums.EstadoPago.REALIZADO:
+                    return PaletaColores.LightGreen;
+                case Entidades.Enums.EstadoPago.RECHAZADO:
+                    return System.Drawing.Color.Red;
+                default:
+                    return System.Drawing.Color.White;
+            }
+        }
+
+
 
         // PARA CARGA DE INSUMOS (CONSULTORIO)
         private E_Consultorio _Consultorio;
@@ -407,9 +691,10 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             AjustarMargenScroll();
         }
 
+        // Estilos Visuales
         private void AplicarEstilosInsumosConsultorio()
         {
-            mainTLP.BackColor = PaletaColores.azulClaro;
+            mainTLP.BackColor = PaletaColores.LightBlue;
             lblTitulo.Text = $"INSUMOS - CONSULTORIO {_Consultorio.IdConsultorio}";
             lblNombre.Text = $"Profesional: {ObtenerNombreProfesional()} - Especialidad: {ObtenerEspecialidadProfesional()}";
 
@@ -422,11 +707,12 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 }
 
                 tlp.ForeColor = System.Drawing.Color.White;
-                btnCerrar.BackColor = PaletaColores.rosa;
+                btnCerrar.BackColor = PaletaColores.Pink;
                 btnCerrar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
             }
         }
 
+        // Metodos Auxiliares
         private string ObtenerNombreProfesional()
         {
             if (_Consultorio.IdProfesional == 0)
@@ -444,62 +730,6 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             var profesional = ProfesionalService.ObtenerProfesionalPorID(_Consultorio.IdProfesional);
             return profesional != null ? EnumHelper.GetDescription(profesional.Especialidad) : "No encontrada";
         }
-
-        private void CargarInsumosConsultorio()
-        {
-            if (_Consultorio == null)
-            {
-                DialogResult resultado = MessageBox.Show(
-                    "Error al cargar el consultorio.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-                this.Close();
-                return;
-            }
-
-            CargarListaInsumos();
-        }
-
-        private void CargarListaInsumos()
-        {
-            var insumos = ObtenerInsumosPorEspecialidad();
-
-            dataTLP.Controls.Clear();
-            dataTLP.RowStyles.Clear();
-
-            dataTLP.RowCount = insumos.Count + 1;
-            AgregarHeaderInsumos(0);
-
-            if (insumos.Count == 0)
-            {
-                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-
-                Label lblMensaje = new Label();
-                lblMensaje.Text = "No hay insumos asignados a este consultorio";
-                lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
-                lblMensaje.Dock = DockStyle.Fill;
-                lblMensaje.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Italic);
-                lblMensaje.ForeColor = System.Drawing.Color.White;
-
-                dataTLP.Controls.Add(lblMensaje, 0, 1);
-                dataTLP.SetColumnSpan(lblMensaje, 3);
-                return;
-            }
-
-            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-
-            for (int i = 0; i < insumos.Count; i++)
-            {
-                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
-                AgregarFilaInsumo(insumos[i], i + 1);
-            }
-
-            AjustarMargenScroll();
-        }
-
         private List<E_Insumo> ObtenerInsumosPorEspecialidad()
         {
             if (_Consultorio.IdProfesional == 0)
@@ -565,6 +795,63 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             }
         }
 
+        // Carga de Datos
+        private void CargarInsumosConsultorio()
+        {
+            if (_Consultorio == null)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "Error al cargar el consultorio.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                this.Close();
+                return;
+            }
+
+            CargarListaInsumos();
+        }
+
+        private void CargarListaInsumos()
+        {
+            var insumos = ObtenerInsumosPorEspecialidad();
+
+            dataTLP.Controls.Clear();
+            dataTLP.RowStyles.Clear();
+
+            dataTLP.RowCount = insumos.Count + 1;
+            AgregarHeaderInsumos(0);
+
+            if (insumos.Count == 0)
+            {
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+                Label lblMensaje = new Label();
+                lblMensaje.Text = "No hay insumos asignados a este consultorio";
+                lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
+                lblMensaje.Dock = DockStyle.Fill;
+                lblMensaje.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Italic);
+                lblMensaje.ForeColor = System.Drawing.Color.White;
+
+                dataTLP.Controls.Add(lblMensaje, 0, 1);
+                dataTLP.SetColumnSpan(lblMensaje, 3);
+                return;
+            }
+
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+            for (int i = 0; i < insumos.Count; i++)
+            {
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                AgregarFilaInsumo(insumos[i], i + 1);
+            }
+
+            AjustarMargenScroll();
+        }
+
+
         private void AgregarHeaderInsumos(int fila)
         {
             string[] headers = { "COD", "NOMBRE", "CANTIDAD" };
@@ -577,7 +864,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 lblHeader.Dock = DockStyle.Fill;
                 lblHeader.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
                 lblHeader.ForeColor = System.Drawing.Color.White;
-                lblHeader.BackColor = PaletaColores.azulOscuro;
+                lblHeader.BackColor = PaletaColores.DarkBlue;
 
                 dataTLP.Controls.Add(lblHeader, i, fila);
             }
@@ -585,7 +872,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
         private void AgregarFilaInsumo(E_Insumo insumo, int fila)
         {
-            System.Drawing.Color colorFondo = fila % 2 == 0 ? PaletaColores.azulClaro : PaletaColores.celeste;
+            System.Drawing.Color colorFondo = fila % 2 == 0 ? PaletaColores.LightBlue : PaletaColores.Skyblue;
 
             Label lblCodigo = new Label();
             lblCodigo.Text = insumo.Codigo;
@@ -621,7 +908,295 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             if (cantidad == 0) return System.Drawing.Color.Red;
             if (cantidad < 3) return System.Drawing.Color.Orange;
             if (cantidad < 6) return System.Drawing.Color.Yellow;
-            return PaletaColores.verdeClaro;
+            return PaletaColores.LightGreen;
+        }
+
+
+
+        // PARA VISUALIZACION DE SOLICITUDES DE INSUMO
+        private List<E_PedidoInsumo> _Solicitudes;
+        public AuxCargaGenerica(List<E_PedidoInsumo> solicitudes) : this()
+        {
+            _Solicitudes = solicitudes;
+
+            CrearDataTLP(6, new float[] { 20F, 12F, 26F, 14F, 14F, 14F });
+
+            this.Text = "Clínica SePrise  ||  Gestión de Solicitudes de Insumos";
+
+            AplicarEstilosSolicitudes();
+            CargarSolicitudes();
+            AjustarMargenScroll();
+        }
+
+        // Estilos Visuales
+        private void AplicarEstilosSolicitudes()
+        {
+            mainTLP.BackColor = PaletaColores.LightBlue;
+            lblTitulo.Text = "SOLICITUDES DE INSUMOS PENDIENTES";
+            lblNombre.Text = $"Total de solicitudes: {_Solicitudes?.Count ?? 0}";
+
+            foreach (Control tlp in mainTLP.Controls)
+            {
+                foreach (Control label in tlp.Controls)
+                {
+                    label.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
+                    label.ForeColor = System.Drawing.Color.White;
+                }
+
+                tlp.ForeColor = System.Drawing.Color.White;
+                btnCerrar.BackColor = PaletaColores.Pink;
+                btnCerrar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
+            }
+        }
+
+        // Carga de Datos
+        private void CargarSolicitudes()
+        {
+            if (_Solicitudes == null || _Solicitudes.Count == 0)
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "No hay solicitudes de insumos para mostrar.",
+                    "Información",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+                this.Close();
+                return;
+            }
+
+            CargarListaSolicitudes();
+        }
+
+        private void CargarListaSolicitudes()
+        {
+            dataTLP.Controls.Clear();
+            dataTLP.RowStyles.Clear();
+
+            dataTLP.RowCount = _Solicitudes.Count + 1;
+            AgregarHeaderSolicitudes(0);
+
+            if (_Solicitudes.Count == 0)
+            {
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+                Label lblMensaje = new Label();
+                lblMensaje.Text = "No hay solicitudes de insumos pendientes";
+                lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
+                lblMensaje.Dock = DockStyle.Fill;
+                lblMensaje.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Italic);
+                lblMensaje.ForeColor = System.Drawing.Color.White;
+
+                dataTLP.Controls.Add(lblMensaje, 0, 1);
+                dataTLP.SetColumnSpan(lblMensaje, 6);
+                return;
+            }
+
+            dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+
+            for (int i = 0; i < _Solicitudes.Count; i++)
+            {
+                dataTLP.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+                AgregarFilaSolicitud(_Solicitudes[i], i + 1);
+            }
+
+            AjustarMargenScroll();
+        }
+
+        private void AgregarHeaderSolicitudes(int fila)
+        {
+            string[] headers = { "FECHA", "CONS.", "PROFESIONAL", "VER", "✅", "❌" };
+
+            for (int i = 0; i < headers.Length; i++)
+            {
+                Label lblHeader = new Label();
+                lblHeader.Text = headers[i];
+                lblHeader.TextAlign = ContentAlignment.MiddleCenter;
+                lblHeader.Dock = DockStyle.Fill;
+                lblHeader.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
+                lblHeader.ForeColor = System.Drawing.Color.White;
+                lblHeader.BackColor = PaletaColores.DarkBlue;
+
+                dataTLP.Controls.Add(lblHeader, i, fila);
+            }
+        }
+
+        private void AgregarFilaSolicitud(E_PedidoInsumo solicitud, int fila)
+        {
+            System.Drawing.Color colorFondo = fila % 2 == 0 ? PaletaColores.LightBlue : PaletaColores.Skyblue;
+
+            Label lblFecha = new Label();
+            lblFecha.Text = solicitud.FechaPedido.ToString("dd/MM/yyyy");
+            lblFecha.TextAlign = ContentAlignment.MiddleCenter;
+            lblFecha.Dock = DockStyle.Fill;
+            lblFecha.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
+            lblFecha.ForeColor = System.Drawing.Color.White;
+            lblFecha.BackColor = colorFondo;
+
+            Label lblConsultorio = new Label();
+            int idConsultorio = ConsultorioService.ObtenerConsultorioPorProfesional(solicitud.IdProfesional);
+            lblConsultorio.Text = idConsultorio > 0 ? $"N° {idConsultorio}" : "Sin asignar";
+            lblConsultorio.TextAlign = ContentAlignment.MiddleCenter;
+            lblConsultorio.Dock = DockStyle.Fill;
+            lblConsultorio.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
+            lblConsultorio.ForeColor = System.Drawing.Color.White;
+            lblConsultorio.BackColor = colorFondo;
+
+            Label lblProfesional = new Label();
+            var profesional = ProfesionalService.ObtenerProfesionalPorID(solicitud.IdProfesional);
+            lblProfesional.Text = profesional?.NombreCompleto ?? "No encontrado";
+            lblProfesional.TextAlign = ContentAlignment.MiddleCenter;
+            lblProfesional.Dock = DockStyle.Fill;
+            lblProfesional.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Regular);
+            lblProfesional.ForeColor = System.Drawing.Color.White;
+            lblProfesional.BackColor = colorFondo;
+
+            Button btnVer = new Button();
+            btnVer.Text = "👁️";
+            btnVer.Dock = DockStyle.Fill;
+            btnVer.FlatStyle = FlatStyle.Flat;
+            btnVer.FlatAppearance.BorderSize = 0;
+            btnVer.BackColor = PaletaColores.LightBlue;
+            btnVer.ForeColor = System.Drawing.Color.White;
+            btnVer.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
+            btnVer.Margin = new Padding(2);
+            btnVer.Tag = solicitud;
+            btnVer.Click += (s, e) => VerDetalleSolicitud(solicitud);
+
+            Button btnAceptar = new Button();
+            btnAceptar.Text = "✅";
+            btnAceptar.Dock = DockStyle.Fill;
+            btnAceptar.FlatStyle = FlatStyle.Flat;
+            btnAceptar.FlatAppearance.BorderSize = 0;
+            btnAceptar.BackColor = PaletaColores.LightGreen;
+            btnAceptar.ForeColor = System.Drawing.Color.White;
+            btnAceptar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
+            btnAceptar.Margin = new Padding(2);
+            btnAceptar.Tag = solicitud;
+            btnAceptar.Click += (s, e) => AceptarSolicitud(solicitud);
+
+            Button btnRechazar = new Button();
+            btnRechazar.Text = "❌";
+            btnRechazar.Dock = DockStyle.Fill;
+            btnRechazar.FlatStyle = FlatStyle.Flat;
+            btnRechazar.FlatAppearance.BorderSize = 0;
+            btnRechazar.BackColor = PaletaColores.Pink;
+            btnRechazar.ForeColor = System.Drawing.Color.White;
+            btnRechazar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
+            btnRechazar.Margin = new Padding(2);
+            btnRechazar.Tag = solicitud;
+            btnRechazar.Click += (s, e) => RechazarSolicitud(solicitud);
+
+            dataTLP.Controls.Add(lblFecha, 0, fila);
+            dataTLP.Controls.Add(lblConsultorio, 1, fila);
+            dataTLP.Controls.Add(lblProfesional, 2, fila);
+            dataTLP.Controls.Add(btnVer, 3, fila);
+            dataTLP.Controls.Add(btnAceptar, 4, fila);
+            dataTLP.Controls.Add(btnRechazar, 5, fila);
+        }
+
+        private void VerDetalleSolicitud(E_PedidoInsumo solicitud)
+        {
+            try
+            {
+                var profesional = ProfesionalService.ObtenerProfesionalPorID(solicitud.IdProfesional);
+                int idConsultorio = ConsultorioService.ObtenerConsultorioPorProfesional(solicitud.IdProfesional);
+
+                StringBuilder detalle = new StringBuilder();
+                detalle.AppendLine($"📋 DETALLE DE SOLICITUD #{solicitud.IdPedido}");
+                detalle.AppendLine();
+                detalle.AppendLine($"📅 Fecha: {solicitud.FechaPedido:dd/MM/yyyy}");
+                detalle.AppendLine($"👨‍⚕️ Profesional: {profesional?.NombreCompleto ?? "No encontrado"}");
+                detalle.AppendLine($"🏥 Consultorio: {(idConsultorio > 0 ? $"Consultorio {idConsultorio}" : "Sin asignar")}");
+                detalle.AppendLine($"📦 Estado: {solicitud.EstadoPedidoInsumo}");
+                detalle.AppendLine();
+                detalle.AppendLine("📦 INSUMOS SOLICITADOS:");
+                detalle.AppendLine();
+
+                if (solicitud.InsumosSolicitados != null && solicitud.InsumosSolicitados.Count > 0)
+                {
+                    foreach (var insumoSolicitado in solicitud.InsumosSolicitados)
+                    {
+                        detalle.AppendLine($"• {insumoSolicitado.Insumo.Nombre} - Cantidad: {insumoSolicitado.CantidadSolicitada}");
+                    }
+                }
+                else
+                {
+                    detalle.AppendLine("No hay insumos en esta solicitud");
+                }
+
+                MessageBox.Show(detalle.ToString(), "Detalle de Solicitud",
+                               MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al mostrar el detalle: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AceptarSolicitud(E_PedidoInsumo solicitud)
+        {
+            try
+            {
+                DialogResult confirmacion = MessageBox.Show(
+                    $"¿Está seguro que desea ACEPTAR la solicitud #{solicitud.IdPedido}?\n\n" +
+                    $"Profesional: {ProfesionalService.ObtenerProfesionalPorID(solicitud.IdProfesional)?.NombreCompleto}\n" +
+                    $"Cantidad de insumos: {solicitud.InsumosSolicitados?.Count ?? 0}",
+                    "Confirmar Aceptación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    // Lógica para aceptar la solicitud
+
+                    MessageBox.Show($"Solicitud #{solicitud.IdPedido} aceptada correctamente.",
+                                  "Solicitud Aceptada",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    CargarListaSolicitudes();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al aceptar la solicitud: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RechazarSolicitud(E_PedidoInsumo solicitud)
+        {
+            try
+            {
+                DialogResult confirmacion = MessageBox.Show(
+                    $"¿Está seguro que desea RECHAZAR la solicitud #{solicitud.IdPedido}?\n\n" +
+                    $"Profesional: {ProfesionalService.ObtenerProfesionalPorID(solicitud.IdProfesional)?.NombreCompleto}\n\n" +
+                    $"⚠️ Esta acción no se puede deshacer",
+                    "Confirmar Rechazo",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (confirmacion == DialogResult.Yes)
+                {
+                    PedidoInsumoService.EliminarPedidoInsumo(solicitud);
+
+                    _Solicitudes.Remove(solicitud);
+
+                    MessageBox.Show($"Solicitud #{solicitud.IdPedido} rechazada y eliminada correctamente.",
+                                  "Solicitud Rechazada",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    CargarListaSolicitudes();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al rechazar la solicitud: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

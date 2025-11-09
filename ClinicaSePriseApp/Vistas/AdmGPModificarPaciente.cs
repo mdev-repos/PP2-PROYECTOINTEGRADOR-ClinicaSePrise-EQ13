@@ -25,11 +25,11 @@ namespace ClinicaSePriseApp.Vistas
 
         private void ajustarPaneles()
         {
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
 
-            contentLbl.BackColor = PaletaColores.bgGris;
-            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
 
 
             foreach (Control boton in menuTLP.Controls)
@@ -38,7 +38,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == picLogo)
                 {
@@ -46,7 +46,7 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
@@ -58,8 +58,8 @@ namespace ClinicaSePriseApp.Vistas
         private void btnVolver_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-        "¿Está seguro de que desea volver a la pantalla de gestión de pacientes?\nSe perderán los datos no guardados.",
-        "Confirmar regreso",
+            "¿Está seguro de que desea volver a la pantalla de gestión de pacientes?\nSe perderán los datos no guardados.",
+            "Confirmar regreso",
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Question
         );

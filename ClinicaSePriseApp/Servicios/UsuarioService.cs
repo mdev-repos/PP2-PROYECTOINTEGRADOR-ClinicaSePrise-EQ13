@@ -10,25 +10,24 @@ namespace ClinicaSePriseApp.Servicios
 {
     public class UsuarioService
     {
-        // Inyeccion de dependencia simple
+        // INYECCION
         private static UsuarioRepository userRepo = new UsuarioRepository();
 
-        public static E_Usuario? ValidarUsuario(string usuario, string password)
+        // CREATE
+        public static void AgregarUsuario(E_Usuario nuevoUsuario)
         {
-            List<E_Usuario> allUsers = userRepo.TraerTodosLosUsuarios();
+            userRepo.AgregarUsuario(nuevoUsuario);
+        }
 
-            E_Usuario? usuarioRecuperado = null;
+        // READ
+        public static List<E_Usuario> TraerTodosLosUsuarios()
+        {
+            return userRepo.TraerTodosLosUsuarios();
+        }
 
-            foreach (var user in allUsers)
-            {
-                if (user.UserName == usuario && user.UserPass == password)
-                {
-                    usuarioRecuperado = user;
-                    break;
-                }
-            }
-
-            return usuarioRecuperado;
+        public static E_Usuario? ObtenerUsuarioPorCredenciales(string nombreUsuario, string contrasena)
+        {
+            return userRepo.ObtenerUsuarioPorCredenciales(nombreUsuario, contrasena);
         }
     }
 }

@@ -36,8 +36,8 @@ namespace ClinicaSePriseApp.Vistas
         private void AjustarPaneles()
         {
 
-            mainTLP.BackColor = PaletaColores.bgGris;
-            menuTLP.BackColor = PaletaColores.bgGris;
+            mainTLP.BackColor = PaletaColores.Grey;
+            menuTLP.BackColor = PaletaColores.Grey;
 
             foreach (Control boton in menuTLP.Controls)
             {
@@ -45,7 +45,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnLogout)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == picLogo)
                 {
@@ -53,7 +53,7 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font("LEMON MILK", 10, FontStyle.Bold);
@@ -116,6 +116,7 @@ namespace ClinicaSePriseApp.Vistas
             {
                 return;
             }
+
             AdmGestionConsultorios admGestionConsultorios = new AdmGestionConsultorios();
             this.Hide();
             admGestionConsultorios.FormClosed += (s, args) => this.Close();
@@ -145,7 +146,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                     "Desea cerrar su sesión actual?",
-                    "Confirmar Asignación",
+                    "Confirmar Cierre de Sesión",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2

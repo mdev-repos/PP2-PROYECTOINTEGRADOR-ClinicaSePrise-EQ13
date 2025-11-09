@@ -119,7 +119,7 @@
             btnCerrar.TabIndex = 1;
             btnCerrar.Text = "CERRAR";
             btnCerrar.UseVisualStyleBackColor = true;
-            btnCerrar.Click += btnCerrar_Click_1;
+            btnCerrar.Click += btnCerrar_Click;
             // 
             // containerPanel
             // 

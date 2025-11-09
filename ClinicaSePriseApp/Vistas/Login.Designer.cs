@@ -104,7 +104,7 @@
             // txtUsuario
             // 
             txtUsuario.BorderStyle = BorderStyle.None;
-            txtUsuario.Dock = DockStyle.Fill;
+            txtUsuario.Dock = DockStyle.Top;
             txtUsuario.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtUsuario.Location = new Point(200, 166);
             txtUsuario.Margin = new Padding(5);
@@ -116,9 +116,9 @@
             // txtPassword
             // 
             txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Dock = DockStyle.Fill;
+            txtPassword.Dock = DockStyle.Bottom;
             txtPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txtPassword.Location = new Point(200, 277);
+            txtPassword.Location = new Point(200, 302);
             txtPassword.Margin = new Padding(5);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '*';

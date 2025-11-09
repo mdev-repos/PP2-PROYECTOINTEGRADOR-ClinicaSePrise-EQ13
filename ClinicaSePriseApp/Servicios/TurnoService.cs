@@ -12,7 +12,7 @@ namespace ClinicaSePriseApp.Servicios
 {
     public class TurnoService
     {
-        // Inyeccion de dependencia simple
+        // INYECCION
         private static TurnoRepository turnoRepo = new TurnoRepository();
 
 
@@ -42,7 +42,6 @@ namespace ClinicaSePriseApp.Servicios
 
         public static void CrearAgendaMedica(E_Profesional profesional, DateOnly dia)
         {
-            // Obtener horario inicial y final
             DayOfWeek day = dia.DayOfWeek;
 
             E_Disponibilidad disponibilidad = profesional.Disponibilidades.FirstOrDefault(d => d.Dia == day);
@@ -51,7 +50,6 @@ namespace ClinicaSePriseApp.Servicios
 
             TimeSpan fin = disponibilidad.HoraFin;
 
-            // Definir valores de duracion y costo del turno
             TimeSpan duracion;
 
             decimal valorConsulta;
@@ -74,7 +72,6 @@ namespace ClinicaSePriseApp.Servicios
                     break;
             }
 
-            // Creacion de turnos
             while((inicio + duracion) <= fin)
             {
                 TimeOnly horaTurno = TimeOnly.FromTimeSpan(inicio);
@@ -86,17 +83,15 @@ namespace ClinicaSePriseApp.Servicios
                     valorConsulta
                     );
 
-                // Guardar turno en la base de datos simulada
                 GuardarTurno(turno);
 
-                // Anadir turno a la agenda del dia del profesional
                 ProfesionalService.AgregarTurnoEnAgenda(profesional, turno);
 
-                // Actualizar horario de proximo turno
                 inicio = inicio + duracion;
             }
         }
-       
+
+        // DEFINIR VALORES DE MONTO SEGUN ESPECIALIDAD
         private static decimal CalcularMontoTurno(E_Profesional profesional)
         {
             decimal monto;
@@ -106,10 +101,10 @@ namespace ClinicaSePriseApp.Servicios
                     monto = 15000m;
                     break;
                 case Entidades.Enums.EspecialidadMedica.CARDIOLOGIA:
-                    monto = 10000m;
+                    monto = 13500m;
                     break;
                 default:
-                    monto = 7000m;
+                    monto = 10000m;
                     break;
             }
             return monto;
@@ -135,7 +130,7 @@ namespace ClinicaSePriseApp.Servicios
         }
 
 
-        // UPDATE
+        // UPDATE (CAMBIOS DE ESTADO)
         public static void AsignarTurno(E_Turno turno, E_Paciente paciente)
         {
             turno.IdPaciente = paciente.IdPaciente;

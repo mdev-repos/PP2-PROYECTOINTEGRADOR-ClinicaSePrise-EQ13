@@ -79,28 +79,28 @@ namespace ClinicaSePriseApp.Vistas
 
         private void ajustarPaneles()
         {
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
-            contentLbl.BackColor = PaletaColores.bgGris;
-            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
-            dgvConsultorios.BackgroundColor = PaletaColores.celeste;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
+            dgvConsultorios.BackgroundColor = PaletaColores.Skyblue;
 
             foreach (Control boton in menuTLP.Controls)
             {
                 boton.Dock = DockStyle.Fill;
 
                 if (boton == btnVolver)
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 else if (boton == picLogo)
                     boton.BackColor = Color.Transparent;
                 else
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
                 boton.ForeColor = Color.White;
             }
 
-            btnAsignarLiberar.BackColor = PaletaColores.azulOscuro;
+            btnAsignarLiberar.BackColor = PaletaColores.DarkBlue;
             btnAsignarLiberar.ForeColor = Color.White;
             btnAsignarLiberar.FlatStyle = FlatStyle.Flat;
             btnAsignarLiberar.FlatAppearance.BorderSize = 0;
@@ -132,7 +132,7 @@ namespace ClinicaSePriseApp.Vistas
             _loadingPanel = new Panel
             {
                 Size = new Size(300, 80),
-                BackColor = PaletaColores.azulClaro,
+                BackColor = PaletaColores.LightBlue,
                 BorderStyle = BorderStyle.FixedSingle,
                 Visible = false
             };
@@ -142,7 +142,7 @@ namespace ClinicaSePriseApp.Vistas
                 Text = "CARGANDO CONSULTORIOS...",
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Fill,
-                Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold),
+                Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Bold),
                 ForeColor = Color.White
             };
 
@@ -279,11 +279,11 @@ namespace ClinicaSePriseApp.Vistas
 
                 dgvConsultorios.EnableHeadersVisualStyles = false;
 
-                dgvConsultorios.ColumnHeadersDefaultCellStyle.BackColor = PaletaColores.azulClaro;
+                dgvConsultorios.ColumnHeadersDefaultCellStyle.BackColor = PaletaColores.LightBlue;
                 dgvConsultorios.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 dgvConsultorios.ColumnHeadersDefaultCellStyle.Font = new Font(Fuente.TIPOGRAFIA, fontSize, FontStyle.Bold);
 
-                dgvConsultorios.DefaultCellStyle.SelectionBackColor = PaletaColores.verdeOscuro;
+                dgvConsultorios.DefaultCellStyle.SelectionBackColor = PaletaColores.DarkGreen;
 
                 dgvConsultorios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -392,7 +392,7 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    row.Cells["colEstado"].Style.ForeColor = PaletaColores.verdeClaro;
+                    row.Cells["colEstado"].Style.ForeColor = PaletaColores.LightGreen;
                     row.Cells["colEstado"].Style.Font = new Font(Fuente.TIPOGRAFIA, CalcularTamanoFuente() - 0.5f, FontStyle.Bold);
                 }
             }
@@ -405,9 +405,9 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (estado == "OCUPADO")
                 {
-                    cell.Style.BackColor = PaletaColores.azulClaro;
+                    cell.Style.BackColor = PaletaColores.LightBlue;
                     cell.Style.ForeColor = Color.White;
-                    cell.Style.SelectionBackColor = PaletaColores.azulOscuro;
+                    cell.Style.SelectionBackColor = PaletaColores.DarkBlue;
                     cell.Style.Font = new Font(Fuente.TIPOGRAFIA, CalcularTamanoFuente() - 1, FontStyle.Bold);
                 }
                 else
@@ -516,6 +516,19 @@ namespace ClinicaSePriseApp.Vistas
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea salir de la Pantalla y volver al Dashboard?",
+                    "Confirmar Regreso",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
             DashAdmin dashAdmin = new DashAdmin();
             this.Hide();
             dashAdmin.FormClosed += (s, args) => this.Close();
