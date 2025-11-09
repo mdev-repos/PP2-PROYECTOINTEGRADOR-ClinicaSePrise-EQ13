@@ -59,8 +59,8 @@ namespace ClinicaSePriseApp.Vistas
         private void ajustarPaneles()
         {
             // Estilo de fondos
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
 
             // Estilo para menu
             foreach (Control boton in menuTLP.Controls)
@@ -69,15 +69,15 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnLogout)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == btnLiquidaciones)
                 {
-                    boton.BackColor = PaletaColores.azulVerde;
+                    boton.BackColor = PaletaColores.GreenishBlue;
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);

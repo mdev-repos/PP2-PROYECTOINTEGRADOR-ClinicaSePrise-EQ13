@@ -64,9 +64,10 @@ namespace ClinicaSePriseApp.Vistas
         {
             if (_Profesional == null) return;
 
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
-            contentLbl.BackColor = PaletaColores.bgGris;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
 
             foreach (Control boton in menuTLP.Controls)
             {
@@ -74,7 +75,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == picLogo)
                 {
@@ -82,11 +83,11 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else if (boton == btnLLamar)
                 {
-                    boton.BackColor = PaletaColores.azulVerde;
+                    boton.BackColor = PaletaColores.GreenishBlue;
                 }                
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
@@ -173,7 +174,7 @@ namespace ClinicaSePriseApp.Vistas
             lblHeaderFecha.Dock = DockStyle.Fill;
             lblHeaderFecha.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
             lblHeaderFecha.ForeColor = Color.White;
-            lblHeaderFecha.BackColor = PaletaColores.azulOscuro;
+            lblHeaderFecha.BackColor = PaletaColores.DarkBlue;
 
             Label lblHeaderProfesional = new Label();
             lblHeaderProfesional.Text = "PROFESIONAL";
@@ -181,7 +182,7 @@ namespace ClinicaSePriseApp.Vistas
             lblHeaderProfesional.Dock = DockStyle.Fill;
             lblHeaderProfesional.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
             lblHeaderProfesional.ForeColor = Color.White;
-            lblHeaderProfesional.BackColor = PaletaColores.azulOscuro;
+            lblHeaderProfesional.BackColor = PaletaColores.DarkBlue;
 
             Label lblHeaderObservaciones = new Label();
             lblHeaderObservaciones.Text = "ENTRADA";
@@ -189,7 +190,7 @@ namespace ClinicaSePriseApp.Vistas
             lblHeaderObservaciones.Dock = DockStyle.Fill;
             lblHeaderObservaciones.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
             lblHeaderObservaciones.ForeColor = Color.White;
-            lblHeaderObservaciones.BackColor = PaletaColores.azulOscuro;
+            lblHeaderObservaciones.BackColor = PaletaColores.DarkBlue;
 
             entradasTLP.Controls.Add(lblHeaderFecha, 0, fila);
             entradasTLP.Controls.Add(lblHeaderProfesional, 1, fila);
@@ -203,7 +204,7 @@ namespace ClinicaSePriseApp.Vistas
             lblFecha.TextAlign = ContentAlignment.MiddleCenter;
             lblFecha.Dock = DockStyle.Fill;
             lblFecha.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
-            lblFecha.ForeColor = PaletaColores.azulOscuro;
+            lblFecha.ForeColor = PaletaColores.DarkBlue;
             lblFecha.BackColor = Color.White;
             lblFecha.Padding = new Padding(5, 0, 0, 0);
 
@@ -213,7 +214,7 @@ namespace ClinicaSePriseApp.Vistas
             lblMedico.TextAlign = ContentAlignment.MiddleCenter;
             lblMedico.Dock = DockStyle.Fill;
             lblMedico.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
-            lblMedico.ForeColor = PaletaColores.azulOscuro;
+            lblMedico.ForeColor = PaletaColores.DarkBlue;
             lblMedico.BackColor = Color.White;
             lblMedico.Padding = new Padding(5, 0, 0, 0);
 
@@ -222,7 +223,7 @@ namespace ClinicaSePriseApp.Vistas
             btnVer.Enabled = !string.IsNullOrEmpty(entrada.Observaciones);
             btnVer.Dock = DockStyle.Fill;
             btnVer.Font = new Font(Fuente.TIPOGRAFIA, Fuente.S, FontStyle.Bold);
-            btnVer.BackColor = btnVer.Enabled ? PaletaColores.azulClaro : Color.Gray;
+            btnVer.BackColor = btnVer.Enabled ? PaletaColores.LightBlue : Color.Gray;
             btnVer.ForeColor = Color.White;
             btnVer.Margin = new Padding(0);
 
@@ -273,7 +274,8 @@ namespace ClinicaSePriseApp.Vistas
                 if (cargarEvolucion.ShowDialog() == DialogResult.OK)
                 {
                     _Turno.Estado = Entidades.Enums.EstadoTurno.FINALIZADO;
-                    
+                    _Profesional.ConsultasAtendidas++;
+
                     MessageBox.Show(
                         $"✅ Atención finalizada exitosamente\n\n" +
                         $"Paciente: {_Paciente.NombreCompleto}\n" +
@@ -302,7 +304,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                 "¿Desea volver a la vista de Agenda?",
-                "Confirmar",
+                "Confirmar Regreso",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2

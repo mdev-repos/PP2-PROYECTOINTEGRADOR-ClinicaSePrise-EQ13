@@ -10,17 +10,17 @@ namespace ClinicaSePriseApp.Servicios
 {
     public class PacienteService
     {
-        // Inyeccion de dependencia simple
+        // INYECCION
         public static PacienteRepository pacienteRepo = new PacienteRepository();
 
-        // Create
+        // CREATE
         public static void GuardarPaciente(E_Paciente nuevoPaciente)
         {
             pacienteRepo.GuardarPaciente(nuevoPaciente);
         }
 
 
-        // Read
+        // READ
         public static E_Paciente? ObtenerPacientePorID(int? id)
         {
             return pacienteRepo.ObtenerPacientePorID(id);
@@ -37,7 +37,7 @@ namespace ClinicaSePriseApp.Servicios
         }
 
 
-        // Update
+        // UPDATE
         public static void AgregarPago(E_Paciente paciente, E_Pago pago)
         { 
             paciente.PagosRealizados.Add(pago);

@@ -99,13 +99,13 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         private void AplicarEstilos()
         {
             lblHora.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
-            lblPaciente.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Italic);
+            lblPaciente.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Italic);
             lblEstado.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
 
             switch (_Turno.Estado)
             {
                 case Entidades.Enums.EstadoTurno.DISPONIBLE:
-                    mainTLP.BackColor = PaletaColores.bgGris;
+                    mainTLP.BackColor = PaletaColores.Grey;
                     foreach (Control label in mainTLP.Controls)
                     {
                         if (label is Label) label.ForeColor = Color.Black;
@@ -113,7 +113,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                     break;
 
                 case Entidades.Enums.EstadoTurno.ASIGNADO:
-                    mainTLP.BackColor = PaletaColores.verdeClaro;
+                    mainTLP.BackColor = PaletaColores.LightGreen;
                     foreach (Control label in mainTLP.Controls)
                     {
                         if (label is Label) label.ForeColor = Color.Black;
@@ -122,7 +122,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                     break;
 
                 case Entidades.Enums.EstadoTurno.ABONADO:
-                    mainTLP.BackColor = PaletaColores.azulVerde;
+                    mainTLP.BackColor = PaletaColores.GreenishBlue;
                     foreach (Control label in mainTLP.Controls)
                     {
                         if (label is Label) label.ForeColor = Color.Black;
@@ -131,7 +131,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                     break;
 
                 case Entidades.Enums.EstadoTurno.FINALIZADO:
-                    mainTLP.BackColor = PaletaColores.azulClaro;
+                    mainTLP.BackColor = PaletaColores.LightBlue;
                     foreach (Control label in mainTLP.Controls)
                     {
                         if (label is Label) label.ForeColor = Color.Black;

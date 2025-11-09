@@ -27,5 +27,11 @@ namespace ClinicaSePriseApp.Datos
         {
             return DDBB_Simulation.PedidosInsumos.FirstOrDefault(i => i.IdPedido == idPedido);
         }
+
+        // DELETE
+        public void EliminarPedidoInsumo(E_PedidoInsumo pedido)
+        {
+            DDBB_Simulation.PedidosInsumos.Remove(pedido);
+        }
     }
 }

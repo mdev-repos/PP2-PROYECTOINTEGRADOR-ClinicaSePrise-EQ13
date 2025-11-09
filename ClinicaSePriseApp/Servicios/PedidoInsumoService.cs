@@ -30,5 +30,12 @@ namespace ClinicaSePriseApp.Servicios
         {
             return pedidoRepo.ObtenerPedidoInsumoPorId(idPedidoInsumo);
         }
+
+
+        // DELETE
+        public static void EliminarPedidoInsumo(E_PedidoInsumo pedido)
+        {
+            pedidoRepo.EliminarPedidoInsumo(pedido);
+        }
     }
 }

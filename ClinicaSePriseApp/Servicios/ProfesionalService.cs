@@ -11,10 +11,10 @@ namespace ClinicaSePriseApp.Servicios
 {
     public class ProfesionalService
     {
-        // Inyeccion de dependencia simple
+        // INYECCION
         public static ProfesionalRepository profRepo = new ProfesionalRepository();
 
-        // Create
+        // CREATE
         public static void GuardarProfesional(E_Profesional nuevoProfesional)
         {
             profRepo.GuardarProfesional(nuevoProfesional);
@@ -26,7 +26,7 @@ namespace ClinicaSePriseApp.Servicios
         }
 
 
-        // Read
+        // READ
         public static E_Profesional? ObtenerProfesionalPorID(int id)
         {
             return profRepo.ObtenerProfesionalPorID(id);
@@ -47,6 +47,7 @@ namespace ClinicaSePriseApp.Servicios
             return profRepo.ObtenerProfesionalPorUsuario(usuario.IdUsuario);
         }
 
+        // OBTENER DIAS DISPONIBLES DEL PROFESIONAL
         public static List<DayOfWeek> ObtenerDiasDisponibles(E_Profesional profesional)
         {
             if (profesional?.Disponibilidades == null)
@@ -58,9 +59,7 @@ namespace ClinicaSePriseApp.Servicios
                 .ToList();
         }
 
-        // Update
-
-        // Delete
+        // QUITAR TURNO DE LA AGENDA MEDICA
         public static void EliminarTurnoDeAgenda(E_Profesional profesional, E_Turno turno)
         { 
             profesional.AgendaMedica.Remove(turno);

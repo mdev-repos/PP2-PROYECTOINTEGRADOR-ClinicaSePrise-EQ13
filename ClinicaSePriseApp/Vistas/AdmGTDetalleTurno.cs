@@ -74,9 +74,10 @@ namespace ClinicaSePriseApp.Vistas
         // Estilos Visuales
         private void ajustarPaneles()
         {
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
-            contentLbl.BackColor = PaletaColores.bgGris;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
 
             foreach (Control boton in menuTLP.Controls)
             {
@@ -84,7 +85,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == picLogo)
                 {
@@ -92,7 +93,7 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
@@ -100,13 +101,13 @@ namespace ClinicaSePriseApp.Vistas
             }
 
             lblTurno.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
-            lblTurno.ForeColor = PaletaColores.azulOscuro;
+            lblTurno.ForeColor = PaletaColores.DarkBlue;
 
             lblPaciente.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
-            lblPaciente.ForeColor = PaletaColores.azulOscuro;
+            lblPaciente.ForeColor = PaletaColores.DarkBlue;
 
             pacienteDniTxt.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
-            pacienteDniTxt.ForeColor = PaletaColores.azulOscuro;
+            pacienteDniTxt.ForeColor = PaletaColores.DarkBlue;
         }
         private void ActualizarInterfazDespuesDePago()
         {
@@ -191,7 +192,7 @@ namespace ClinicaSePriseApp.Vistas
             // DNI
             pacienteDniTxt.Text = $"DNI: {paciente.Dni}";
             pacienteDniTxt.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
-            pacienteDniTxt.ForeColor = PaletaColores.azulOscuro;
+            pacienteDniTxt.ForeColor = PaletaColores.DarkBlue;
 
             // Nombre Completo
             lblPacienteNombre.Text = $"NOMBRE: {paciente.NombreCompleto}";
@@ -417,7 +418,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                     "Desea salir de la Pantalla y volver a Turnos?",
-                    "Confirmar Asignación",
+                    "Confirmar Regreso",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2

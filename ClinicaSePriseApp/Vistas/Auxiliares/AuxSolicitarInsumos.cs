@@ -44,7 +44,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
         // Estilos Visuales
         private void AplicarEstilos()
         {
-            containerTLP.BackColor = PaletaColores.azulClaro;
+            containerTLP.BackColor = PaletaColores.LightBlue;
 
             foreach (Control boton in buttonsTLP.Controls)
             {
@@ -52,11 +52,11 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
 
                 if (boton == btnCancelar)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == btnConfirmar)
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
@@ -98,7 +98,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 lblMensaje.Dock = DockStyle.Fill;
                 lblMensaje.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Italic);
                 lblMensaje.ForeColor = Color.White;
-                lblMensaje.BackColor = PaletaColores.celeste;
+                lblMensaje.BackColor = PaletaColores.Skyblue;
 
                 insumosTLP.Controls.Add(lblMensaje, 0, 0);
                 insumosTLP.SetColumnSpan(lblMensaje, 4);
@@ -126,7 +126,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 lblHeader.Dock = DockStyle.Fill;
                 lblHeader.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
                 lblHeader.ForeColor = Color.White;
-                lblHeader.BackColor = PaletaColores.azulOscuro;
+                lblHeader.BackColor = PaletaColores.DarkBlue;
 
                 insumosTLP.Controls.Add(lblHeader, i, 0);
             }
@@ -162,7 +162,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             btnAgregar.Text = "+";
             btnAgregar.Dock = DockStyle.Fill;
             btnAgregar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
-            btnAgregar.BackColor = PaletaColores.verdeClaro;
+            btnAgregar.BackColor = PaletaColores.LightGreen;
             btnAgregar.ForeColor = Color.White;
             btnAgregar.Margin = new Padding(2);
             btnAgregar.Tag = new object[] { insumo, numCantidad };
@@ -193,7 +193,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 lblMensaje.Dock = DockStyle.Fill;
                 lblMensaje.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Italic);
                 lblMensaje.ForeColor = Color.White;
-                lblMensaje.BackColor = PaletaColores.celeste;
+                lblMensaje.BackColor = PaletaColores.Skyblue;
 
                 listaTLP.Controls.Add(lblMensaje, 0, 0);
                 listaTLP.SetColumnSpan(lblMensaje, 3);
@@ -221,7 +221,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
                 lblHeader.Dock = DockStyle.Fill;
                 lblHeader.Font = new Font(Fuente.TIPOGRAFIA, Fuente.M, FontStyle.Bold);
                 lblHeader.ForeColor = Color.White;
-                lblHeader.BackColor = PaletaColores.azulOscuro;
+                lblHeader.BackColor = PaletaColores.DarkBlue;
 
                 listaTLP.Controls.Add(lblHeader, i, 0);
             }
@@ -249,7 +249,7 @@ namespace ClinicaSePriseApp.Vistas.Auxiliares
             btnQuitar.Text = "×";
             btnQuitar.Dock = DockStyle.Fill;
             btnQuitar.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
-            btnQuitar.BackColor = PaletaColores.rosa;
+            btnQuitar.BackColor = PaletaColores.Pink;
             btnQuitar.ForeColor = Color.White;
             btnQuitar.Margin = new Padding(2);
             btnQuitar.Tag = insumoSolicitado;

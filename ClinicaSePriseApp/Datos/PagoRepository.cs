@@ -16,5 +16,24 @@ namespace ClinicaSePriseApp.Datos
             DDBB_Simulation.PagosDB.Add(pago);
         }
 
+        // READ
+        public List<E_Pago> ObtenerTodosLosPagos()
+        {
+            return DDBB_Simulation.PagosDB;
+        }
+
+        public E_Pago? ObtenerPagoPorID(int? id)
+        {
+            return DDBB_Simulation.PagosDB
+                .FirstOrDefault(p => p.IdPago == id);
+        }
+
+        public List<E_Pago> ObtenerPagosPorPaciente(int idPaciente)
+        {
+            return DDBB_Simulation.PagosDB
+                .Where(p => p.IdPaciente == idPaciente)
+                .ToList();
+        }
+
     }
 }

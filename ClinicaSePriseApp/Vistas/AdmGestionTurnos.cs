@@ -64,12 +64,12 @@ namespace ClinicaSePriseApp.Vistas
         // Estilos Visuales
         private void ajustarPaneles()
         {
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
-            turnosDgv.BackgroundColor = PaletaColores.celeste;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
+            turnosDgv.BackgroundColor = PaletaColores.Skyblue;
 
-            contentLbl.BackColor = PaletaColores.bgGris;
-            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
 
             foreach (Control boton in menuTLP.Controls)
             {
@@ -77,7 +77,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == picLogo)
                 {
@@ -85,7 +85,7 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
@@ -154,11 +154,11 @@ namespace ClinicaSePriseApp.Vistas
 
                 turnosDgv.EnableHeadersVisualStyles = false;
 
-                turnosDgv.ColumnHeadersDefaultCellStyle.BackColor = PaletaColores.azulClaro;
+                turnosDgv.ColumnHeadersDefaultCellStyle.BackColor = PaletaColores.LightBlue;
                 turnosDgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 turnosDgv.ColumnHeadersDefaultCellStyle.Font = new Font(Fuente.TIPOGRAFIA, fontSize, FontStyle.Bold);
 
-                turnosDgv.DefaultCellStyle.SelectionBackColor = PaletaColores.verdeOscuro;
+                turnosDgv.DefaultCellStyle.SelectionBackColor = PaletaColores.DarkGreen;
 
                 turnosDgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -483,7 +483,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                     "Desea salir de la Pantalla y volver al Dashboard?",
-                    "Confirmar Asignación",
+                    "Confirmar Regreso",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2

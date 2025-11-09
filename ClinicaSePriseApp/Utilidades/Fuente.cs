@@ -17,6 +17,6 @@ namespace ClinicaSePriseApp.Utilidades
         public static readonly float M = 8f;
         public static readonly float L = 9f;
         public static readonly float XL = 10f;
-        public static readonly float XXL = 12f;
+        public static readonly float Title = 14f;
     }
 }

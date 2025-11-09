@@ -48,7 +48,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             _loadingPanel = new Panel();
             _loadingPanel.Size = new Size(300, 80);
-            _loadingPanel.BackColor = PaletaColores.azulClaro;
+            _loadingPanel.BackColor = PaletaColores.LightBlue;
             _loadingPanel.BorderStyle = BorderStyle.FixedSingle;
             _loadingPanel.Visible = false;
             _loadingPanel.BringToFront();
@@ -57,9 +57,9 @@ namespace ClinicaSePriseApp.Vistas
             _loadingLabel.Text = "CARGANDO CALENDARIO...";
             _loadingLabel.TextAlign = ContentAlignment.MiddleCenter;
             _loadingLabel.Dock = DockStyle.Fill;
-            _loadingLabel.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
-            _loadingLabel.ForeColor = PaletaColores.blanco;
-            _loadingLabel.BackColor = PaletaColores.azulClaro;
+            _loadingLabel.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Bold);
+            _loadingLabel.ForeColor = Color.White;
+            _loadingLabel.BackColor = PaletaColores.LightBlue;
 
             _loadingPanel.Controls.Add(_loadingLabel);
             this.Controls.Add(_loadingPanel);
@@ -112,10 +112,11 @@ namespace ClinicaSePriseApp.Vistas
             AgendaDataTLP.Dock = DockStyle.Top;
             AgendaDataTLP.AutoSize = true;
 
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
-            contentLbl.BackColor = PaletaColores.bgGris;
-            dataViewTLP.BackColor = PaletaColores.celeste;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
+            dataViewTLP.BackColor = PaletaColores.Skyblue;
 
             foreach (Control boton in menuTLP.Controls)
             {
@@ -123,7 +124,7 @@ namespace ClinicaSePriseApp.Vistas
 
                 if (boton == btnVolver)
                 {
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 }
                 else if (boton == picLogo)
                 {
@@ -131,33 +132,33 @@ namespace ClinicaSePriseApp.Vistas
                 }
                 else
                 {
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
                 }
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
                 boton.ForeColor = Color.White;
             }
 
-            calendarMonthTLP.BackColor = PaletaColores.azulClaro;
+            calendarMonthTLP.BackColor = PaletaColores.LightBlue;
             calendarMonthTLP.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
-            calendarWeekTLP.BackColor = PaletaColores.azulClaro;
+            calendarWeekTLP.BackColor = PaletaColores.LightBlue;
             calendarWeekTLP.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
             calendarDaysTLP.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
-            AgendaContainerTLP.BackColor = PaletaColores.celeste;
-            AgendaHeadersTLP.BackColor = PaletaColores.azulClaro;
+            AgendaContainerTLP.BackColor = PaletaColores.Skyblue;
+            AgendaHeadersTLP.BackColor = PaletaColores.LightBlue;
             AgendaHeadersTLP.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
-            AgendaDataTLP.BackColor = PaletaColores.celeste;
+            AgendaDataTLP.BackColor = PaletaColores.Skyblue;
             AgendaDataTLP.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
             foreach (Control label in calendarMonthTLP.Controls)
             {
                 if (label is System.Windows.Forms.Button)
                 {
-                    label.BackColor = PaletaColores.azulClaro;
+                    label.BackColor = PaletaColores.LightBlue;
                     label.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
                     label.ForeColor = Color.White;
                 }
@@ -183,7 +184,7 @@ namespace ClinicaSePriseApp.Vistas
                 {
                     label.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Bold);
                     label.ForeColor = Color.White;
-                    label.BackColor = PaletaColores.azulClaro;
+                    label.BackColor = PaletaColores.LightBlue;
                 }
             }
         }
@@ -199,7 +200,7 @@ namespace ClinicaSePriseApp.Vistas
             else if (anchoTotal < 400)
                 tamanoFuente = Fuente.L;
             else if (anchoTotal > 600)
-                tamanoFuente = Fuente.XXL;
+                tamanoFuente = Fuente.Title;
 
             foreach (Control control in AgendaHeadersTLP.Controls)
             {
@@ -347,20 +348,20 @@ namespace ClinicaSePriseApp.Vistas
                     {
                         if (fechasConTurnos.Contains(fecha))
                         {
-                            lbl.BackColor = PaletaColores.celeste;
+                            lbl.BackColor = PaletaColores.Skyblue;
                             lbl.Cursor = Cursors.Hand;
                         }
                         else
                         {
                             if (fecha < DateTime.Today)
                             {
-                                lbl.BackColor = PaletaColores.rosa;
+                                lbl.BackColor = PaletaColores.Pink;
                                 lbl.Cursor = Cursors.Default;
                                 lbl.Click -= LabelDia_Click;
                             }
                             else
                             {
-                                lbl.BackColor = PaletaColores.verdeClaro;
+                                lbl.BackColor = PaletaColores.LightGreen;
                                 lbl.Cursor = Cursors.Hand;
                             }
                         }
@@ -426,7 +427,7 @@ namespace ClinicaSePriseApp.Vistas
                 lblMensaje.TextAlign = ContentAlignment.MiddleCenter;
                 lblMensaje.Font = new Font(Fuente.TIPOGRAFIA, Fuente.L, FontStyle.Italic);
                 lblMensaje.ForeColor = Color.White;
-                lblMensaje.BackColor = PaletaColores.celeste;
+                lblMensaje.BackColor = PaletaColores.Skyblue;
 
                 AgendaDataTLP.Controls.Add(lblMensaje, 0, 0);
                 AgendaDataTLP.SetColumnSpan(lblMensaje, 5);
@@ -900,7 +901,7 @@ namespace ClinicaSePriseApp.Vistas
         {
             DialogResult resultado = MessageBox.Show(
                     "Desea salir de la Pantalla y volver a Turnos?",
-                    "Confirmar Asignación",
+                    "Confirmar Regreso",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2

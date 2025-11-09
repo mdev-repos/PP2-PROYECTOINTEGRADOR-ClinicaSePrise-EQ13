@@ -1,6 +1,7 @@
 ﻿using ClinicaSePriseApp.Entidades;
 using ClinicaSePriseApp.Servicios;
 using ClinicaSePriseApp.Utilidades;
+using ClinicaSePriseApp.Vistas.Auxiliares;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,7 +18,7 @@ namespace ClinicaSePriseApp.Vistas
         private enum EstadoIngreso { Modificar, Editando }
         private EstadoIngreso estadoIngreso = EstadoIngreso.Modificar;
 
-        private readonly Color colorModificar = Utilidades.PaletaColores.btnAzul;
+        private readonly Color colorModificar = PaletaColores.DarkBlue;
         private readonly Color colorCancelar = Color.Red;
         private readonly Color colorAceptar = Color.Green;
 
@@ -49,22 +50,22 @@ namespace ClinicaSePriseApp.Vistas
 
         private void ajustarPaneles()
         {
-            mainTLP.BackColor = PaletaColores.celeste;
-            menuTLP.BackColor = PaletaColores.bgGris;
-            contentLbl.BackColor = PaletaColores.bgGris;
-            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
-            dgvInsumos.BackgroundColor = PaletaColores.celeste;
+            mainTLP.BackColor = PaletaColores.Skyblue;
+            menuTLP.BackColor = PaletaColores.Grey;
+            contentLbl.BackColor = PaletaColores.Grey;
+            contentLbl.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Regular);
+            dgvInsumos.BackgroundColor = PaletaColores.Skyblue;
 
             foreach (Control boton in menuTLP.Controls)
             {
                 boton.Dock = DockStyle.Fill;
 
                 if (boton == btnVolver)
-                    boton.BackColor = PaletaColores.rosa;
+                    boton.BackColor = PaletaColores.Pink;
                 else if (boton == picLogo)
                     boton.BackColor = Color.Transparent;
                 else
-                    boton.BackColor = PaletaColores.azulOscuro;
+                    boton.BackColor = PaletaColores.DarkBlue;
 
                 boton.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XL, FontStyle.Bold);
                 boton.ForeColor = Color.White;
@@ -165,11 +166,11 @@ namespace ClinicaSePriseApp.Vistas
 
                 dgvInsumos.EnableHeadersVisualStyles = false;
 
-                dgvInsumos.ColumnHeadersDefaultCellStyle.BackColor = PaletaColores.azulClaro;
+                dgvInsumos.ColumnHeadersDefaultCellStyle.BackColor = PaletaColores.LightBlue;
                 dgvInsumos.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 dgvInsumos.ColumnHeadersDefaultCellStyle.Font = new Font(Fuente.TIPOGRAFIA, fontSize, FontStyle.Bold);
 
-                dgvInsumos.DefaultCellStyle.SelectionBackColor = PaletaColores.verdeOscuro;
+                dgvInsumos.DefaultCellStyle.SelectionBackColor = PaletaColores.DarkGreen;
 
                 dgvInsumos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -472,6 +473,19 @@ namespace ClinicaSePriseApp.Vistas
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                    "Desea salir de la Pantalla y volver al Dashboard?",
+                    "Confirmar Regreso",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                );
+
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
             DashAdmin dashAdmin = new DashAdmin();
             this.Hide();
             dashAdmin.FormClosed += (s, args) => this.Close();
@@ -486,6 +500,12 @@ namespace ClinicaSePriseApp.Vistas
         private bool ExisteNombre(string nombre)
         {
             return insumos.Any(i => i.Nombre.Trim().Equals(nombre.Trim(), StringComparison.OrdinalIgnoreCase));
+        }
+
+        private void btnVerSolicitudes_Click(object sender, EventArgs e)
+        {
+            AuxCargaGenerica auxCargaGenerica = new AuxCargaGenerica(DDBB_Simulation.PedidosInsumos);
+            auxCargaGenerica.ShowDialog();
         }
     }
 }

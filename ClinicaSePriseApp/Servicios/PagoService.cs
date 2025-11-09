@@ -19,7 +19,23 @@ namespace ClinicaSePriseApp.Servicios
             pagoRepo.GuardarPago(pago);    
         }
 
-        // Metodo PAGAR
+        // READ
+        public static List<E_Pago> ObtenerTodosLosPagos()
+        {
+            return pagoRepo.ObtenerTodosLosPagos();
+        }
+
+        public static E_Pago? ObtenerPagoPorID(int? id)
+        {
+            return pagoRepo.ObtenerPagoPorID(id);
+        }
+
+        public static List<E_Pago> ObtenerPagosPorPaciente(int idPaciente)
+        {
+            return pagoRepo.ObtenerPagosPorPaciente(idPaciente) ?? new List<E_Pago>();
+        }
+
+        // REALIZAR PAGO
         public static void RealizarPago(E_Pago pago, DateOnly fechaPago, MetodoPago metodoPago)
         {
             pago.FechaPago = fechaPago;

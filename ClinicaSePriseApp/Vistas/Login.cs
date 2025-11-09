@@ -53,16 +53,17 @@ namespace ClinicaSePriseApp.Vistas
             rightPanel.Width = mainPanel.Width - leftPanel.Width;
             rightPanel.Height = mainPanel.Height;
             rightPanel.Location = new Point(leftPanel.Width, 0);
-            rightPanel.BackColor = PaletaColores.bgGris;
+            rightPanel.BackColor = PaletaColores.Grey;
 
-
-            // Estilo de Botones y Textbox
-            btnLogin.BackColor = PaletaColores.azulOscuro;
+            btnLogin.BackColor = PaletaColores.DarkBlue;
             btnLogin.ForeColor = Color.Transparent;
 
             foreach (Control txtbox in txtboxTLP.Controls)
             {
-                txtbox.Font = new Font(Fuente.TIPOGRAFIA, Fuente.XXL, FontStyle.Bold);
+                txtbox.Font = new Font(Fuente.TIPOGRAFIA, Fuente.Title, FontStyle.Bold);
+
+                txtPassword.Margin = new Padding(12, 8, 12, 8);
+                txtUsuario.Margin = new Padding(12, 8, 12, 8);
 
                 txtbox.Enter += (sender, e) =>
                 {
@@ -145,10 +146,8 @@ namespace ClinicaSePriseApp.Vistas
                 return;
             }
 
-            // Service - Validacion de usuario
-            E_Usuario? usuarioEncontrado = UsuarioService.ValidarUsuario(usuario, password);
+            E_Usuario? usuarioEncontrado = UsuarioService.ObtenerUsuarioPorCredenciales(usuario, password);
             
-            // Respuesta de la Vista
             if (usuarioEncontrado == null)
             {
                 MessageBox.Show("Usuario o contraseña incorrectos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
